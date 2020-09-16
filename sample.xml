@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+<heading></heading>
+<headingtitle></headingtitle>
+<headingdescription></headingdescription>
+<links>
+	<link></link>
+</links>
+<additionallinks>
+	<link></link>
+</additionallinks>
+<sitelinks>
+	<link></link>
+</sitelinks>
+<figures>
+<figure>
+	<title></title>
+	<description></description>
+		<list>
+			<element></element>
+			<element></element>
+			<element></element>
+		</list>
+</figure>
+<figure>
+	<title></title>
+	<description></description>
+		<list>
+			<element></element>
+			<element></element>
+			<element></element>
+		</list>
+</figure>
+<figure>
+	<title></title>
+	<description></description>
+		<list>
+			<element></element>
+			<element></element>
+			<element></element>
+		</list>
+</figure>
+</figures>
+<articles>
+<article>
+	<title></title>
+	<section></section>
+	<image></image>
+</article>
+</catalog>
