@@ -1,0 +1,23 @@
+<#import "/spring.ftl" as spring/>
+ 
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <title>Articles</title>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/style.css'/>"/>
+   </head>
+    
+   <body>
+      <h1>Articles</h1>
+      <#if message??>
+      <h2>${message}</h2>
+      </#if>
+     
+          
+      <a href="<@spring.url '/articleList'/>">Articles</a>  
+       
+   </body>
+    
+</html>
