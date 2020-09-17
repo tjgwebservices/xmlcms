@@ -29,7 +29,11 @@ public class MainController {
     @Value("${error.message}")
     private String errorMessage;
  
-     
+    @RequestMapping(value = { "/error" }, method = RequestMethod.GET)
+    public String index() {
+            return "error";
+    }  
+    
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
  
