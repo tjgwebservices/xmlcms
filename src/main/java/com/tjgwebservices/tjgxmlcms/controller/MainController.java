@@ -1,5 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
+import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
 import com.tjgwebservices.tjgxmlcms.model.Article;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class MainController {
  
     @RequestMapping(value = { "/articleList" }, method = RequestMethod.GET)
     public String articleList(Model model) {
- 
+        articles = HibernateAdmin.loadArticles();
         model.addAttribute("articles", articles);
  
         return "articleList";
@@ -70,7 +71,7 @@ public class MainController {
                 && description != null && description.length() > 0) {
             Article newArticle = new Article(title, description);
             articles.add(newArticle);
- 
+            HibernateAdmin.saveSQLArticle(newArticle);
             return "redirect:/articleList";
         }
         String error = "Title & Description is required!";
