@@ -27,66 +27,6 @@ public class HibernateAdmin {
     private static Session session = null;
     private static Transaction tx = null;
 
-    public static void saveArticle(Article article){
-        HibernateAdmin.configureSessionFactory();
-        try {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
-            session.save(article);
-            session.flush();
-            tx.commit();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
-    
-    public static void saveSQLArticle(Article article) {
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
-            String sql = "INSERT INTO Article(title,description) VALUES(?,?)";
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                PreparedStatement pstmt = conn.prepareStatement(sql)){
-                pstmt.setString(1,article.getTitle());
-                pstmt.setString(2,article.getDescription());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                    System.out.println(e.getMessage());
-            tx.rollback();
-            }
-        
-    }
-    
-    public static List<Article> loadArticles(){
-        HibernateAdmin.configureSessionFactory();
-            session = sessionFactory.openSession();
-            tx = session.beginTransaction();
-            List<Article> articleList = new ArrayList<Article>();
-            String sql = "SELECT id,title,description FROM Article;";
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
-                       while(rs.next()){
-                           Article article = new Article();
-                           article.setId(rs.getInt("id"));
-                           article.setTitle(rs.getString("title"));
-                           article.setDescription(rs.getString("description"));
-                           articleList.add(article);
-                       }
-                return articleList;
-            } catch (SQLException e) {
-                    System.out.println(e.getMessage());
-            tx.rollback();
-            }
-        return createDummyData();
-    }
-
-    public static List<Article> createDummyData(){
-        List<Article> articleList = new ArrayList<Article>();
-        articleList.add(new Article("Article Title 1", "Article Description 1"));
-        articleList.add(new Article("Article Title 1", "Article Description 2"));
-        return articleList;        
-    }
         
     public static SessionFactory configureSessionFactory() throws HibernateException {
 
@@ -106,8 +46,11 @@ public class HibernateAdmin {
         }
         sql = "CREATE TABLE IF NOT EXISTS Article (\n"
                 + " id integer PRIMARY KEY,\n"
+                + " author text NOT NULL,\n"
+                + " authorDate text NOT NULL,\n"
                 + " title text NOT NULL,\n"
-                + " description text);";
+                + " description text NOT NULL,\n"
+                + " content text NOT NULL);";
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 Statement stmt = conn.createStatement()) {
             stmt.execute(sql);

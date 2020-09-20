@@ -9,44 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-	<!--servlet>
-		<servlet-name>spring</servlet-name>
-		<servlet-class>
-			org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-<servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.css</url-pattern>  
- </servlet-mapping>  
- <servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.xml</url-pattern>  
- </servlet-mapping>  
- <servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.swf</url-pattern>  
- </servlet-mapping>  
- <servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.zip</url-pattern>  
- </servlet-mapping>  
- <servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.gif</url-pattern>  
- </servlet-mapping>  
-  
- <servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.jpg</url-pattern>  
- </servlet-mapping>  
- <servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.png</url-pattern>  
- </servlet-mapping>  
- <servlet-mapping>  
-   <servlet-name>spring</servlet-name>  
-   <url-pattern>*.js</url-pattern>  
- </servlet-mapping-->  
 </web-app>

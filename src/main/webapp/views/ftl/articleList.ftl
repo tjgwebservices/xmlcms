@@ -15,13 +15,19 @@
           
          <table border="1">
             <tr>
+               <th>Author</th>
+               <th>Date</th>
                <th>Title</th>
                <th>Description</th>
+               <th>Content</th>
             </tr>
             <#list articles as article>
             <tr>
+               <td>${article.author}</td>
+               <td>${article.authorDate}</td>
                <td>${article.title}</td>
                <td>${article.description}</td>
+               <td>${article.content}</td>
             </tr>
             </#list>
          </table>

@@ -15,14 +15,28 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String author;
+    private String authorDate;
     private String title;
     private String description;
+    private String content;
+    
  
     public Article() {
  
     }
  
-    public Integer getId() {
+    public Article(String author, String authorDate,
+            String title, String description,
+            String content) {
+        this.author = author;
+        this.authorDate = authorDate;
+        this.title = title;
+        this.description = description;
+        this.content = content;              
+    }
+
+        public Integer getId() {
         return id;
     }
  
@@ -30,9 +44,21 @@ public class Article {
         this.id = id;
     }
 
-    public Article(String title, String description) {
-        this.title = title;
-        this.description = description;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getAuthorDate() {
+        return authorDate;
+    }
+
+    public void setAuthorDate(String authorDate) {
+        this.authorDate = authorDate;
     }
  
     public String getTitle() {
@@ -50,5 +76,13 @@ public class Article {
     public void setDescription(String description) {
         this.description = description;
     }
- 
+
+        public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
 }

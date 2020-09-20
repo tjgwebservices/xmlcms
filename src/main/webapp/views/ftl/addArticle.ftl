@@ -17,8 +17,11 @@
          <fieldset>
             <legend>Add Article</legend>
             <form name="article" action="" method="POST">
+               Author: <@spring.formInput "articleForm.author" "" "text"/>    <br/>
+               Date: <@spring.formInput "articleForm.authorDate" "" "text"/>    <br/>
                Title: <@spring.formInput "articleForm.title" "" "text"/>    <br/>
                Description: <@spring.formInput "articleForm.description" "" "text"/>    <br/>
+               Content: <@spring.formInput "articleForm.content" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>

@@ -1,6 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
-import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
+import com.tjgwebservices.tjgxmlcms.dbo.ArticleDBO;
 import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
 import com.tjgwebservices.tjgxmlcms.model.Article;
 import java.util.ArrayList;
@@ -19,8 +19,6 @@ public class MainController {
     private static List<Article> articles = new ArrayList<Article>();
  
     static {
-        articles.add(new Article("Article Title 1", "Article Description 1"));
-        articles.add(new Article("Article Title 1", "Article Description 2"));
     }
  
     // Inject via application.properties
@@ -45,7 +43,7 @@ public class MainController {
  
     @RequestMapping(value = { "/articleList" }, method = RequestMethod.GET)
     public String articleList(Model model) {
-        articles = HibernateAdmin.loadArticles();
+        articles = ArticleDBO.loadArticles();
         model.addAttribute("articles", articles);
  
         return "articleList";
@@ -64,17 +62,24 @@ public class MainController {
     public String addArticleSave(Model model, //
             @ModelAttribute("articleForm") ArticleForm articleForm) {
  
+        String author = articleForm.getAuthor();
+        String authorDate = articleForm.getAuthorDate();
         String title = articleForm.getTitle();
         String description = articleForm.getDescription();
+        String content = articleForm.getContent();
  
-        if (title != null && title.length() > 0 //
-                && description != null && description.length() > 0) {
-            Article newArticle = new Article(title, description);
+        if (author != null && author.length() > 0 
+                && authorDate != null && authorDate.length() > 0 
+                && title != null && title.length() > 0 
+                && description != null && description.length() > 0
+                && content != null && content.length() > 0) {
+            Article newArticle = new Article(author, authorDate, 
+                    title, description, content);
             articles.add(newArticle);
-            HibernateAdmin.saveSQLArticle(newArticle);
+            ArticleDBO.saveSQLArticle(newArticle);
             return "redirect:/articleList";
         }
-        String error = "Title & Description is required!";
+        String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
         return "addArticle";
     }

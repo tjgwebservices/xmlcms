@@ -22,7 +22,7 @@ public class SpringWebConfig  extends WebMvcConfigurerAdapter {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver(); 
         resolver.setCache(true); 
         resolver.setPrefix(""); 
-        resolver.setSuffix(".flt"); 
+        resolver.setSuffix(".ftl"); 
         return resolver; 
     }
     
