@@ -2,6 +2,7 @@ package com.tjgwebservices.tjgxmlcms.controller;
 
 import com.tjgwebservices.tjgxmlcms.dbo.ArticleDBO;
 import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
+import com.tjgwebservices.tjgxmlcms.form.SocketDisplay;
 import com.tjgwebservices.tjgxmlcms.model.Article;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ public class MainController {
     static {
     }
  
-    // Inject via application.properties
     @Value("${welcome.message}")
     private String message;
  
@@ -30,6 +30,7 @@ public class MainController {
  
     @RequestMapping(value = { "/error" }, method = RequestMethod.GET)
     public String index() {
+            System.out.println("Error index page");
             return "error";
     }  
     
@@ -53,15 +54,16 @@ public class MainController {
     public String addArticleForm(Model model) {
  
         ArticleForm articleForm = new ArticleForm();
+        SocketDisplay socketDisplay = new SocketDisplay();
         model.addAttribute("articleForm", articleForm);
+        model.addAttribute("socketDisplay", socketDisplay);
  
         return "addArticle";
     }
  
     @RequestMapping(value = { "/addArticle" }, method = RequestMethod.POST)
     public String addArticleSave(Model model, //
-            @ModelAttribute("articleForm") ArticleForm articleForm) {
- 
+        @ModelAttribute("articleForm") ArticleForm articleForm) {
         String author = articleForm.getAuthor();
         String authorDate = articleForm.getAuthorDate();
         String title = articleForm.getTitle();
@@ -83,5 +85,6 @@ public class MainController {
         model.addAttribute("errorMessage", error);
         return "addArticle";
     }
- 
+
+
 }

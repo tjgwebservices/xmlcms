@@ -49,7 +49,7 @@ public class ArticleDBO {
     public static List<Article> loadArticles(){
             Session session = HibernateAdmin.getSession();
             Transaction tx = session.beginTransaction();
-            List<Article> articleList = new ArrayList<Article>();
+            List<Article> articleList = new ArrayList<>();
             String sql = "SELECT id,author,authorDate,title,description,content FROM Article;";
             try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 Statement stmt = conn.createStatement();
@@ -73,7 +73,7 @@ public class ArticleDBO {
     }
 
     public static List<Article> createDummyData(){
-        List<Article> articleList = new ArrayList<Article>();
+        List<Article> articleList = new ArrayList<>();
         articleList.add(new Article("John Doe","September 1, 2020", "Article Title 1", "Article Description 1", "Content"));
         articleList.add(new Article("John Doe","September 1, 2020", "Article Title 1", "Article Description 2", "Content"));
         return articleList;        

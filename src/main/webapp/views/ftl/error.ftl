@@ -11,12 +11,11 @@
     
    <body>
       <h1>Welcome</h1>
-      <#if message??>
-      <h2>${message}</h2>
+      <#if error??>
+      <h2>${error}</h2>
       </#if>
      
           
-      <a href="<@spring.url '/articleList'/>">Article List</a>  
        
    </body>
     

@@ -1,23 +1,14 @@
 <#import "/spring.ftl" as spring/>
+<#import "/nav.ftl" as nav/>
  
 <!DOCTYPE HTML>
 <html>
-   <head>
-      <meta charset="UTF-8" />
-      <title>Welcome</title>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/style.css'/>"/>
-   </head>
-    
+   <@nav.heading />
    <body>
       <h1>Welcome</h1>
       <#if message??>
       <h2>${message}</h2>
       </#if>
-     
-          
       <a href="<@spring.url '/articleList'/>">Article List</a>  
-       
    </body>
-    
 </html>

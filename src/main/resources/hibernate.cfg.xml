@@ -13,5 +13,8 @@
         <property name="connection.password">sa</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.tjgwebservices.tjgxmlcms.model.Article"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.SocketDisplay"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.SocketSubscriber"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.SocketSubscription"/>
     </session-factory>
 </hibernate-configuration>

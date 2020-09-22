@@ -26,6 +26,15 @@
             </form>
          </fieldset>
       </div>
+      <div>
+         <fieldset>
+            <legend>Add Article</legend>
+            <form name="publish" action="" method="POST">
+               Publish Name: <@spring.formInput "socketDisplay.message" "" "text"/>    <br/>
+               <input type="submit" value="Create" />
+            </form>
+         </fieldset>
+      </div>
        
        
    </body>

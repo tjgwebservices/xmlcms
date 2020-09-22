@@ -1,5 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.dbm;
 
+import com.tjgwebservices.tjgxmlcms.dbo.DBAdmin;
 import com.tjgwebservices.tjgxmlcms.model.Article;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,6 +27,7 @@ public class HibernateAdmin {
     private static StandardServiceRegistry standardServiceRegistry = null;
     private static Session session = null;
     private static Transaction tx = null;
+    private static Boolean isDatabaseAttached = false;
 
         
     public static SessionFactory configureSessionFactory() throws HibernateException {
@@ -36,34 +38,17 @@ public class HibernateAdmin {
 	sb.applySettings(cfg.getProperties());
 	standardServiceRegistry = sb.build();           	
 	sessionFactory = cfg.buildSessionFactory(standardServiceRegistry);
-        Session session = sessionFactory.openSession();
-        String sql = "ATTACH DATABASE 'articledb.db' AS articledb;";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:?cache=shared");
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        if (!isDatabaseAttached){
+            session = HibernateAdmin.getSessionFactory().openSession();
+            DBAdmin.startDatabase();
         }
-        sql = "CREATE TABLE IF NOT EXISTS Article (\n"
-                + " id integer PRIMARY KEY,\n"
-                + " author text NOT NULL,\n"
-                + " authorDate text NOT NULL,\n"
-                + " title text NOT NULL,\n"
-                + " description text NOT NULL,\n"
-                + " content text NOT NULL);";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
         return sessionFactory;
     }
 
     private static void indexDatabase() throws InterruptedException {
-        Session session = HibernateAdmin.getSession();
+        if (session == null){
+            session = HibernateAdmin.getSession();
+        }
         FullTextSession fullTextSession = Search.getFullTextSession(session);
         fullTextSession.createIndexer().startAndWait();
         fullTextSession.close();
