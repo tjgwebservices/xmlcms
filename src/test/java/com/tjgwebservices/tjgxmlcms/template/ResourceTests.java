@@ -1,5 +1,6 @@
-package com.tjgwebservices.tjgxmlcms;
+package com.tjgwebservices.tjgxmlcms.template;
 
+import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

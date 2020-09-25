@@ -1,5 +1,6 @@
-package com.tjgwebservices.tjgxmlcms;
+package com.tjgwebservices.tjgxmlcms.template;
 
+import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
 import com.tjgwebservices.tjgxmlcms.model.Article;
 import static org.assertj.core.api.Assertions.assertThat;

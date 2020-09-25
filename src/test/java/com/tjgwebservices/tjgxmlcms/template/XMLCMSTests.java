@@ -1,5 +1,6 @@
-package com.tjgwebservices.tjgxmlcms;
+package com.tjgwebservices.tjgxmlcms.template;
 
+import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.TemplateDateModel;

@@ -7,13 +7,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Flow;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 @Configuration
 @EnableWebSocket
-public class WebSocketConfig implements WebSocketConfigurer{
+public class WebSocketConfig extends AbstractWebSocketHandler implements WebSocketConfigurer{
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
@@ -32,5 +36,19 @@ public class WebSocketConfig implements WebSocketConfigurer{
         SocketSubscriber subscriber = new SocketSubscriber();
         return subscriber;
     }
+    
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) {
+        System.out.println("New Connection Established");
+    }
 
+    @Override
+    public void handleTextMessage(WebSocketSession webSocketSession,
+            TextMessage textMessage){
+        System.out.println("Message, length: "+textMessage.getPayloadLength());
+    }
+    
+    public void aferConnectionClosed(WebSocketSession session, CloseStatus  status){
+        System.out.println("Connection closed");
+    }
 }

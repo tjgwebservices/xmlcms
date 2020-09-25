@@ -15,6 +15,13 @@ public class SocketHandler extends TextWebSocketHandler {
     private String publisherId;
     private String subscriptionId;
 
+
+    public SocketHandler() {}
+    
+    public SocketHandler(String message) {
+        sessions.add((WebSocketSession) new SocketSession("0",message));
+    }
+
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message)
       throws InterruptedException, IOException {

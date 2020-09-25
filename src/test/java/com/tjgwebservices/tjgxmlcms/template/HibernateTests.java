@@ -1,5 +1,6 @@
-package com.tjgwebservices.tjgxmlcms;
+package com.tjgwebservices.tjgxmlcms.template;
 
+import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.model.Article;
 import java.sql.Connection;

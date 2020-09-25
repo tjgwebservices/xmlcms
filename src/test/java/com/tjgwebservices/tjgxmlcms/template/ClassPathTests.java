@@ -1,32 +1,31 @@
-package com.tjgwebservices.tjgxmlcms;
+package com.tjgwebservices.tjgxmlcms.template;
 
+import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import freemarker.template.Configuration;
-import freemarker.template.Version;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 import javax.servlet.ServletContext;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 import org.springframework.web.context.support.StaticWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+import org.springframework.web.servlet.theme.FixedThemeResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith({SpringExtension.class})
 @Import(SpringWebConfig.class)
-public class FreeMarkerTests {
-    Map<String,String> data = new HashMap<>();
+public class ClassPathTests {
     private static final Logger logger = LoggerFactory.getLogger(SpringWebConfig.class);
     private static final String TEMPLATE_PATH = "/views/ftl/";
     private StaticWebApplicationContext wac;
@@ -34,30 +33,34 @@ public class FreeMarkerTests {
     private MockHttpServletResponse response;
     private FreeMarkerConfigurer fc;
 
-
-    //@Autowired
-    @Qualifier("freemarkerConfig")
-    private FreeMarkerConfigurationFactoryBean freemarkerConfig;
-
     @BeforeEach
-        void setup() throws Exception {
+    public void setUp() throws Exception {
         ServletContext sc = new MockServletContext();
         wac = new StaticWebApplicationContext();
         wac.setServletContext(sc);
+        // final Template expectedTemplate = new Template();
         fc = new FreeMarkerConfigurer();
         fc.setTemplateLoaderPaths(TEMPLATE_PATH);
         fc.setServletContext(sc);
         fc.afterPropertiesSet(); 
-        Configuration cfg = new Configuration(new Version("2.3.23"));            
-        cfg.setClassForTemplateLoading(TJGXMLCMSApplication.class, "/views/ftl/");
-        cfg.setDefaultEncoding("UTF-8");
-        fc.setConfiguration(cfg);    
+        wac.getDefaultListableBeanFactory().registerSingleton("freeMarkerConfigurer", fc);
+        wac.refresh(); 
+        request = new MockHttpServletRequest();
+        request.setAttribute(DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE, wac);
+        request.setAttribute(DispatcherServlet.LOCALE_RESOLVER_ATTRIBUTE, new AcceptHeaderLocaleResolver());
+        request.setAttribute(DispatcherServlet.THEME_RESOLVER_ATTRIBUTE, new FixedThemeResolver());
+        response = new MockHttpServletResponse();
     }
-    
+ 
+
     @Test
-    void testIndexTemplate() throws Exception{
-        Assertions.assertEquals(fc.getConfiguration().getTemplateNameFormat().toString(),"TemplateNameFormat.DEFAULT_2_3_0");
-    }   
+    void testFreeMarkerConfiguration(){
+        Properties freemarkerSettings = new Properties();
+        freemarkerSettings.setProperty(Configuration.LOCALIZED_LOOKUP_KEY, Boolean.FALSE.toString());
+        freemarkerSettings.setProperty(Configuration.NUMBER_FORMAT_KEY, "computer");
+        fc.setFreemarkerSettings(freemarkerSettings);
+        assertFalse(fc.getTaglibFactory().isEmpty());
+    }
 
     
 }

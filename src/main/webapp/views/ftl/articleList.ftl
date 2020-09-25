@@ -1,12 +1,8 @@
 <#import "/spring.ftl" as spring/>
+<#import "/nav.ftl" as nav/>
  
 <html>
-   <head>
-      <title>Article List</title>
-      <link rel="stylesheet"
-           type="text/css"
-           href="<@spring.url '/css/style.css'/>"/>      
-   </head>   
+   <@nav.heading />
    <body>
      <h3>Article List</h3>
      <a href="addArticle">Add Article</a>
