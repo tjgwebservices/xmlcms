@@ -26,7 +26,7 @@ public class SubscriptionController implements Subscription {
 
     public SubscriptionController(Subscriber subscriber, ExecutorService executor, String message) {
         SocketSubscription socketSubscription = new SocketSubscription();
-        socketSubscription.setSubscription(message);
+        socketSubscription.setSubscriptionPlan(message);
         subscriber.onSubscribe(socketSubscription);
         this.subscriber = subscriber;
         this.executor = executor;       

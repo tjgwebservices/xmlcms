@@ -7,26 +7,22 @@
    <@nav.navigation />
    <@nav.sidelinks />
    <@nav.mainsection />
-     <h3>Article List</h3>
-     <a href="addArticle">Add Article</a>
+     <h3>Subscription List</h3>
+     <a href="addSubscription">Add Subscription</a>
      <br><br>
       <div>
           
          <table border="1">
             <tr>
-               <th>Author</th>
-               <th>Date</th>
-               <th>Title</th>
-               <th>Description</th>
-               <th>Content</th>
+               <th>Subscription Plan</th>
+               <th>Publisher</th>
+               <th>Topic</th>
             </tr>
-            <#list articles as article>
+            <#list subscriptions as subscription>
             <tr>
-               <td>${article.author}</td>
-               <td>${article.authorDate}</td>
-               <td>${article.title}</td>
-               <td>${article.description}</td>
-               <td>${article.content}</td>
+               <td>${subscription.subscriptionPlan}</td>
+               <td>${subscription.publisher}</td>
+               <td>${subscription.topic}</td>
             </tr>
             </#list>
          </table>
@@ -37,3 +33,4 @@
       </div>
    </body>
 </html>
+

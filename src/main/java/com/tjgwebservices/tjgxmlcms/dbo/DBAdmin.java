@@ -1,11 +1,9 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
-import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.hibernate.Session;
 
 public class DBAdmin {
     public static void startDatabase(){
@@ -42,7 +40,9 @@ public class DBAdmin {
         }
         sql = "CREATE TABLE IF NOT EXISTS Subscription (\n"
                 + " id integer PRIMARY KEY,\n"
-                + " subscription text NOT NULL);";
+                + " subscriptionPlan text NOT NULL,\n"
+                + " publisher text NOT NULL,\n"
+                + " topic text NOT NULL);";
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 Statement stmt = conn.createStatement()) {
             stmt.execute(sql);

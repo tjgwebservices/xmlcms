@@ -5,6 +5,9 @@
 <html>
    <@nav.heading />
    <body>
+   <@nav.navigation />
+   <@nav.sidelinks />
+   <@nav.mainsection />
       <h1>Welcome</h1>
       <#if message??>
       <h2>${message}</h2>
