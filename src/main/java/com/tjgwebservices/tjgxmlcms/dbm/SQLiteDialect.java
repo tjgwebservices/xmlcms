@@ -16,7 +16,7 @@ public class SQLiteDialect extends Dialect {
 
     @Override
     public int getVersion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
     
     @Override

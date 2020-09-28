@@ -15,23 +15,32 @@ import javax.websocket.MessageHandler;
 import javax.websocket.RemoteEndpoint;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
+import org.slf4j.LoggerFactory;
 
 public class SocketSession implements Session {
 
 
-    String id;
-    WebSocketContainer container;
-    Set<MessageHandler> messageHandlers;
-    String protocolVersion;
-    String negotiatedSubprotocol;
-    List<Extension> negotiatedExtensions;
-    int maxBinaryMessageBufferSize;
-    long maxIdleTimeout;
-    String queryString;
-    URI requestURI;
-    Map<String, List<String>> requestParameterMap;
-    Map<String, Object> userProperties;
-    Principal userPrincipal;
+    private String id;
+    private WebSocketContainer container;
+    private Set<MessageHandler> messageHandlers;
+    private String protocolVersion;
+    private String negotiatedSubprotocol;
+    private List<Extension> negotiatedExtensions;
+    private int maxBinaryMessageBufferSize;
+    private int maxTextMessageBufferSize;
+    private long maxIdleTimeout;
+    private String queryString;
+    private URI requestURI;
+    private Map<String, List<String>> requestParameterMap;
+    private Map<String, Object> userProperties;
+    private Principal userPrincipal;
+    private Map<String, String> pathParameters;
+    private RemoteEndpoint endpoint;
+    private boolean secure;
+    private boolean open;
+    private Set<Session> openSessions;
+    private static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(SocketSession.class);
+    
 
     SocketSession(){}
     
@@ -46,107 +55,109 @@ public class SocketSession implements Session {
 
     @Override
     public boolean isSecure() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return secure;        
     }
 
     @Override
     public boolean isOpen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return open;
     }
 
     @Override
     public long getMaxIdleTimeout() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return maxIdleTimeout;
     }
 
     @Override
     public void setMaxIdleTimeout(long l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        maxIdleTimeout = l;
     }
 
     @Override
     public void setMaxBinaryMessageBufferSize(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        maxBinaryMessageBufferSize = i;
     }
 
     @Override
     public int getMaxBinaryMessageBufferSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return maxBinaryMessageBufferSize;
     }
 
     @Override
     public void setMaxTextMessageBufferSize(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        maxTextMessageBufferSize = i;
     }
 
     @Override
     public int getMaxTextMessageBufferSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return maxTextMessageBufferSize;
     }
 
     @Override
     public RemoteEndpoint.Async getAsyncRemote() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (RemoteEndpoint.Async) endpoint;
     }
 
     @Override
     public RemoteEndpoint.Basic getBasicRemote() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (RemoteEndpoint.Basic) endpoint;
     }
 
     @Override
     public void close() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LOGGER.info("Socket Session");
+        
     }
 
     @Override
     public void close(CloseReason cr) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        LOGGER.info("Socket Session Reason:"+cr.getReasonPhrase());
     }
 
     @Override
     public URI getRequestURI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return requestURI;
     }
 
     @Override
     public Map<String, List<String>> getRequestParameterMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return requestParameterMap;
     }
 
     @Override
     public String getQueryString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return queryString;
     }
 
     @Override
     public Map<String, String> getPathParameters() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pathParameters;
     }
 
     @Override
     public Map<String, Object> getUserProperties() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userProperties;
     }
 
     @Override
     public Principal getUserPrincipal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userPrincipal;
     }
 
     @Override
     public Set<Session> getOpenSessions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return openSessions;
     }
 
     @Override
     public <T> void addMessageHandler(Class<T> type, MessageHandler.Partial<T> prtl) throws IllegalStateException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        messageHandlers.add(prtl);
     }
 
     @Override
     public <T> void addMessageHandler(Class<T> type, MessageHandler.Whole<T> whole) throws IllegalStateException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        messageHandlers.add(whole);
     }
 
     @Override

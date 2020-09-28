@@ -32,7 +32,9 @@ public class MessageController {
     @MessageMapping("/broadcast/addPublisher")
     @SendTo("/topics/general")
     public MessageHandler addPublisher(@Payload MessageHandler message, SimpMessageHeaderAccessor headerAccessor) {
-        headerAccessor.getSessionAttributes().put("publisher", message.getSubscriber());
+            if (headerAccessor.getSessionAttributes() != null ){
+                headerAccessor.getSessionAttributes().put("publisher", message.getSubscriber());
+            }            
         return message;
     }
     

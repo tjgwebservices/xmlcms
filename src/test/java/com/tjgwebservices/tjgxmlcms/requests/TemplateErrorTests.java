@@ -1,6 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.requests;
 
-import com.tjgwebservices.tjgxmlcms.services.RestErrorHandler;
+import com.tjgwebservices.tjgxmlcms.services.rest.RestErrorHandler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

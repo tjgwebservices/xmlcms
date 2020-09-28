@@ -1,7 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.requests;
 
 import com.tjgwebservices.tjgxmlcms.services.Post;
-import com.tjgwebservices.tjgxmlcms.services.RestErrorHandler;
+import com.tjgwebservices.tjgxmlcms.services.rest.RestErrorHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +23,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.TEXT_PLAIN;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;

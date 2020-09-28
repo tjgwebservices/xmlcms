@@ -1,6 +1,8 @@
 package com.tjgwebservices.tjgxmlcms.model;
 
 import com.tjgwebservices.tjgxmlcms.controller.SubscriptionController;
+import com.tjgwebservices.tjgxmlcms.services.filters.CustomFilter;
+import java.io.Serializable;
 import java.util.concurrent.Flow;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,17 +10,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.search.annotations.Indexed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-@Entity
 @Indexed
 @Table(name = "Subscriber")
 public class SocketSubscriber implements Flow.Subscriber {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Serializable id;
     private String subscriber;
+    private static Logger LOGGER = LoggerFactory.getLogger(CustomFilter.class);
+
 
     public SocketSubscriber(){}
     
@@ -58,10 +63,10 @@ public class SocketSubscriber implements Flow.Subscriber {
 
     @Override
     public void onComplete() {
-        
+        LOGGER.info("Socket Subscriber Complete");
     }
 
-    public Integer getId() {
+    public Serializable getId() {
         return id;
     }
 

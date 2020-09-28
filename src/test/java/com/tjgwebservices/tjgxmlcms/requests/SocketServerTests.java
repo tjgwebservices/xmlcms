@@ -9,8 +9,10 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.CountDownLatch;
@@ -30,11 +32,12 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 public class SocketServerTests {
 
     private static final Logger logger
-            = Logger.getLogger(ConcurrentTaskExecutor.class.getPackage().getName());
+            = Logger.getLogger(SocketServerTests.class.getPackage().getName());
     ExecutorService executorService = Executors.newFixedThreadPool(4);
     
     @Test
     public void testMessage() throws Exception {
+        Optional <Duration> d;
         SocketClient client = new SocketClient();
         
         
@@ -82,7 +85,7 @@ public class SocketServerTests {
         cdl.countDown();
         String value = cf2.get();
         Assertions.assertNotNull(value);
-        Assertions.assertEquals(value,"one, two");
+        Assertions.assertEquals("one, two",value);
     }
 
     

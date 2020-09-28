@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
@@ -28,7 +29,18 @@ public class MainController {
  
     @Value("${error.message}")
     private String errorMessage;
- 
+    
+    
+    @RequestMapping("/authenticated")
+    public @ResponseBody String authenticatedUser() {
+        return "Welcome User";
+    }
+    
+    @RequestMapping("/admin")
+    public @ResponseBody String authenticatedAdmin() {
+        return "Welcome Admin";
+    }
+    
     @RequestMapping(value = { "/error" }, method = RequestMethod.GET)
     public String index() {
             System.out.println("Error index page");

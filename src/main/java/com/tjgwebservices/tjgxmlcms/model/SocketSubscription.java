@@ -20,16 +20,17 @@ public class SocketSubscription implements Subscription {
     private String subscriptionPlan;
     private String publisher;
     private String topic;
+    
+    
 
 
     @Override
     public void request(long n) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void cancel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

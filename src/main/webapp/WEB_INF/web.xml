@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+    <filter>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <url-pattern>/authenticated/**</url-pattern>
+  </filter-mapping>
+    <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/" access="permitAll" />
+        <intercept-url pattern="/index" access="permitAll" />
+        <intercept-url pattern="/error" access="permitAll" />
+        <intercept-url pattern="/css/**" access="permitAll" />
+        <intercept-url pattern="/articleList" access="permitAll" />
+        <intercept-url pattern="/display" access="permitAll" />
+        <intercept-url pattern="/publish" access="permitAll" />
+        <custom-filter after="BASIC_AUTH_FILTER" ref="customFilter" />
+        <form-login login-page='/login' default-target-url='/authenticated' authentication-failure-url="/error" />
+    </http>
+    <beans:bean id="customFilter" class="com.tjgwebservices.tjgxmlcms.services.filters.CustomFilter" />
 </web-app>

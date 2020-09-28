@@ -7,7 +7,6 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
-   <@nav.mainsection />
       <h1>Socket List</h1>
       <#if message??>
       <h2>${message}</h2>

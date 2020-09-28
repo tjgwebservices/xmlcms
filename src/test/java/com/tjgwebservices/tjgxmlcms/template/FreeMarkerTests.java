@@ -58,7 +58,7 @@ public class FreeMarkerTests {
     
     @Test
     void testIndexTemplate() throws Exception{
-        Assertions.assertEquals(fc.getConfiguration().getTemplateNameFormat().toString(),"TemplateNameFormat.DEFAULT_2_3_0");
+        Assertions.assertEquals("TemplateNameFormat.DEFAULT_2_3_0",fc.getConfiguration().getTemplateNameFormat().toString());
     }   
 
     

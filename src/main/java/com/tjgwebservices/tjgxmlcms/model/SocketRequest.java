@@ -7,6 +7,8 @@ import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.input.CharSequenceReader;
@@ -88,8 +90,14 @@ public class SocketRequest implements WebSocket {
     }
 
     @Override
-    public void request(long n) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void request(long n) {      
+        try {
+            reader.completeOnTimeout(reader.get(), n, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SocketRequest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(SocketRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -109,7 +117,13 @@ public class SocketRequest implements WebSocket {
 
     @Override
     public void abort() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {        
+            reader.complete(reader.get());
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SocketRequest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(SocketRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public CompletableFuture<Reader> getReader() {

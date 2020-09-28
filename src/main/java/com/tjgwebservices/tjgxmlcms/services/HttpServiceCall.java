@@ -1,5 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.services;
 
+import com.tjgwebservices.tjgxmlcms.services.rest.RestErrorHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

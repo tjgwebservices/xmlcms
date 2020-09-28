@@ -6,7 +6,6 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
-   <@nav.mainsection />
      <h3>Subscription List</h3>
      <a href="addSubscription">Add Subscription</a>
      <br><br>

@@ -6,7 +6,6 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
-   <@nav.mainsection />
      <h3>Article List</h3>
      <a href="addArticle">Add Article</a>
      <br><br>

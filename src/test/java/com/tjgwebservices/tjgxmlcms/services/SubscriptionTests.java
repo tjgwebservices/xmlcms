@@ -62,7 +62,7 @@ public class SubscriptionTests {
         subscription.setSubscriber(subscriber);
         publisherController.subscribe(subscription.getSubscriber());
         Assertions.assertFalse(subscription.getExecutor().isShutdown());
-        Assertions.assertEquals(subscription.getAint().get(),0);
+        Assertions.assertEquals(0,subscription.getAint().get());
     }
     
 
