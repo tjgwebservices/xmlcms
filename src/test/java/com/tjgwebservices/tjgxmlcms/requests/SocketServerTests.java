@@ -25,7 +25,6 @@ import java.util.stream.IntStream;
 import javax.websocket.server.ServerEndpoint;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 
 
 @ServerEndpoint("/socket")

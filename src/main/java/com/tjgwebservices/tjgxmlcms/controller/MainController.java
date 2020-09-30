@@ -2,6 +2,7 @@ package com.tjgwebservices.tjgxmlcms.controller;
 
 import com.tjgwebservices.tjgxmlcms.dbo.ArticleDBO;
 import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
+import com.tjgwebservices.tjgxmlcms.form.LoginForm;
 import com.tjgwebservices.tjgxmlcms.form.SocketDisplay;
 import com.tjgwebservices.tjgxmlcms.form.SubscriptionForm;
 import com.tjgwebservices.tjgxmlcms.model.Article;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,13 +33,15 @@ public class MainController {
     private String errorMessage;
     
     
-    @RequestMapping("/authenticated")
-    public @ResponseBody String authenticatedUser() {
+    @RequestMapping("/user")
+    @ResponseBody
+    public String authenticatedUser(@RequestBody Model model) {
         return "Welcome User";
     }
     
     @RequestMapping("/admin")
-    public @ResponseBody String authenticatedAdmin() {
+    @ResponseBody 
+    public String authenticatedAdmin(@RequestBody Model model) {
         return "Welcome Admin";
     }
     
@@ -53,6 +57,31 @@ public class MainController {
         model.addAttribute("message", message);
          
         return "index";
+    }
+
+
+    @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+    public String login(Model model) {
+        LoginForm loginForm = new LoginForm();
+        model.addAttribute("message", message);
+        model.addAttribute("loginForm",loginForm);
+         
+        return "login";    
+        
+    }
+
+    @RequestMapping(value = { "/login" }, method = RequestMethod.POST)
+    public String login(Model model, 
+        @ModelAttribute("lognForm") LoginForm loginForm) {
+        
+            String username = loginForm.getUsername();
+            String password = loginForm.getPassword();
+            if (username != null && password != null) {
+                return "redirect:/authenticated/user";                
+            } else {
+                return "/error";
+            }
+            
     }
     
     @RequestMapping(value = { "/articleList" }, method = RequestMethod.GET)

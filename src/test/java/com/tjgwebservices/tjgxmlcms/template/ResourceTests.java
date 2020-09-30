@@ -25,5 +25,24 @@ public class ResourceTests {
 		HttpHeaders headers = restTemplate.headForHeaders("/css/style.css");
 		assertThat(headers.getContentLength()).isEqualTo(140);
 	}
-    
+
+        @Test
+	void testIndexPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/index");
+		assertThat(headers.getContentLength()).isEqualTo(1901);
+	}
+
+        @Test
+	void testDisplayPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/display");
+		assertThat(headers.getContentLength()).isEqualTo(919);
+	}
+
+        @Test
+	void testLoginPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/login");
+		assertThat(headers.getContentLength()).isEqualTo(1137);
+	}
+
+        
 }

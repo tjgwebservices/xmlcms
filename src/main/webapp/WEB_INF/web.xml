@@ -25,6 +25,7 @@
         <intercept-url pattern="/articleList" access="permitAll" />
         <intercept-url pattern="/display" access="permitAll" />
         <intercept-url pattern="/publish" access="permitAll" />
+        <intercept-url pattern="/login" access="permitAll" />
         <custom-filter after="BASIC_AUTH_FILTER" ref="customFilter" />
         <form-login login-page='/login' default-target-url='/authenticated' authentication-failure-url="/error" />
     </http>

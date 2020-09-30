@@ -1,6 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
+import com.tjgwebservices.tjgxmlcms.model.Publisher;
 import com.tjgwebservices.tjgxmlcms.model.SocketSubscription;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,16 +14,14 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class SubscriptionDBO {
-    public static void saveSubscription(SocketSubscription subscription) {
+public class PublisherDBO {
+    public static void savePublisher(Publisher publisher) {
             Session session = HibernateAdmin.getSession();
             Transaction tx = session.beginTransaction();
-            String sql = "INSERT INTO Subscription(subscriptionPlan,publisher,topic) VALUES(?,?,?)";
+            String sql = "INSERT INTO Publisher(publisherName) VALUES(?)";
             try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 PreparedStatement pstmt = conn.prepareStatement(sql)){
-                pstmt.setString(1,subscription.getSubscriptionPlan());
-                pstmt.setString(2,subscription.getPublisher());
-                pstmt.setString(3,subscription.getTopic());
+                pstmt.setString(1,publisher.getPublisherName());
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                     System.out.println(e.getMessage());
@@ -30,28 +29,26 @@ public class SubscriptionDBO {
             }
     }
 
-    public static List<SocketSubscription> loadSubscriptions(){
+    public static List<Publisher> loadPublishers(){
             Session session = HibernateAdmin.getSession();
             Transaction tx = session.beginTransaction();
-            List<SocketSubscription> subscriptionList = new ArrayList<SocketSubscription>();
-            String sql = "SELECT subscriptionPlan, publisher, topic FROM Subscription;";
+            List<Publisher> publisherList = new ArrayList<Publisher>();
+            String sql = "SELECT publisher FROM Publisher;";
             try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
                        while(rs.next()){
-                           SocketSubscription subscription = new SocketSubscription();
-                           subscription.setId(rs.getInt("id"));
-                           subscription.setSubscriptionPlan(rs.getString("subscriptionPlan"));
-                           subscription.setPublisher(rs.getString("publisher"));
-                           subscription.setTopic(rs.getString("topic"));
-                           subscriptionList.add(subscription);
+                           Publisher publisher = new Publisher();
+                           publisher.setId(rs.getInt("id"));
+                           publisher.setPublisherName(rs.getString("publisherName"));
+                           publisherList.add(publisher);
                        }
-                return subscriptionList;
+                return publisherList;
             } catch (SQLException e) {
                     System.out.println(e.getMessage());
             tx.rollback();
             }
-            return subscriptionList;
+            return publisherList;
     }   
     
 }

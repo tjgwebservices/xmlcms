@@ -27,7 +27,7 @@ public class CustomFilter implements Filter  {
     @Override
     public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
             fc.doFilter(sr, sr1);
-            LOGGER.info("Custom Filter Do Filter");
+            //LOGGER.info("Custom Filter Do Filter");
     }
 
     @Override

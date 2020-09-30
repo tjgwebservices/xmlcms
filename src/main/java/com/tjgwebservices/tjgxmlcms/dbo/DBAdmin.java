@@ -51,6 +51,28 @@ public class DBAdmin {
             System.out.println(e.getMessage());
         }
 
+        sql = "CREATE TABLE IF NOT EXISTS Publisher (\n"
+                + " id integer PRIMARY KEY,\n"
+                + " publisher text NOT NULL);";
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        sql = "CREATE TABLE IF NOT EXISTS Journal (\n"
+                + " id integer PRIMARY KEY,\n"
+                + " journal text NOT NULL);";
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
         
     }
 }
