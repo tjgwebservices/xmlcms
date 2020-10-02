@@ -7,13 +7,18 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+      <#if errorMessage??>
+      <div style="color:red;font-style:italic;">
+         ${errorMessage}
+      </div>
+      </#if>
         <div>
          <fieldset>
             <legend>Login</legend>
-            <form name="login" action="" method="POST">
+            <form name="loginForm" action="" method="POST">
                Username: <@spring.formInput "loginForm.username" "" "text"/>    <br/>
                Password: <@spring.formInput "loginForm.password" "" "text"/>    <br/>
-               <input type="submit" value="Create" />
+               <input type="submit" value="Login" />
             </form>
          </fieldset>
 

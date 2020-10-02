@@ -41,7 +41,7 @@ public class ResourceTests {
         @Test
 	void testLoginPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/login");
-		assertThat(headers.getContentLength()).isEqualTo(1137);
+		assertThat(headers.getContentLength()).isEqualTo(1140);
 	}
 
         

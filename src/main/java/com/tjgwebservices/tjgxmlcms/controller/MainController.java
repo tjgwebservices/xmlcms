@@ -63,7 +63,6 @@ public class MainController {
     @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
     public String login(Model model) {
         LoginForm loginForm = new LoginForm();
-        model.addAttribute("message", message);
         model.addAttribute("loginForm",loginForm);
          
         return "login";    
@@ -71,15 +70,19 @@ public class MainController {
     }
 
     @RequestMapping(value = { "/login" }, method = RequestMethod.POST)
-    public String login(Model model, 
-        @ModelAttribute("lognForm") LoginForm loginForm) {
+    public String loginAuthenticate(Model model, 
+        @ModelAttribute("loginForm") LoginForm loginForm) {
+            String error;
         
             String username = loginForm.getUsername();
             String password = loginForm.getPassword();
             if (username != null && password != null) {
-                return "redirect:/authenticated/user";                
+                //return "redirect:/authenticated/user";                
+                return "/display";
             } else {
-                return "/error";
+                error = "Error with fields!";
+                model.addAttribute("errorMessage", error);
+                return "/login";
             }
             
     }
