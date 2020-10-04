@@ -3,10 +3,17 @@ package com.tjgwebservices.tjgxmlcms.template;
 import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.model.Article;
+import com.tjgwebservices.tjgxmlcms.model.Course;
+import com.tjgwebservices.tjgxmlcms.model.Student;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,29 +56,57 @@ public class HibernateTests {
     public void testCreateDatabase() throws Exception {
         Session session = sessionFactory.openSession();
         String sql = "ATTACH DATABASE 'articletestdb.db' AS articletestdb;";
-        Connection conn = DriverManager.getConnection(testurl);
-        Statement stmt = conn.createStatement();
-        boolean itr = stmt.execute(sql);
-        Assertions.assertFalse(itr);
+        StringBuilder query = new StringBuilder();
+        query.append(sql);
+        
+        try {
+            BufferedReader bufferedReader = new BufferedReader(
+                    new FileReader("src/main/resources/dbcreate.sql")
+            );
+            bufferedReader.lines().forEach(
+                    l->{
+                        query.append(l);
+                    }
+            );
+            Connection conn = DriverManager.getConnection(testdb);
+            Statement stmt = conn.createStatement();
+            System.out.println(query.toString());
+            boolean itr = stmt.execute(query.toString());
+            conn.commit();
+            Assertions.assertFalse(itr);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
     
     @Test
     public void testCreateTable() throws Exception {
-        String sql = "CREATE TABLE IF NOT EXISTS Article (\n"
+        try {
+            String sql = "CREATE TABLE IF NOT EXISTS Article (\n"
                 + " id integer PRIMARY KEY,\n"
                 + " author text NOT NULL,\n"
                 + " authorDate text NOT NULL,\n"
                 + " title text NOT NULL,\n"
                 + " description text NOT NULL,\n"
                 + " content text NOT NULL);";
-        Connection conn = DriverManager.getConnection(testdb);
-        Statement stmt = conn.createStatement();
-        Boolean itr = stmt.execute(sql);  
-        Assertions.assertFalse(itr);
+            Connection conn = DriverManager.getConnection(testdb);
+            Statement stmt = conn.createStatement();
+            Boolean itr = stmt.execute(sql); 
+            conn.commit();
+            Assertions.assertFalse(itr);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     @Test
     public void testHibernateQuery() throws Exception {
+        try {
         Session session = sessionFactory.openSession();
         org.hibernate.Transaction tr = session.beginTransaction();
         List<Article> articleList = new ArrayList<Article>();
@@ -92,11 +127,15 @@ public class HibernateTests {
         tr.commit();
         sessionFactory.close();
         Assertions.assertTrue(sessionFactory.isClosed());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     
     @Test
-    public void testDisplayTable() throws Exception {        
+    public void testDisplayTable() throws Exception {     
+        try {
         Session session = sessionFactory.openSession();
         List<Article> articleList = new ArrayList<Article>();
         ResultSet rs = DriverManager
@@ -115,10 +154,14 @@ public class HibernateTests {
             articleList.add(article);
         }
         //Assertions.assertTrue(articleList.size()>0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         
     }
 
     public void testInsertData() throws Exception {
+        try {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         Article article = new Article();
@@ -132,12 +175,82 @@ public class HibernateTests {
         pstmt.setString(3,article.getTitle());
         pstmt.setString(4,article.getDescription());
         pstmt.setString(5,article.getContent());
+        int itr = pstmt.executeUpdate(); 
+        conn.commit();
+        Assertions.assertEquals(0, itr);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void testCreateCourse() throws Exception {
+        try {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        Course course = new Course();
+        course.setCourseName("Test Course");
+        String sql = "INSERT INTO Course(courseName) VALUES(?)";
+        Connection conn = DriverManager.getConnection(testdb);
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,course.getCourseName());
         int itr = pstmt.executeUpdate();  
         Assertions.assertEquals(0, itr);
+        conn.commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
+    @Test
+    public void testSelectCourse() throws Exception { 
+        try {
+        Session session = sessionFactory.openSession();
+        List<Course> courses = new ArrayList<Course>();
+        ResultSet rs = DriverManager
+            .getConnection(testdb)
+            .createStatement()
+            .executeQuery("SELECT * FROM Course");
+        
+        while (rs.next()){
+            Course course = new Course();
+            course.setId(rs.getInt("id"));
+            course.setCourseName(rs.getString("courseName"));
+            courses.add(course);
+        }
+        Assertions.assertTrue(courses.size()>0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void testCreateStudent() throws Exception {
+        try {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        Student student = new Student();
+        student.setLastName("Doe");
+        student.setFirstName("John");
+        student.setCourseId(1);
+        String sql = "INSERT INTO Student(lastName,firstName,courseId) VALUES(?,?,?)";
+        Connection conn = DriverManager.getConnection(testdb);
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,student.getLastName());
+        pstmt.setString(2,student.getFirstName());
+        pstmt.setInt(3,student.getCourseId());
+        int itr = pstmt.executeUpdate();  
+        conn.commit();
+        Assertions.assertEquals(0, itr);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     
     @Test
     public void testArticleData() throws Exception {
+        try {
         HibernateAdmin.configureSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -155,6 +268,9 @@ public class HibernateTests {
             article.setDescription(rs.getString("description"));
             article.setTitle(rs.getString("content"));
             articleList.add(article);
+        }
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
         //Assertions.assertTrue(articleList.size()>0);        
     }

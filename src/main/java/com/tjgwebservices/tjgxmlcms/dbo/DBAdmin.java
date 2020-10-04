@@ -1,5 +1,9 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,65 +18,25 @@ public class DBAdmin {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        sql = "CREATE TABLE IF NOT EXISTS Article (\n"
-                + " id integer PRIMARY KEY,\n"
-                + " author text NOT NULL,\n"
-                + " authorDate text NOT NULL,\n"
-                + " title text NOT NULL,\n"
-                + " description text NOT NULL,\n"
-                + " content text NOT NULL);";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-            
+        StringBuilder query = new StringBuilder();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(
+                    new FileReader("src/main/resources/dbcreate.sql")
+            );
+            while (bufferedReader.readLine()!=null) {
+                query.append(bufferedReader.readLine());
+                
+            }
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                Statement stmt = conn.createStatement();
+            stmt.execute(query.toString());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        sql = "CREATE TABLE IF NOT EXISTS Subscriber (\n"
-                + " id integer PRIMARY KEY,\n"
-                + " subscriber text NOT NULL);";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        sql = "CREATE TABLE IF NOT EXISTS Subscription (\n"
-                + " id integer PRIMARY KEY,\n"
-                + " subscriptionPlan text NOT NULL,\n"
-                + " publisher text NOT NULL,\n"
-                + " topic text NOT NULL);";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        sql = "CREATE TABLE IF NOT EXISTS Publisher (\n"
-                + " id integer PRIMARY KEY,\n"
-                + " publisher text NOT NULL);";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        sql = "CREATE TABLE IF NOT EXISTS Journal (\n"
-                + " id integer PRIMARY KEY,\n"
-                + " journal text NOT NULL);";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
         
     }
 }
