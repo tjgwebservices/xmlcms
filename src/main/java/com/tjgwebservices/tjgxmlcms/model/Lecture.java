@@ -18,6 +18,13 @@ public class Lecture {
     private Integer id;
     private String lectureName;
     private Binary lecturePoster;
+    
+    public Lecture(){}
+    
+    public Lecture(String lectureName, Binary lecturePoster) {
+        this.lectureName = lectureName;
+        this.lecturePoster = lecturePoster;
+    }
 
     public Integer getId() {
         return id;

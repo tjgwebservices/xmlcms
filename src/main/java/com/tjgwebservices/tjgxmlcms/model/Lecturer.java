@@ -1,5 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,12 +11,18 @@ import org.hibernate.search.annotations.Indexed;
 @Entity
 @Indexed
 @Table(name = "Lecturer")
-public class Lecturer {
+public class Lecturer implements Serializable {
  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String lecturerName;
+    
+    public Lecturer (){}
+    
+    public Lecturer(String lecturerName) {
+        this.lecturerName = lecturerName;
+    }
 
     public Integer getId() {
         return id;

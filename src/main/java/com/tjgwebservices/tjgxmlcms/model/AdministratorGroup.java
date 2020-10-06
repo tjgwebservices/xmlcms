@@ -1,5 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,13 +11,19 @@ import org.hibernate.search.annotations.Indexed;
 @Entity
 @Indexed
 @Table(name = "AdminisratorGroup")
-public class AdministratorGroup {
+public class AdministratorGroup implements Serializable {
  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String groupName;
 
+    public AdministratorGroup (){}
+    
+    public AdministratorGroup (String groupName) {
+        this.groupName = groupName;
+    }
+    
     public Integer getId() {
         return id;
     }

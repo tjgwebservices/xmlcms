@@ -1,5 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +11,7 @@ import org.hibernate.search.annotations.Indexed;
 @Entity
 @Indexed
 @Table(name = "Adminisrator")
-public class Administrator {
+public class Administrator implements Serializable {
  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,6 +19,13 @@ public class Administrator {
     private String administratorName;
     private Integer administratorGroupId;
 
+    public Administrator(){}
+    
+    public Administrator(String administratorName, Integer administratorGroupId){
+        this.administratorName = administratorName;
+        this.administratorGroupId = administratorGroupId;
+    }
+    
     public Integer getId() {
         return id;
     }

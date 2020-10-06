@@ -19,6 +19,13 @@ public class Student {
     private String firstName;
     private Integer courseId;
 
+    public Student(){}
+    
+    public Student(String lastName, String firstName, int courseId){
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.courseId = courseId;
+    }
     public Integer getId() {
         return id;
     }

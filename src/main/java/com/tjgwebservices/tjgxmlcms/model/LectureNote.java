@@ -19,6 +19,14 @@ public class LectureNote {
     private String noteInstructor;
     private String noteLecture;
     private String noteText;
+    
+    public LectureNote (){}
+    
+    public LectureNote(String noteInstructor, String noteLecture, String noteText){
+        this.noteInstructor = noteInstructor;
+        this.noteLecture = noteLecture;
+        this.noteText = noteText;
+    }
 
     public Integer getId() {
         return id;

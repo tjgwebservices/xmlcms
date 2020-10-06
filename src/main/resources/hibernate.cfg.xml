@@ -13,6 +13,15 @@
         <property name="connection.password">sa</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.tjgwebservices.tjgxmlcms.model.Article"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.Administrator"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.AdministratorGroup"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.Course"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.Lecture"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.LectureNote"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.Lecturer"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.Publisher"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.School"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.Student"/>
         <mapping class="com.tjgwebservices.tjgxmlcms.model.Login"/>
         <mapping class="com.tjgwebservices.tjgxmlcms.model.SocketDisplay"/>
         <mapping class="com.tjgwebservices.tjgxmlcms.model.SocketSubscriber"/>

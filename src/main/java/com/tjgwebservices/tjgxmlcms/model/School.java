@@ -18,6 +18,13 @@ public class School {
     private Integer id;
     private String schoolName;
     private String schoolLecturer;
+    
+    public School (){}
+    
+    public School(String schoolName, String schoolLecturer){
+        this.schoolName = schoolName;
+        this.schoolLecturer = schoolLecturer;
+    }
 
     public Integer getId() {
         return id;
