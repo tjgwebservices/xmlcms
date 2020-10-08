@@ -2,32 +2,54 @@ body, html, p, h1, h2, h3, h4, h5, h6 {
     color: #212121;
 }
 
+h4 {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    background-color: #f1ece5;
+    padding: 10px;
+    border-radius: 5px;
+    color: #062f19;
+    text-shadow: 2px 2px #d2c89a;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #242907;
+}
+
+p {
+    color: #212121;
+    font-size: 20px;
+}
+
 nav {
     display: block;
     float: left;
     margin-bottom: 20px;
     overflow: visible;
     min-height: 40px;
-    background-color: #fafafa;
-    border: 1px solid #d4d4d4;
+    background-color: #f3f2eb;
+    border: 1px solid #efe4bd;
     border-radius: 4px;
     padding-right: 20px;
     padding-left: 20px;
-    width: 100%;
+    width: 100%;	
 }
 
 nav button {
-	float: right;
-	padding: 7px 10px;
-	margin-right: 5px;
-	margin-left: 5px;
-	color: #ffffff;
-	background-color: #ededed;
-	border-color: #e5e5e5 #e5e5e5 #bfbfbf;
+    float: right;
+    padding: 7px 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #ffffff;
+    background-color: #ededed;
+    border-color: #e5e5e5 #e5e5e5 #bfbfbf;
 }
 
 nav button:hover {
-	color: #dedede;
+    color: #dedede;
 }
 
 nav ul, aside ul {
@@ -35,6 +57,7 @@ nav ul, aside ul {
     list-style-type: none;
     float: left;
 }
+
 nav ul li, aside ul li{
     display: block;
     list-style-type: none;
@@ -52,14 +75,17 @@ nav a {
     text-shadow: 0 1px 0 #ffffff;
     color: #2b4242;
     text-decoration: none;
+    background-color: #e6e6c8;
+    margin-right: 40px;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 nav a:hover {
-	color: #dedede;
+    color: #dedede;
 }
 
 nav div {
-    height: auto;
     height: auto;
     overflow: visible;
     position: relative;
@@ -94,6 +120,58 @@ nav div ul li {
     line-height: 20px;
     list-style: none;
 }
+nav div {
+	position:fixed;
+	top:0;
+	width:100%;
+	z-index:1;
+}
+
+.dropdown1 {
+	float: left;
+	display: inline-block;
+	cursor: pointer;
+	position: static;
+}
+
+.dropdown1-content {
+	color: #000;
+	/* background-color: #018f49; */
+	background-color: #e8d7d7;
+	box-shadow: 0 4px 8px 0 rgba(105, 179, 119, 0.2),0 6px 20px 0 rgba(98, 182, 128, 0.19);
+	cursor: auto;
+	display: none;
+	min-width: 80px;
+	max-width: 160px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	z-index: 900;
+	margin-left: -90px;
+	/* top: 44px; */
+	top: 74px;
+	border-radius: 15px;
+}
+
+.dropdown1-content a {
+	display: block;
+	margin: 5px 10px;
+	width:80%;
+	border-radius: 15px;
+	background-color: #dedede;
+	box-shadow: 2px 7px 7px #c3e3cf;
+}
+
+.dropdown1-content a:hover {
+/*	background-color: #f1f1f1;
+	background-color: #4CAF50;*/
+	background-color: #dbedfb;
+	}
+
+.dropdown1:hover .dropdown1-content {
+	display: inline-block;
+}
+
 
 main {
     padding-right: 20px;
@@ -135,6 +213,7 @@ aside ul {
     list-style: none;
     padding: 0;
     margin: 0 0 10px 25px;
+    font-size: 22px;
 }
 
 aside ul li {
@@ -158,12 +237,31 @@ aside ul li a{
     color: #457547;
     margin: 2px 5px;
     transition: 0.7s;
+    font-size: 18px;
+    background-color: #e6e6cc;
+    padding: 10px 5px 10px 5px;
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    margin: 10px 5px 10px 0px;
 }
 
 aside ul li a:hover{
     background-color: #3e8e41;
     color: #fff;
 }
+
+body > aside > ul:nth-of-type(1) {
+    padding: 32px 0px 32px 0px;
+}
+
+body > aside > ul:nth-of-type(1) li{
+    background-color: #e8ead5;
+    border-radius: 5px;
+    margin: 4px 5px 4px 5px;
+    color: #9a9e87;
+}
+
 aside > section {
     padding: 4px 2px 4px 2px;
     border: 2px solid #dedede;
@@ -191,13 +289,30 @@ aside > section h6 {
 }
 
 main {
-    width: 74.35897435897436%;
+    width: 64.35897435897436%;
     display: block;
     float: left;
     width: 100%;
     min-height: 30px;
     margin-left: 2.564102564102564%;
     margin: 20px 0px 20px 0px;
+    border-radius: 20px;
+}
+
+main a {
+    color: #81aede;
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+    padding: 5px;
+    border: 2px solid #d3d4b1;
+    background-color: #ece7d4;
+    font-weight: 600;
+}
+
+main a:hover {
+    background-color: #d5e43d;
+    color: #2c5e94;
 }
 
 main header {
@@ -291,6 +406,7 @@ main header span figure {
 main header span figure:nth-of-type(1) {
     display: block;
 } 
+
 main header span figure ul li {
     list-style-type: none;
 }
@@ -314,6 +430,9 @@ main article {
 
 main article section {
     float: left;
+    box-shadow: 4px 3px 8px 1px #969696;
+    -webkit-box-shadow: 4px 3px 8px 1px #969696;
+    background-color: #f5f4f0;
 }
 
 main article:nth-of-type(even) section:nth-of-type(1) {
@@ -371,29 +490,51 @@ main article section a{
 }
 
 main article section a:hover, main article section a:focus{
-    outline: thin dotted #333;
-    outline-offset: -2px;
-    color: #333333;
-    background-position: 0 -15px;
-    transition: background-position 0.1s linear;
+	outline: thin dotted #333;
+	outline-offset: -2px;
+	color: #333333;
+	background-position: 0 -15px;
+	transition: background-position 0.1s linear;
 }
 
+main article > section > ul > li {
+    list-style-type: none;
+    border-bottom: 1px solid #d3ecb9;
+    padding: 12px 5px 12px 5px;
+}
+
+main article> section> ul > li:nth-child(1) {
+    color: #fff;
+    background-color: #668c7a;
+    padding: 32px 5px 32px 10px;
+    font-size: 24px;
+    text-align: center;
+}
+
+main > article > section > ul > li > h2 {
+    color: #545d25;
+}
+main > article > section > ul {
+    padding: 0px;    
+}
 body > h1, body > h2, body > a {
     display: block;
     float: left;
     width: 100%;
     font-size: 12px;
+    text-align: center;
+    font-size: 16px;
 }
 
 @media (min-width: 600px) {
 
     aside {
-            display: block;
-            width: 24.99%;
+        display: block;
+        width: 24.99%;
     }
 
     main {
-            width: 74.99%;
+        width: 64.99%;
     }
 
     main article section {

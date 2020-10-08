@@ -15,7 +15,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity(debug = true)
 public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
     String[] ignorelist = {"/","/home","/index","/error","/login","/success",
-                        "/sockets","/display","/publish","/uploads","/css/**",
+                        "/sockets","/display","/publish","/uploads","/css/**","/js/**",
+                        "/workshop","/conference","/forum","/project","/learn","/report",
                         "/articleList","/addArticle","/subscriptionList","/addSubscription"};
     
     @Override
