@@ -2,7 +2,7 @@
  
 <html>
    <head>
-      <title>Add School</title>
+      <title>Add Student</title>
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/style.css'/>"/>      
    </head>
@@ -15,10 +15,9 @@
        
       <div>
          <fieldset>
-            <legend>Add School</legend>
-            <form name="school" action="" method="POST">
-               School Name: <@spring.formInput "schoolForm.schoolName" "" "text"/>    <br/>
-               School Administrator: <@spring.formInput "schoolForm.schoolLecturer" "" "text"/>    <br/>
+            <legend>Add Course</legend>
+            <form name="course" action="" method="POST">
+               Course Name: <@spring.formInput "courseForm.courseName" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>

@@ -2,13 +2,6 @@ package com.tjgwebservices.tjgxmlcms.dbm;
 
 import com.tjgwebservices.tjgxmlcms.dbo.DBAdmin;
 import com.tjgwebservices.tjgxmlcms.model.Article;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

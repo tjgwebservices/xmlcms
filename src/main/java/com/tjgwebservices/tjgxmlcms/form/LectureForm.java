@@ -1,11 +1,11 @@
 package com.tjgwebservices.tjgxmlcms.form;
 
-import javax.websocket.Encoder;
+import org.springframework.web.multipart.MultipartFile;
 
 public class LectureForm {
 
     private String lectureName;
-    private Encoder.Binary lecturePoster;
+    private MultipartFile lecturePoster;
 
     public String getLectureName() {
         return lectureName;
@@ -15,11 +15,11 @@ public class LectureForm {
         this.lectureName = lectureName;
     }
 
-    public Encoder.Binary getLecturePoster() {
+    public MultipartFile getLecturePoster() {
         return lecturePoster;
     }
 
-    public void setLecturePoster(Encoder.Binary lecturePoster) {
+    public void setLecturePoster(MultipartFile lecturePoster) {
         this.lecturePoster = lecturePoster;
     }
 

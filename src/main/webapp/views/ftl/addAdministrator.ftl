@@ -17,8 +17,8 @@
          <fieldset>
             <legend>Add Administrator</legend>
             <form name="administrator" action="" method="POST">
-               Publication: <@spring.formInput "administratorForm.administratorName" "" "text"/>    <br/>
-               Subscription: <@spring.formInput "administratorForm.administratorGroupId" "" "text"/>    <br/>
+               Administrator Name: <@spring.formInput "administratorForm.administratorName" "" "text"/>    <br/>
+               Administrator Group Id: <@spring.formInput "administratorForm.administratorGroupId" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>

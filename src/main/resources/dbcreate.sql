@@ -16,7 +16,7 @@ publisher text NOT NULL,
 topic text NOT NULL);
 
 CREATE TABLE IF NOT EXISTS Journal (
-d integer PRIMARY KEY,
+id integer PRIMARY KEY,
 journal text NOT NULL);
 
 CREATE TABLE IF NOT EXISTS Subscriber (
@@ -67,6 +67,11 @@ REFERENCES Lecturer(id)
 ON UPDATE CASCADE
 );
 
+CREATE TABLE AdministratorGroup (
+id integer PRIMARY KEY,
+groupName TEXT NOT NULL
+);
+
 CREATE TABLE Administrator (
 id integer PRIMARY KEY,
 administratorName text NOT NULL,
@@ -77,7 +82,3 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 );
 
-CREATE TABLE AdministratorGroup (
-id integer PRIMARY KEY,
-groupName TEXT NOT NULL
-);

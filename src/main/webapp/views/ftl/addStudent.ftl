@@ -17,8 +17,8 @@
          <fieldset>
             <legend>Add Student</legend>
             <form name="student" action="" method="POST">
-               Publication: <@spring.formInput "studentForm.lastName" "" "text"/>    <br/>
-               Subscription: <@spring.formInput "studentForm.firstName" "" "text"/>    <br/>
+               Last Name: <@spring.formInput "studentForm.lastName" "" "text"/>    <br/>
+               First Name: <@spring.formInput "studentForm.firstName" "" "text"/>    <br/>
                Course: <@spring.formInput "studentForm.courseId" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>

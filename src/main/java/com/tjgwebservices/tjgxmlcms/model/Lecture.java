@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.websocket.Encoder.Binary;
 import org.hibernate.search.annotations.Indexed;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Indexed
@@ -17,11 +18,11 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String lectureName;
-    private Binary lecturePoster;
+    private MultipartFile lecturePoster;
     
     public Lecture(){}
     
-    public Lecture(String lectureName, Binary lecturePoster) {
+    public Lecture(String lectureName, MultipartFile lecturePoster) {
         this.lectureName = lectureName;
         this.lecturePoster = lecturePoster;
     }
@@ -42,11 +43,11 @@ public class Lecture {
         this.lectureName = lectureName;
     }
 
-    public Binary getLecturePoster() {
+    public MultipartFile getLecturePoster() {
         return lecturePoster;
     }
 
-    public void setLecturePoster(Binary lecturePoster) {
+    public void setLecturePoster(MultipartFile lecturePoster) {
         this.lecturePoster = lecturePoster;
     }
 

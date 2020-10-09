@@ -16,7 +16,7 @@
       <div>
          <fieldset>
             <legend>Add Lecture</legend>
-            <form name="lecture" enctype="multipart/form-data" modelAttribute="fileUpload" action="" method="POST">
+            <form name="lecture" enctype="multipart/form-data" modelAttribute="fileUpload" action="/uploadFile" method="POST">
                File Name: <@spring.formInput "lectureForm.lectureName" "" "filename"/>    <br/>
                File: <@spring.formInput "lectureForm.lecturePoster" "" "file"/>    <br/>
                <input type="submit" value="Upload" />

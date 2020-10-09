@@ -17,6 +17,12 @@ public class Course {
     private Integer id;
     private String courseName;
 
+    public Course(){}
+    
+    public Course(String courseName) {
+        this.courseName = courseName;
+    }
+
     public Integer getId() {
         return id;
     }

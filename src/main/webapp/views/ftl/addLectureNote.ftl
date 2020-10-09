@@ -17,9 +17,9 @@
          <fieldset>
             <legend>Add Lecture Note</legend>
             <form name="lectureNote" action="" method="POST">
-               Publication: <@spring.formInput "lectureNoteForm.noteInstructor" "" "text"/>    <br/>
-               Subscription: <@spring.formInput "lectureNoteForm.noteLecture" "" "text"/>    <br/>
-               Course: <@spring.formInput "lectureNoteForm.noteText" "" "text"/>    <br/>
+               Lecture Note Instructor: <@spring.formInput "lectureNoteForm.noteInstructor" "" "text"/>    <br/>
+               Lecture: <@spring.formInput "lectureNoteForm.noteLecture" "" "text"/>    <br/>
+               Text: <@spring.formInput "lectureNoteForm.noteText" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>

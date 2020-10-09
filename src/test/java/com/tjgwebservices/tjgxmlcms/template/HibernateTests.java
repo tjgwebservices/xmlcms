@@ -275,7 +275,14 @@ public class HibernateTests {
         //Assertions.assertTrue(articleList.size()>0);        
     }
     
-    
+        @Test
+        public void testHibernateAdmin() throws Exception {
+            HibernateAdmin.configureSessionFactory();
+            
+
+        }
+        
+        
     private static List<Article> search(String queryString) {
         Session session = HibernateAdmin.getSession();
         FullTextSession fullTextSession = Search.getFullTextSession(session);

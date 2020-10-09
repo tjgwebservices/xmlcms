@@ -5,7 +5,7 @@
    <@nav.heading />
    <body>
    <@nav.navigation />
-   <@nav.sidelinks />
+   <@nav.sidelinksadmin />
      <h3>Admin List</h3>
      <a href="addArticle">Add Article</a>
      <br><br>
@@ -39,13 +39,32 @@
             <#if administratorGroups??>
             <#list administratorGroups as administratorGroup>
             <tr>
-               <td>${administrator.id}</td>
-               <td>${administrator.groupName}</td>
+               <td>${administratorGroup.id}</td>
+               <td>${administratorGroup.groupName}</td>
             </tr>
             </#list>
             </#if>
          </table>
       </div>
+      <div>
+         <h4>Course</h4>           
+          
+         <table border="1">
+            <tr>
+               <th>Course Id</th>
+               <th>CourseName</th>
+            </tr>
+            <#if courses??>
+            <#list courses as course>
+            <tr>
+               <td>${course.id}</td>
+               <td>${course.courseName}</td>
+            </tr>
+            </#list>
+            </#if>
+         </table>
+      </div>
+
       <div>
          <h4>Lectures</h4>           
           
@@ -124,12 +143,6 @@
       </div>
 
       <div>
-      <a href="<@spring.url '/addAdministrator'/>">Add Administrator</a>  
-      <a href="<@spring.url '/addAdministratorGroup'/>">Add Administrator Group</a>  
-      <a href="<@spring.url '/addLecture'/>">Add Lecture</a>  
-      <a href="<@spring.url '/addLectureGroup'/>">Add Lecture Group</a>  
-      <a href="<@spring.url '/addSchool'/>">Add School</a>  
-      <a href="<@spring.url '/addStudent'/>">Add Student</a>  
       <a href="<@spring.url '/display'/>">Display Subscription List</a>  
       <a href="<@spring.url '/publish'/>">Publish to Subscription List</a>  
       </div>

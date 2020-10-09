@@ -61,6 +61,23 @@
 	</ul>
    </aside>
 </#macro>
+<#macro sidelinksadmin>
+   <aside>
+        <ul>
+            <li>TJG Web Conferences</li>
+            <li>Mangament Information Systems</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="<@spring.url '/addAdministrator'/>">Add Administrator</a></li>
+            <li><a href="<@spring.url '/addAdministratorGroup'/>">Add Administrator Group</a></li>
+            <li><a href="<@spring.url '/addLecture'/>">Add Lecture</a></li>
+            <li><a href="<@spring.url '/addLectureNote'/>">Add Lecture Note</a></li>
+            <li><a href="<@spring.url '/addCourse'/>">Add Course</a></li>
+            <li><a href="<@spring.url '/addSchool'/>">Add School</a></li>
+            <li><a href="<@spring.url '/addStudent'/>">Add Student</a></li>
+        </ul>
+   </aside>
+</#macro>
+
 <#macro mainsection>
    <main>
         <h4>TJG XML CMS</h4>
