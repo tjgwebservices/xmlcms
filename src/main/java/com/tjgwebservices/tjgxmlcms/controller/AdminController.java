@@ -2,6 +2,7 @@ package com.tjgwebservices.tjgxmlcms.controller;
 
 import com.tjgwebservices.tjgxmlcms.dbo.AdministratorDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.AdministratorGroupDBO;
+import com.tjgwebservices.tjgxmlcms.dbo.ArticleDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.LectureDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.LectureNoteDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.SchoolDBO;
@@ -36,6 +37,27 @@ public class AdminController {
     List<School> schools = new ArrayList<>();
     List<Student> students = new ArrayList<>();
 
+    static {
+    }    
+    
+    @RequestMapping(value = { "/adminList" }, method = RequestMethod.GET)
+    public String administratorList(Model model) {
+        administrators = AdministratorDBO.loadAdministrators();
+        model.addAttribute("administrators", administrators);
+        administratorGroups = AdministratorGroupDBO.loadAdministratorGroups();
+        model.addAttribute("administratorGroups", administratorGroups);
+        lectures = LectureDBO.loadLectures();
+        model.addAttribute("lectures",lectures);
+        lectureNotes = LectureNoteDBO.loadLectureNotes();
+        model.addAttribute("lectureNotes", lectureNotes);
+        schools = SchoolDBO.loadSchools();
+        model.addAttribute("schools",schools);
+        students = StudentDBO.loadStudents();
+        model.addAttribute("students",students);
+        return "adminList";
+    }
+
+
     @RequestMapping(value = { "/addAdministrator" }, method = RequestMethod.GET)
     public String addAdministatorForm(Model model) {
  
@@ -55,7 +77,7 @@ public class AdminController {
             Administrator administrator = new Administrator(administatorName, groupId);
             administrators.add(administrator);
             AdministratorDBO.saveSQLAdministrator(administrator);
-            return "redirect:/articleList";
+            return "redirect:/adminList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -80,7 +102,7 @@ public class AdminController {
             AdministratorGroup administratorGroup = new AdministratorGroup(groupName);
             administratorGroups.add(administratorGroup);
             AdministratorGroupDBO.saveSQLAdministratorGroup(administratorGroup);
-            return "redirect:/articleList";
+            return "redirect:/adminList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -107,7 +129,7 @@ public class AdminController {
             Lecture lecture = new Lecture(lectureName,lecturePoster);
             lectures.add(lecture);
             LectureDBO.saveSQLLecture(lecture);
-            return "redirect:/articleList";
+            return "redirect:/adminList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -136,7 +158,7 @@ public class AdminController {
             LectureNote lectureNote = new LectureNote(noteInstructor,noteLecture,noteText);
             lectureNotes.add(lectureNote);
             LectureNoteDBO.saveSQLLectureNote(lectureNote);
-            return "redirect:/articleList";
+            return "redirect:/adminList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -163,7 +185,7 @@ public class AdminController {
             School school = new School(schoolName,schoolLecturer);
             schools.add(school);
             SchoolDBO.saveSQLSchool(school);
-            return "redirect:/articleList";
+            return "redirect:/adminList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -192,7 +214,7 @@ public class AdminController {
             Student student = new Student(lastName,firstName, courseId);
             students.add(student);
             StudentDBO.saveSQLStudent(student);
-            return "redirect:/articleList";
+            return "redirect:/adminList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);

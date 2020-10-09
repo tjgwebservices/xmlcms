@@ -50,31 +50,6 @@
             <li><a href="/articleList">Article List</a></li>
             <li><a href="/publish">Publish Test</a></li>
         </ul>
-	<video width="160" height="120" controls="">
-		  <source src="//tjgwebservices.com/images/record_000068.ogg">
-		  <source src="//tjgwebservices.com/images/record_000068.ogg" type="video/ogg">
-		Your browser does not support the video tag.
-	</video>
-	<video width="160" height="120" controls="">
-		  <source src="//tjgwebservices.com/images/record_000060.ogg">
-		  <source src="//tjgwebservices.com/images/record_000060.ogg" type="video/ogg">
-		Your browser does not support the video tag.
-	</video>
-	<video width="160" height="120" controls="">
-		  <source src="//tjgwebservices.com/images/record_000078.ogg">
-		  <source src="//tjgwebservices.com/images/record_000078.ogg" type="video/ogg">
-		Your browser does not support the video tag.
-	</video>
-	<video width="160" height="120" controls="">
-		  <source src="//tjgwebservices.com/images/record_000075.ogg">
-		  <source src="//tjgwebservices.com/images/record_000075.ogg" type="video/ogg">
-		Your browser does not support the video tag.
-	</video>
-	<video width="160" height="120" controls="">
-		  <source src="//tjgwebservices.com/images/record_000079.ogg">
-		  <source src="//tjgwebservices.com/images/record_000079.ogg" type="video/ogg">
-		Your browser does not support the video tag.
-	</video>
 	<ul>
 		<li>Conference Activities</li>
 		<li>Discussion Points</li>
@@ -143,12 +118,6 @@
    <main>
 		<h4>Conference Forum</h4>
 		<p>Discussion topics:</p>
-		<ul>
-			<li>Challenges in information systems project methodologies</li>
-			<li>Emerging project management methodologies</li>
-			<li>Keys to successful information technology projects</li>
-			<li>Measures of success for information technology projects</li>
-		</ul>
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>
@@ -156,13 +125,6 @@
 <#macro learn>
    <main>
 		<h4>Training Sessions</h4>
-		<p>Management Information Systems Training Sessions:</p>
-		<ul>
-			<li>Risk Analysis</li>
-			<li>Staffing</li>
-			<li>Cost Benefit Analysis</li>
-			<li>Return on Investment</li>
-		</ul>
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>
@@ -170,12 +132,6 @@
 <#macro workshop>
    <main>
 		<h4>Workshops</h4>
-		<p>Management Information Systems Workshops:</p>
-		<ul>
-			<li>Planning a project</li>
-			<li>Human resources training</li>
-			<li>Budgeting a project</li>
-		</ul>
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>
@@ -183,12 +139,6 @@
 <#macro project>
    <main>
 		<h4>Projects</h4>
-		<p>Management Information Systems Projects:</p>
-		<ul>
-			<li>Develop a Design Plan</li>
-			<li>Develop an Implementation Plan</li>
-			<li>Develop a Migration Plan</li>
-		</ul>
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>
@@ -196,12 +146,6 @@
 <#macro report>
    <main>
 		<h4>Reports</h4>
-		<p>Management Information Systems Reports:</p>
-		<ul>
-			<li>Systems Reports</li>
-			<li>Budget Reports</li>
-			<li>Compliance Reports</li>
-		</ul>
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>

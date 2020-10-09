@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class DBAdmin {
     public static void startDatabase(){
         String sql = "ATTACH DATABASE 'articledb.db' AS articledb;";
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:?cache=shared");
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {

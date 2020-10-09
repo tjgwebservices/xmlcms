@@ -17,6 +17,8 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
     String[] ignorelist = {"/","/home","/index","/error","/login","/success",
                         "/sockets","/display","/publish","/uploads","/css/**","/js/**",
                         "/workshop","/conference","/forum","/project","/learn","/report",
+                        "/addAdministrator","/addAdministratorGroup","/addLecture","/addLectureNonte",
+                        "/addSchool","/addStudent","/adminList",
                         "/articleList","/addArticle","/subscriptionList","/addSubscription"};
     
     @Override

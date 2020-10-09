@@ -1,11 +1,13 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
 import com.tjgwebservices.tjgxmlcms.dbo.ArticleDBO;
+import com.tjgwebservices.tjgxmlcms.dbo.SubscriptionDBO;
 import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
 import com.tjgwebservices.tjgxmlcms.form.LoginForm;
 import com.tjgwebservices.tjgxmlcms.form.SocketDisplay;
 import com.tjgwebservices.tjgxmlcms.form.SubscriptionForm;
 import com.tjgwebservices.tjgxmlcms.model.Article;
+import com.tjgwebservices.tjgxmlcms.model.SocketSubscription;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
  
     private static List<Article> articles = new ArrayList<Article>();
+    private static List<SocketSubscription> subscriptions = new ArrayList<>();
  
     static {
     }
@@ -141,27 +144,23 @@ public class MainController {
     
    @RequestMapping(value = { "/addSubscription" }, method = RequestMethod.POST)
     public String addSubscriptionSave(Model model, //
-        @ModelAttribute("articleForm") ArticleForm articleForm) {
-        String author = articleForm.getAuthor();
-        String authorDate = articleForm.getAuthorDate();
-        String title = articleForm.getTitle();
-        String description = articleForm.getDescription();
-        String content = articleForm.getContent();
+        @ModelAttribute("subscriptionForm") SubscriptionForm subscriptionForm) {
+        String publisher = subscriptionForm.getPublisher();
+        String subscriptionPlan = subscriptionForm.getSubscriptionPlan();
+        String topic = subscriptionForm.getTopic();
  
-        if (author != null && author.length() > 0 
-                && authorDate != null && authorDate.length() > 0 
-                && title != null && title.length() > 0 
-                && description != null && description.length() > 0
-                && content != null && content.length() > 0) {
-            Article newArticle = new Article(author, authorDate, 
-                    title, description, content);
-            articles.add(newArticle);
-            ArticleDBO.saveSQLArticle(newArticle);
-            return "redirect:/articleList";
+        if (publisher != null && publisher.length() > 0 
+                && subscriptionPlan != null && subscriptionPlan.length() > 0 
+                && topic != null && topic.length() > 0) {
+            SocketSubscription subscription = new SocketSubscription(
+                    subscriptionPlan, publisher, topic);
+            subscriptions.add(subscription);
+            SubscriptionDBO.saveSubscription(subscription);
+            return "redirect:/subscriptionList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
-        return "addArticle";
+        return "addSubscription";
     }
 
     

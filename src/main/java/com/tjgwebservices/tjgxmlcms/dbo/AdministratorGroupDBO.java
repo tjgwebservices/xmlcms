@@ -30,7 +30,7 @@ public class AdministratorGroupDBO {
             }
     }
 
-    public static List<AdministratorGroup> loadAdministrators(){
+    public static List<AdministratorGroup> loadAdministratorGroups(){
             Session session = HibernateAdmin.getSession();
             Transaction tx = session.beginTransaction();
             List<AdministratorGroup> administratorGroupList = new ArrayList<>();

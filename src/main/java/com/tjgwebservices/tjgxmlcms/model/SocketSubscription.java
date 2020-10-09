@@ -21,7 +21,14 @@ public class SocketSubscription implements Subscription {
     private String publisher;
     private String topic;
     
+    public SocketSubscription() {}
     
+    public SocketSubscription(String subscriptionPlan, String publisher,
+            String topic){
+        this.subscriptionPlan = subscriptionPlan;
+        this.publisher = publisher;
+        this.topic = topic;
+    }
 
 
     @Override
