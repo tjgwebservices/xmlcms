@@ -16,16 +16,24 @@
                <th>Author</th>
                <th>Date</th>
                <th>Title</th>
-               <th>Description</th>
-               <th>Content</th>
             </tr>
             <#list articles as article>
             <tr>
                <td>${article.author}</td>
                <td>${article.authorDate}</td>
                <td>${article.title}</td>
-               <td>${article.description}</td>
-               <td>${article.content}</td>
+            </tr>
+            <tr>
+               <td colspan="3">Description</td>
+            </tr>
+            <tr>
+               <td colspan="3">${article.description}</td>
+            </tr>
+            <tr>
+               <td colspan="3">Content</td>
+            </tr>
+            <tr>
+               <td colspan="3">${article.content}</td>
             </tr>
             </#list>
          </table>

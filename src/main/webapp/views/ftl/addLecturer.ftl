@@ -2,12 +2,11 @@
  
 <html>
    <head>
-      <title>Add Administrator</title>
+      <title>Add Lecturer</title>
       <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/style.css'/>"/>
+           type="text/css" href="<@spring.url '/css/style.css'/>"/>      
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/main.css'/>"/>
-  
    </head>
    <body>
       <#if errorMessage??>
@@ -18,10 +17,9 @@
        
       <div>
          <fieldset>
-            <legend>Add Administrator</legend>
-            <form name="administrator" action="" method="POST">
-               Administrator Name: <@spring.formInput "administratorForm.administratorName" "" "text"/>    <br/>
-               Administrator Group Id: <@spring.formInput "administratorForm.administratorGroupId" "" "text"/>    <br/>
+            <legend>Add Lecturer</legend>
+            <form name="lecturer" action="" method="POST">
+               School Name: <@spring.formInput "lecturerForm.lecturerName" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>
@@ -31,6 +29,7 @@
    </body>
     
 </html>
+
 
 
 

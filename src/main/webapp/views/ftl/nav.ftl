@@ -24,7 +24,7 @@
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/conference">Conference</a>
+            <li><a href="/adminList">Classes</a>
             <span class="dropdown1">
                 <a href="/report">Report</a>
                 <span class="dropdown1-content">
@@ -42,10 +42,10 @@
 <#macro sidelinks>
    <aside>
         <ul>
-            <li>TJG Web Conferences</li>
-            <li>Mangament Information Systems</li>
+            <li>School Classes</li>
+            <li>Class Sessions</li>
             <li><a href="/">Home</a></li>
-            <li><a href="/conference">Conference</a></li>
+            <li><a href="/adminList">Classes</a></li>
             <li><a href="/forum">Forum</a></li>
             <li><a href="/articleList">Article List</a></li>
             <li><a href="/publish">Publish Test</a></li>
@@ -64,12 +64,13 @@
 <#macro sidelinksadmin>
    <aside>
         <ul>
-            <li>TJG Web Conferences</li>
-            <li>Mangament Information Systems</li>
+            <li>Demo Application</li>
+            <li>Course Management</li>
             <li><a href="/">Home</a></li>
             <li><a href="<@spring.url '/addAdministrator'/>">Add Administrator</a></li>
             <li><a href="<@spring.url '/addAdministratorGroup'/>">Add Administrator Group</a></li>
             <li><a href="<@spring.url '/addLecture'/>">Add Lecture</a></li>
+            <li><a href="<@spring.url '/addLecturer'/>">Add Lecturer</a></li>
             <li><a href="<@spring.url '/addLectureNote'/>">Add Lecture Note</a></li>
             <li><a href="<@spring.url '/addCourse'/>">Add Course</a></li>
             <li><a href="<@spring.url '/addSchool'/>">Add School</a></li>

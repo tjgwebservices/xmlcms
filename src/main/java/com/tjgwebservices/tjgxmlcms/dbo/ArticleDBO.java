@@ -1,27 +1,26 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
+import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
+import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.Article;
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-public class ArticleDBO {
+public class ArticleDBO extends DatabaseObject{
 
     public static void saveArticle(Article article){
         try {
-            Session session = HibernateAdmin.getSession();
-            Transaction tx = session.beginTransaction();
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
             session.save(article);
             session.flush();
-            tx.commit();
+                tx.commit();
+                session.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
@@ -29,17 +28,20 @@ public class ArticleDBO {
     }
     
     public static void saveSQLArticle(Article article) {
-            Session session = HibernateAdmin.getSession();
-            Transaction tx = session.beginTransaction();
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
             String sql = "INSERT INTO Article(author, authorDate, title, description, content) VALUES(?,?,?,?,?)";
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                PreparedStatement pstmt = conn.prepareStatement(sql)){
+            try {
+                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,article.getAuthor());
                 pstmt.setString(2,article.getAuthorDate());
                 pstmt.setString(3,article.getTitle());
                 pstmt.setString(4,article.getDescription());
                 pstmt.setString(5,article.getContent());
                 pstmt.executeUpdate();
+                tx.commit();
+                session.close();
             } catch (SQLException e) {
                     System.out.println(e.getMessage());
             tx.rollback();
@@ -47,13 +49,14 @@ public class ArticleDBO {
     }
 
     public static List<Article> loadArticles(){
-            Session session = HibernateAdmin.getSession();
-            Transaction tx = session.beginTransaction();
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
             List<Article> articleList = new ArrayList<>();
             String sql = "SELECT id,author,authorDate,title,description,content FROM Article;";
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+            try {
+                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
+                ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){
                            Article article = new Article();
                            article.setId(rs.getInt("id"));
@@ -64,6 +67,8 @@ public class ArticleDBO {
                            article.setContent(rs.getString("content"));
                            articleList.add(article);
                        }
+                tx.commit();
+                session.close();
                 return articleList;
             } catch (SQLException e) {
                     System.out.println(e.getMessage());

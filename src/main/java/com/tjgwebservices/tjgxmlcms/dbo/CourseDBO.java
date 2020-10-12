@@ -2,27 +2,24 @@ package com.tjgwebservices.tjgxmlcms.dbo;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.model.Course;
-import com.tjgwebservices.tjgxmlcms.model.Student;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-public class CourseDBO {
+public class CourseDBO extends DatabaseObject{
     
 
     public static void saveSQLCourse(Course course) {
-            Session session = HibernateAdmin.getSession();
-            Transaction tx = session.beginTransaction();
-            String sql = "INSERT INTO Course(coursetName) VALUES(?)";
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                PreparedStatement pstmt = conn.prepareStatement(sql)){
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
+            String sql = "INSERT INTO Course(courseName) VALUES(?)";
+            try {
+                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,course.getCourseName());
                 pstmt.executeUpdate();
             } catch (SQLException e) {
@@ -32,8 +29,8 @@ public class CourseDBO {
     }
 
     public static List<Course> loadCourses(){
-            Session session = HibernateAdmin.getSession();
-            Transaction tx = session.beginTransaction();
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
             List<Course> courseList = new ArrayList<>();
             String sql = "SELECT id,courseName FROM Course;";
             try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");

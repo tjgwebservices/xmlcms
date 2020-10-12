@@ -3,8 +3,7 @@ package com.tjgwebservices.tjgxmlcms.dbo;
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
-import com.tjgwebservices.tjgxmlcms.model.SerialJournal;
-import java.sql.Connection;
+import com.tjgwebservices.tjgxmlcms.model.Lecturer;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,15 +11,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JournalDBO extends DatabaseObject {
-    public static void saveJournal(SerialJournal journal) {
+public class LecturerDBO extends DatabaseObject{
+    
+
+    public static void saveSQLLecturer(Lecturer lecturer) {
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
-            String sql = "INSERT INTO Journal(journalName) VALUES(?)";
+            String sql = "INSERT INTO Lecturer(lecturerName) VALUES(?)";
             try {
                 conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                pstmt = conn.prepareStatement(sql);             
-                pstmt.setString(1,journal.getJournalName());
+                pstmt = conn.prepareStatement(sql); 
+                pstmt.setString(1,lecturer.getLecturerName());
                 pstmt.executeUpdate();
                 tx.commit();
                 session.close();
@@ -30,28 +31,29 @@ public class JournalDBO extends DatabaseObject {
             }
     }
 
-    public static List<SerialJournal> loadJournals(){
+    public static List<Lecturer> loadLecturers(){
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
-            List<SerialJournal> journalList = new ArrayList<SerialJournal>();
-            String sql = "SELECT journalName FROM Journal;";
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
+            List<Lecturer> lecturerList = new ArrayList<>();
+            String sql = "SELECT id,lecturerName FROM Lecturer;";
+            try  {
+                        conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                        Statement stmt = conn.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);                
                        while(rs.next()){
-                           SerialJournal journal = new SerialJournal();
-                           journal.setId(rs.getInt("id"));
-                           journal.setJournal(rs.getString("journalName"));
-                           journalList.add(journal);
+                           Lecturer lecturer = new Lecturer();
+                           lecturer.setId(rs.getInt("id"));
+                           lecturer.setLecturerName(rs.getString("lecturerName"));
+                           lecturerList.add(lecturer);
                        }
                 tx.commit();
                 session.close();
-                return journalList;
+                return lecturerList;
             } catch (SQLException e) {
                     System.out.println(e.getMessage());
             tx.rollback();
             }
-            return journalList;
-    }   
+        return null;
+    }
     
 }

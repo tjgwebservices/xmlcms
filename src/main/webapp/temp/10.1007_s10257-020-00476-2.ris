@@ -1,0 +1,16 @@
+TY  - JOUR
+AU  - Meier, Pascal
+AU  - Beinke, Jan Heinrich
+AU  - Fitte, Christian
+AU  - Schulte to Brinke, Jan
+AU  - Teuteberg, Frank
+PY  - 2020
+DA  - 2020/08/27
+TI  - Generating design knowledge for blockchain-based access control to personal health records
+JO  - Information Systems and e-Business Management
+AB  - In the course of digitization in healthcare, personal health records (PHRs) are handled as a key solution. Despite the indisputable benefits, the adoption of PHRs is hampered by data security and data privacy concerns. Blockchain technology offers promising potential to address these issues by enabling secure transactions of sensitive data. With regards to PHRs, the blockchain can be used to manage the access to health-related data. Besides existing generic PHR architectures, we systematically identified issues for the healthcare sector that need to be considered for the development of a PHR. We subsequently derived eight meta-requirements that were consolidated into three design principles. Within a 1-year design science research project, we developed the blockchain-secured PHR prototype, OSHealthRec, and evaluated the system in four evaluation cycles. The findings of our research are twofold. On the one hand, we contribute to the design knowledge base by presenting three design principles. On the other hand, we present the development of a real, operational blockchain-secured PHR and the findings from its continuous evaluation, which may serve as useful advice for further solutions.
+SN  - 1617-9854
+UR  - https://doi.org/10.1007/s10257-020-00476-2
+DO  - 10.1007/s10257-020-00476-2
+ID  - Meier2020
+ER  - 

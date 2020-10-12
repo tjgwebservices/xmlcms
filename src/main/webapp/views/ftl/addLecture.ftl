@@ -5,6 +5,8 @@
       <title>Add Lecture</title>
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/style.css'/>"/>      
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/main.css'/>"/>
    </head>
    <body>
       <#if errorMessage??>
@@ -16,8 +18,8 @@
       <div>
          <fieldset>
             <legend>Add Lecture</legend>
-            <form name="lecture" enctype="multipart/form-data" modelAttribute="fileUpload" action="/uploadFile" method="POST">
-               File Name: <@spring.formInput "lectureForm.lectureName" "" "filename"/>    <br/>
+            <form name="lecture" enctype="multipart/form-data" action="" method="POST">
+               File Name: <@spring.formInput "lectureForm.lectureName" "" "text"/>    <br/>
                File: <@spring.formInput "lectureForm.lecturePoster" "" "file"/>    <br/>
                <input type="submit" value="Upload" />
             </form>

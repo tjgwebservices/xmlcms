@@ -6,8 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinksadmin />
-     <h3>Admin List</h3>
-     <a href="addArticle">Add Article</a>
+     <h3>Admin List - Sample Class</h3>
      <br><br>
       <div>
          <h4>Administrators</h4>           
@@ -83,6 +82,25 @@
             </#if>
          </table>
       </div>
+
+      <div>
+         <h4>Lecturers</h4>           
+          
+         <table border="1">
+            <tr>
+               <th>Lecturer Name</th>
+            </tr>
+            <#if lecturers??>
+            <#list lecturers as lecturer>
+            <tr>
+               <td>${lecture.lecturerName}</td>
+            </tr>
+            </#list>
+            </#if>
+         </table>
+      </div>
+
+
       <div>
          <h4>Lecture Notes</h4>           
           

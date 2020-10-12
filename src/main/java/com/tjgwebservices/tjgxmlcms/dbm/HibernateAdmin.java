@@ -1,6 +1,8 @@
 package com.tjgwebservices.tjgxmlcms.dbm;
 
 import com.tjgwebservices.tjgxmlcms.dbo.DBAdmin;
+import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
+import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.Article;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -18,8 +20,6 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 public class HibernateAdmin {
     private static SessionFactory sessionFactory = null;
     private static StandardServiceRegistry standardServiceRegistry = null;
-    private static Session session = null;
-    private static Transaction tx = null;
     private static Boolean isDatabaseAttached = false;
 
         
@@ -34,6 +34,8 @@ public class HibernateAdmin {
         if (!isDatabaseAttached){
             session = HibernateAdmin.getSessionFactory().openSession();
             DBAdmin.startDatabase();
+            session.close();
+            
         }
         return sessionFactory;
     }

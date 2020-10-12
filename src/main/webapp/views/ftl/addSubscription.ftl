@@ -5,6 +5,8 @@
       <title>Add Subscription</title>
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/style.css'/>"/>      
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/main.css'/>"/>
    </head>
    <body>
       <#if errorMessage??>
