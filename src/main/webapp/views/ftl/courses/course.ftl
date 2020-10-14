@@ -12,6 +12,24 @@
          <h4>Course Page</h4>   
       </div>
 
+      <div>
+         <h4>Lectures</h4>           
+          
+         <table border="1">
+            <tr>
+               <th>Lecture Id</th>
+               <th>Lecture Name</th>
+            </tr>
+            <#if lectures??>
+            <#list lectures as lecture>
+            <tr>
+               <td>${lecture.id}</td>
+               <td>${lecture.lectureName}</td>
+            </tr>
+            </#list>
+            </#if>
+         </table>
+      </div>
 
 
       <div>

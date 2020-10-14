@@ -14,12 +14,21 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 @EnableWebSecurity(debug = true)
 public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
-    String[] ignorelist = {"/","/home","/index","/error","/login","/success",
-                        "/sockets","/display","/publish","/uploads","/css/**","/js/**",
-                        "/workshop","/conference","/forum","/project","/learn","/report",
-                        "/addAdministrator","/addAdministratorGroup","/addLecture","/addLecturer",
-                        "/addLectureNote","/addSchool","/addStudent","/adminList","/addCourse",
-                        "/articleList","/addArticle","/subscriptionList","/addSubscription"};
+    final private String[] ignorelist = {"/","/home","/index","/error","/login",
+        "/success","/sockets","/display","/publish","/uploads","/css/**",
+        "/js/**","/courses/**","/conferences/workshop","/conferences/conference",
+        "/conferences/forum","/conferences/project",
+        "/conferences/learn","/conferences/report","/schools/addAdministrator",
+        "/schools/addAdministratorGroup","/schools/addLecture",
+        "/schools/addLecturer","/schools/addLectureNote","/schools/addSchool",
+        "/schools/addStudent","/schools/adminList","/schools/addCourse",
+        "/hr/addEmployer","/hr/addClient","/hr/addHrGroup","/hr/clients",
+        "/hr/employers","/research/researchers","/research/topics",
+        "/research/projects","/research/addResearcher","/research/addTopic",
+        "/research/addProject","/research/editProject","/research/editProject/*",
+        "/research/editTopic","/research/editTopic/*","/research/editResearcher",
+        "/research/editResearcher/*","/articleList","/addArticle","/editArticle",
+            "/editArticle/*","/subscriptionList","/addSubscription"};
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {

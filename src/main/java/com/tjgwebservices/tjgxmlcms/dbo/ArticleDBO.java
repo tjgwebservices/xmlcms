@@ -48,6 +48,28 @@ public class ArticleDBO extends DatabaseObject{
             }
     }
 
+    public static void updateArticle(Article article) {
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
+            String sql = "UPDATE Article SET author = ?, authorDate = ?, title = ?, description=?, content=? WHERE id = ?";
+            try {
+                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1,article.getAuthor());
+                pstmt.setString(2,article.getAuthorDate());
+                pstmt.setString(3,article.getTitle());
+                pstmt.setString(4,article.getDescription());
+                pstmt.setString(5,article.getContent());
+                pstmt.setInt(6,article.getId());
+                pstmt.executeUpdate();
+                tx.commit();
+                session.close();
+            } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+            tx.rollback();
+            }
+    }
+
     public static List<Article> loadArticles(){
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();

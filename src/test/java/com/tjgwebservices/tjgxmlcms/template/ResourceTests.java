@@ -78,56 +78,172 @@ public class ResourceTests {
 
 	@Test
 	void testAddAdministratorsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addAdministrator");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addAdministrator");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddAdministratorGroupsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addAdministratorGroup");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addAdministratorGroup");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddCoursesPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addCourse");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addCourse");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddLecturesPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addLecture");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addLecture");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddLecturersPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addLecturer");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addLecturer");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddLectureNotesPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addLectureNote");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addLectureNote");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddSchoolsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addSchool");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addSchool");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddStudentsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addStudent");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addStudent");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAdministratorListPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/adminList");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/adminList");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
+
+	@Test
+	void testClientsListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/clients");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEmployersListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/employers");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
+	@Test
+        @Disabled
+	void testHrGroupsListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/hrgroups");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddClientsPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/addClient");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddEmployeesPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/addEmployer");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
+	@Test
+	void testAddHrGroupPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/addHrGroup");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+        @Disabled
+	void testEditClientsPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/editClient/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+        @Disabled
+	void testEditEmployersPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/editEmployer/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
+	@Test
+        @Disabled
+	void testEditHrGroupPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/hr/editHrGroup/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+
+	@Test
+	void testTopicListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/topics");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testProjectListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/projects");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
+	@Test
+	void testResearchersListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/researchers");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddTopicPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/addTopic");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddProjectPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/addProject");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
+	@Test
+        @Disabled
+	void testAddReseacherPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/addReseacher");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEditTopicPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/editTopic/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEditProjectPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/editProject/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
+	@Test
+        @Disabled
+	void testEditReseacherPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/editReseacher/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
         
 }

@@ -42,11 +42,11 @@ public class DBAdmin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        runSQLQuery("CREATE TABLE AdministratorGroup (\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS AdministratorGroup (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "groupName TEXT NOT NULL\n" +
                 ");\n");
-        runSQLQuery("CREATE TABLE Administrator (\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Administrator (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "administratorName text NOT NULL,\n" +
                 "administratorGroupId integer NOT NULL,\n" +
@@ -55,13 +55,13 @@ public class DBAdmin {
                 "ON UPDATE CASCADE\n" +
                 "ON DELETE CASCADE\n" +
                 ");\n");       
-        runSQLQuery("CREATE TABLE Lecture(\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Lecture(\n" +
                 "instructor TEXT,\n" +
                 "lectureName TEXT,\n" +
                 "lecturePoster BINARY,\n" +
                 "PRIMARY KEY(instructor,lectureName)\n" +
                 ");\n");
-        runSQLQuery("CREATE TABLE LectureNote(\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS LectureNote(\n" +
                 "id INTEGER,\n" +
                 "noteInstructor TEXT,\n" +
                 "noteLecture TEXT,\n" +
@@ -69,18 +69,18 @@ public class DBAdmin {
                 "FOREIGN KEY(noteInstructor, noteLecture) \n" +
                 "REFERENCES Lecture(instructor, lectureName)\n" +
                 ");\n");       
-        runSQLQuery("CREATE TABLE Lecturer(\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Lecturer(\n" +
                 "id INTEGER PRIMARY KEY,\n" +
                 "lecturerName TEXT\n" +
                 ");");       
-        runSQLQuery("CREATE TABLE School(\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS School(\n" +
                 "id INTEGER PRIMARY KEY,\n" +
                 "schoolName TEXT,\n" +
                 "schoolLecturer INTEGER \n" +
                 "REFERENCES Lecturer(id) \n" +
                 "ON UPDATE CASCADE\n" +
                 ");\n"); 
-        runSQLQuery("CREATE TABLE Course\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Course\n" +
                 "( id INTEGER PRIMARY KEY,\n" +
                 "courseName VARCHAR);"); 
         runSQLQuery("CREATE TABLE IF NOT EXISTS Journal (\n" +
@@ -94,7 +94,7 @@ public class DBAdmin {
                 "subscriptionPlan text NOT NULL,\n" +
                 "publisher text NOT NULL,\n" +
                 "topic text NOT NULL);"); 
-        runSQLQuery("CREATE TABLE Student\n" +
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Student\n" +
                 "( id INTEGER PRIMARY KEY,\n" +
                 "lastName VARCHAR NOT NULL,\n" +
                 "firstName VARCHAR,\n" +
@@ -104,6 +104,65 @@ public class DBAdmin {
                 "REFERENCES Course(id)\n" +
                 "ON DELETE CASCADE\n" +
                 ");");         
+        runSQLQuery("CREATE TABLE IF NOT EXISTS HrGroup (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "groupName TEXT NOT NULL\n" +
+                ");\n");         
+        runSQLQuery("CREATE TABLE IF NOT EXISTS HrClient (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "clientFirstName text NOT NULL,\n" +
+                "clientLastName text NOT NULL,\n" +
+                "clientSpecialty text NOT NULL,\n" +
+                "clientContact text NOT NULL,\n" +
+                "hrGroupId integer NOT NULL,\n" +
+                "FOREIGN KEY (hrGroupId)\n" +
+                "REFERENCES HrGroup (id)\n" +
+                "ON UPDATE CASCADE\n" +
+                "ON DELETE CASCADE);");         
+        runSQLQuery("CREATE TABLE IF NOT EXISTS HrEmployer (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "employerName text NOT NULL,\n" +
+                "employerContact text NOT NULL,\n" +
+                "employerContactType text NOT NULL,\n" +
+                "employerContactInfo text NOT NULL,\n" +
+                "hrGroupId integer NOT NULL,\n" +
+                "FOREIGN KEY (hrGroupId)\n" +
+                "REFERENCES HrGroup (id)\n" +
+                "ON UPDATE CASCADE\n" +
+                "ON DELETE CASCADE\n" +
+                ");\n");         
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Researcher (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "researcherFirstName TEXT NOT NULL,\n" +
+                "researcherLastName TEXT NOT NULL,\n" +
+                "researcherDegree TEXT NOT NULL,\n" +
+                "researcherMajor TEXT NOT NULL,\n" +
+                "researcherInstitution TEXT NOT NULL,\n" +
+                "researcherSpecialty TEXT NOT NULL\n" +
+                ");\n");  
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Topic (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "topicName text NOT NULL,\n" +
+                "topicSubject text NOT NULL,\n" +
+                "topicDescription text NOT NULL,\n" +
+                "researcherId integer NOT NULL,\n" +
+                "FOREIGN KEY (researcherId)\n" +
+                "REFERENCES Researcher (id)\n" +
+                "ON UPDATE CASCADE\n" +
+                "ON DELETE CASCADE\n" +
+                ");");  
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Project (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "projectName text NOT NULL,\n" +
+                "projectSubject text NOT NULL,\n" +
+                "projectDescription text NOT NULL,\n" +
+                "researcherId integer NOT NULL,\n" +
+                "FOREIGN KEY (researcherId)\n" +
+                "REFERENCES Researcher (id)\n" +
+                "ON UPDATE CASCADE\n" +
+                "ON DELETE CASCADE\n" +
+                ");\n" +
+                "\n");  
         runSQLQuery("Select * FROM LectureNote");
         runSQLQuery("Select * FROM Lecture");
     }
