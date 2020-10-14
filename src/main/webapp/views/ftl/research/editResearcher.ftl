@@ -19,8 +19,7 @@
       <div>
          <fieldset>
             <legend>Researcher</legend>
-            <form name="researcher" action="" method="POST">
-            <form name="researcher" action="" method="POST">
+            <form name="researcherForm" action="/research/editResearcher" method="POST">
     <p>First Name:<input type="text" id="researcherFirstName" name="researcherFirstName" value="${researcherEditForm.researcherFirstName}" /></p><br/>
     <p>Last Name:<input type="text" id="researcherLastName" name="researcherLastName" value="${researcherEditForm.researcherLastName}" /></p><br/>
     <p>Degree:<input type="text" id="researcherDegree" name="researcherDegree" value="${researcherEditForm.researcherDegree}" /></p><br/>

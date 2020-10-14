@@ -16,21 +16,17 @@
 <div>
    <fieldset>
       <legend><#if titleMessage??>${titleMessage}</#if></legend>
-      <form name="topic" action="" method="POST">
-         <p>Topic Name: <@spring.formInput "topicForm.topicName" 
-            "topicEditForm.topicName" "text"/></p><br/>
-         <p>Subject: <@spring.formInput "topicForm.topicSubject" 
-            "topicEditForm.topicSubject" "text"/></p><br/>
-         <p>Description: <@spring.formInput "topicForm.topicDescription" 
-            "topicEditForm.topicDescription" "text"/></p><br/>
-         <p><@spring.formInput "topicForm.id" 
-            "topicEditForm.id" "hidden"/></p><br/>
+      <form name="topic" action="/research/editTopic" method="POST">
+         <p>Topic Name: <input type="text" id="topicName" name="topicName" value="${topicEditForm.topicName}" /></p><br/>
+         <p>Subject: <input type="text" id="topicSubject" name="topicSubject" value="${topicEditForm.topicSubject}" /></p><br/>
+         <p>Description: <input type="text" id="topicDescription" name="topicDescription" value="${topicEditForm.topicDescription}" /></p><br/>
+         <p><input type="hidden" id="id" name="id" value="${topicEditForm.id}" /></p><br/>
           <select id="researcherId" name="researcherId">
               <#list researchers as researcher>
                   <option value="${researcher.id}">${researcher.researcherLastName}</option>
               </#list>
           </select>
-         <input type="submit" value="Create" />
+         <input type="submit" value="Edit" />
       </form>
    </fieldset>
 </div>

@@ -20,11 +20,11 @@
       <div>
          <fieldset>
             <legend>JobSeeker</legend>
-            <form name="article" action="" method="POST">
-               <p>First Name: <@spring.formInput "clientForm.clientFirstName" "clientEditForm.clientFirstName" "text"/></p><br/>
-               <p>Last Name: <@spring.formInput "clientForm.clientLastName" "clientEditForm.clientLastName" "text"/></p><br/>
-               <p>Specialty: <@spring.formInput "clientForm.clientSpecialty" "clientEditForm.clientSpecialty" "text"/></p><br/>
-               <p>Email: <@spring.formInput "clientForm.clientContact" "clientEditForm.clientContact" "text"/></p>
+            <form name="clientForm" action="" method="POST">
+               <p>First Name: <input type="text" id="clientFirstName" name="clientFirstName" value="${clientEditForm.clientFirstName}" /></p><br/>
+               <p>Last Name: <input type="text" id="clientLastName" name="clientLastName" value="${clientEditForm.clientLastName}" /></p><br/>
+               <p>Specialty: <input type="text" id="clientSpecialty" name="clientSpecialty" value="${clientEditForm.clientSpecialty}" /></p><br/>
+               <p>Email: <input type="text" id="clientContact" name="clientContact" value="${clientEditForm.clientContact}" "text"/></p>
                 <select id="hrGroupId" name="hrGroupId">
                     <#list hrGroups as hrGroup>
                         <option value="${hrGroup.id}">${hrGroup.groupName}</option>

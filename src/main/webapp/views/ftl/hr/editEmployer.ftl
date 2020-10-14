@@ -21,11 +21,11 @@
       <div>
          <fieldset>
             <legend>Edit Employer</legend>
-            <form name="employer" action="" method="POST">
-               <p>Employer Name: <@spring.formInput "employerForm.employerName" "employerEditForm.employerName" "text"/></p><br/>
-               <p>Employer POC: <@spring.formInput "employerForm.employerContact" "employerEditForm.employerContact" "text"/></p><br/>
-               <p>Employer POC Title: <@spring.formInput "employerForm.employerContactType" "employerEditForm.employerContactType" "text"/></p><br/>
-               <p>Employer Email: <@spring.formInput "employerForm.employerContactInfo" "employerEditForm.employerContactInfo" "text"/></p>
+            <form name="employer" action="/hr/editEmployer" method="POST">
+               <p>Employer Name: <input type="text" id="employerName" name="employerName" value=${"employerEditForm.employerName}" /></p><br/>
+               <p>Employer POC: <input type="text" id="employerContact" name="employerContact" value="${employerEditForm.employerContact}" /></p><br/>
+               <p>Employer POC Title: <input type="text" id="employerContactType" name="employerContactType" value="${employerEditForm.employerContactType}" /></p><br/>
+               <p>Employer Email: <input type="text" id="employerContactInfo" name="employerContactInfo" value="${employerEditForm.employerContactInfo}" /></p>
                 <select id="hrGroupId" name="hrGroupId">
                     <#list hrGroups as hrGroup>
                         <option value="${hrGroup.id}">${hrGroup.groupName}</option>

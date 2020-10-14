@@ -19,8 +19,9 @@
       <div>
          <fieldset>
             <legend>Edit Human Resources Group</legend>
-            <form name="hrGroup" action="" method="POST">
-               Group Name: <@spring.formInput "hrGroupForm.groupName" "hrGroupEditForm.groupName" "text"/>    <br/>
+            <form name="hrGroup" action="/hr/editHrGroup" method="POST">
+               <p>Group Name: <input type="text" id="groupName" name="groupName" value="${hrGroupEditForm.groupName}" />    <br/>
+               <p><input type="hidden" id="id" name="id" value="${hrGroupEditForm.id}" />    <br/>
                <input type="submit" value="Edit" />
             </form>
          </fieldset>

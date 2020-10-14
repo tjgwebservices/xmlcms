@@ -17,14 +17,10 @@
    <fieldset>
       <legend><#if titleMessage??>${titleMessage}</#if></legend>
       <form name="project" action="" method="POST">
-         <p>Topic Name: <@spring.formInput "projectForm.projectName" 
-            "projectEditForm.projectName" "text"/></p><br/>
-         <p>Subject: <@spring.formInput "projectForm.projectSubject" 
-            "projectEditForm.projectSubject" "text"/></p><br/>
-         <p>Description: <@spring.formInput "projectForm.projectDescription" 
-            "projectEditForm.projectDescription" "text"/></p><br/>
-         <p><@spring.formInput "projectForm.id" 
-            "projectEditForm.id" "hidden"/></p><br/>
+         <p>Topic Name: <input type="text" id="projectName" name="projectName" value="${projectEditForm.projectName}" /></p><br/>
+         <p>Subject: <input type="text" id="projectSubject" name="projectSubject value="${projectEditForm.projectSubject}" /></p><br/>
+         <p>Description: <input type="text" id="projectDescription" name="projectDescription" value="${projectEditForm.projectDescription}" /></p><br/>
+         <p><input type="hidden" id="id" name="id" value="${projectEditForm.projectDescription}"/></p><br/>
           <select id="researcherId" name="researcherId">
               <#list researchers as researcher>
                   <option value="${researcher.id}">${researcher.researcherLastName}</option>
