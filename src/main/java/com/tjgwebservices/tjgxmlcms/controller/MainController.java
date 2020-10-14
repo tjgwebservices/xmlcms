@@ -10,11 +10,12 @@ import com.tjgwebservices.tjgxmlcms.model.Article;
 import com.tjgwebservices.tjgxmlcms.model.SocketSubscription;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -132,6 +133,51 @@ public class MainController {
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
         return "addArticle";
+    }
+
+    
+    @RequestMapping(value = { "/editArticle/{id}" }, method = RequestMethod.GET)
+    public String editArticleForm(Model model,
+            @PathVariable("id") Integer id) {
+ 
+        ArticleForm articleForm = new ArticleForm();
+        ArticleForm articleEditForm = new ArticleForm();
+        Article editArticle = articles.stream()
+            .filter((article) -> article.getId() == id)
+            .collect(Collectors.toList()).get(0);
+        articleEditForm.setAuthor(editArticle.getAuthor());
+        articleEditForm.setAuthorDate(editArticle.getAuthorDate());
+        articleEditForm.setTitle(editArticle.getTitle());
+        articleEditForm.setDescription(editArticle.getDescription());
+        articleEditForm.setContent(editArticle.getContent());
+        model.addAttribute("articleForm", articleForm);
+        model.addAttribute("articleEditForm", articleEditForm);
+        return "editArticle/{id}";
+    }
+ 
+    @RequestMapping(value = { "/editArticle/{id}" }, method = RequestMethod.POST)
+    public String editArticleSave(Model model, //
+        @ModelAttribute("articleForm") ArticleForm articleForm) {
+        String author = articleForm.getAuthor();
+        String authorDate = articleForm.getAuthorDate();
+        String title = articleForm.getTitle();
+        String description = articleForm.getDescription();
+        String content = articleForm.getContent();
+ 
+        if (author != null && author.length() > 0 
+                && authorDate != null && authorDate.length() > 0 
+                && title != null && title.length() > 0 
+                && description != null && description.length() > 0
+                && content != null && content.length() > 0) {
+            Article newArticle = new Article(author, authorDate, 
+                    title, description, content);
+            articles.add(newArticle);
+            ArticleDBO.saveSQLArticle(newArticle);
+            return "redirect:/articleList";
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "editArticle/{id}";
     }
 
    @RequestMapping(value = { "/addSubscription" }, method = RequestMethod.GET)

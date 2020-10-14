@@ -1,0 +1,42 @@
+<#import "/spring.ftl" as spring/>
+ 
+<html>
+   <head>
+      <title>Add Researcher</title>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/style.css'/>"/>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/main.css'/>"/>
+    
+   </head>
+   <body>
+      <#if errorMessage??>
+      <div style="color:red;font-style:italic;">
+         ${errorMessage}
+      </div>
+      </#if>
+       
+      <div>
+         <fieldset>
+            <legend>Researcher</legend>
+            <form name="researcher" action="" method="POST">
+               <p>First Name: <@spring.formInput "researcherForm.researcherFirstName" "researcherEditForm.researcherFirstName" "text"/></p><br/>
+               <p>Last Name: <@spring.formInput "researcherForm.researcherLastName" "researcherEditForm.researcherLastName" "text"/></p><br/>
+               <p>Degree: <@spring.formInput "researcherForm.researcherDegree" "researcherEditForm.researcherDegree" "text"/></p><br/>
+               <p>Major: <@spring.formInput "researcherForm.researcherMajor" "researcherEditForm.researcherMajor" "text"/></p><br/>
+               <p>Institution: <@spring.formInput "researcherForm.researcherInstitution" "researcherEditForm.researcherInstitution" "text"/></p><br/>
+               <p>Specialty: <@spring.formInput "researcherForm.researcherSpecialty" "researcherEditForm.researcherSpecialty" "text"/></p>
+               <br/>
+               <input type="submit" value="Create" />
+            </form>
+         </fieldset>
+      </div>
+       
+       
+   </body>
+    
+</html>
+
+
+
+

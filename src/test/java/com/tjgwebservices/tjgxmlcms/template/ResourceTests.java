@@ -78,55 +78,55 @@ public class ResourceTests {
 
 	@Test
 	void testAddAdministratorsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addAdministrator");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addAdministrator");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddAdministratorGroupsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addAdministratorGroup");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addAdministratorGroup");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddCoursesPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addCourse");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addCourse");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddLecturesPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addLecture");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addLecture");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddLecturersPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addLecturer");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addLecturer");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddLectureNotesPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addLectureNote");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addLectureNote");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddSchoolsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addSchool");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addSchool");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAddStudentsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/addStudent");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/addStudent");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testAdministratorListPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/adminList");
+		HttpHeaders headers = restTemplate.headForHeaders("/schools/adminList");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
         

@@ -10,6 +10,12 @@
            type="text/css" href="<@spring.url '/css/main.css'/>"/>
    </head>
 </#macro>
+<#macro cssheading>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/style.css'/>"/>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/main.css'/>"/>
+</#macro>
 <#macro footing>
       <p><a href="<@spring.url '/articleList'/>">Article List</a></p>
     <footer>
@@ -24,18 +30,18 @@
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/adminList">Classes</a>
+            <li><a href="/schools/adminList">Classes</a>
             <span class="dropdown1">
-                <a href="/report">Report</a>
+                <a href="/conferences/report">Report</a>
                 <span class="dropdown1-content">
-                    <a href="/forum">Forum</a>
-                    <a href="/projects">Projects</a>
-                    <a href="/report">Report</a>
-                    <a href="/learn">Training Sessions</a>
+                    <a href="/conferences/forum">Forum</a>
+                    <a href="/conferences/project">Projects</a>
+                    <a href="/conferences/report">Report</a>
+                    <a href="/conferences/learn">Training Sessions</a>
                 </span>
             </span>
             </li>
-            <li><a href="/workshop">Workshops</a></li>
+            <li><a href="/conferences/workshop">Workshops</a></li>
         </ul>
    </nav>
 </#macro>
@@ -45,8 +51,8 @@
             <li>School Classes</li>
             <li>Class Sessions</li>
             <li><a href="/">Home</a></li>
-            <li><a href="/adminList">Classes</a></li>
-            <li><a href="/forum">Forum</a></li>
+            <li><a href="/schools/adminList">Classes</a></li>
+            <li><a href="/conferences/forum">Forum</a></li>
             <li><a href="/articleList">Article List</a></li>
             <li><a href="/publish">Publish Test</a></li>
         </ul>
@@ -67,14 +73,14 @@
             <li>Demo Application</li>
             <li>Course Management</li>
             <li><a href="/">Home</a></li>
-            <li><a href="<@spring.url '/addAdministrator'/>">Add Administrator</a></li>
-            <li><a href="<@spring.url '/addAdministratorGroup'/>">Add Administrator Group</a></li>
-            <li><a href="<@spring.url '/addLecture'/>">Add Lecture</a></li>
-            <li><a href="<@spring.url '/addLecturer'/>">Add Lecturer</a></li>
-            <li><a href="<@spring.url '/addLectureNote'/>">Add Lecture Note</a></li>
-            <li><a href="<@spring.url '/addCourse'/>">Add Course</a></li>
-            <li><a href="<@spring.url '/addSchool'/>">Add School</a></li>
-            <li><a href="<@spring.url '/addStudent'/>">Add Student</a></li>
+            <li><a href="<@spring.url '/schools/addAdministrator'/>">Add Administrator</a></li>
+            <li><a href="<@spring.url '/schools/addAdministratorGroup'/>">Add Administrator Group</a></li>
+            <li><a href="<@spring.url '/schools/addLecture'/>">Add Lecture</a></li>
+            <li><a href="<@spring.url '/schools/addLecturer'/>">Add Lecturer</a></li>
+            <li><a href="<@spring.url '/schools/addLectureNote'/>">Add Lecture Note</a></li>
+            <li><a href="<@spring.url '/schools/addCourse'/>">Add Course</a></li>
+            <li><a href="<@spring.url '/schools/addSchool'/>">Add School</a></li>
+            <li><a href="<@spring.url '/schools/addStudent'/>">Add Student</a></li>
         </ul>
    </aside>
 </#macro>
@@ -99,6 +105,14 @@
             <li>Content editing tools</li>
             <li>Data management</li>
             <li>Reporting tools</li>
+        </ul>
+        <p>Testing Pages</p>
+        <ul>
+            <li><a href="/hr/clients">Clients Page</a></li>
+            <li><a href="/hr/employers">Employers Page</a></li>
+            <li><a href="/research/projects">Projects Page</a></li>
+            <li><a href="/research/topics">Topics Page</a></li>
+            <li><a href="/research/reseachers">Reseachers Page</a></li>
         </ul>
    </main>
 </#macro>
