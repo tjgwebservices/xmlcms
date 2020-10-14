@@ -6,11 +6,9 @@ import com.tjgwebservices.tjgxmlcms.dbo.hr.HrGroupDBO;
 import com.tjgwebservices.tjgxmlcms.form.hr.ClientForm;
 import com.tjgwebservices.tjgxmlcms.form.hr.EmployerForm;
 import com.tjgwebservices.tjgxmlcms.form.hr.HrGroupForm;
-import com.tjgwebservices.tjgxmlcms.form.research.ProjectForm;
 import com.tjgwebservices.tjgxmlcms.model.hr.HrClient;
 import com.tjgwebservices.tjgxmlcms.model.hr.HrEmployer;
 import com.tjgwebservices.tjgxmlcms.model.hr.HrGroup;
-import com.tjgwebservices.tjgxmlcms.model.research.Project;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,7 +51,7 @@ public class HrController {
         model.addAttribute("clients", clients);
         hrGroups = HrGroupDBO.loadHrGroups();
         model.addAttribute("hrGroups",hrGroups);  
-        return "hr/clients";
+        return "/hr/clients";
     }
 
     @RequestMapping(value = { "/hr/employers" }, method = RequestMethod.GET)
@@ -61,7 +59,7 @@ public class HrController {
         employers = HrEmployerDBO.loadHrEmployers();
         model.addAttribute("employers", employers);
  
-        return "hr/employers";
+        return "/hr/employers";
     }
 
     @RequestMapping(value = { "/hr/hrgroups" }, method = RequestMethod.GET)
@@ -69,7 +67,7 @@ public class HrController {
         hrGroups = HrGroupDBO.loadHrGroups();
         model.addAttribute("hrgroups", hrGroups);
  
-        return "hr/hrgroups";
+        return "/hr/hrgroups";
     }
 
     @RequestMapping(value = { "/hr/addEmployer" }, method = RequestMethod.GET)
@@ -79,10 +77,10 @@ public class HrController {
         model.addAttribute("employerForm", employerForm);
         hrGroups = HrGroupDBO.loadHrGroups();
         model.addAttribute("hrGroups",hrGroups); 
-        return "hr/addEmployer";
+        return "/hr/addEmployer";
     }
  
-    @RequestMapping(value = { "hr/addEmployer" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/hr/addEmployer" }, method = RequestMethod.POST)
     public String addEmployerSave(Model model, //
         @ModelAttribute("employerForm") EmployerForm employerForm) {
         String employerName = employerForm.getEmployerName();
@@ -100,11 +98,11 @@ public class HrController {
                                     hrGroupId);
             employers.add(employer);
             HrEmployerDBO.saveSQLHrEmployer(employer);
-            return "redirect:hr/employers";
+            return "redirect:/hr/employers";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
-        return "hr/addEmployer";
+        return "/hr/addEmployer";
     }
 
     @RequestMapping(value = { "/hr/editEmployer/{id}" }, method = RequestMethod.GET)
@@ -116,22 +114,31 @@ public class HrController {
         model.addAttribute("hrGroups",hrGroups); 
         
         EmployerForm employerEditForm = new EmployerForm();
-        HrEmployer editEmployer = employers.stream()
+        
+        List<HrEmployer> editEmployers = employers.stream()
             .filter((employer) -> employer.getId() == id)
-            .collect(Collectors.toList()).get(0);
+            .collect(Collectors.toList());
+        if (editEmployers.size() == 1){
+        HrEmployer editEmployer = editEmployers.get(0);
         employerEditForm.setEmployerName(editEmployer.getEmployerName());
         employerEditForm.setEmployerContact(editEmployer.getEmployerContact());
         employerEditForm.setEmployerContactType(editEmployer.getEmployerContactType());
         employerEditForm.setEmployerContactInfo(editEmployer.getEmployerContactInfo());
+        employerEditForm.setId(id);
         model.addAttribute("employerEditForm", employerEditForm);
 
-        return "hr/editEmployer";
+        return "/hr/editEmployer";
+        } else {
+            model.addAttribute("errorMessage","Employer id not found");
+            return "/hr/employers";            
+                
+        }
     }
  
-    @RequestMapping(value = { "hr/editEmployer/{id}" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "hr/editEmployer" }, method = RequestMethod.POST)
     public String editEmployerSave(Model model, //
-        @ModelAttribute("employerForm") EmployerForm employerForm,
-        @PathVariable("id") Integer id) {
+        @ModelAttribute("employerForm") EmployerForm employerForm) {
+        Integer id = employerForm.getId();
         String employerName = employerForm.getEmployerName();
         String employerContact = employerForm.getEmployerContact();
         String employerContactType = employerForm.getEmployerContactType();
@@ -147,11 +154,11 @@ public class HrController {
                                     hrGroupId);
             employer.setId(id);
             HrEmployerDBO.updateHrEmployer(employer);
-            return "redirect:hr/employers";
+            return "redirect:/hr/employers";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
-        return "hr/addEmployer";
+        return "/hr/addEmployer";
     }
 
 
@@ -160,6 +167,8 @@ public class HrController {
  
         ClientForm clientForm = new ClientForm();
         model.addAttribute("clientForm", clientForm);
+        hrGroups = HrGroupDBO.loadHrGroups();
+        model.addAttribute("hrGroups",hrGroups); 
  
         return "/hr/addClient";
     }
@@ -194,17 +203,29 @@ public class HrController {
  
         ClientForm clientForm = new ClientForm();
         model.addAttribute("clientForm", clientForm);
+        hrGroups = HrGroupDBO.loadHrGroups();
+        model.addAttribute("hrGroups",hrGroups); 
+        
          ClientForm clientEditForm = new ClientForm();
-        HrClient editClient = clients.stream()
+        
+        List<HrClient> editClients = clients.stream()
             .filter((client) -> client.getId() == id)
-            .collect(Collectors.toList()).get(0);
+            .collect(Collectors.toList());
+        if (editClients.size()==1){
+        HrClient editClient = editClients.get(0);
         clientEditForm.setClientFirstName(editClient.getClientFirstName());
         clientEditForm.setClientLastName(editClient.getClientLastName());
         clientEditForm.setClientSpecialty(editClient.getClientSpecialty());
         clientEditForm.setClientContact(editClient.getClientContact());
+        clientEditForm.setId(id);
         model.addAttribute("clientEditForm", clientEditForm);
 
-        return "/hr/editClient/{id}";
+        return "/hr/editClient";
+        } else {
+            model.addAttribute("errorMessage","Client id not found");
+            return "/hr/clients";            
+            
+        }
     }
  
     @RequestMapping(value = { "/hr/editClient/{id}" }, method = RequestMethod.POST)
@@ -251,11 +272,11 @@ public class HrController {
             HrGroup hrGroup = new HrGroup(groupName);
             hrGroups.add(hrGroup);
             HrGroupDBO.saveSQLHrGroup(hrGroup);
-            return "redirect:/hr/hrgroups";
+            return "redirect:hr/hrgroups";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
-        return "/hr/addGroup";
+        return "/hr/addHrGroup";
     }
 
     @RequestMapping(value = { "/hr/editHrGroup/{id}" }, method = RequestMethod.GET)
@@ -265,19 +286,27 @@ public class HrController {
         HrGroupForm hrGroupForm = new HrGroupForm();
         model.addAttribute("hrGroupForm", hrGroupForm);
         HrGroupForm hrGroupEditForm = new HrGroupForm();
-        HrGroup editHrGroup = hrGroups.stream()
+                List<HrGroup> editHrGroups = hrGroups.stream()
             .filter((hrGroup) -> hrGroup.getId() == id)
-            .collect(Collectors.toList()).get(0);
+            .collect(Collectors.toList());
+        if (editHrGroups.size()==1) { 
+        HrGroup editHrGroup = editHrGroups.get(0);
         hrGroupEditForm.setGroupName(editHrGroup.getGroupName());
+        hrGroupEditForm.setId(id);
         model.addAttribute("hrGroupEditForm", hrGroupEditForm);
  
-        return "/hr/editHrGroup/{id}";
+        return "hr/editHrGroup";
+        } else {
+            model.addAttribute("errorMessage","HR Group id not found");
+            return "hr/hrgroups";            
+            
+        }
     }
  
-    @RequestMapping(value = { "/hr/editHrGroup/{id}" }, method = RequestMethod.POST)
-    public String addHrGroupSave(Model model, //
-        @ModelAttribute("hrGroupForm") HrGroupForm hrGroupForm,
-        @PathVariable("id") Integer id) {
+    @RequestMapping(value = { "hr/editHrGroup" }, method = RequestMethod.POST)
+    public String editHrGroupSave(Model model, //
+        @ModelAttribute("hrGroupForm") HrGroupForm hrGroupForm) {
+        Integer id = hrGroupForm.getId();
         String groupName = hrGroupForm.getGroupName();
          if (groupName != null && groupName.length() > 0){
             HrGroup hrGroup = new HrGroup(groupName);

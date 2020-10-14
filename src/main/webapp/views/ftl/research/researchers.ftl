@@ -21,15 +21,15 @@
                <th>Specialty</th>
             </tr>
             <#if researchers??>
-            <#list researchers as reseacher>
+            <#list researchers as researcher>
             <tr>
                <td>${researcher.researcherFirstName}</td>
                <td>${researcher.researcherLastName}</td>
-               <td>${researcher.reseacherDegree}</td>
-               <td>${researcher.reseacherMajor}</td>
-               <td>${researcher.reseacherInstitution}</td>
-               <td>${researcher.reseacherSpecialty}</td>
-               <td><a href="/research/editReseacher/${reseacher.id}">Edit</a></td>
+               <td>${researcher.researcherDegree}</td>
+               <td>${researcher.researcherMajor}</td>
+               <td>${researcher.researcherInstitution}</td>
+               <td>${researcher.researcherSpecialty}</td>
+               <td><a href="/research/editResearcher/${researcher.id}">Edit</a></td>
             </tr>
             </#list>
             </#if>

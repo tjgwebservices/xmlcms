@@ -1,11 +1,21 @@
 package com.tjgwebservices.tjgxmlcms.form.hr;
 
 public class ClientForm {
+    
+    private Integer id;
     private String clientFirstName;
     private String clientLastName;
     private String clientSpecialty;
     private String clientContact;
     private Integer hrGroupId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getClientFirstName() {
         return clientFirstName;

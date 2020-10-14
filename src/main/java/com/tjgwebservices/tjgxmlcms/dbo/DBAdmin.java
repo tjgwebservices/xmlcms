@@ -82,7 +82,7 @@ public class DBAdmin {
                 ");\n"); 
         runSQLQuery("CREATE TABLE IF NOT EXISTS Course\n" +
                 "( id INTEGER PRIMARY KEY,\n" +
-                "courseName VARCHAR);"); 
+                "courseName text NOT NULL);"); 
         runSQLQuery("CREATE TABLE IF NOT EXISTS Journal (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "journal text NOT NULL);\n"); 

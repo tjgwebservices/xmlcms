@@ -15,7 +15,8 @@
          ${errorMessage}
       </div>
       </#if>
-       
+
+      <#if hrGroups??>       
       <div>
          <fieldset>
             <legend>JobSeeker</legend>
@@ -34,6 +35,9 @@
             </form>
          </fieldset>
       </div>
+      <#else>
+            <p>No HR Groups <a href="/hr/addHrGroup">Add HR Group</a></p>
+      </#if>       
        
        
    </body>

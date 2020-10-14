@@ -70,7 +70,7 @@ public class HibernateTests {
             );
             Connection conn = DriverManager.getConnection(testdb);
             Statement stmt = conn.createStatement();
-            System.out.println(query.toString());
+            //System.out.println(query.toString());
             boolean itr = stmt.execute(query.toString());
             conn.commit();
             Assertions.assertFalse(itr);
@@ -79,6 +79,11 @@ public class HibernateTests {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
+            System.out.println("*************************");
+            System.out.println("*******SQL Exception*****");
+            System.out.println(e.getMessage());
+            System.out.println("*************************");
+            System.out.println("*************************");
             e.printStackTrace();
         }
     }
@@ -101,6 +106,11 @@ public class HibernateTests {
             Assertions.assertFalse(itr);
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("*************************");
+            System.out.println("*******SQL Exception*****");
+            System.out.println(e.getMessage());
+            System.out.println("*************************");
+            System.out.println("*************************");
         }
     }
     
@@ -155,7 +165,12 @@ public class HibernateTests {
         }
         //Assertions.assertTrue(articleList.size()>0);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("*************************");
+            System.out.println("*******SQL Exception*****");
+            System.out.println(e.getMessage());
+            System.out.println("*************************");
+            System.out.println("*************************");
+            //e.printStackTrace();
         }
         
     }

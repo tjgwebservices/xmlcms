@@ -47,8 +47,10 @@
                 <span class="dropdown1-content">
                     <a href="/hr/clients">Clients</a>
                     <a href="/hr/employers">Employers</a>
+                    <a href="/hr/hrgroups">HR Groups</a>
                     <a href="/hr/addClient">Add Client</a>
                     <a href="/hr/addEmployer">Add Employer</a>
+                    <a href="/hr/addHrGroup">Add HR Group</a>
                 </span>
             </span>
             </li>
@@ -58,9 +60,10 @@
                 <span class="dropdown1-content">
                     <a href="/research/topics">Topics</a>
                     <a href="/research/projects">Projects</a>
-                    <a href="/research/addTopics">Add Topic</a>
+                    <a href="/research/researchers">Researchers</a>
+                    <a href="/research/addTopic">Add Topic</a>
                     <a href="/research/addProject">Add Project</a>
-                    <a href="/research/addResearchers">Add Reseacher</a>
+                    <a href="/research/addResearcher">Add Researcher</a>
                 </span>
             </span>
             </li>

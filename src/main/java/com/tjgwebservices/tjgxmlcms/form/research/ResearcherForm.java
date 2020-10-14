@@ -2,12 +2,21 @@ package com.tjgwebservices.tjgxmlcms.form.research;
 
 public class ResearcherForm {
 
+    private Integer id;
     private String researcherFirstName;
     private String researcherLastName;
     private String researcherDegree;
     private String researcherMajor;
     private String researcherInstitution;
     private String researcherSpecialty;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getResearcherFirstName() {
         return researcherFirstName;

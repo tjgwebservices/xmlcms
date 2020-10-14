@@ -16,8 +16,8 @@
 <div>
    <fieldset>
       <legend><#if titleMessage??>${titleMessage}</#if></legend>
-      <form name="topic" action="" method="POST">
-         <p>Topic Name: <@spring.formInput "projectForm.projectName" 
+      <form name="project" action="" method="POST">
+         <p>Project Name: <@spring.formInput "projectForm.projectName" 
             "" "text"/></p><br/>
          <p>Subject: <@spring.formInput "projectForm.projectSubject" 
             "" "text"/></p><br/>

@@ -2,11 +2,20 @@ package com.tjgwebservices.tjgxmlcms.form.hr;
 
 public class EmployerForm {
 
+    private Integer id;
     private String employerName;
     private String employerContact;
     private String employerContactType;
     private String employerContactInfo;
     private Integer hrGroupId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getEmployerName() {
         return employerName;

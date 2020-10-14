@@ -1,7 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.template;
 
 import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -54,25 +53,25 @@ public class ResourceTests {
 
 	@Test
 	void testWorkshopPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/workshop");
+		HttpHeaders headers = restTemplate.headForHeaders("/conferences/workshop");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testForumPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/forum");
+		HttpHeaders headers = restTemplate.headForHeaders("/conferences/forum");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testConferencePage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/conference");
+		HttpHeaders headers = restTemplate.headForHeaders("/conferences/conference");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
 	void testReportsPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/report");
+		HttpHeaders headers = restTemplate.headForHeaders("/conferences/report");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
@@ -143,7 +142,6 @@ public class ResourceTests {
 	}
         
 	@Test
-        @Disabled
 	void testHrGroupsListPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/hr/hrgroups");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
@@ -168,21 +166,18 @@ public class ResourceTests {
 	}
 
 	@Test
-        @Disabled
 	void testEditClientsPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/hr/editClient/1");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
-        @Disabled
 	void testEditEmployersPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/hr/editEmployer/1");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
         
 	@Test
-        @Disabled
 	void testEditHrGroupPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/hr/editHrGroup/1");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
@@ -220,9 +215,8 @@ public class ResourceTests {
 	}
         
 	@Test
-        @Disabled
-	void testAddReseacherPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/research/addReseacher");
+	void testAddResearcherPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/addResearcher");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
@@ -239,9 +233,8 @@ public class ResourceTests {
 	}
         
 	@Test
-        @Disabled
-	void testEditReseacherPage() {
-		HttpHeaders headers = restTemplate.headForHeaders("/research/editReseacher/1");
+	void testEditResearcherPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/research/editResearcher/1");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
         

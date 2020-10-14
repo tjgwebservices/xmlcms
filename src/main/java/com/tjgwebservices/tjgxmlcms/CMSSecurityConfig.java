@@ -22,12 +22,17 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
         "/schools/addAdministratorGroup","/schools/addLecture",
         "/schools/addLecturer","/schools/addLectureNote","/schools/addSchool",
         "/schools/addStudent","/schools/adminList","/schools/addCourse",
-        "/hr/addEmployer","/hr/addClient","/hr/addHrGroup","/hr/clients",
-        "/hr/employers","/research/researchers","/research/topics",
+        "/hr/addEmployer","/hr/addClient","/hr/addHrGroup","/hr/editClient",
+        "/hr/editClient/*","/hr/editEmployer","/hr/editEmployer/*",
+        "/hr/editHrGroup","/hr/editHrGroup/*","/hr/clients",
+        "/hr/employers","/hr/hrgroups","/research/researchers","/research/topics",
         "/research/projects","/research/addResearcher","/research/addTopic",
-        "/research/addProject","/research/editProject","/research/editProject/*",
-        "/research/editTopic","/research/editTopic/*","/research/editResearcher",
-        "/research/editResearcher/*","/articleList","/addArticle","/editArticle",
+        "/research/addProject","/research/editProject",
+        "/research/editProject*","/research/editProject/*",
+        "/research/editTopic","/research/editTopic/*","/research/editTopic*",
+        "/research/editResearcher",
+        "/research/editResearcher/*","/research/editResearcher*",
+        "/articleList","/addArticle","/editArticle",
             "/editArticle/*","/subscriptionList","/addSubscription"};
     
     @Override

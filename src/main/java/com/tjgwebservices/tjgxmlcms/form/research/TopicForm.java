@@ -2,10 +2,19 @@ package com.tjgwebservices.tjgxmlcms.form.research;
 
 public class TopicForm {
 
+    private Integer id;
     private String topicName;
     private String topicSubject;
     private String topicDescription;
     private Integer researcherId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTopicName() {
         return topicName;

@@ -20,14 +20,15 @@
          <fieldset>
             <legend>Researcher</legend>
             <form name="researcher" action="" method="POST">
-               <p>First Name: <@spring.formInput "researcherForm.researcherFirstName" "researcherEditForm.researcherFirstName" "text"/></p><br/>
-               <p>Last Name: <@spring.formInput "researcherForm.researcherLastName" "researcherEditForm.researcherLastName" "text"/></p><br/>
-               <p>Degree: <@spring.formInput "researcherForm.researcherDegree" "researcherEditForm.researcherDegree" "text"/></p><br/>
-               <p>Major: <@spring.formInput "researcherForm.researcherMajor" "researcherEditForm.researcherMajor" "text"/></p><br/>
-               <p>Institution: <@spring.formInput "researcherForm.researcherInstitution" "researcherEditForm.researcherInstitution" "text"/></p><br/>
-               <p>Specialty: <@spring.formInput "researcherForm.researcherSpecialty" "researcherEditForm.researcherSpecialty" "text"/></p>
-               <br/>
-               <input type="submit" value="Create" />
+            <form name="researcher" action="" method="POST">
+    <p>First Name:<input type="text" id="researcherFirstName" name="researcherFirstName" value="${researcherEditForm.researcherFirstName}" /></p><br/>
+    <p>Last Name:<input type="text" id="researcherLastName" name="researcherLastName" value="${researcherEditForm.researcherLastName}" /></p><br/>
+    <p>Degree:<input type="text" id="researcherDegree" name="researcherDegree" value="${researcherEditForm.researcherDegree}" /></p><br/>
+    <p>Major:<input type="text" id="researcherMajor" name="researcherMajor" value="${researcherEditForm.researcherMajor}" /></p><br/>
+    <p>Institution:<input type="text" id="researcherInstitution" name="researcherInstitution" value="${researcherEditForm.researcherInstitution}" /></p><br/>
+    <p>Specialty:<input type="text" id="researcherSpecialty" name="researcherSpecialty" value="${researcherEditForm.researcherSpecialty}" /></p><br/>
+    <p><input type="hidden" id="id" name="id" value="${researcherEditForm.id}" /></p><br/>
+               <input type="submit" value="Edit" />
             </form>
          </fieldset>
       </div>
