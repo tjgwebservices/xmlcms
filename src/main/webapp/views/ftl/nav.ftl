@@ -41,7 +41,37 @@
                 </span>
             </span>
             </li>
-            <li><a href="/conferences/workshop">Workshops</a></li>
+            <li><a href="/hr/clients">Careers</a>
+            <span class="dropdown1">
+                <a href="/hr/hrgroups">Human Resource Groups</a>
+                <span class="dropdown1-content">
+                    <a href="/hr/clients">Clients</a>
+                    <a href="/hr/employers">Employers</a>
+                    <a href="/hr/addClient">Add Client</a>
+                    <a href="/hr/addEmployer">Add Employer</a>
+                </span>
+            </span>
+            </li>
+            <li><a href="/research/researchers">Research</a>
+            <span class="dropdown1">
+                <a href="/research/researchers">Researchers</a>
+                <span class="dropdown1-content">
+                    <a href="/research/topics">Topics</a>
+                    <a href="/research/projects">Projects</a>
+                    <a href="/research/addTopics">Add Topic</a>
+                    <a href="/research/addProject">Add Project</a>
+                    <a href="/research/addResearchers">Add Reseacher</a>
+                </span>
+            </span>
+            </li>
+            <li><a href="/articleList">Articles</a>
+            <span class="dropdown1">
+                <a href="/articleList">Article List</a>
+                <span class="dropdown1-content">
+                    <a href="/addArticle">Add Article</a>
+                </span>
+            </span>
+            </li>
         </ul>
    </nav>
 </#macro>
@@ -105,14 +135,6 @@
             <li>Content editing tools</li>
             <li>Data management</li>
             <li>Reporting tools</li>
-        </ul>
-        <p>Testing Pages</p>
-        <ul>
-            <li><a href="/hr/clients">Clients Page</a></li>
-            <li><a href="/hr/employers">Employers Page</a></li>
-            <li><a href="/research/projects">Projects Page</a></li>
-            <li><a href="/research/topics">Topics Page</a></li>
-            <li><a href="/research/reseachers">Reseachers Page</a></li>
         </ul>
    </main>
 </#macro>

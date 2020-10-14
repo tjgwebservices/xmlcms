@@ -33,7 +33,7 @@ public class HrGroupDBO extends DatabaseObject {
             }
     }
 
-    public static void editHrGroup(HrGroup hrGroup) {
+    public static void updateHrGroup(HrGroup hrGroup) {
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
             String sql = "UPDATE HrGroup SET groupName = ? WHERE id = ?";

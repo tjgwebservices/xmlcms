@@ -79,10 +79,10 @@ public class ResearchController {
         model.addAttribute("researchers", researchers);
         titleMessage = "Add Topic";
         model.addAttribute("titleMessage", titleMessage); 
-        return "researchers/addTopic";
+        return "research/addTopic";
     }
 
-    @RequestMapping(value = { "research/addTopic" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/research/addTopic" }, method = RequestMethod.POST)
     public String addTopicSave(Model model, //
         @ModelAttribute("topicForm") TopicForm topicForm) {
         String topicName = topicForm.getTopicName();
@@ -127,7 +127,7 @@ public class ResearchController {
         return "research/editTopic/{id}";
     }
 
-    @RequestMapping(value = { "research/editTopic/{id}" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/research/editTopic/{id}" }, method = RequestMethod.POST)
     public String editTopicSave(Model model, //
         @ModelAttribute("topicForm") TopicForm topicForm,
         @PathVariable("id") Integer id) {
@@ -160,10 +160,10 @@ public class ResearchController {
         model.addAttribute("researchers", researchers);
         titleMessage = "Add Project";
         model.addAttribute("titleMessage", titleMessage); 
-        return "researchers/addProject";
+        return "research/addProject";
     }
 
-    @RequestMapping(value = { "research/addProject" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/research/addProject" }, method = RequestMethod.POST)
     public String addProjectSave(Model model, //
         @ModelAttribute("projectForm") ProjectForm projectForm) {
         String projectName = projectForm.getProjectName();
@@ -208,7 +208,7 @@ public class ResearchController {
         return "research/editProject/{id}";
     }
 
-    @RequestMapping(value = { "research/editProject/{id}" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/research/editProject/{id}" }, method = RequestMethod.POST)
     public String editProjectSave(Model model, //
         @ModelAttribute("projectForm") ProjectForm projectForm,
         @PathVariable("id") Integer id) {
@@ -238,10 +238,10 @@ public class ResearchController {
         model.addAttribute("researcherForm", researcherForm);
         titleMessage = "Add Researcher";
         model.addAttribute("titleMessage", titleMessage); 
-        return "researchers/addResearcher";
+        return "research/addResearcher";
     }
 
-    @RequestMapping(value = { "research/addResearcher" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/research/addResearcher" }, method = RequestMethod.POST)
     public String addResearcherSave(Model model, //
         @ModelAttribute("researcherForm") ResearcherForm researcherForm) {
         String researcherFirstName = researcherForm.getResearcherFirstName();
@@ -267,6 +267,59 @@ public class ResearchController {
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
         return "research/addResearcher";
+    }
+
+    @RequestMapping(value = { "/research/editResearcher/{id}" }, method = RequestMethod.GET)
+    public String editResearcherForm(Model model,
+            @PathVariable("id") Integer id) {
+ 
+        ResearcherForm researcherForm = new ResearcherForm();
+        model.addAttribute("researcherForm", researcherForm);
+        titleMessage = "Add Researcher";
+        model.addAttribute("titleMessage", titleMessage); 
+        ResearcherForm reseacherEditForm = new ResearcherForm();
+        Researcher editReseacher = researchers.stream()
+            .filter((reseacher) -> reseacher.getId() == id)
+            .collect(Collectors.toList()).get(0);
+        reseacherEditForm.setResearcherFirstName(editReseacher.getResearcherFirstName());
+        reseacherEditForm.setResearcherLastName(editReseacher.getResearcherLastName());
+        reseacherEditForm.setResearcherLastName(editReseacher.getResearcherLastName());
+        reseacherEditForm.setResearcherDegree(editReseacher.getResearcherDegree());
+        reseacherEditForm.setResearcherMajor(editReseacher.getResearcherMajor());
+        reseacherEditForm.setResearcherInstitution(editReseacher.getResearcherInstitution());
+        reseacherEditForm.setResearcherSpecialty(editReseacher.getResearcherInstitution());
+        model.addAttribute("reseacherEditForm", reseacherEditForm);
+
+        return "research/addResearcher/{id}";
+    }
+
+    @RequestMapping(value = { "/research/editResearcher/{id}" }, method = RequestMethod.POST)
+    public String editResearcherSave(Model model, //
+        @ModelAttribute("researcherForm") ResearcherForm researcherForm,
+        @PathVariable("id") Integer id) {
+        String researcherFirstName = researcherForm.getResearcherFirstName();
+        String researcherLastName = researcherForm.getResearcherLastName();
+        String researcherDegree = researcherForm.getResearcherDegree();
+        String researcherMajor = researcherForm.getResearcherMajor();
+        String researcherInstitution = researcherForm.getResearcherInstitution();
+        String researcherSpecialty = researcherForm.getResearcherSpecialty();
+ 
+        if (researcherFirstName != null && researcherFirstName.length() > 0 &&
+            researcherLastName != null && researcherLastName.length() > 0 &&
+            researcherDegree != null && researcherDegree.length() > 0 &&
+            researcherMajor != null && researcherMajor.length() > 0 &&
+            researcherInstitution != null && researcherInstitution.length() > 0 &&
+            researcherSpecialty != null && researcherSpecialty.length() > 0){
+            Researcher researcher = new Researcher(researcherFirstName, 
+            researcherLastName, researcherDegree, researcherMajor,
+            researcherInstitution, researcherSpecialty);
+            researcher.setId(id);
+            ResearcherDBO.updateResearcher(researcher);
+            return "redirect:/researchers";
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "research/editResearcher/{id}";
     }
 
     

@@ -283,7 +283,7 @@ public class AdminController {
         titleMessage = "Add Lecturer";
         model.addAttribute("titleMessage", titleMessage); 
 
-        return "schools/addLectuer";
+        return "schools/addLecturer";
     }
  
     @RequestMapping(value = { "/schools/addLecturer" }, method = RequestMethod.POST)

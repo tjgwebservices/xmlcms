@@ -20,6 +20,7 @@
                <th>Institution</th>
                <th>Specialty</th>
             </tr>
+            <#if researchers??>
             <#list researchers as reseacher>
             <tr>
                <td>${researcher.researcherFirstName}</td>
@@ -31,6 +32,7 @@
                <td><a href="/research/editReseacher/${reseacher.id}">Edit</a></td>
             </tr>
             </#list>
+            </#if>
          </table>
       </div>
 

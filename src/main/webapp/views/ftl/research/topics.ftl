@@ -18,6 +18,7 @@
                <th>Description</th>
                <th>Edit</th>
             </tr>
+            <#if topics??>
             <#list topics as topic>
             <tr>
                <td>${topic.topicName}</td>
@@ -26,6 +27,7 @@
                <td><a href="/research/editTopic/${topic.id}">Edit</a></td>
             </tr>
             </#list>
+            </#if>
          </table>
       </div>
 

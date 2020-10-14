@@ -18,6 +18,7 @@
                <th>Specialty</th>
                <th>Contact</th>
             </tr>
+            <#if clients??>
             <#list clients as client>
             <tr>
                <td>${client.clientFirstName}</td>
@@ -26,5 +27,6 @@
                <td>${client.clientContact}</td>
             </tr>
             </#list>
+            </#if>
          </table>
       </div>

@@ -18,6 +18,7 @@
                <th>POC Title</th>
                <th>Contact Email</th>
             </tr>
+            <#if employers??>
             <#list employers as employer>
             <tr>
                <td>${employer.employerName}</td>
@@ -26,6 +27,7 @@
                <td>${employer.employerContactInfo}</td>
             </tr>
             </#list>
+            </#if>
          </table>
       </div>
 
