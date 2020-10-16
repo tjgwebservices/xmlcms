@@ -42,7 +42,7 @@ import org.springframework.web.util.UriComponentsBuilder;
         location            = "."
 )
 public class WebSocketController extends HttpServlet {
-/*
+
     @MessageMapping("/socketDisplay" )
     @SendTo("/socket") 
     public String displayMessage(){
@@ -56,7 +56,7 @@ public class WebSocketController extends HttpServlet {
         System.out.println("Display Topics");
         return "display";
     }
-*/
+
     @RequestMapping(value = "/topics", 
             method = RequestMethod.GET,
             produces = {"application/json","application/xml"})
@@ -86,7 +86,7 @@ public class WebSocketController extends HttpServlet {
             method = RequestMethod.POST,
             produces = {"application/json","application/xml"})
     @ResponseBody
-    public String poatMessages(
+    public String postMessages(
     @PathVariable String id, @RequestBody ModelMap model){
         return "{\"id\":\""+id+"\",\"message\":\"test\"}";  
     }
@@ -150,4 +150,5 @@ public class WebSocketController extends HttpServlet {
                 StandardCopyOption.REPLACE_EXISTING);
         return "success";
     }
+
 }

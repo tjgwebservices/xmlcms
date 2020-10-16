@@ -30,40 +30,13 @@
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/schools/adminList">Classes</a>
+            <li><a href="/videos/videoList">Video List</a>
             <span class="dropdown1">
-                <a href="/conferences/report">Report</a>
+                <a href="/videos/videoList">Artist List</a>
                 <span class="dropdown1-content">
-                    <a href="/conferences/forum">Forum</a>
-                    <a href="/conferences/project">Projects</a>
-                    <a href="/conferences/report">Report</a>
-                    <a href="/conferences/learn">Training Sessions</a>
-                </span>
-            </span>
-            </li>
-            <li><a href="/hr/clients">Careers</a>
-            <span class="dropdown1">
-                <a href="/hr/hrgroups">Human Resource Groups</a>
-                <span class="dropdown1-content">
-                    <a href="/hr/clients">Clients</a>
-                    <a href="/hr/employers">Employers</a>
-                    <a href="/hr/hrgroups">HR Groups</a>
-                    <a href="/hr/addClient">Add Client</a>
-                    <a href="/hr/addEmployer">Add Employer</a>
-                    <a href="/hr/addHrGroup">Add HR Group</a>
-                </span>
-            </span>
-            </li>
-            <li><a href="/research/researchers">Research</a>
-            <span class="dropdown1">
-                <a href="/research/researchers">Researchers</a>
-                <span class="dropdown1-content">
-                    <a href="/research/topics">Topics</a>
-                    <a href="/research/projects">Projects</a>
-                    <a href="/research/researchers">Researchers</a>
-                    <a href="/research/addTopic">Add Topic</a>
-                    <a href="/research/addProject">Add Project</a>
-                    <a href="/research/addResearcher">Add Researcher</a>
+                    <a href="/videos/addArtist">Add Artist</a>
+                    <a href="/videos/addVideo">Add Video</a>
+                    <a href="/conferences/articleList">Reviews</a>
                 </span>
             </span>
             </li>
@@ -81,13 +54,13 @@
 <#macro sidelinks>
    <aside>
         <ul>
-            <li>School Classes</li>
-            <li>Class Sessions</li>
+            <li>Music Platform</li>
+            <li>Music Videos</li>
             <li><a href="/">Home</a></li>
-            <li><a href="/schools/adminList">Classes</a></li>
-            <li><a href="/conferences/forum">Forum</a></li>
-            <li><a href="/articleList">Article List</a></li>
-            <li><a href="/publish">Publish Test</a></li>
+            <li><a href="/videos/videoList">Videos</a></li>
+            <li><a href="/videos/videoList">Artists</a></li>
+            <li><a href="/videos/addArtist">Add an Artist</a></li>
+            <li><a href="/videos/addVideo">Add a Video</a></li>
         </ul>
 	<ul>
 		<li>Conference Activities</li>
@@ -121,6 +94,25 @@
 <#macro mainsection>
    <main>
         <h4>TJG XML CMS</h4>
+        <canvas id="srcStream"></canvas id="peerStream">
+        <video id="liveStream">
+        </video>
+        <form id="connectform">
+        <label for="connect">Websocket connection: </label>
+        <button id="connect">Connect</button>
+        <button id="disconnect">Disconnect</button>
+        </form>
+
+        <form id="sendmessage">
+        <label for="name">Your name:</label>
+        <input type="text" id="name" />
+        <button id="send">Send</button>
+        </form>
+
+        <p id="greetings"></p>
+
+        <p id="conversation"></p>
+
         <p>TJG XML Content Management Systems</p>
         <p> - The XML Content Management System is a content management system that separates content from presentation with XML</p>
         <p> The content management system, CMS, is a tool designed to provide an easier management of content on the web.</p>

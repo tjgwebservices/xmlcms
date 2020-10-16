@@ -16,8 +16,8 @@
       <div>
          <fieldset>
             <legend><#if titleMessage??>${titleMessage}</#if></legend>
-            <form name="lecturer" action="" method="POST">
-               Lecturer Name: <@spring.formInput "lecturerForm.lecturerName" "" "text"/>    <br/>
+            <form name="video" action="" method="POST">
+               Music Artist Name: <@spring.formInput "artistForm.artistName" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>
@@ -27,6 +27,8 @@
    </body>
     
 </html>
+
+
 
 
 

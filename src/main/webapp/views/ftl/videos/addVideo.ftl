@@ -16,9 +16,10 @@
       <div>
          <fieldset>
             <legend><#if titleMessage??>${titleMessage}</#if></legend>
-            <form name="lecturer" action="" method="POST">
-               Lecturer Name: <@spring.formInput "lecturerForm.lecturerName" "" "text"/>    <br/>
-               <input type="submit" value="Create" />
+            <form name="lecture" enctype="multipart/form-data" action="" method="POST">
+               Music Video Name: <@spring.formInput "videoForm.videoName" "" "text"/>    <br/>
+               Music Video: <@spring.formInput "videoForm.videoContent" "" "file"/>    <br/>
+               <input type="submit" value="Upload" />
             </form>
          </fieldset>
       </div>
@@ -27,7 +28,3 @@
    </body>
     
 </html>
-
-
-
-

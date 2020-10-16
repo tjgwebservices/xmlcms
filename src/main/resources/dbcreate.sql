@@ -25,6 +25,11 @@ title text NOT NULL,
 description text NOT NULL,
 content text NOT NULL);
 
+CREATE TABLE IF NOT EXISTS Artist (
+id INTEGER PRIMARY KEY,
+artistName TEXT
+);
+
 CREATE TABLE IF NOT EXISTS Subscription (
 id integer PRIMARY KEY,
 subscriptionPlan text NOT NULL,
@@ -150,3 +155,9 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS Video(
+artist TEXT,
+videoName TEXT,
+videoContent BINARY,
+PRIMARY KEY(artist,videoName)
+);

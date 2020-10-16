@@ -55,6 +55,10 @@ public class DBAdmin {
                 "ON UPDATE CASCADE\n" +
                 "ON DELETE CASCADE\n" +
                 ");\n");       
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Artist(\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "artistName TEXT\n" +
+                ");");  
         runSQLQuery("CREATE TABLE IF NOT EXISTS Lecture(\n" +
                 "instructor TEXT,\n" +
                 "lectureName TEXT,\n" +
@@ -163,6 +167,12 @@ public class DBAdmin {
                 "ON DELETE CASCADE\n" +
                 ");\n" +
                 "\n");  
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Video(\n" +
+                "artist TEXT,\n" +
+                "videoName TEXT,\n" +
+                "videoContent BINARY,\n" +
+                "PRIMARY KEY(artist,videoContent)\n" +
+                ");\n");
         runSQLQuery("Select * FROM LectureNote");
         runSQLQuery("Select * FROM Lecture");
     }

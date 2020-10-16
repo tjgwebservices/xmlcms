@@ -15,7 +15,9 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity(debug = true)
 public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
     final private String[] ignorelist = {"/","/home","/index","/error","/login",
-        "/success","/sockets","/display","/publish","/uploads","/css/**",
+        "/success","/socket","/socket/**","/sockets","/socketDisplay",
+        "/display","/publish","/uploads","/topics","/topics/**","/topic/*",
+        "/topics/messages/","/topics/messages/**","/topics/messages/info/**","/css/**",
         "/js/**","/courses/**","/conferences/workshop","/conferences/conference",
         "/conferences/forum","/conferences/project",
         "/conferences/learn","/conferences/report","/schools/addAdministrator",
@@ -37,7 +39,7 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(ignorelist).permitAll()
                 .antMatchers("/authenticated/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/users/**").access("hasRole('ROLE_USER')")

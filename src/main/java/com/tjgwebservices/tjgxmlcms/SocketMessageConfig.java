@@ -19,13 +19,15 @@ public class SocketMessageConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topics/","/topics/queue/");
-        registry.setApplicationDestinationPrefixes("/app");
+        registry.enableSimpleBroker("/topics/","/topics/queue/",
+                "/topics/messages/","/topics/messages/**");
+        //registry.setApplicationDestinationPrefixes("/app");
     }
  
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/topics/messages/")
+        registry.addEndpoint("/topics/messages/","/topic/*",
+                "/topics/messages/info/*", "/topics/messages/**")
             .setHandshakeHandler(new DefaultHandshakeHandler(){
             public boolean beforeHandshake(
                     ServerHttpRequest request,
@@ -43,7 +45,7 @@ public class SocketMessageConfig implements WebSocketMessageBrokerConfigurer {
                         return true;
                         }
                 
-            }).withSockJS();
+            }).setAllowedOrigins("*");
     }
     
 }

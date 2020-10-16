@@ -1,5 +1,7 @@
 package com.tjgwebservices.tjgxmlcms;
 
+import com.tjgwebservices.tjgxmlcms.controller.SocketStreamHandler;
+import com.tjgwebservices.tjgxmlcms.controller.WebSocketController;
 import com.tjgwebservices.tjgxmlcms.model.SocketHandler;
 import com.tjgwebservices.tjgxmlcms.model.SocketSubscriber;
 import java.util.concurrent.ExecutorService;
@@ -23,6 +25,19 @@ public class WebSocketConfig extends AbstractWebSocketHandler implements WebSock
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(new SocketHandler(), "/socket")
           .setAllowedOrigins("*");
+        registry
+              .addHandler(new SocketStreamHandler(), "/topics")
+          .setAllowedOrigins("*");
+        registry
+              .addHandler(new SocketStreamHandler(), "/socket/*")
+          .setAllowedOrigins("*");
+        registry
+              .addHandler(new SocketStreamHandler(), "/socketDisplay")
+          .setAllowedOrigins("*");
+        registry
+              .addHandler(new SocketStreamHandler(), "/topics/messages/**")
+          .setAllowedOrigins("*");
+  
     }  
     
     @Bean
@@ -51,4 +66,5 @@ public class WebSocketConfig extends AbstractWebSocketHandler implements WebSock
     public void aferConnectionClosed(WebSocketSession session, CloseStatus  status){
         System.out.println("Connection closed");
     }
+    
 }
