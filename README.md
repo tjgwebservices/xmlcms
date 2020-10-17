@@ -20,4 +20,6 @@ If the tests fail, run the command again.  The application creates a test databa
 
 ## accessing the application
 
-Once started, the application will be available at localhost:8080.  
+Once started, the application will be available at localhost:8080. 
+
+More information about the TJGXMLCMS project can be found [here](https://tjgwebservices.com/tjgxmlcms/).
