@@ -2,6 +2,7 @@ package com.tjgwebservices.tjgxmlcms.controller;
 
 import com.tjgwebservices.tjgxmlcms.dbo.video.ArtistDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.video.VideoDBO;
+import com.tjgwebservices.tjgxmlcms.form.ArtistForm;
 import com.tjgwebservices.tjgxmlcms.form.VideoForm;
 import com.tjgwebservices.tjgxmlcms.model.Artist;
 import com.tjgwebservices.tjgxmlcms.model.FileUpload;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+@Controller
 public class VideoController {
 
     private List<Video> videos = new ArrayList<>();
@@ -47,7 +50,7 @@ public class VideoController {
         model.addAttribute("videos", videos);
         artists = ArtistDBO.loadArtists();
         model.addAttribute("artists", artists);
-        return "/videos/videoList";
+        return "videos/videoList";
     }
 
     @RequestMapping(value = { "/videos/addVideo" }, method = RequestMethod.GET)
@@ -112,6 +115,33 @@ public class VideoController {
                 return "videos/addVideo";
             }
         }
+    }
+    
+    @RequestMapping(value = { "/videos/addArtist" }, method = RequestMethod.GET)
+    public String addArtistForm(Model model) {
+ 
+        ArtistForm artistForm = new ArtistForm();
+        model.addAttribute("artistForm", artistForm);
+        titleMessage = "Add Artist";
+        model.addAttribute("titleMessage", titleMessage); 
+
+        return "videos/addArtist";
+    }
+ 
+    @RequestMapping(value = { "/videos/addArtist" }, method = RequestMethod.POST)
+    public String addArtistSave(Model model, //
+        @ModelAttribute("artistForm") ArtistForm artistForm) {
+        String artistName = artistForm.getArtistName();
+
+        if (artistName != null && artistName.length() > 0 ){
+            Artist artist = new Artist(artistName);
+            artists.add(artist);
+            ArtistDBO.saveSQLArtist(artist);
+            return "redirect:/videos/videoList";
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "schools/addArtist";
     }
     
     

@@ -15,6 +15,6 @@
       <#if message??>
       <h2>${message}</h2>
       </#if>
-   <@nav.footing />
+   <@nav.footingconference />
 
 

@@ -7,6 +7,8 @@
        <@nav.cssheading />
    </head>
    <body>
+   <@nav.navigation />
+
       <#if errorMessage??>
       <div style="color:red;font-style:italic;">
          ${errorMessage}

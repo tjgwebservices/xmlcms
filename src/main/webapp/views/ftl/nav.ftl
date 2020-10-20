@@ -17,12 +17,22 @@
            type="text/css" href="<@spring.url '/css/main.css'/>"/>
 </#macro>
 <#macro footing>
-      <p><a href="<@spring.url '/articleList'/>">Article List</a></p>
+      <p><a href="<@spring.url '/'/>">Home</a></p>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+
+</html>
+</#macro>
+<#macro footingconference>
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
        <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/videostream.js'/>"></script>
+
 </html>
 </#macro>
 
@@ -30,13 +40,13 @@
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/videos/videoList">Video List</a>
+            <li><a href="/conferences/conference">Conference</a>
             <span class="dropdown1">
-                <a href="/videos/videoList">Artist List</a>
+                <a href="/conferences/forum">Forum</a>
                 <span class="dropdown1-content">
-                    <a href="/videos/addArtist">Add Artist</a>
-                    <a href="/videos/addVideo">Add Video</a>
-                    <a href="/conferences/articleList">Reviews</a>
+                    <a href="/conferences/learn">Training</a>
+                    <a href="/conferences/project">Projects</a>
+                    <a href="/conferences/workshop">Workshops</a>
                 </span>
             </span>
             </li>
@@ -54,13 +64,13 @@
 <#macro sidelinks>
    <aside>
         <ul>
-            <li>Music Platform</li>
-            <li>Music Videos</li>
+            <li>TJGXMLCMS</li>
+            <li>Demo</li>
             <li><a href="/">Home</a></li>
-            <li><a href="/videos/videoList">Videos</a></li>
-            <li><a href="/videos/videoList">Artists</a></li>
-            <li><a href="/videos/addArtist">Add an Artist</a></li>
-            <li><a href="/videos/addVideo">Add a Video</a></li>
+            <li><a href="/conferences/conference">Conference</a></li>
+            <li><a href="/conferences/forum">Forum</a></li>
+            <li><a href="/conferences/workshop">Workshops</a></li>
+            <li><a href="/conferences/report">Reports</a></li>
         </ul>
 	<ul>
 		<li>Conference Activities</li>
@@ -94,24 +104,6 @@
 <#macro mainsection>
    <main>
         <h4>TJG XML CMS</h4>
-        <canvas id="srcStream"></canvas id="peerStream">
-        <video id="liveStream">
-        </video>
-        <form id="connectform">
-        <label for="connect">Websocket connection: </label>
-        <button id="connect">Connect</button>
-        <button id="disconnect">Disconnect</button>
-        </form>
-
-        <form id="sendmessage">
-        <label for="name">Your name:</label>
-        <input type="text" id="name" />
-        <button id="send">Send</button>
-        </form>
-
-        <p id="greetings"></p>
-
-        <p id="conversation"></p>
 
         <p>TJG XML Content Management Systems</p>
         <p> - The XML Content Management System is a content management system that separates content from presentation with XML</p>
@@ -159,6 +151,36 @@
 			<li>Share strategies for success</li>
 			<li>Provide guidance for mistakes made along the way</li>
 		</ul>
+        <form id="rtcform">
+        <label for="rtcconnectname">Connect to video name: </label>
+        <input type="text" id="rtcconnectname" name="rtcconnectname" />
+        <label for="rtcconnectbutton">Connection:</label>
+        <button id="rtcconnectbutton">Connect</button>
+        <label for="rtcsend">Send Message:</label>
+        <button id="rtcsend">Send</button>
+        <video id="rtcremote">
+        </video>
+        <video id="rtcself">
+        </video>
+        </form>
+        <canvas id="srcStream"></canvas>
+        <canvas id="peerStream"></canvas>
+        <video id="liveStream"></video>
+        <form id="connectform">
+        <label for="connect">Websocket connection: </label>
+        <button id="connect">Connect</button>
+        <button id="disconnect">Disconnect</button>
+        </form>
+
+        <form id="sendmessage">
+        <label for="name">Your name:</label>
+        <input type="text" id="name" />
+        <button id="send">Send</button>
+        </form>
+
+        <p id="greetings"></p>
+
+        <p id="conversation"></p>
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>

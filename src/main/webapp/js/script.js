@@ -1,6 +1,10 @@
 (function () {
-    
-var conn = new WebSocket('ws://localhost:8080/socket');
+var hostconnectURL = "wss://conferenceseries.tjgwebservices.com";
+var hostconnectport = "8080";
+var hostconnectpath = "/socket";
+var hosturl = hostconnectURL+":"+hostconnectport+hostconnectpath;
+
+var conn = new WebSocket(hosturl);
 conn.onopen = function() {
     console.log("Connected to signal server /socket");
     setstreamconnected(true);
@@ -75,40 +79,80 @@ peerConnection.onicecandidate = function(event) {
     }
 };
 
-
-function handleOffer(offer){
-peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-peerConnection.createAnswer(function(answer){
-    send({
-        event: "answer",
-        data : answer
+function createStream(stream){
+    navigator.mediaDevices.getUserMedia(constraints);
+    var streamcanvas = document.getElementById("srcStream");
+    var streamVideo = document.createElement("video");
+    streamcanvas.appendChild(streamVideo);
+    streamVideo.srcObject = stream;
+    peerConnection.addStream(stream);
+    streamVideo.addEventListener('loadedmetadata', ()=>{
+        var videoPromise = streamVideo.play();
+        if (videoPromise !== undefined) {
+            videoPromise.then(promise => {
+                console.log("play started", promise);
+            }).catch(error => {
+               console.log("play start error",error);
+            });
+        }
     });
-}, function(error){
+}
+
+function offerError(error){
+            console.log("Offer error",error);    
+}
+
+    function handleOffer(offer){
+    console.log("setting remote description", offer);
     
-});
+peerConnection.setRemoteDescription(new RTCSessionDescription(offer))
+        .then(function(stream){
+            createStream(stream);
+        })
+        .then(function() {
+                    return peerConnection.createAnswer();
+        }).then(function() {
+            peerConnection.createAnswer(function(answer){
+                send({
+                event: "answer",
+                data : answer});
+                })
+         }).then(function(){
+             console.log("Established connection");
+             
+         }).catch(offerError);
 }
 
 function handleAnswer(answer){
+    console.log("handleAnswer",answer);
     peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
 }
 
 function handleCandidate(candidate){
+    console.log("handleCandidate",candidate);
     peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
 }
 
 function sendMessage(){
+    console.log("sendMessage");
+    if (dataChannel.readyState == "connecting"){
+        console.log("Unable to send message, ready state connecting");
+        
+    } else {
     dataChannel.send("message");
     dataChannel.onmessage = function (event){
         console.log("Message", event.data);
+    }
 
     }
 }
 
 
 
-var messagesocket = new WebSocket('ws://localhost:8080/socket');
+var messagesocket = new WebSocket(hosturl);
 messagesocket.onopen = (e) =>
 {
+    console.log("message socket on open",e.target.readyState);
     if (e.target.readyState !== WebSocket.OPEN) return;
     const authentication = {
         msgType : 'Authenticate',
@@ -147,11 +191,12 @@ messagesocket.onmessage = function(msg) {
 };
 
 function streamsendname(){
-    stompClient.send("/topics/messages/", {}, 
+    messagesocket.send("/topics/messages/", {}, 
     JSON.stringify({'name':document.getElementById("name").value}));
 }
 
 function streamshowgreetings(message){
+    console.log("show greetings",message);
     var greetings = document.getElementById("greetings");
     var newMessage = document.createElement("span");
     newMessage.appendChild(message);
@@ -174,6 +219,8 @@ var constraints2 = {
         }
     };
 
+var videoElement = document.getElementById("liveStream");
+
 function addStream(stream) {
     peerConnection.addStream(stream);
     peerConnection.onaddstream = function(event) {
@@ -191,7 +238,7 @@ function setstreamconnected(connected) {
     var connect = document.getElementById("connect");
     var disconnect = document.getElementById("disconnect");
     var conversation = document.getElementById("conversation");
-    var greetings = document.getElementById("greetings");
+    var greetingselement = document.getElementById("greetings");
     connect.setAttribute("disabled",connected);
     disconnect.setAttribute("disabled",!connected);
     if (connected) {
@@ -200,14 +247,14 @@ function setstreamconnected(connected) {
         conversation.style.display = "none";
         
     }
-    greetings.innerHTML="";
+    greetingselement.innerHTML="";
     
 }
 
 function streamconnect() {
     const peerConnection = new RTCPeerConnection(configuration);
     const dataChannel = peerConnection.createDataChannel();
-    var streamsocket = new WebSocket('ws://localhost:8080/topics/messages');
+    var streamsocket = new WebSocket(hostconnectURL+':8081/topics/messages');
     const openMediaDevices = navigator.mediaDevices.getUserMedia(constraints);
     streamsocket.onopen = (e) =>
     {
@@ -223,7 +270,7 @@ function streamconnect() {
 }
 
 function streamdisconnect() {
-    var peersocket = new WebSocket('ws://localhost:8080/topics/messages/disconnect');
+    var peersocket = new WebSocket(hostconnectURL+':8081/topics/messages/disconnect');
     peersocket.onopen = (e) =>
     {
         if (e.target.readyState !== WebSocket.OPEN) return;
@@ -268,6 +315,4 @@ sendbutton.addEventListener("click",
                 streamsendname();
    
         });
-
-
 })();
