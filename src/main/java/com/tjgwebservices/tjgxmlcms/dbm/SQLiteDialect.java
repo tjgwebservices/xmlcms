@@ -11,7 +11,7 @@ public class SQLiteDialect extends Dialect {
         registerColumnType(Types.TINYINT, "tinyint");
         registerColumnType(Types.SMALLINT, "smallint");
         registerColumnType(Types.INTEGER, "integer");
-        // other data types
+        registerColumnType(Types.BINARY, "binary");
     }    
 
     @Override

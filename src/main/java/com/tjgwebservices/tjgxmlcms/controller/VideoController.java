@@ -33,7 +33,7 @@ public class VideoController {
     private List<Video> videos = new ArrayList<>();
     private List<Artist> artists = new ArrayList<>();
 
-    private String[] validFileExtensions = {"mpg","jpg","gif","png"};
+    private String[] validFileExtensions = {"mpg","mp4","ogg","avi","jpg","gif","png"};
     
     @Autowired
     ServletContext context;
@@ -61,11 +61,11 @@ public class VideoController {
         titleMessage = "Add Video";
         model.addAttribute("titleMessage", titleMessage); 
  
-        return "/videos/addVideo";
+        return "videos/addVideo";
     }
  
     @RequestMapping(value = { "/videos/addVideo" }, method = RequestMethod.POST)
-    public String addLectureSave(@Validated FileUpload file, BindingResult result,
+    public String addVideoSave(@Validated VideoForm file, BindingResult result,
             Model model, //
         @ModelAttribute("videoForm") VideoForm videoForm) {
         String videoName = videoForm.getVideoName();
@@ -77,7 +77,7 @@ public class VideoController {
             return "videos/addVideo";
         } else {
             System.out.println("Fetching file");
-            MultipartFile multipartFile = videoForm.getVideoContent();
+            MultipartFile multipartFile = file.getVideoContent();
             String uploadPath = context.getRealPath("") + File.separator +
                     "temp" + File.separator;
             try {
@@ -98,12 +98,13 @@ public class VideoController {
                     String error = "Only image and video files for lecture poster!";
                     model.addAttribute("errorMessage", error);
                     return "videos/addVideo";
-                }                
+                }
+                String filePath = uploadPath+multipartFile.getOriginalFilename();
                 FileCopyUtils.copy(multipartFile.getBytes(),
-                        new File(uploadPath+multipartFile.getOriginalFilename()
+                        new File(filePath
                         ));
                         String fileName = multipartFile.getOriginalFilename();
-                        Video video = new Video(videoName,multipartFile);
+                        Video video = new Video(videoName,filePath,multipartFile);
                         model.addAttribute("fileName",fileName);
                         videos.add(video);
                         VideoDBO.saveSQLVideo(video);

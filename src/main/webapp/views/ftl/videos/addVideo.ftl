@@ -17,7 +17,7 @@
       <div>
          <fieldset>
             <legend><#if titleMessage??>${titleMessage}</#if></legend>
-            <form name="lecture" enctype="multipart/form-data" action="" method="POST">
+            <form name="video" enctype="multipart/form-data" action="" method="POST">
                Music Video Name: <@spring.formInput "videoForm.videoName" "" "text"/>    <br/>
                Music Video: <@spring.formInput "videoForm.videoContent" "" "file"/>    <br/>
                <input type="submit" value="Upload" />

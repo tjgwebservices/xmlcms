@@ -18,13 +18,16 @@ public class Video implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String videoName;
+    private String videoPath;
     private MultipartFile videoContent;
 
     public Video(){}
     
-    public Video(String videoName, MultipartFile videoContent) {
+    public Video(String videoName, String videoPath, MultipartFile videoContent) {
         this.videoName = videoName;
+        this.videoPath = videoPath;
         this.videoContent = videoContent;
+
     }
 
     public Integer getId() {
@@ -41,6 +44,14 @@ public class Video implements Serializable{
 
     public void setVideoName(String videoName) {
         this.videoName = videoName;
+    }
+    
+    public String getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath;
     }
 
     public MultipartFile getVideoContent() {

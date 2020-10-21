@@ -131,6 +131,14 @@ researcherInstitution TEXT NOT NULL,
 researcherSpecialty TEXT NOT NULL,
 );
 
+CREATE TABLE IF NOT EXISTS Review (
+id integer PRIMARY KEY,
+author text NOT NULL,
+authorDate text NOT NULL,
+title text NOT NULL,
+description text NOT NULL,
+content text NOT NULL);
+
 CREATE TABLE IF NOT EXISTS Topic (
 id integer PRIMARY KEY,
 topicName text NOT NULL,
@@ -156,8 +164,7 @@ ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Video(
+id integer PRIMARY KEY,
 artist TEXT,
 videoName TEXT,
-videoContent BINARY,
-PRIMARY KEY(artist,videoName)
-);
+videoPath TEXT);

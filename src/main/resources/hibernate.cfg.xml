@@ -27,5 +27,13 @@
         <mapping class="com.tjgwebservices.tjgxmlcms.model.SocketSubscriber"/>
         <mapping class="com.tjgwebservices.tjgxmlcms.model.SocketSubscription"/>
         <mapping class="com.tjgwebservices.tjgxmlcms.model.FileUpload"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.Video"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.hr.HrClient"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.hr.HrEmployer"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.hr.HrGroup"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.research.Project"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.research.Reseacher"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.research.Topic"/>
+        <mapping class="com.tjgwebservices.tjgxmlcms.model.review.Review"/>
     </session-factory>
 </hibernate-configuration>

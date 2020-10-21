@@ -5,13 +5,11 @@ import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
-import com.tjgwebservices.tjgxmlcms.dbo.schools.LectureDBO;
-import com.tjgwebservices.tjgxmlcms.model.Lecture;
 import com.tjgwebservices.tjgxmlcms.model.Video;
 import com.tjgwebservices.tjgxmlcms.services.DecodedMultipartFile;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,12 +28,12 @@ public class VideoDBO {
             MultipartFile lp = video.getVideoContent();
             try {
                 conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
-                byte[] byteArrray = lp.getBytes();
-                InputStream targetStream = new ByteArrayInputStream(byteArrray);
-                String sql = "INSERT INTO Video(videoName, videoContent) VALUES(?,?)";
+                //byte[] byteArrray = lp.getBytes();
+                //InputStream targetStream = new ByteArrayInputStream(byteArrray);
+                String sql = "INSERT INTO Video(videoName, videoPath) VALUES(?,?)";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,video.getVideoName());
-                pstmt.setBinaryStream(2, targetStream);
+                pstmt.setString(2, video.getVideoPath());
                 pstmt.executeUpdate();
                 tx.commit();
                 session.close();
@@ -43,8 +41,6 @@ public class VideoDBO {
                     Logger.getLogger(VideoDBO.class.getName()).log(Level.SEVERE, null, e);
                     System.out.println(e.getMessage());
                     tx.rollback();
-            } catch (IOException e) {
-                    Logger.getLogger(VideoDBO.class.getName()).log(Level.SEVERE, null, e);
             }
     }
 
@@ -52,7 +48,7 @@ public class VideoDBO {
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
             List<Video> videoList = new ArrayList<>();
-            String sql = "SELECT videoName,videoContent FROM Video;";
+            String sql = "SELECT videoName,videoPath FROM Video;";
             try  {
                 conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 Statement stmt = conn.createStatement();
@@ -60,20 +56,19 @@ public class VideoDBO {
                        while(rs.next()){
                            Video video = new Video();
                            video.setVideoName(rs.getString("videoName"));
-                           InputStream is = rs.getBinaryStream("videoContent");
-                           //BinaryWebSocketFrame bws = new BinaryWebSocketFrame(Unpooled.copiedBuffer(is.readAllBytes()));
-                           //final ServerEndpoint wse = bws.getClass().getAnnotation(ServerEndpoint.class);
                            try {
+                               byte[] fb = Files.readAllBytes(Paths.get(rs.getString("videoPath")));
                                //Binary<?> bd = (Binary<?>) bws.getClass().getConstructor().newInstance();
-                               DecodedMultipartFile mpf = new DecodedMultipartFile(is);
+                               DecodedMultipartFile mpf = new DecodedMultipartFile(rs.getString("videoName"),fb);
                                 video.setVideoContent(mpf);
                                 videoList.add(video);
                            } catch (SecurityException ex) {
                                Logger.getLogger(VideoDBO.class.getName()).log(Level.SEVERE, null, ex);
-                               Logger.getLogger(VideoDBO.class.getName()).log(Level.SEVERE, null, ex);
                            } catch (IllegalArgumentException ex) {
                                Logger.getLogger(VideoDBO.class.getName()).log(Level.SEVERE, null, ex);
-                           }
+                           } catch (IOException ex) {
+                        Logger.getLogger(VideoDBO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                        }
                 tx.commit();
                 session.close();

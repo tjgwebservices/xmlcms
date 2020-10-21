@@ -19,7 +19,7 @@ public class VideoForm {
         return videoContent;
     }
 
-    public void setVideoPoster(MultipartFile videoPoster) {
+    public void setVideoContent(MultipartFile videoContent) {
         this.videoContent = videoContent;
     }
     

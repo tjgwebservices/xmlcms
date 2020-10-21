@@ -191,7 +191,7 @@ public class AdminController {
     }
  
     @RequestMapping(value = { "/schools/addLecture" }, method = RequestMethod.POST)
-    public String addLectureSave(@Validated FileUpload file, BindingResult result,
+    public String addLectureSave(@Validated LectureForm file, BindingResult result,
             Model model, //
         @ModelAttribute("lectureForm") LectureForm lectureForm) {
         String lectureName = lectureForm.getLectureName();
@@ -204,7 +204,7 @@ public class AdminController {
             return "schools/addLecture";
         } else {
             System.out.println("Fetching file");
-            MultipartFile multipartFile = lectureForm.getLecturePoster();
+            MultipartFile multipartFile = file.getLecturePoster();
             String uploadPath = context.getRealPath("") + File.separator +
                     "temp" + File.separator;
             try {
@@ -220,7 +220,7 @@ public class AdminController {
                     }
                 }
                 if (validFile){
-                    model.addAttribute("nessage", "Valid file uploaded");
+                    model.addAttribute("message", "Valid file uploaded");
                 } else {
                     String error = "Only image and video files for lecture poster!";
                     model.addAttribute("errorMessage", error);

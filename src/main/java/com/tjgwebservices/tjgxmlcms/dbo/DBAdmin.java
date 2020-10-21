@@ -168,11 +168,10 @@ public class DBAdmin {
                 ");\n" +
                 "\n");  
         runSQLQuery("CREATE TABLE IF NOT EXISTS Video(\n" +
+                "id integer PRIMARY KEY,\n" +
                 "artist TEXT,\n" +
                 "videoName TEXT,\n" +
-                "videoContent BINARY,\n" +
-                "PRIMARY KEY(artist,videoContent)\n" +
-                ");\n");
+                "videoPath TEXT);");
         runSQLQuery("Select * FROM LectureNote");
         runSQLQuery("Select * FROM Lecture");
     }

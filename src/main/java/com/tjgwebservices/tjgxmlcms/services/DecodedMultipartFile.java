@@ -21,11 +21,16 @@ public class DecodedMultipartFile implements MultipartFile{
     
     public DecodedMultipartFile(InputStream is){
         try {
-            fileContent = IOUtils.toByteArray(is);
+            this.fileContent = IOUtils.toByteArray(is);
         } catch (IOException ex) {
-            fileContent = new byte[0];
+            this.fileContent = new byte[0];
             Logger.getLogger(DecodedMultipartFile.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public DecodedMultipartFile(String fileName, byte[] fileContent){
+            this.fileContent = fileContent;
+            this.fileName = fileName;
     }
     
     @Override
