@@ -30,6 +30,56 @@ id INTEGER PRIMARY KEY,
 artistName TEXT
 );
 
+CREATE TABLE IF NOT EXISTS Event (
+id integer PRIMARY KEY,
+title text NOT NULL,
+startDate text NOT NULL,
+endDate text NOT NULL,
+location text NOT NULL,
+description text NOT NULL);
+
+CREATE TABLE IF NOT EXISTS EventAdministrator (
+id integer PRIMARY KEY,
+administratorName text NOT NULL,
+title text NOT NULL,
+subTitle text NOT NULL,
+contactInfo text NOT NULL,
+eventId integer,
+CONSTRAINT fk_Event
+FOREIGN KEY (eventId)
+REFERENCES Event(id)
+ON DELETE CASCADE);
+
+CREATE TABLE IF NOT EXISTS EventAdvertisement (
+id integer PRIMARY KEY,
+title text NOT NULL,
+subTitle text NOT NULL,
+adImagePath text NOT NULL,
+contactInfo text NOT NULL,
+eventId integer,
+CONSTRAINT fk_Event
+FOREIGN KEY (eventId)
+REFERENCES Event(id)
+ON DELETE CASCADE);
+
+CREATE TABLE IF NOT EXISTS ArtificialIntelligence(
+id integer PRIMARY KEY,
+title text NOT NULL,
+description text NOT NULL,
+algorithmPath text,
+dataSourcePath text,
+dataTargetPath text);
+
+CREATE TABLE IF NOT EXISTS MachineLearning(
+id integer PRIMARY KEY,
+title text NOT NULL,
+description text NOT NULL,
+algorithmPath text,
+dataSourcePath text,
+dataTargetPath text);
+
+
+
 CREATE TABLE IF NOT EXISTS Subscription (
 id integer PRIMARY KEY,
 subscriptionPlan text NOT NULL,

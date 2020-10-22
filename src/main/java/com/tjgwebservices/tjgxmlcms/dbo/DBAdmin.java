@@ -172,6 +172,49 @@ public class DBAdmin {
                 "artist TEXT,\n" +
                 "videoName TEXT,\n" +
                 "videoPath TEXT);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Event (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "title text NOT NULL,\n" +
+                "startDate text NOT NULL,\n" +
+                "endDate text NOT NULL,\n" +
+                "location text NOT NULL,\n" +
+                "description text NOT NULL);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS EventAdministrator (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "administratorName text NOT NULL,\n" +
+                "title text NOT NULL,\n" +
+                "subTitle text NOT NULL,\n" +
+                "contactInfo text NOT NULL,\n" +
+                "eventId integer,\n" +
+                "CONSTRAINT fk_Event\n" +
+                "FOREIGN KEY (eventId)\n" +
+                "REFERENCES Event(id)\n" +
+                "ON DELETE CASCADE);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS EventAdvertisement (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "title text NOT NULL,\n" +
+                "subTitle text NOT NULL,\n" +
+                "adImagePath text NOT NULL,\n" +
+                "contactInfo text NOT NULL,\n" +
+                "eventId integer,\n" +
+                "CONSTRAINT fk_Event\n" +
+                "FOREIGN KEY (eventId)\n" +
+                "REFERENCES Event(id)\n" +
+                "ON DELETE CASCADE);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ArtificialIntelligence(\n" +
+                "id integer PRIMARY KEY,\n" +
+                "title text NOT NULL,\n" +
+                "description text NOT NULL,\n" +
+                "algorithmPath text,\n" +
+                "dataSourcePath text,\n" +
+                "dataTargetPath text);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS MachineLearning(\n" +
+                "id integer PRIMARY KEY,\n" +
+                "title text NOT NULL,\n" +
+                "description text NOT NULL,\n" +
+                "algorithmPath text,\n" +
+                "dataSourcePath text,\n" +
+                "dataTargetPath text);");
         runSQLQuery("Select * FROM LectureNote");
         runSQLQuery("Select * FROM Lecture");
     }

@@ -35,18 +35,28 @@
 
 </html>
 </#macro>
+<#macro footingconferenceroom>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/videostream.js'/>"></script>
+
+</html>
+</#macro>
 
 <#macro navigation>
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/conferences/conference">Conference</a>
+            <li><a href="/research/researchers">Researchers</a>
             <span class="dropdown1">
-                <a href="/conferences/forum">Forum</a>
+                <a href="/research/addResearcher">Add Researcher</a>
                 <span class="dropdown1-content">
-                    <a href="/conferences/learn">Training</a>
-                    <a href="/conferences/project">Projects</a>
-                    <a href="/conferences/workshop">Workshops</a>
+                    <a href="/research/addProject">Add Project</a>
+                    <a href="/research/addTopic">Add Topic</a>
+                    <a href="/research/projects">Projects</a>
+                    <a href="/research/topics">Topics</a>
                 </span>
             </span>
             </li>
@@ -55,6 +65,29 @@
                 <a href="/articleList">Article List</a>
                 <span class="dropdown1-content">
                     <a href="/addArticle">Add Article</a>
+                </span>
+            </span>
+            </li>
+
+            <li><a href="/hr/employers">Careers</a>
+            <span class="dropdown1">
+                <a href="/hr/employers">Employers</a>
+                <span class="dropdown1-content">
+                    <a href="/hr/addEmployer">Add Employer</a>
+                    <a href="/hr/clients">Clients</a>
+                    <a href="/hr/addClient">Clients</a>
+                    <a href="/hr/hrgroups">Human Resource Groups</a>
+                </span>
+            </span>
+            </li>
+            <li><a href="/conferences/conference">Conference</a>
+            <span class="dropdown1">
+                <a href="/conferences/forum">Forum</a>
+                <span class="dropdown1-content">
+                    <a href="/conferences/room">Conference Room</a>
+                    <a href="/conferences/learn">Training</a>
+                    <a href="/conferences/project">Projects</a>
+                    <a href="/conferences/workshop">Workshops</a>
                 </span>
             </span>
             </li>
@@ -67,15 +100,21 @@
             <li>TJGXMLCMS</li>
             <li>Demo</li>
             <li><a href="/">Home</a></li>
-            <li><a href="/conferences/conference">Conference</a></li>
-            <li><a href="/conferences/forum">Forum</a></li>
-            <li><a href="/conferences/workshop">Workshops</a></li>
-            <li><a href="/conferences/report">Reports</a></li>
+            <li><a href="/research/researchers">Reseachers</a></li>
+            <li><a href="/research/projects">Projects</a></li>
+            <li><a href="/research/topics">Topics</a></li>
+            <li><a href="/research/addReseacher">Add Reseacher</a></li>
+            <li><a href="/research/addTopic">Add Topic</a></li>
+            <li><a href="/research/addProject">Add Project</a></li>
         </ul>
 	<ul>
-		<li>Conference Activities</li>
-		<li>Discussion Points</li>
-		<li>Events</li>
+            <li><a href="/aiml/aiAlgorithms">AI Algorithms</a></li>
+            <li><a href="/aiml/mlAlgorithms">ML Algorithms</a></li>
+            <li><a href="/aiml/addAiAlgorithm">Add Artificial Intelligence</a></li>
+            <li><a href="/aiml/addMlAlgorithm">Add Machine Learning</a></li>
+		<li>TJGXMLCMS Training</li>
+		<li>TJGXMLCMS Community Edition</li>
+		<li>TJGXMLCMS Enterprise Edition</li>
 		<li>Calendar</li>
 		<li>Comments</li>
 		<li>Integrations</li>
