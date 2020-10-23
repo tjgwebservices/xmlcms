@@ -63,6 +63,13 @@ public class AdminController {
     static {
     }    
 
+    @Value("${welcome.message}")
+    private String message;
+ 
+    @Value("${error.message}")
+    private String errorMessage;
+
+    
     @Value("${title.message}")
     private String titleMessage;
 
@@ -120,7 +127,7 @@ public class AdminController {
             return "redirect:/schools/adminList";
         }
         String error = "All fieds are required!";
-        model.addAttribute("errorMessage", error);
+        model.addAttribute("errorMessage", errorMessage);
         return "schools/addAdministrator";
     }
 
@@ -147,7 +154,7 @@ public class AdminController {
             return "redirect:/schools/adminList";
         }
         String error = "All fieds are required!";
-        model.addAttribute("errorMessage", error);
+        model.addAttribute("errorMessage", errorMessage);
         return "schools/addAdministratorGroups";
     }
     
@@ -175,7 +182,7 @@ public class AdminController {
             return "redirect:/schools/adminList";
         }
         String error = "All fieds are required!";
-        model.addAttribute("errorMessage", error);
+        model.addAttribute("errorMessage", errorMessage);
         return "schools/addCourse";
     }
 
@@ -200,7 +207,7 @@ public class AdminController {
                 lectureName == null || lectureName.length() < 0){
             System.out.println("validation errors");
             String error = "All fieds are required!";
-            model.addAttribute("errorMessage", error);
+            model.addAttribute("errorMessage", errorMessage);
             return "schools/addLecture";
         } else {
             System.out.println("Fetching file");
@@ -223,7 +230,7 @@ public class AdminController {
                     model.addAttribute("message", "Valid file uploaded");
                 } else {
                     String error = "Only image and video files for lecture poster!";
-                    model.addAttribute("errorMessage", error);
+                    model.addAttribute("errorMessage", errorMessage);
                     return "schools/addLecture";
                 }                
                 FileCopyUtils.copy(multipartFile.getBytes(),
@@ -238,7 +245,7 @@ public class AdminController {
             } catch (IOException ex) {
                 Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
                 String error = "All fieds are required!";
-                model.addAttribute("errorMessage", error);
+                model.addAttribute("errorMessage", errorMessage);
                 return "schools/addLecture";
             }
         }
@@ -298,13 +305,9 @@ public class AdminController {
             return "redirect:/schools/adminList";
         }
         String error = "All fieds are required!";
-        model.addAttribute("errorMessage", error);
+        model.addAttribute("errorMessage", errorMessage);
         return "schools/addLecturer";
     }
-    
-    
-    
-    
     
     @RequestMapping(value = { "schools/addSchool" }, method = RequestMethod.GET)
     public String addSchoolForm(Model model) {
@@ -330,7 +333,7 @@ public class AdminController {
             return "redirect:/schools/adminList";
         }
         String error = "All fieds are required!";
-        model.addAttribute("errorMessage", error);
+        model.addAttribute("errorMessage", errorMessage);
         return "schools/addSchool";
     }
 
@@ -361,7 +364,7 @@ public class AdminController {
             return "redirect:/schools/adminList";
         }
         String error = "All fieds are required!";
-        model.addAttribute("errorMessage", error);
+        model.addAttribute("errorMessage", errorMessage);
         return "schools/addStudent";
     }
 

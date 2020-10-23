@@ -7,27 +7,29 @@ import com.tjgwebservices.tjgxmlcms.form.review.ReviewForm;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Controller
 public class ReviewController {
     private static List<Review> reviews = new ArrayList<Review>();
  
     static {
     }
 
-    @RequestMapping(value = { "/reviewList" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/reviews/reviewList" }, method = RequestMethod.GET)
     public String reviewList(Model model) {
         reviews = ReviewDBO.loadReviews();
         model.addAttribute("reviews", reviews);
  
-        return "reviewList";
+        return "reviews/reviewList";
     }
  
-    @RequestMapping(value = { "/addReview" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/reviews/addReview" }, method = RequestMethod.GET)
     public String addReviewForm(Model model) {
  
         ReviewForm reviewForm = new ReviewForm();
@@ -35,10 +37,10 @@ public class ReviewController {
         model.addAttribute("reviewForm", reviewForm);
         model.addAttribute("socketDisplay", socketDisplay);
  
-        return "addReview";
+        return "reviews/addReview";
     }
  
-    @RequestMapping(value = { "/addReview" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/reviews/addReview" }, method = RequestMethod.POST)
     public String addReviewSave(Model model, //
         @ModelAttribute("reviewForm") ReviewForm reviewForm) {
         String author = reviewForm.getAuthor();
@@ -56,15 +58,15 @@ public class ReviewController {
                     title, description, content);
             reviews.add(newReview);
             ReviewDBO.saveSQLReview(newReview);
-            return "redirect:/reviewList";
+            return "redirect:/reviews/reviewList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
-        return "addReview";
+        return "reviews/addReview";
     }
 
     
-    @RequestMapping(value = { "/editReview/{id}" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/reviews/editReview/{id}" }, method = RequestMethod.GET)
     public String editReviewForm(Model model,
             @PathVariable("id") Integer id) {
  
@@ -80,10 +82,10 @@ public class ReviewController {
         reviewEditForm.setContent(editReview.getContent());
         model.addAttribute("reviewForm", reviewForm);
         model.addAttribute("reviewEditForm", reviewEditForm);
-        return "editReview/{id}";
+        return "reviews/editReview/{id}";
     }
  
-    @RequestMapping(value = { "/editReview/{id}" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/reviews/editReview/{id}" }, method = RequestMethod.POST)
     public String editReviewSave(Model model, //
         @ModelAttribute("reviewForm") ReviewForm reviewForm) {
         String author = reviewForm.getAuthor();
@@ -101,11 +103,11 @@ public class ReviewController {
                     title, description, content);
             reviews.add(newReview);
             ReviewDBO.saveSQLReview(newReview);
-            return "redirect:/reviewList";
+            return "redirect:/reviews/reviewList";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
-        return "editReview/{id}";
+        return "reviews/editReview/{id}";
     }
     
 }

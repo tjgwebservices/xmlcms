@@ -1,12 +1,15 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
+import com.tjgwebservices.tjgxmlcms.dbo.review.ReviewDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.video.ArtistDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.video.VideoDBO;
 import com.tjgwebservices.tjgxmlcms.form.ArtistForm;
 import com.tjgwebservices.tjgxmlcms.form.VideoForm;
+import com.tjgwebservices.tjgxmlcms.form.review.ReviewForm;
 import com.tjgwebservices.tjgxmlcms.model.Artist;
 import com.tjgwebservices.tjgxmlcms.model.FileUpload;
 import com.tjgwebservices.tjgxmlcms.model.Video;
+import com.tjgwebservices.tjgxmlcms.model.review.Review;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ public class VideoController {
 
     private List<Video> videos = new ArrayList<>();
     private List<Artist> artists = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     private String[] validFileExtensions = {"mpg","mp4","ogg","avi","jpg","gif","png"};
     
@@ -40,6 +44,11 @@ public class VideoController {
 
     static {
     }    
+    @Value("${welcome.message}")
+    private String message;
+ 
+    @Value("${error.message}")
+    private String errorMessage;
 
     @Value("${title.message}")
     private String titleMessage;
@@ -73,7 +82,7 @@ public class VideoController {
                 videoName == null || videoName.length() < 0){
             System.out.println("validation errors");
             String error = "All fieds are required!";
-            model.addAttribute("errorMessage", error);
+            model.addAttribute("errorMessage", errorMessage);
             return "videos/addVideo";
         } else {
             System.out.println("Fetching file");

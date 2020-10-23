@@ -4,10 +4,7 @@
 <html>
    <head>
       <title>Edit Event</title>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/style.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/main.css'/>"/>
+       <@nav.cssheading />
     
    </head>
    <body>
@@ -35,9 +32,7 @@
          </fieldset>
       </div>
        
-   </body>
-    
-</html>
+   <@nav.footingform />
 
 
 

@@ -29,9 +29,12 @@
                <p>Ad Image Path: <input type="text" id="adImagePath" name="adImagePath" value="${eventEventAdvertisementForm.adImagePath}" /></p><br/>
                <p>Phone or Email: <input type="text" id="contactInfo" name="contactInfo" value="${eventEventAdvertisementForm.contactInfo}" /></p>
             <select id="eventId" name="eventId">
+            <#if events??>
+
                 <#list events as event>
                     <option value="${event.id}">${event.title}</option>
                 </#list>
+            </#if>
             </select>
                <br/>
                <input type="submit" value="Create" />

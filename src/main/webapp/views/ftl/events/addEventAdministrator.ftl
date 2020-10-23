@@ -28,9 +28,12 @@
                <p>Sub Title: <@spring.formInput "eventAdvertisementForm.subTitle" "" "text"/></p><br/>
                <p>Email or Phone: <@spring.formInput "eventAdvertisementForm.contactInfo" "" "text"/></p>
             <select id="eventId" name="eventId">
+            <#if events??>
+
                 <#list events as event>
                     <option value="${event.id}">${event.title}</option>
                 </#list>
+                </#if>
             </select>
                <br/>
                <input type="submit" value="Create" />

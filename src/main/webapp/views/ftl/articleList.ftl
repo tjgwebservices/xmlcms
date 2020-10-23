@@ -6,10 +6,10 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+      <div>
      <h3>Article List</h3>
      <a href="addArticle">Add Article</a>
      <br><br>
-      <div>
           
          <table border="1">
             <tr>

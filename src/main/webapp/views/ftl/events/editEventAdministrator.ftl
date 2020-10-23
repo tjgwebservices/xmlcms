@@ -29,9 +29,12 @@
                <p>Sub Title: <input type="text" id="subTitle" name="subTitle" value="${eventEditAdministratorForm.subTitle}" /></p><br/>
                <p>Phone or Email: <input type="text" id="contactInfo" name="contactInfo" value="${eventEditAdministratorForm.contactInfo}" /></p>
             <select id="eventId" name="eventId">
+            <#if events??>
+
                 <#list events as event>
                     <option value="${event.id}">${event.title}</option>
                 </#list>
+            </#if>
             </select>
                <br/>
                <input type="submit" value="Create" />

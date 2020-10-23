@@ -1,15 +1,15 @@
 <#import "/spring.ftl" as spring/>
+<#import "/nav.ftl" as nav/>
  
 <html>
    <head>
       <title>Add Article</title>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/style.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/main.css'/>"/>
+       <@nav.cssheading />
     
    </head>
    <body>
+   <@nav.navigation />
+
       <#if errorMessage??>
       <div style="color:red;font-style:italic;">
          ${errorMessage}
@@ -43,6 +43,4 @@
       </div>
        
        
-   </body>
-    
-</html>
+   <@nav.footingform />

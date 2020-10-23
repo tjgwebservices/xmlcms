@@ -76,6 +76,12 @@ public class ResourceTests {
 	}
 
 	@Test
+	void testConferenceRoomPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/conferences/room");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
 	void testAddAdministratorsPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/schools/addAdministrator");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
@@ -238,5 +244,82 @@ public class ResourceTests {
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
         
+	@Test
+	void testAddArtistPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/videos/addArtist");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddVideoPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/videos/addVideo");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+        
+	@Test
+	void testVideoListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/videos/videoList");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testReviewListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/reviews/reviewList");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddReviewPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/reviews/addReview");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEditReviewPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/reviews/editReview/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEventListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/events/eventList");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEventAdvertisementListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/events/eventAdvertisementList");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEventAdministratorListPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/events/eventAdministratorList");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEditEventAdministratorPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/events/editEventAdministrator/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testEditEventAdvertisementPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/events/editEventAdvertisement/1");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddEventAdministratorPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/events/addEventAdministrator");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
+
+	@Test
+	void testAddEventAdvertisementPage() {
+		HttpHeaders headers = restTemplate.headForHeaders("/events/addEventAdvertisement");
+                Assertions.assertNotEquals(headers.getContentLength(),-1);
+	}
         
 }

@@ -6,9 +6,9 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinksadmin />
+      <div>
      <h3>Admin List - Sample Class</h3>
      <br><br>
-      <div>
          <h4>Administrators</h4>           
           
          <table border="1">

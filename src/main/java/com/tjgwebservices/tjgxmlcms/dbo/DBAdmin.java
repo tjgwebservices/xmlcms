@@ -42,6 +42,20 @@ public class DBAdmin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Article (\n"
+                + " id integer PRIMARY KEY,\n"
+                + " author text NOT NULL,\n"
+                + " authorDate text NOT NULL,\n"
+                + " title text NOT NULL,\n"
+                + " description text NOT NULL,\n"
+                + " content text NOT NULL);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Review (\n"
+                + " id integer PRIMARY KEY,\n"
+                + " author text NOT NULL,\n"
+                + " authorDate text NOT NULL,\n"
+                + " title text NOT NULL,\n"
+                + " description text NOT NULL,\n"
+                + " content text NOT NULL);");
         runSQLQuery("CREATE TABLE IF NOT EXISTS AdministratorGroup (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "groupName TEXT NOT NULL\n" +

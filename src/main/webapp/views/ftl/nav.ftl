@@ -8,6 +8,8 @@
            type="text/css" href="<@spring.url '/css/style.css'/>"/>
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/main.css'/>"/>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
    </head>
 </#macro>
 <#macro cssheading>
@@ -15,6 +17,8 @@
            type="text/css" href="<@spring.url '/css/style.css'/>"/>
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/main.css'/>"/>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
 </#macro>
 <#macro footing>
       <p><a href="<@spring.url '/'/>">Home</a></p>
@@ -32,6 +36,7 @@
     </body>
        <script src="<@spring.url '/js/script.js'/>"></script>
        <script src="<@spring.url '/js/videostream.js'/>"></script>
+       <script src="<@spring.url '/js/calendar.js'/>"></script>
 
 </html>
 </#macro>
@@ -40,8 +45,25 @@
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
-       <script src="<@spring.url '/js/videostream.js'/>"></script>
+       <script src="<@spring.url '/js/conferenceroom.js'/>"></script>
 
+</html>
+</#macro>
+<#macro footingconferenceroomcall>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/videostream.js'/>"></script>
+</html>
+</#macro>
+
+<#macro footingform>
+       
+   </body>
+       <script src="<@spring.url '/js/calendar.js'/>"></script>
+    
 </html>
 </#macro>
 
@@ -57,6 +79,26 @@
                     <a href="/research/addTopic">Add Topic</a>
                     <a href="/research/projects">Projects</a>
                     <a href="/research/topics">Topics</a>
+                </span>
+            </span>
+            </li>
+            <li><a href="/videos/videoList">Videos</a>
+            <span class="dropdown1">
+                <a href="/videos/addVideo">Add Video</a>
+                <span class="dropdown1-content">
+                    <a href="/reviews/reviewList">Reviews</a>
+                    <a href="/research/addArtist">Add Artist</a>
+                <a href="/reviews/addReview">Add Review</a>
+                </span>
+            </span>
+            </li>
+            <li><a href="/events/eventList">Events</a>
+            <span class="dropdown1">
+                <a href="/events/addEvent">Add Event</a>
+                <span class="dropdown1-content">
+                    <a href="/events/addEventAdvertisement">Add Event Advertisement</a>
+                    <a href="/events/addEventAdministrator">Add Event Administrator</a>
+                    <a href="/events/eventAdvertisementList">Advertisement List</a>
                 </span>
             </span>
             </li>
@@ -180,16 +222,7 @@
         </article>
    </main>
 </#macro>
-<#macro conference>
-   <main>
-		<h4>Objectives</h4>
-		<p>The objectives of the Conference Series are:</p>
-		<ul>
-			<li>Share experiences in fields to serve the community</li>
-			<li>Provide learning resources</li>
-			<li>Share strategies for success</li>
-			<li>Provide guidance for mistakes made along the way</li>
-		</ul>
+<#macro conferenceroom>
         <form id="rtcform">
         <label for="rtcconnectname">Connect to video name: </label>
         <input type="text" id="rtcconnectname" name="rtcconnectname" />
@@ -210,6 +243,19 @@
         <button id="connect">Connect</button>
         <button id="disconnect">Disconnect</button>
         </form>
+
+</#macro>
+
+<#macro conference>
+   <main>
+		<h4>Objectives</h4>
+		<p>The objectives of the Conference Series are:</p>
+		<ul>
+			<li>Share experiences in fields to serve the community</li>
+			<li>Provide learning resources</li>
+			<li>Share strategies for success</li>
+			<li>Provide guidance for mistakes made along the way</li>
+		</ul>
 
         <form id="sendmessage">
         <label for="name">Your name:</label>

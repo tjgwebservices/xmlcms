@@ -6,10 +6,10 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+      <div>
      <h3>Review List</h3>
      <a href="addReview">Add Review</a>
      <br><br>
-      <div>
           
          <table border="1">
             <tr>
