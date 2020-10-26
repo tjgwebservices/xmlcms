@@ -1,8 +1,9 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
+import com.tjgwebservices.tjgxmlcms.controller.subscription.SubscriptionController;
 import com.tjgwebservices.tjgxmlcms.WebSocketConfig;
 import com.tjgwebservices.tjgxmlcms.form.SocketDisplay;
-import com.tjgwebservices.tjgxmlcms.model.SocketSubscriber;
+import com.tjgwebservices.tjgxmlcms.model.socket.SocketSubscriber;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

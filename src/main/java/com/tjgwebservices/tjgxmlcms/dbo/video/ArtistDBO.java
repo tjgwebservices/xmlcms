@@ -6,7 +6,7 @@ import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
-import com.tjgwebservices.tjgxmlcms.model.Artist;
+import com.tjgwebservices.tjgxmlcms.model.video.Artist;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;

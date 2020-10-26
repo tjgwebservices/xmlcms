@@ -2,7 +2,7 @@ package com.tjgwebservices.tjgxmlcms.dbo.schools;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
-import com.tjgwebservices.tjgxmlcms.model.Course;
+import com.tjgwebservices.tjgxmlcms.model.school.Course;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

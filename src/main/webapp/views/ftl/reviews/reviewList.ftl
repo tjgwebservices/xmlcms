@@ -8,7 +8,7 @@
    <@nav.sidelinks />
       <div>
      <h3>Review List</h3>
-     <a href="addReview">Add Review</a>
+     <a href="/reviews/addReview">Add Review</a>
      <br><br>
           
          <table border="1">
@@ -40,7 +40,7 @@
       </div>
       <div>
       <a href="<@spring.url '/display'/>">Display Subscription List</a>  
-      <a href="<@spring.url '/publish'/>">Publish to Subscription List</a>  
+      <a href="<@spring.url '/subscriptions/publish'/>">Publish to Subscription List</a>  
       </div>
    </body>
 </html>

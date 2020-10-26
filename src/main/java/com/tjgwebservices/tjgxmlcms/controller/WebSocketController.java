@@ -1,14 +1,20 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
 import com.tjgwebservices.tjgxmlcms.WebSocketConfig;
-import com.tjgwebservices.tjgxmlcms.model.SocketHandler;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,18 +24,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
@@ -43,88 +50,62 @@ import org.springframework.web.util.UriComponentsBuilder;
 )
 public class WebSocketController extends HttpServlet {
 
-    @MessageMapping("/socketDisplay" )
-    @SendTo("/socket") 
-    public String displayMessage(){
-        System.out.println("Display Message");
-        return "display";
-    }
-
-    @MessageMapping("/topics" )
-    @SendTo("/socket") 
-    public String displayTopics(){
-        System.out.println("Display Topics");
-        return "display";
-    }
-
-    @RequestMapping(value = "/topics", 
-            method = RequestMethod.GET,
-            produces = {"application/json","application/xml"})
-    @ResponseBody
-    public String topicRequests(@RequestBody ModelMap model){
-        return "{\"id\":\"1\",\"message\":\"test\"}";  
-    }
-
-    @RequestMapping(value = "/topics", 
-            method = RequestMethod.POST,
-            produces = {"application/json","application/xml"})
-    @ResponseBody
-    public String topicPosts(ModelMap model){
-        return "{\"id\":\"1\",\"message\":\"test\"}";  
-    }
-
-    @RequestMapping(value = "/topics/{id}", 
-            method = RequestMethod.GET,
-            produces = {"application/json","application/xml"})
-    @ResponseBody
-    public String topicMessages(
-    @PathVariable String id, ModelMap model){
-        return "{\"id\":\""+id+"\",\"message\":\"test\"}";  
-    }
-
-    @RequestMapping(value = "/topics/{id}", 
-            method = RequestMethod.POST,
-            produces = {"application/json","application/xml"})
-    @ResponseBody
-    public String postMessages(
-    @PathVariable String id, @RequestBody ModelMap model){
-        return "{\"id\":\""+id+"\",\"message\":\"test\"}";  
+    @Autowired
+    ServletContext context;
+    
+    @PostMapping(path="/socket", consumes="text/event-stream",
+            produces="text/event-stream")
+    public ResponseEntity<Object> eventStreamConsumer(){
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(1)
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
     
-    @RequestMapping("/topics/{id}")
-    @ResponseBody
-    public String handleTopicRequests(@PathVariable String id, 
-            @RequestBody ModelMap model) {
-        System.out.println("Handle Topic Requests");
-        model.addAttribute("id",id);  
-        return "process";
-        
-    }
-    @RequestMapping("/topics/{id}/{messages}")
-    @ResponseBody 
-    public ResponseEntity<List<SocketHandler>> handleTopicMessages(@PathVariable String id,
-            @PathVariable String message,
-            @RequestBody ModelMap model) {
-        System.out.println("Handle Topic messages");
-        model.addAttribute("id",id);
-        model.addAttribute("message",message);
-        List<SocketHandler> list = new ArrayList<SocketHandler>();
-        SocketHandler ws = new SocketHandler(message);
-        return new ResponseEntity<List<SocketHandler>>(list,HttpStatus.OK);
-        
-    }
-
-    @RequestMapping("/socket/{id}")
-    @ResponseBody
-    public String handleSocketRequests(@PathVariable String id, 
-            @RequestBody ModelMap model) {
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST)
+    //@ResponseBody
+    public ResponseEntity<InputStreamResource> handleSocketRequests(@PathVariable String id) {
         System.out.println("Handle Socket Requests");
-        model.addAttribute("id",id);        
-        return "process";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type","text/event-stream");
+        headers.add("Cache-Control","no-cache");
+        headers.add("Custom-Event-Source","conference-room");
+        String mediaPath = context.getRealPath("") + File.separator +
+                    "images" + File.separator + "conferenceseries.mp4";
+        try {
+            FileInputStream fis = new FileInputStream(mediaPath);
+            byte[] b = new byte[1024];
+            InputStreamResource inputStreamResource = new InputStreamResource(fis);
+            headers.setContentLength(0);
+            return new ResponseEntity<>(inputStreamResource, headers, HttpStatus.OK);
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(WebSocketController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String contentResponse = "id:"+id+"\n"
+                + "data:Socket Client Offer from "+id+"\n"
+                        + "event: post request\n";
+        InputStream stream = new ByteArrayInputStream(contentResponse.getBytes(StandardCharsets.UTF_8));
+        return new ResponseEntity<>(new InputStreamResource(stream), headers, HttpStatus.OK);
         
     }
+
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.GET)
+    //@ResponseBody
+    public ResponseEntity<String> startSocketRequests(@PathVariable String id) {
+        System.out.println("Socket Request from"+id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type","text/event-stream");
+        headers.add("Cache-Control","no-cache");
+        headers.add("Custom-Event-Source","conference-room");
+        
+        return new ResponseEntity<>("Socket Client Offer from "+id, headers, HttpStatus.OK);
+    }
     
-    @GetMapping(name = "/socket", produces="application/xml")
+    
+    @GetMapping(name = "/socket", produces="application/xml", 
+            consumes="application/xml")
     @ResponseBody
     public String getStreams(UriComponentsBuilder uriInfo){
         System.out.println("Handle Get Streams");
@@ -135,7 +116,12 @@ public class WebSocketController extends HttpServlet {
         sb.append("</root>");
         return sb.toString();
     }
+    
 
+
+    public void consumeServerSentEvent(){
+    }
+    
     public String uploadFile(HttpServletRequest request, 
             HttpServletResponse response) throws IOException,
             ServletException {

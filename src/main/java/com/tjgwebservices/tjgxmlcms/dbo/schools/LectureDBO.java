@@ -4,7 +4,7 @@ import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
-import com.tjgwebservices.tjgxmlcms.model.Lecture;
+import com.tjgwebservices.tjgxmlcms.model.school.Lecture;
 import com.tjgwebservices.tjgxmlcms.services.DecodedMultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

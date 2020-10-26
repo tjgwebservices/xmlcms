@@ -162,7 +162,7 @@
 
       <div>
       <a href="<@spring.url '/display'/>">Display Subscription List</a>  
-      <a href="<@spring.url '/publish'/>">Publish to Subscription List</a>  
+      <a href="<@spring.url '/subscriptions/publish'/>">Publish to Subscription List</a>  
       </div>
    </body>
 </html>

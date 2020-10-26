@@ -108,7 +108,7 @@ public class ServerRestTests {
                String.class,
                1
         );
-        String getstring = restTemplate.postForObject("/articleList",1,String.class);
+        String getstring = restTemplate.postForObject("/articles/articleList",1,String.class);
         System.out.println(getstring);
         if (response.getStatusCode() == HttpStatus.OK) {
             System.out.println(response.getBody());
@@ -134,7 +134,7 @@ public class ServerRestTests {
                request,
                Post.class
         );
-        String getstring = restTemplate.postForObject("/articleList",1,String.class);
+        String getstring = restTemplate.postForObject("/articles/articleList",1,String.class);
         System.out.println(getstring);
         if (response.getStatusCode() == HttpStatus.OK) {
             System.out.println(response.getBody());

@@ -13,20 +13,20 @@
           
          <table border="1">
             <tr>
+               <th>Administrator Name</th>
                <th>Title</th>
                <th>Sub Title</th>
-               <th>Ad Image Path</th>
                <th>Contact Info</th>
                <th></th>
             </tr>
-            <#if eventAdvertisements??>
-            <#list eventAdvertisements as eventAdvertisement>
+            <#if eventAdministrators??>
+            <#list eventAdministrators as eventAdministrator>
             <tr>
-               <td>${eventAdvertisement.title}</td>
-               <td>${eventAdvertisement.subTitle}</td>
-               <td>${eventAdvertisement.adImagePath}</td>
-               <td>${eventAdvertisement.contactInfo}</td>
-               <td><a href="/events/editEventAdvertisement/${eventAdvertisement.id}">Edit</a></td>
+               <td>${eventAdministrator.administratorName}</td>
+               <td>${eventAdministrator.title}</td>
+               <td>${eventAdministrator.subTitle}</td>
+               <td>${eventAdministrator.contactInfo}</td>
+               <td><a href="/events/editEventAdministrator/${eventAdministrator.id}">Edit</a></td>
             </tr>
             </#list>
             </#if>

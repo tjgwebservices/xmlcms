@@ -2,9 +2,9 @@ package com.tjgwebservices.tjgxmlcms.template;
 
 import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import com.tjgwebservices.tjgxmlcms.model.Article;
-import com.tjgwebservices.tjgxmlcms.model.Course;
-import com.tjgwebservices.tjgxmlcms.model.Student;
+import com.tjgwebservices.tjgxmlcms.model.article.Article;
+import com.tjgwebservices.tjgxmlcms.model.school.Course;
+import com.tjgwebservices.tjgxmlcms.model.school.Student;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

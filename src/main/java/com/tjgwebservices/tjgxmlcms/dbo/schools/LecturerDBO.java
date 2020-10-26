@@ -4,7 +4,7 @@ import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
-import com.tjgwebservices.tjgxmlcms.model.Lecturer;
+import com.tjgwebservices.tjgxmlcms.model.school.Lecturer;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;

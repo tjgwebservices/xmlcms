@@ -89,5 +89,13 @@ public class ConferenceController {
         return "conferences/room";
     }
 
+    @RequestMapping(value = { "/conferences/test" }, method = RequestMethod.GET)
+    public String showTestRoom(Model model) {
+ 
+        model.addAttribute("message", reportMessage);
+        model.addAttribute("conferenceName", conferenceName);
+         
+        return "conferences/test";
+    }
     
 }

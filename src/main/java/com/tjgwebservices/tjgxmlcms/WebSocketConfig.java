@@ -1,8 +1,6 @@
 package com.tjgwebservices.tjgxmlcms;
 
-import com.tjgwebservices.tjgxmlcms.controller.SocketStreamHandler;
-import com.tjgwebservices.tjgxmlcms.model.SocketHandler;
-import com.tjgwebservices.tjgxmlcms.model.SocketSubscriber;
+import com.tjgwebservices.tjgxmlcms.model.socket.SocketSubscriber;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.concurrent.ExecutorService;
@@ -18,17 +16,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
-import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
-import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 @Configuration
-@EnableWebSocket
-public class WebSocketConfig extends AbstractWebSocketHandler implements WebSocketConfigurer{
+public class WebSocketConfig {
 
     @Value("${client.ssl.trust-store}")
     private Resource  trustStore;
@@ -45,24 +35,6 @@ public class WebSocketConfig extends AbstractWebSocketHandler implements WebSock
     @Value("${client.ssl.key-store-alias}")
     private String clientKsAlias;
     
-    @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new SocketHandler(), "/socket")
-          .setAllowedOrigins("*");
-        registry
-              .addHandler(new SocketStreamHandler(), "/topics")
-          .setAllowedOrigins("*");
-        registry
-              .addHandler(new SocketStreamHandler(), "/socket/*")
-          .setAllowedOrigins("*");
-        registry
-              .addHandler(new SocketStreamHandler(), "/socketDisplay")
-          .setAllowedOrigins("*");
-        registry
-              .addHandler(new SocketStreamHandler(), "/topics/messages/**")
-          .setAllowedOrigins("*");
-  
-    }  
     
     @Bean
     public ExecutorService executorService(){
@@ -110,19 +82,5 @@ public class WebSocketConfig extends AbstractWebSocketHandler implements WebSock
     }
         
     
-    @Override
-    public void afterConnectionEstablished(WebSocketSession session) {
-        System.out.println("New Connection Established");
-    }
-
-    @Override
-    public void handleTextMessage(WebSocketSession webSocketSession,
-            TextMessage textMessage){
-        System.out.println("Message, length: "+textMessage.getPayloadLength());
-    }
-    
-    public void aferConnectionClosed(WebSocketSession session, CloseStatus  status){
-        System.out.println("Connection closed");
-    }
     
 }

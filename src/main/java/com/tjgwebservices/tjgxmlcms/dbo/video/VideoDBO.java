@@ -5,7 +5,7 @@ import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
-import com.tjgwebservices.tjgxmlcms.model.Video;
+import com.tjgwebservices.tjgxmlcms.model.video.Video;
 import com.tjgwebservices.tjgxmlcms.services.DecodedMultipartFile;
 import java.io.IOException;
 import java.nio.file.Files;

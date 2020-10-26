@@ -1,7 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.requests;
 
 import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
-import com.tjgwebservices.tjgxmlcms.model.SocketSubscriber;
+import com.tjgwebservices.tjgxmlcms.model.socket.SocketSubscriber;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -88,7 +88,7 @@ public class RequestResponseTests {
         server = bindTo(restTemplate).build();
         String string = "\"[{\"id\":\"1\",\"message\":\"test\"}]\"";
         byte[] b = string.getBytes(StandardCharsets.UTF_8);
-        server.expect(manyTimes(),requestTo("/articleList"))
+        server.expect(manyTimes(),requestTo("/articles/articleList"))
           .andExpect(method(HttpMethod.GET))
           .andRespond(withSuccess(b, APPLICATION_JSON));
         //server.verify();        

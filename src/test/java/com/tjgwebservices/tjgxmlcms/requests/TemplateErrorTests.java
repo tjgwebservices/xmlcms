@@ -60,10 +60,10 @@ public class TemplateErrorTests {
     public void testArticeList() {
         this.server
                 .expect(ExpectedCount.manyTimes(),
-                        requestTo("/articleList"))
+                        requestTo("/articles/articleList"))
                         .andExpect(method(HttpMethod.GET))
                         .andRespond(withStatus(HttpStatus.NOT_FOUND));
-        restTemplate.getForObject("/articleList",Object.class);
+        restTemplate.getForObject("/articles/articleList",Object.class);
        
         this.server.verify();
     }

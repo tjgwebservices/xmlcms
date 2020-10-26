@@ -3,7 +3,7 @@ package com.tjgwebservices.tjgxmlcms.dbm;
 import com.tjgwebservices.tjgxmlcms.dbo.DBAdmin;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
 import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
-import com.tjgwebservices.tjgxmlcms.model.Article;
+import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

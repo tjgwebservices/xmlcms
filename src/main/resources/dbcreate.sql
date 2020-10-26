@@ -30,6 +30,16 @@ id INTEGER PRIMARY KEY,
 artistName TEXT
 );
 
+CREATE TABLE IF NOT EXISTS Chat (
+id INTEGER PRIMARY KEY,
+userIdFrom INTEGER NOT NULL,
+userIdTo INTEGER NOT NULL,
+dateTime TEXT NOT NULL,
+priority INTEGER,
+subject TEXT,
+message TEXT
+);
+
 CREATE TABLE IF NOT EXISTS Event (
 id integer PRIMARY KEY,
 title text NOT NULL,

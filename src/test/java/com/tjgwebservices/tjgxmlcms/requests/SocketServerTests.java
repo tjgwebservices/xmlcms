@@ -1,14 +1,10 @@
 package com.tjgwebservices.tjgxmlcms.requests;
 
-import com.tjgwebservices.tjgxmlcms.model.MessageListener;
-import com.tjgwebservices.tjgxmlcms.model.SocketClient;
+import com.tjgwebservices.tjgxmlcms.model.socket.SocketClient;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.WebSocket;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +49,7 @@ public class SocketServerTests {
                 .supplyAsync(taskExecutor(i),executorService)
                 .thenAcceptAsync(
                         resultsInt
-                        -> sendMessage("test")
+                        -> System.out.println(resultsInt)
                 );
         }); 
         Assertions.assertTrue(cs.toCompletableFuture().isDone());
@@ -121,13 +117,6 @@ public class SocketServerTests {
         return func;
     }
     
-    private boolean sendMessage(String message){
-        MessageListener ml = new MessageListener();
-        HttpClient client = HttpClient.newHttpClient();
-        CompletableFuture<WebSocket> ws = client.newWebSocketBuilder()
-                .buildAsync(URI.create("/topics"), ml); 
-        return ws.isDone();
-    }
     
     
     

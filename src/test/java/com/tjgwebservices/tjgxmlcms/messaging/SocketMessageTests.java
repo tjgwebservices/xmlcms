@@ -3,7 +3,7 @@ package com.tjgwebservices.tjgxmlcms.messaging;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tjgwebservices.tjgxmlcms.model.SocketMessage;
+import com.tjgwebservices.tjgxmlcms.model.socket.SocketMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

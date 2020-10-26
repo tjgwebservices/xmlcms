@@ -20,8 +20,8 @@
       <div>
          <fieldset>
             <legend>Edit Event</legend>
-            <form name="event" action="/hr/editEvent" method="POST">
-               <p>Title: <input type="text" id="title" name="title" value=${"eventEditForm.title}" /></p><br/>
+            <form name="event" action="/events/editEvent" method="POST">
+               <p>Title: <input type="text" id="title" name="title" value="${eventEditForm.title}" /></p><br/>
                <p>Start Date: <input type="text" id="startDate" name="startDate" value="${eventEditForm.startDate}" /></p><br/>
                <p>End Date: <input type="text" id="endDate" name="endDate" value="${eventEditForm.endDate}" /></p><br/>
                <p>Location: <input type="text" id="location" name="location" value="${eventEditForm.location}" /></p>

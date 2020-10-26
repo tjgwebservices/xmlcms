@@ -3,16 +3,36 @@
 <#macro heading>
    <head>
       <meta charset="UTF-8" />
-      <title>Welcome</title>
-      <link rel="stylesheet"
+      <title>TJGXMLCMS - State of the Art Content Management System</title>
+        <meta name="description" content="TJGXMLCMS - State of the Art Content Management System" />
+        <meta name="keywords" content="TJGXMLCMS Content Management System" />
+        <meta name="author" content="TJGXMLCMS">
+        <meta name="robots" content="index, follow">
+        <meta name="revisit-after" content="3 day">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />      
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+        <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/style.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/main.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
+        <link rel="stylesheet"
+             type="text/css" href="<@spring.url '/css/main.css'/>"/>
+        <link rel="stylesheet"
+             type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
    </head>
 </#macro>
 <#macro cssheading>
+      <meta charset="UTF-8" />
+        <meta name="description" content="TJGXMLCMS - State of the Art Content Management System" />
+        <meta name="keywords" content="TJGXMLCMS Content Management System" />
+        <meta name="author" content="TJGXMLCMS">
+        <meta name="robots" content="index, follow">
+        <meta name="revisit-after" content="3 day">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />      
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/style.css'/>"/>
       <link rel="stylesheet"
@@ -58,7 +78,15 @@
        <script src="<@spring.url '/js/videostream.js'/>"></script>
 </html>
 </#macro>
+<#macro footingconferenceroomtest>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/test.js'/>"></script>
 
+</html>
+</#macro>
 <#macro footingform>
        
    </body>
@@ -71,10 +99,11 @@
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/research/researchers">Researchers</a>
+            <li>
             <span class="dropdown1">
-                <a href="/research/addResearcher">Add Researcher</a>
+                <a href="/research/researchers">Researchers</a>
                 <span class="dropdown1-content">
+                    <a href="/research/addResearcher">Add Researcher</a>
                     <a href="/research/addProject">Add Project</a>
                     <a href="/research/addTopic">Add Topic</a>
                     <a href="/research/projects">Projects</a>
@@ -92,42 +121,43 @@
                 </span>
             </span>
             </li>
-            <li><a href="/events/eventList">Events</a>
+            <li>
             <span class="dropdown1">
-                <a href="/events/addEvent">Add Event</a>
+                <a href="/events/eventList">Events</a>
                 <span class="dropdown1-content">
+                    <a href="/events/addEvent">Add Event</a>
                     <a href="/events/addEventAdvertisement">Add Event Advertisement</a>
                     <a href="/events/addEventAdministrator">Add Event Administrator</a>
                     <a href="/events/eventAdvertisementList">Advertisement List</a>
                 </span>
             </span>
             </li>
-            <li><a href="/articleList">Articles</a>
+            <li>
             <span class="dropdown1">
-                <a href="/articleList">Article List</a>
+                <a href="/articles/articleList">Articles</a>
                 <span class="dropdown1-content">
-                    <a href="/addArticle">Add Article</a>
+                    <a href="/articles/addArticle">Add Article</a>
                 </span>
             </span>
             </li>
 
-            <li><a href="/hr/employers">Careers</a>
+            <li>
             <span class="dropdown1">
                 <a href="/hr/employers">Employers</a>
                 <span class="dropdown1-content">
-                    <a href="/hr/addEmployer">Add Employer</a>
+                    <a href="/hr/addEmployer">Add Employer</a>                
                     <a href="/hr/clients">Clients</a>
                     <a href="/hr/addClient">Clients</a>
                     <a href="/hr/hrgroups">Human Resource Groups</a>
                 </span>
             </span>
             </li>
-            <li><a href="/conferences/conference">Conference</a>
+            <li>
             <span class="dropdown1">
-                <a href="/conferences/forum">Forum</a>
+                <a href="/conferences/learn">Training</a>
                 <span class="dropdown1-content">
+                    <a href="/conferences/forum">Forum</a>
                     <a href="/conferences/room">Conference Room</a>
-                    <a href="/conferences/learn">Training</a>
                     <a href="/conferences/project">Projects</a>
                     <a href="/conferences/workshop">Workshops</a>
                 </span>
@@ -142,10 +172,10 @@
             <li>TJGXMLCMS</li>
             <li>Demo</li>
             <li><a href="/">Home</a></li>
-            <li><a href="/research/researchers">Reseachers</a></li>
+            <li><a href="/research/researchers">Researchers</a></li>
             <li><a href="/research/projects">Projects</a></li>
             <li><a href="/research/topics">Topics</a></li>
-            <li><a href="/research/addReseacher">Add Reseacher</a></li>
+            <li><a href="/research/addResearcher">Add Researcher</a></li>
             <li><a href="/research/addTopic">Add Topic</a></li>
             <li><a href="/research/addProject">Add Project</a></li>
         </ul>
@@ -186,6 +216,8 @@
    <main>
         <h4>TJG XML CMS</h4>
 
+        
+
         <p>TJG XML Content Management Systems</p>
         <p> - The XML Content Management System is a content management system that separates content from presentation with XML</p>
         <p> The content management system, CMS, is a tool designed to provide an easier management of content on the web.</p>
@@ -204,6 +236,8 @@
             <li>Data management</li>
             <li>Reporting tools</li>
         </ul>
+
+        <iframe src="//tjgwebservices.com/management/" ></iframe>
    </main>
 </#macro>
 <#macro videosection>

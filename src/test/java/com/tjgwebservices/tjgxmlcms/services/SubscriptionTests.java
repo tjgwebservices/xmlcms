@@ -2,8 +2,8 @@ package com.tjgwebservices.tjgxmlcms.services;
 
 import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import com.tjgwebservices.tjgxmlcms.controller.PublisherController;
-import com.tjgwebservices.tjgxmlcms.controller.SubscriptionController;
-import com.tjgwebservices.tjgxmlcms.model.SocketSubscriber;
+import com.tjgwebservices.tjgxmlcms.controller.subscription.SubscriptionController;
+import com.tjgwebservices.tjgxmlcms.model.socket.SocketSubscriber;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.junit.jupiter.api.Assertions;

@@ -1,41 +1,23 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tjgwebservices.tjgxmlcms.model.SocketMessage;
-import java.io.IOException;
+import com.tjgwebservices.tjgxmlcms.model.socket.SocketSession;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class WebSocketHandler extends TextWebSocketHandler {
+public class WebSocketHandler  {
 
-    List<WebSocketSession>sessions = new CopyOnWriteArrayList<>();
+    List<SocketSession>sessions = new CopyOnWriteArrayList<>();
 
-    @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message)
-            throws InterruptedException, IOException {
-                SocketMessage messageString = new ObjectMapper().readValue(
-                        StringEscapeUtils.unescapeJava(
-                        message.getPayload()
-                                .substring(1,message.getPayload().length() - 1)), 
-                        SocketMessage.class);
-                System.out.println(messageString);
-
-                
-                for (WebSocketSession webSocketSession : sessions) {
+    public void handleTextMessage(SocketSession session){
+                for (SocketSession webSocketSession : sessions) {
                     if (webSocketSession.isOpen() &&
                             !session.getId().equals(webSocketSession.getId())) {
-                        webSocketSession.sendMessage(message);
+                        webSocketSession.sendMessage("Test");
                     }
                 }
             }
     
-    @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws
-            Exception {
+    public void afterConnectionEstablished(SocketSession session) {
         sessions.add(session);
     }
 

@@ -6,7 +6,7 @@
    <body>
    <@nav.navigation />
     <h3>Course Page</h3>
-     <a href="addArticle">Add Article</a>
+     <a href="/articles/addArticle">Add Article</a>
      <br><br>
       <div>
          <h4>Course Page</h4>   
@@ -54,7 +54,7 @@
         
       <div>
       <a href="<@spring.url '/display'/>">Display Subscription List</a>  
-      <a href="<@spring.url '/publish'/>">Publish to Subscription List</a>  
+      <a href="<@spring.url '/subscriptions/publish'/>">Publish to Subscription List</a>  
       </div>
    </body>
 </html>

@@ -4,10 +4,7 @@
 <html>
    <head>
       <title>Add Event Administrator</title>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/style.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/main.css'/>"/>
+       <@nav.cssheading />
     
    </head>
    <body>

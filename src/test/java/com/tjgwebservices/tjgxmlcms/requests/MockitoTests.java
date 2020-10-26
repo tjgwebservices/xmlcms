@@ -2,7 +2,7 @@ package com.tjgwebservices.tjgxmlcms.requests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tjgwebservices.tjgxmlcms.controller.MainController;
-import com.tjgwebservices.tjgxmlcms.model.Article;
+import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -92,12 +92,12 @@ public class MockitoTests {
         Article art = new Article("test","test","test","test","test");
         Mockito
                 .when(restTemplate.getForEntity(
-                        "/articleList",
+                        "/articles/articleList",
                         Article.class
                 ))
                 .thenReturn(new ResponseEntity(art,HttpStatus.OK));
         Map<String,String> map = new HashMap<String,String>();
-        ModelAndView model = new ModelAndView("articleList", 
+        ModelAndView model = new ModelAndView("articles/articleList", 
                 map);
         mockServer.verify();
     }
@@ -106,7 +106,7 @@ public class MockitoTests {
     public void testMockito() {      
         Mockito
         .when(restTemplate.getForEntity(
-                "/articleList",
+                "/articles/articleList",
                 Article.class
         ))
         .thenReturn(new ResponseEntity(new String("[{}]"),HttpStatus.OK));

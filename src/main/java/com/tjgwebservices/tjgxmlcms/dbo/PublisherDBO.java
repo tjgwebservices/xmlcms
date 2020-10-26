@@ -1,7 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import com.tjgwebservices.tjgxmlcms.model.Publisher;
+import com.tjgwebservices.tjgxmlcms.model.subscription.Publisher;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
