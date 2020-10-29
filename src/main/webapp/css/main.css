@@ -62,7 +62,6 @@ nav ul li, aside ul li{
     display: block;
     list-style-type: none;
     float: left;
-    width: 45%;
 }
 
 nav a {
@@ -518,6 +517,38 @@ main > article > section > ul > li > h2 {
 main > article > section > ul {
     padding: 0px;    
 }
+
+main button {
+    display: block;
+    float: left;
+    color: #715937;
+    background-color: #b6e099;
+    border-radius: 15px;
+    padding: 4px 5px;
+    margin: 5px 12px 15px 12px;  
+    font-weight: 700;
+    border-color: #e8e0a0;
+}
+
+main button:hover {
+    background-color: #f5eac8;
+    border-color: #c1dea8;
+}
+
+main video, main canvas {
+    display: block;
+    width: 25%;
+    float: left;
+    border: 1px solid #dedede;
+    border-radius: 15px;
+}
+
+main button#disconnect, main button#hangup {
+    background-color: #e4b988;
+    color: #1c3111;    
+}
+
+
 body > h1, body > h2, body > a {
     display: block;
     float: left;
@@ -560,6 +591,11 @@ body > h1, body > h2, body > p {
     float: left;
 }
 
+footer {
+    display: block;
+    float: left;
+    width: 100%;
+}
 @media (min-width: 600px) {
 
     aside {

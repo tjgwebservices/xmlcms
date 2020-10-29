@@ -26,10 +26,23 @@
   <div class="camera-box">
     <video id="received_video" autoplay></video>
     <video id="local_video" autoplay muted></video>
-    <button id="hangup-button" onclick="hangUpCall();" disabled>
+    <button id="hangup-button" disabled>
       Hang Up
     </button>
+
+<ul class="userlistbox">
+    <li></li>
+</ul>
+
   </div>
+</div>
+<div>
+
+<canvas id="canvas">
+</canvas>
+    <video id="leftVideo" autoplay></video>
+    <video id="rightVideo" autoplay></video>
+
 </div>
 
    <@nav.footingconferenceroomtest />

@@ -14,12 +14,6 @@
       <#if message??>
       <h2>${message}</h2>
       </#if>
-      <div>
-        <button id="startcall" type="button">Start Call</button>
-        <button id="testcall" type="button">Test Call</button>
-        <button id="testconnection" type="button">Test Connection</button>
-      </div>
-      <div id="conferenceroom">
-      </div>
+
    <@nav.mainsection />
-   <@nav.footingconferenceroom />
+   <@nav.footingconference />

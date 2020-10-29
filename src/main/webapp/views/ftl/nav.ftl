@@ -60,41 +60,6 @@
 
 </html>
 </#macro>
-<#macro footingconferenceroom>
-    <footer>
-        <h6>Powered by TJGXMLCMS</h6>
-    </footer>
-    </body>
-       <script src="<@spring.url '/js/conferenceroom.js'/>"></script>
-
-</html>
-</#macro>
-<#macro footingconferenceroomcall>
-    <footer>
-        <h6>Powered by TJGXMLCMS</h6>
-    </footer>
-    </body>
-       <script src="<@spring.url '/js/script.js'/>"></script>
-       <script src="<@spring.url '/js/videostream.js'/>"></script>
-</html>
-</#macro>
-<#macro footingconferenceroomtest>
-    <footer>
-        <h6>Powered by TJGXMLCMS</h6>
-    </footer>
-    </body>
-       <script src="<@spring.url '/js/test.js'/>"></script>
-
-</html>
-</#macro>
-<#macro footingform>
-       
-   </body>
-       <script src="<@spring.url '/js/calendar.js'/>"></script>
-    
-</html>
-</#macro>
-
 <#macro navigation>
    <nav>
         <ul>
@@ -256,7 +221,23 @@
         </article>
    </main>
 </#macro>
-<#macro conferenceroom>
+<#macro conference>
+   <main>
+
+      <div>
+        <button id="startcall" type="button">Start Call</button>
+        <button id="testcall" type="button">Test Call</button>
+        <button id="testconnection" type="button">Test Connection</button>
+        <button id="audioonly" type="button">Audio Only</button>
+        <button id="audiofilter" type="button">Audio Filter</button>
+        <button id="hangup" type="button">Hang Up</button>
+      </div>
+      <div>
+        <button id="startcall" type="button">Start Call</button>
+      </div>
+      <div id="conferenceroom">
+      </div>
+
         <form id="rtcform">
         <label for="rtcconnectname">Connect to video name: </label>
         <input type="text" id="rtcconnectname" name="rtcconnectname" />
@@ -269,6 +250,7 @@
         <video id="rtcself">
         </video>
         </form>
+        <canvas id="canvas"></canvas>
         <canvas id="srcStream"></canvas>
         <canvas id="peerStream"></canvas>
         <video id="liveStream"></video>
@@ -277,20 +259,6 @@
         <button id="connect">Connect</button>
         <button id="disconnect">Disconnect</button>
         </form>
-
-</#macro>
-
-<#macro conference>
-   <main>
-		<h4>Objectives</h4>
-		<p>The objectives of the Conference Series are:</p>
-		<ul>
-			<li>Share experiences in fields to serve the community</li>
-			<li>Provide learning resources</li>
-			<li>Share strategies for success</li>
-			<li>Provide guidance for mistakes made along the way</li>
-		</ul>
-
         <form id="sendmessage">
         <label for="name">Your name:</label>
         <input type="text" id="name" />
@@ -300,6 +268,16 @@
         <p id="greetings"></p>
 
         <p id="conversation"></p>
+
+		<h4>Objectives</h4>
+		<p>The objectives of the Conference Series are:</p>
+		<ul>
+			<li>Share experiences in fields to serve the community</li>
+			<li>Provide learning resources</li>
+			<li>Share strategies for success</li>
+			<li>Provide guidance for mistakes made along the way</li>
+		</ul>
+
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>

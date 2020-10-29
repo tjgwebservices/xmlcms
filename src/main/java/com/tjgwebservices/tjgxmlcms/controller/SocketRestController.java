@@ -1,48 +1,41 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
-import com.tjgwebservices.tjgxmlcms.controller.SocketRestController.RequestMessage;
-import com.tjgwebservices.tjgxmlcms.model.socket.SocketHandler;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServlet;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-@Controller
-public class TopicController extends HttpServlet {
+
+@RestController
+public class SocketRestController {
 
     private SseEmitter emitter;
     private final ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
     private static final String[] commands = {"test1","test2","test3","test4","test5"};
     
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.GET,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody    
-    public ResponseEntity<ResponseBodyEmitter>  pollTopicEvents() {
+    public SseEmitter pollEvents() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type","text/event-stream");
         headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","event-stream-source");
+        headers.add("Custom-Event-Source","poll-events");
         emitter = new SseEmitter();
        cachedThreadPool.execute(() -> {
            try {
@@ -59,111 +52,150 @@ public class TopicController extends HttpServlet {
            }
        });
 
-       return new ResponseEntity<>(emitter, headers, HttpStatus.OK);
+       return emitter;
     }
 
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST,
+            consumes=MediaType.APPLICATION_JSON_VALUE,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public ResponseEntity<ResponseBodyEmitter>  postTopicRequest() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type","text/event-stream");
-        headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","json-source");
+    public SseEmitter postRequest() {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
-                    .name("topic")
-                    .data("json source topic"));
+                    .name("test")
+                    .data("test message"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new ResponseEntity<>(emitter, headers, HttpStatus.OK);
+        return emitter;
     }
 
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.POST,
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST,
             consumes=MediaType.TEXT_PLAIN_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public ResponseEntity<ResponseBodyEmitter>  postTopicRequestText() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type","text/event-stream");
-        headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","text-plain-source");
+    public SseEmitter postRequestText() {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
-                    .name("topic")
-                    .data("text plain source"));
+                    .name("test")
+                    .data("test message"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new ResponseEntity<>(emitter, headers, HttpStatus.OK);
+        return emitter;
     }
 
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.POST,
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST,
             consumes=MediaType.APPLICATION_XML_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody    
-    public ResponseEntity<ResponseBodyEmitter>  postTopicRequestXML(@RequestBody RequestMessage requestMessage) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type","text/event-stream");
-        headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","xml-source");
+    public SseEmitter postRequestXML(@RequestBody RequestMessage requestMessage) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
-                    .name("topic")
-                    .data("xml source"));
+                    .name("test")
+                    .data("test message"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new ResponseEntity<>(emitter, headers, HttpStatus.OK);
+        return emitter;
     }
 
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.POST,
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST,
             consumes=MediaType.TEXT_EVENT_STREAM_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public ResponseEntity<ResponseBodyEmitter>  postTopicRequestEvent(@RequestBody RequestMessage requestMessage) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type","text/event-stream");
-        headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","event-stream"); 
+    public SseEmitter postRequestEvent(@RequestBody RequestMessage requestMessage) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
-                    .name("topic")
-                    .data("event stream"));
+                    .name("test")
+                    .data("test message"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new ResponseEntity<>(emitter, headers, HttpStatus.OK);
+        return emitter;
     }
-
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.POST,
+/*
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST,
             consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
-    @ResponseBody
-    public String postTopicRequestForm2() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type","text/event-stream");
-        headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","form-encoded-value");
+    SseEmitter postRequestForm(@RequestParam MultiValueMap<String,String> paramMap) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
-                    .name("topic")
-                    .data("form encoded value"));
+                    .name("test")
+                    .data("test message"));
+        } catch (IOException ex) {
+            Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return emitter;
+    }
+*/
+    // in another thread
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST,
+            consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
+    @ResponseBody
+    public String postRequestForm2() {
+        emitter = new SseEmitter();
+        try {
+            emitter.send(SseEmitter
+                    .event()
+                    .name("test")
+                    .data("test message"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "redirect:/success";
     }
 
-    
+    @GetMapping("/success")
+    @ResponseBody
+    public ResponseEntity<String> getSuccess() {
+        return new ResponseEntity<String>("Success", HttpStatus.OK);
+    }
+
+
+    void sendEvents() {
+        try {
+            emitter.send("Alpha");
+            emitter.send("Omega");
+
+            emitter.complete();
+        } catch(Exception e) {
+            emitter.completeWithError(e);
+        }
+    }
+
+
+public class RequestMessage {
+    private String messageId;
+    private String message;
+
+        public String getMessageId() {
+            return messageId;
+        }
+
+        public void setMessageId(String messageId) {
+            this.messageId = messageId;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+    }
+
 }
+

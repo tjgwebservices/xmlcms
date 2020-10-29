@@ -7,7 +7,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
-   <@nav.conferenceroom />
+   <@nav.conference />
    <@nav.mainsection />
       <#if conferenceName??>
       <h2>${conferenceName}</h2>
@@ -15,10 +15,5 @@
       <#if message??>
       <h2>${message}</h2>
       </#if>
-      <div>
-        <button id="startcall" type="button">Start Call</button>
-      </div>
-      <div id="conferenceroom">
-      </div>
-   <@nav.footingconferenceroomcall />
+   <@nav.footingconference />
 
