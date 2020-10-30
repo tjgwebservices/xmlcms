@@ -1,10 +1,15 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
+import com.tjgwebservices.tjgxmlcms.controller.book.BookController;
 import com.tjgwebservices.tjgxmlcms.form.LoginForm;
+import com.tjgwebservices.tjgxmlcms.model.BookPage;
 import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import com.tjgwebservices.tjgxmlcms.model.socket.SocketSubscription;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +27,9 @@ public class MainController {
  
     static {
     }
- 
+    @Autowired
+    private ServletContext context;
+
     @Value("${welcome.message}")
     private String message;
  
@@ -50,7 +57,11 @@ public class MainController {
     
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
- 
+        String xmlPath = context.getRealPath("") +
+                "xml" + File.separator + "catalog.xml";
+
+        List<BookPage> pages = BookController.retrievePages(xmlPath);
+        model.addAttribute("pages", pages);
         model.addAttribute("message", message);
          
         return "index";

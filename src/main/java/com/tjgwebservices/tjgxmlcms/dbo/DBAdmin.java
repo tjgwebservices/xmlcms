@@ -18,7 +18,7 @@ public class DBAdmin {
         try (Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
                 Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-            conn.commit();
+            //conn.commit();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -34,7 +34,7 @@ public class DBAdmin {
             Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
                 Statement stmt = conn.createStatement();
             stmt.execute(query.toString());
-            conn.commit();
+            //conn.commit();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } catch (FileNotFoundException e) {
@@ -72,7 +72,16 @@ public class DBAdmin {
         runSQLQuery("CREATE TABLE IF NOT EXISTS Artist(\n" +
                 "id INTEGER PRIMARY KEY,\n" +
                 "artistName TEXT\n" +
-                ");");  
+                ");"); 
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Chat (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "userIdFrom INTEGER NOT NULL,\n" +
+                "userIdTo INTEGER NOT NULL,\n" +
+                "dateTime TEXT NOT NULL,\n" +
+                "priority INTEGER,\n" +
+                "subject TEXT,\n" +
+                "message TEXT\n" +
+                ");"); 
         runSQLQuery("CREATE TABLE IF NOT EXISTS Lecture(\n" +
                 "instructor TEXT,\n" +
                 "lectureName TEXT,\n" +
@@ -238,7 +247,7 @@ public class DBAdmin {
         try (Connection conn = DriverManager.getConnection(CONNECTIONSTRING);
                 Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-            conn.commit();
+            //conn.commit();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }        

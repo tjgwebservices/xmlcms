@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,12 +27,64 @@ public class SocketRestController {
 
     private SseEmitter emitter;
     private final ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-    private static final String[] commands = {"test1","test2","test3","test4","test5"};
-    
-    @RequestMapping(value = "/socket/{id}", method = RequestMethod.GET,
+    private static final String[] channels = {"channel1","channel2","channel3","channel4","channel5"};
+
+    @RequestMapping(value = "/socket", method = RequestMethod.GET,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody    
     public SseEmitter pollEvents() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type","text/event-stream");
+        headers.add("Cache-Control","no-cache");
+        headers.add("Custom-Event-Source","socket-list");
+        emitter = new SseEmitter();
+       cachedThreadPool.execute(() -> {
+           try {
+               for (int i = 0; i < channels.length; i++) {
+                   emitter.send(SseEmitter
+                           .event()
+                           .name("message")
+                           .data("[{\"data\":"+channels[i]+"}]"));
+                   TimeUnit.SECONDS.sleep(1);
+               }
+               emitter.complete();
+           } catch (Exception e) {
+               emitter.completeWithError(e);
+           }
+       });
+
+       return emitter;
+    }    
+    
+    
+    @RequestMapping(value = "/socket", method = RequestMethod.POST,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
+    @ResponseBody    
+    public SseEmitter postForEvents() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type","text/event-stream");
+        headers.add("Cache-Control","no-cache");
+        headers.add("Custom-Event-Source","socket-list");
+        emitter = new SseEmitter();
+       cachedThreadPool.execute(() -> {
+           try {
+                   emitter.send(SseEmitter
+                           .event()
+                           .name("message")
+                           .data("[{\"data\":\"Post request for sockets\""));
+               emitter.complete();
+           } catch (Exception e) {
+               emitter.completeWithError(e);
+           }
+       });
+
+       return emitter;
+    }    
+
+    @RequestMapping(value = "/socket/{id}", method = RequestMethod.GET,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
+    @ResponseBody    
+    public SseEmitter pollEvents(@PathVariable String id) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type","text/event-stream");
         headers.add("Cache-Control","no-cache");
@@ -39,13 +92,11 @@ public class SocketRestController {
         emitter = new SseEmitter();
        cachedThreadPool.execute(() -> {
            try {
-               for (int i = 0; i < commands.length; i++) {
                    emitter.send(SseEmitter
                            .event()
                            .name("message")
-                           .data(commands[i]));
+                           .data("[{\"data\": \"request received from "+id+"\"}]"));
                    TimeUnit.SECONDS.sleep(1);
-               }
                emitter.complete();
            } catch (Exception e) {
                emitter.completeWithError(e);
@@ -59,13 +110,13 @@ public class SocketRestController {
             consumes=MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public SseEmitter postRequest() {
+    public SseEmitter postRequest(@PathVariable String id) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
                     .name("test")
-                    .data("test message"));
+                    .data("[{\"data\": \"test message\""));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,13 +127,13 @@ public class SocketRestController {
             consumes=MediaType.TEXT_PLAIN_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public SseEmitter postRequestText() {
+    public SseEmitter postRequestText(@PathVariable String id) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
                     .name("test")
-                    .data("test message"));
+                    .data("[{\"data\": \"test message\""));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,13 +144,13 @@ public class SocketRestController {
             consumes=MediaType.APPLICATION_XML_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody    
-    public SseEmitter postRequestXML(@RequestBody RequestMessage requestMessage) {
+    public SseEmitter postRequestXML(@RequestBody RequestMessage requestMessage,@PathVariable String id) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
                     .name("test")
-                    .data("test message"));
+                    .data("[{\"data\": \"test message\""));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,13 +161,13 @@ public class SocketRestController {
             consumes=MediaType.TEXT_EVENT_STREAM_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public SseEmitter postRequestEvent(@RequestBody RequestMessage requestMessage) {
+    public SseEmitter postRequestEvent(@RequestBody RequestMessage requestMessage,@PathVariable String id) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
                     .name("test")
-                    .data("test message"));
+                    .data("[{\"data\": \"test message\""));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -144,13 +195,13 @@ public class SocketRestController {
             consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public String postRequestForm2() {
+    public String postRequestForm2(@PathVariable String id) {
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter
                     .event()
                     .name("test")
-                    .data("test message"));
+                    .data("[{\"data\": \"test message\""));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }

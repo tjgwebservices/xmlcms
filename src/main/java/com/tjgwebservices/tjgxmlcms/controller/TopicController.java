@@ -50,7 +50,7 @@ public class TopicController extends HttpServlet {
                    emitter.send(SseEmitter
                            .event()
                            .name("message")
-                           .data(commands[i]));
+                           .data("[{\"message\": \""+commands[i]+"\"}]"));
                    TimeUnit.SECONDS.sleep(1);
                }
                emitter.complete();
@@ -74,7 +74,7 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("json source topic"));
+                    .data("[{\"message\": \"json source topic\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,7 +95,7 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("text plain source"));
+                    .data("[{\"message\": \"text plain source\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,7 +116,7 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("xml source"));
+                    .data("[{\"message\": \"xml source\"}]" ));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -137,7 +137,7 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("event stream"));
+                    .data("[{\"message\": \"event stream\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -158,7 +158,7 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("form encoded value"));
+                    .data("[{\"message\": \"form encoded value\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }

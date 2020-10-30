@@ -1,11 +1,9 @@
 (function () {
-    
-var answer=0,localStream=null,ws=null, serverResponse=null,
-    rtcpeerconnection=null, hosturl="/socket";
 
-var isCaller = false;
+const connectionArray = [];
+const msg = {};
+msg.target = 0;
 
-    
 const configuration  = {
     'iceServers': [
                     { 'urls': 'stun:stun.stunprotocol.org:3478' },
@@ -33,6 +31,12 @@ const peerConnection = new RTCPeerConnection(configuration,{
     }]
 });
 
+
+
+var isCaller = false;
+
+var answer=0,localStream=null,ws=null, serverResponse=null,
+    rtcpeerconnection=null, hosturl="/socket";
 
 var videoElement = document.getElementById("liveStream");
 
@@ -476,8 +480,8 @@ peerConnection.onaddstream = function(event) {
 
 peerConnection.onnegotiationneeded = async () => {
     try {
-        await pc.setLocalDescription(await pc.createOffer());
-        ws.send({desc: pc.localDescription});
+        await peerConnection.setLocalDescription(await peerConnection.createOffer());
+        ws.send({desc: peerConnection.localDescription});
         
     } catch (err) {
         console.log(err);
@@ -510,7 +514,7 @@ peerConnection.onmessage = function(msg) {
     }
 };
 function send(message){
-    conn.send(JSON.stringify(message));
+    ws.send(JSON.stringify(message));
 }
 
 async function start() {
@@ -518,7 +522,7 @@ async function start() {
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         stream.getTracks().forEach((track) =>
                 peerConnection.addTrack(track,stream));
-        selfView.srcObject = stream;
+        sessions["localSession"].srcObject = stream;
         if (isCaller) {
             peerConnection.createOffer(receivedDescription);
         } else {
@@ -884,8 +888,9 @@ function sendMediaStream(message) {
             }
     };
     xhttp.open('POST', '/socket/'+unique, true);
+    xhttp.setRequestHeader("Content-Type","Text/Html");
     //xhttp.setRequestHeader("Content-Type","Application/X-Www-Form-Urlencoded");
-    xhttp.setRequestHeader("Content-Type","Multipart/Form-Data");
+    //xhttp.setRequestHeader("Content-Type","Multipart/Form-Data");
     xhttp.send(message);
 }
 
@@ -901,8 +906,8 @@ var addSource = function(source){
             }
     };
     xhttp.open('POST', '/topics/'+unique, true);
-    //xhttp.setRequestHeader("Content-Type","Application/X-Www-Form-Urlencoded");
-    xhttp.setRequestHeader("Content-Type","Multipart/Form-Data");
+    xhttp.setRequestHeader("Content-Type","Text/Html");
+    //xhttp.setRequestHeader("Content-Type","Multipart/Form-Data");
     xhttp.send(source);
     
 }

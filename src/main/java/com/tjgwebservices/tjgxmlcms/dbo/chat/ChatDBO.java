@@ -33,13 +33,14 @@ public class ChatDBO extends DatabaseObject{
     public static void saveSQLChat(Chat chat) {
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
-            String sql = "INSERT INTO Chat(userIdFrom, userIdTo, dateTime, priority, subject, message) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO Chat(userIdFrom, userIdTo, dateTime, priority, subject, message) VALUES(?,?,?,?,?,?)";
             try {
                 conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setInt(1,chat.getUserIdFrom());
                 pstmt.setInt(2,chat.getUserIdTo());
                 pstmt.setString(3,chat.getDateTime());
+                pstmt.setInt(3,chat.getPriority());
                 pstmt.setString(4,chat.getSubject());
                 pstmt.setString(5,chat.getMessage());
                 pstmt.executeUpdate();

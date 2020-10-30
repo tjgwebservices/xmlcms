@@ -535,12 +535,23 @@ main button:hover {
     border-color: #c1dea8;
 }
 
-main video, main canvas {
+main > video, main > canvas {
     display: block;
     width: 25%;
     float: left;
     border: 1px solid #dedede;
     border-radius: 15px;
+}
+main > article > section > video,
+aside > video {
+    display: block;
+    width: 100%;
+}
+
+div#chatBox{
+    display: block;
+    float: left;
+    margin: 10px;
 }
 
 main button#disconnect, main button#hangup {

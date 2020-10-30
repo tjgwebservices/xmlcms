@@ -52,12 +52,21 @@ public class CalendarController {
     }
 
     @RequestMapping(value = { "/events/eventAdvertisementList" }, method = RequestMethod.GET)
-    public String eventAdministratorList(Model model) {
+    public String eventAdvertisementList(Model model) {
         eventAdvertisements = EventAdvertisementDBO.loadEventAdvertisements();
         model.addAttribute("eventAdvertisements", eventAdvertisements);
         titleMessage = "Event Advertisement List";
         model.addAttribute("titleMessage", titleMessage);  
         return "/events/eventAdvertisementList";
+    }
+
+    @RequestMapping(value = { "/events/eventAdministratorList" }, method = RequestMethod.GET)
+    public String eventAdministratorList(Model model) {
+        eventAdvertisements = EventAdvertisementDBO.loadEventAdvertisements();
+        model.addAttribute("eventAdministrators", eventAdvertisements);
+        titleMessage = "Event Administrator List";
+        model.addAttribute("titleMessage", titleMessage);  
+        return "/events/eventAdministratorList";
     }
 
     @RequestMapping(value = { "/events/addEvent" }, method = RequestMethod.GET)

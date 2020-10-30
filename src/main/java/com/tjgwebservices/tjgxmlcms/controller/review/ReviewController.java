@@ -6,6 +6,7 @@ import com.tjgwebservices.tjgxmlcms.model.review.Review;
 import com.tjgwebservices.tjgxmlcms.form.review.ReviewForm;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,7 +74,7 @@ public class ReviewController {
         ReviewForm reviewForm = new ReviewForm();
         ReviewForm reviewEditForm = new ReviewForm();
         Review editReview = reviews.stream()
-            .filter((review) -> review.getId() == id)
+            .filter((review) -> Objects.equals(review.getId(), id))
             .collect(Collectors.toList()).get(0);
         reviewEditForm.setAuthor(editReview.getAuthor());
         reviewEditForm.setAuthorDate(editReview.getAuthorDate());

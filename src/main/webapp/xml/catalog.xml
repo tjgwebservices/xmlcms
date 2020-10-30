@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+<bookpages>
+<bookpage>
+	<title>II Data School</title>
+	<content>II Data School provides education and training for data analysis solutions and applications for the analysis of big data.</content>
+</bookpage>
+<bookpage>
+	<title>Welcome to II Data School</title>
+	<content>II Data School is for education about the analysis of data on sustainable data management solutions.  II Data School provides configuration and communication of analytical engines.  II Data School provides for training on data analysis, data science, and big data.</content>
+</bookpage>
+<bookpage>
+	<title>II Data School</title>
+	<content>II Data School is a team of passionate people who provide data analysis services and data management services. II Data School provides services to solve the challenges of your organization.</content>
+</bookpage>
+<bookpage>
+	<title>Share and discuss innovative solutions</title>
+	<content>Some analytical project solutions include the analysis of resource data, data integrations, and real time visualizations.</content>
+</bookpage>
+<bookpage>
+	<title>Research</title>
+	<content>Compute Science Research, Resource Management, Renewable Resource Management, Analytical Processes</content>
+</bookpage>
+<bookpage>
+	<title>Requirements</title>
+	<content>Gathering requirements can include a review of potential changes, program design, and project management.</content>
+</bookpage>
+<bookpage>
+	<title>Traditional vs Modern Data Management Systems</title>
+	<content>Traditional data management have stored data in relational databases, xml stores, and comma seperated value files.  Modern data management tools are able to integrate data from a variety of sources of structured and unstructured data.</content>
+</bookpage>
+<bookpage>
+	<title>Data Migration</title>
+	<content>Data migration from one data format to another can involve changing the structure of the data.  As data management systems advance, new features might become available that also present opportunities for organizing data in a manner that is more prepared for analysis.</content>
+</bookpage>
+<bookpage>
+	<title>Data Management</title>
+	<content>Advances in big data have improved the speed and processing capabilities of database management systems.  New formats for data storage have trascended to handle large amounts of spatial, graph, and key-store data.  There have also developed refined methods for handling unstructured data.</content>
+</bookpage>
+<bookpage>
+	<title>Very Large Databases</title>
+	<content>Data as a service has increased advantages for scalability, availability, and reliability.  Very large database systems can include features such as real-time analytics capabilities.</content>
+</bookpage>
+<bookpage>
+	<title>Locking Mechanisms</title>
+	<content>Locking mechanisms ensure that records maintain consistency with concurrent transactions.  Distributed databases require improved methods for locking records.</content>
+</bookpage>
+</bookpages>
+</catalog>
+

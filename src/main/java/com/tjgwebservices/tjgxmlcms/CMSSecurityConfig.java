@@ -48,7 +48,9 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
         "/research/editProject*","/research/editProject/*",
         "/research/editTopic","/research/editTopic/*","/research/editTopic*",
         "/research/editResearcher",
-        "/research/editResearcher/*","/research/editResearcher*"};
+        "/research/editResearcher/*","/research/editResearcher*",
+        "/chat/addChat","/chat/addChat/*","/chat/checkServer","/chat/chatList",
+        "/chat/checkConversation","/chat/newConversation","/chat/continueConversation"};
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
