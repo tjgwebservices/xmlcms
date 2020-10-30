@@ -3,7 +3,6 @@ package com.tjgwebservices.tjgxmlcms.controller;
 import com.tjgwebservices.tjgxmlcms.WebSocketConfig;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -18,12 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
@@ -39,7 +35,7 @@ public class WebSocketController extends HttpServlet {
 
     @Autowired
     ServletContext context;
-    
+    /*
     @PostMapping(path="/socket", consumes="text/event-stream",
             produces="text/event-stream")
     public ResponseEntity<Object> eventStreamConsumer(){
@@ -49,63 +45,8 @@ public class WebSocketController extends HttpServlet {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
-    
-/*    
-    @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST)
-    //@ResponseBody
-    public ResponseEntity<ByteArrayResource> handleSocketRequests(@Context SseEventSink sink, @Context Sse sse, @PathVariable String id) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type","text/event-stream");
-        headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","conference-room");
-        String mediaPath = context.getRealPath("") +
-                    "images" + File.separator + "conferenceseries.mp4";
-        try {
-            FileInputStream fis = new FileInputStream(mediaPath);
-            headers.setContentLength(fis.readAllBytes().length);
-            return new ResponseEntity<>(new ByteArrayResource(fis.readAllBytes()), headers, HttpStatus.OK);
-            
-        } catch (FileNotFoundException ex ) {
-            Logger.getLogger(WebSocketController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(WebSocketController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String contentResponse = "id:"+id+"\n"
-                + "data:Socket Client Offer from "+id+"\n"
-                + "event: post request\n";
-        headers.setContentLength(contentResponse.getBytes().length);
-        return new ResponseEntity<>(new ByteArrayResource(contentResponse.getBytes(StandardCharsets.UTF_8)), headers, HttpStatus.OK);
-    }
+    */
 
-    @RequestMapping(value = "/socket/{id}", method = RequestMethod.GET)
-    //@ResponseBody
-    public ResponseEntity<String> startSocketRequests(@Context SseEventSink sink, @Context Sse sse, @PathVariable String id) {
-        System.out.println("Socket Request from"+id);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type","text/event-stream");
-        headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","conference-room");
-        OutboundSseEvent sseEvent = sse.newEventBuilder()
-                .name("message")
-                .mediaType(MediaType.APPLICATION_JSON_TYPE)
-                .reconnectDelay(3000)
-                .comment("GET REQUEST")
-                .build();
-        sink.send(sseEvent);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(WebSocketController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        sseEvent = sse.newEventBuilder().name("test")
-                .data(String.class, "test").build();
-        sink.send(sseEvent);
-        sink.close();
-        return new ResponseEntity<>("Socket Client Offer from "+id, headers, HttpStatus.OK);
-    }
-    
-*/    
     @GetMapping(name = "/socket", produces="application/xml", 
             consumes="application/xml")
     @ResponseBody
@@ -118,7 +59,6 @@ public class WebSocketController extends HttpServlet {
         sb.append("</root>");
         return sb.toString();
     }
-    
 
 
     public void consumeServerSentEvent(){

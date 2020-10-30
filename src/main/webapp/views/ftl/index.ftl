@@ -8,8 +8,10 @@
    <@nav.navigation />
    <@nav.sidelinks />
    <@nav.mainsection />
+   <@nav.chat />
+   <@nav.book />
       <h1>Welcome</h1>
       <#if message??>
       <h2>${message}</h2>
       </#if>
-   <@nav.footing />
+   <@nav.footinghome />

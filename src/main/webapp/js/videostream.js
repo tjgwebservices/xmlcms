@@ -411,20 +411,6 @@ function clientCandidate(data){
    );});
     return true;
 }
-function sendMediaStream(message) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-            if (this.readyState!=4) {
-              return;
-            }else if (this.status == 200) {
-                serverResponse = this.responseText;
-              //console.log("Server message: " +message);
-            }
-    };
-    xhttp.open('POST', '/socket/'+unique, true);
-    xhttp.setRequestHeader("Content-Type","Application/X-Www-Form-Urlencoded");
-    xhttp.send(message);
-}
 
 function sendMultipleMesageStreams(ws,event) {
     if (event.data.includes("_MULTIPLEVENTS_")) {
@@ -683,15 +669,16 @@ messagesocket.onopen = (e) =>
             token : localStorage.getItem('authToken')
         }
     }
-    e.target.send(JSON.stringify('{"message":"test"}'));
+    ws.send(JSON.stringify('[{"message":"test"}]'));
     createOffer();
     sendMessage();
 };
 
-messagesocket.onmessage = function(msg) {
-    console.log("Received message", msg.data);
-    var content = JSON.parse(msg.data);
-    var data = content.data;
+messagesocket.onmessage = function(message) {
+    console.log("Received message messageosocketonmessage: ", message);
+    //var content = JSON.parse(message.data);
+    var data = message.data;
+    var content=message;
     
     switch(content.event) {
         case "offer":
@@ -751,7 +738,7 @@ function setstreamconnected(connected) {
 function streamconnect() {
     const peerConnection = new RTCPeerConnection(configuration);
     const dataChannel = peerConnection.createDataChannel();
-    var streamsocket = new WebSocket(hostconnectURL+':8081/topics/messages');
+    var streamsocket = new EventSource("/topics/messages");
     const openMediaDevices = navigator.mediaDevices.getUserMedia(constraints);
     streamsocket.onopen = (e) =>
     {
@@ -767,10 +754,10 @@ function streamconnect() {
 }
 
 function streamdisconnect() {
-    var peersocket = new WebSocket('/topic/messages/disconnect');
+    var peersocket = new EventSource('/topic/messages/disconnect');
     peersocket.onopen = (e) =>
     {
-        if (e.target.readyState !== WebSocket.OPEN) return;
+        if (e.target.readyState !== EventSource.OPEN) return;
     e.target.send(JSON.stringify('{"message":"test"}'));
     };
     setConnected(false);
@@ -888,10 +875,10 @@ function sendMediaStream(message) {
             }
     };
     xhttp.open('POST', '/socket/'+unique, true);
-    xhttp.setRequestHeader("Content-Type","Text/Html");
-    //xhttp.setRequestHeader("Content-Type","Application/X-Www-Form-Urlencoded");
-    //xhttp.setRequestHeader("Content-Type","Multipart/Form-Data");
-    xhttp.send(message);
+    var formData = new FormData();
+        formData.append("message",message)
+        
+    xhttp.send(formData);
 }
 
 var addSource = function(source){
@@ -906,8 +893,7 @@ var addSource = function(source){
             }
     };
     xhttp.open('POST', '/topics/'+unique, true);
-    xhttp.setRequestHeader("Content-Type","Text/Html");
-    //xhttp.setRequestHeader("Content-Type","Multipart/Form-Data");
+    xhttp.setRequestHeader("Content-Type","Application/Json");
     xhttp.send(source);
     
 }
@@ -1210,10 +1196,6 @@ function handleSignalingStateChangeEvent(event) {
 function handleICEGatheringStateChangeEvent(event) {
     console.log("Gathering State Event Change", event);
 }
-
-
-
-
 
 
 })();

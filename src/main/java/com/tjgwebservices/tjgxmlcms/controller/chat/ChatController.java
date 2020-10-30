@@ -1,13 +1,8 @@
 package com.tjgwebservices.tjgxmlcms.controller.chat;
 
-import com.tjgwebservices.tjgxmlcms.controller.SocketRestController;
 import com.tjgwebservices.tjgxmlcms.dbo.chat.ChatDBO;
-import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
-import com.tjgwebservices.tjgxmlcms.form.SocketDisplay;
 import com.tjgwebservices.tjgxmlcms.form.chat.ChatForm;
-import com.tjgwebservices.tjgxmlcms.model.aiml.ArtificialIntelligence;
 import com.tjgwebservices.tjgxmlcms.model.chat.Chat;
-import com.tjgwebservices.tjgxmlcms.model.hr.HrEmployer;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,8 +11,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
@@ -206,7 +199,7 @@ public class ChatController extends HttpServlet{
            emitter.send(
                     SseEmitter
                             .event()
-                            .name("conversation: "+conversationid)                    
+                            .name("[{\"conversation\": \""+conversationid+"\"}]")                    
                             .data(chatMessage));
         } catch (IOException e) {
             emitter.completeWithError(e);
@@ -226,8 +219,6 @@ public class ChatController extends HttpServlet{
         headers.add("Cache-Control","no-cache");
         headers.add("Custom-Event-Source","checkConversation");
         emitter = new SseEmitter();
-        //ChatForm chatForm = new ChatForm();
-        //model.addAttribute("chatForm", chatForm);
         String dataMessage = "[{\"to\":\""+conversationid+"\"time\",\"no message\"}]";
         chats = ChatDBO.loadChats();
         if (chats.size()>0) {
@@ -247,7 +238,7 @@ public class ChatController extends HttpServlet{
                             emitter.send(
                                 SseEmitter
                                 .event()
-                                .name("conversation: "+conversationid)
+                                .name("[{\"conversation\": \""+conversationid+"\"}]")
                                 .data(chatMessage));
                         }
                         emitter.complete();
@@ -264,7 +255,7 @@ public class ChatController extends HttpServlet{
                     emitter.send(
                             SseEmitter
                                     .event()
-                                    .name("conversation: "+conversationid)                    
+                                    .name("[{\"conversation\": \""+conversationid+"\"}]")                    
                                     .data(chatMessage));
                 } catch (IOException e) {
                     emitter.completeWithError(e);
@@ -286,8 +277,6 @@ public class ChatController extends HttpServlet{
         headers.add("Cache-Control","no-cache");
         headers.add("Custom-Event-Source","checkConversation");
         emitter = new SseEmitter();
-        //ChatForm chatForm = new ChatForm();
-        //model.addAttribute("chatForm", chatForm);
         chats = ChatDBO.loadChats();
         List<Chat> conversationChats = chats.stream()
                 
@@ -304,7 +293,7 @@ public class ChatController extends HttpServlet{
                     emitter.send(
                         SseEmitter
                         .event()
-                        .name("conversation: "+conversationid)
+                        .name("[{\"conversation\": \""+conversationid+"\"}]")
                         .data(chatMessage));
                 }
                 emitter.complete();

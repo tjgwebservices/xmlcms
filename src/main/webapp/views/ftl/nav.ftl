@@ -15,6 +15,10 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
         <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/style.css'/>"/>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/chat.css'/>"/>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/book.css'/>"/>
         <link rel="stylesheet"
              type="text/css" href="<@spring.url '/css/main.css'/>"/>
         <link rel="stylesheet"
@@ -36,9 +40,25 @@
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/style.css'/>"/>
       <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/chat.css'/>"/>
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/book.css'/>"/>
+      <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/main.css'/>"/>
       <link rel="stylesheet"
            type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
+</#macro>
+<#macro footinghome>
+      <p><a href="<@spring.url '/'/>">Home</a></p>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/chat.js'/>"></script>
+       <script src="<@spring.url '/js/book.js'/>"></script>
+
+</html>
 </#macro>
 <#macro footing>
       <p><a href="<@spring.url '/'/>">Home</a></p>
@@ -46,6 +66,7 @@
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
 
 </html>
 </#macro>
@@ -56,10 +77,20 @@
     </body>
        <script src="<@spring.url '/js/script.js'/>"></script>
        <script src="<@spring.url '/js/videostream.js'/>"></script>
+
+</html>
+</#macro>
+<#macro footingform>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
        <script src="<@spring.url '/js/calendar.js'/>"></script>
 
 </html>
 </#macro>
+
 <#macro navigation>
    <nav>
         <ul>
@@ -157,6 +188,91 @@
 		<li>Integrations</li>
 		<li>Analytics</li>
 	</ul>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0013.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0013.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0014.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0014.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0015.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0015.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0016.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0016.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0017.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0017.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0018.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0018.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0019.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0019.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0020.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0020.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0021.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0021.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0022.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0022.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0023.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0023.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0024.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0024.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0026.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0026.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
    </aside>
 </#macro>
 <#macro sidelinksadmin>
@@ -201,6 +317,73 @@
             <li>Data management</li>
             <li>Reporting tools</li>
         </ul>
+
+<article>
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0007.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0007.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0008.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0008.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0009.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0009.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+</article>
+
+
+
+<article>
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0010.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0010.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0011.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0011.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0012.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0012.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+</article>
+
 
         <iframe src="//tjgwebservices.com/management/" ></iframe>
    </main>
@@ -281,6 +464,41 @@
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>
+</#macro>
+<#macro book>
+<div class="datasciencebook">
+        <div class="click swing panel">
+            <div class="first">
+                    <p>II Data School</p>
+                    <p>Welcome to II Data School</p>
+            </div>
+            <div class="front" id="text1">
+                    <h2>Training</h2>
+            </div>
+            <div class="last">
+                    <p>Training from II Data School</p>
+            </div>
+            <div class="back" id="text2">
+                <div class="pad">
+                        <h2>Training from II Data School</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <#if pages??>
+            <#list pages as page>
+                <article class="articles">
+                <h2>${page.title}</h2>
+                <p>${page.content}</p>
+                </article>
+            </#list>
+    
+    </#if>
+</#macro>
+
+<#macro chat>
+<div id="chatBox">
+</div>
 </#macro>
 <#macro forum>
    <main>
