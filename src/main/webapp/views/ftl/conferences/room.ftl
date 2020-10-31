@@ -8,11 +8,11 @@
    <@nav.navigation />
    <@nav.sidelinks />
    <@nav.conference />
-      <#if conferenceName??>
-      <h2>${conferenceName}</h2>
-      </#if>
       <#if message??>
       <h2>${message}</h2>
+      </#if>
+      <#if conferenceName??>
+      <h2>${conferenceName} Experimental, Not Functional</h2>
       </#if>
 
    <@nav.mainsection />
