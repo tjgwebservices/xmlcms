@@ -40,7 +40,8 @@ public class SocketRestController {
                    emitter.send(SseEmitter
                            .event()
                            .name("message")
-                           .data("[{\"data\":"+channels[i]+"}]"));
+                           .data("[{\"data\": \""+channels[i]+"\","
+                                   + "\"event\":\"offer\"}]"));
                    TimeUnit.SECONDS.sleep(1);
                }
                emitter.complete();
@@ -67,7 +68,8 @@ public class SocketRestController {
                    emitter.send(SseEmitter
                            .event()
                            .name("message")
-                           .data("[{\"data\":\"Post request for sockets\"}]"));
+                           .data("[{\"data\":\"Post request for sockets\","
+                                   + "\"event\":\"offer\"}]"));
                emitter.complete();
            } catch (Exception e) {
                emitter.completeWithError(e);

@@ -1,4 +1,4 @@
-package com.tjgwebservices.tjgxmlcms.template;
+package com.tjgwebservices.tjgxmlcms.db;
 
 import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;

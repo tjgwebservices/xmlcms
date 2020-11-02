@@ -212,8 +212,8 @@ aside ul {
     margin-bottom: 20px;
     list-style: none;
     padding: 0;
-    margin: 0 0 10px 25px;
     font-size: 22px;
+    width: 100%;
 }
 
 aside ul li {
@@ -289,7 +289,7 @@ aside > section h6 {
     font-weight: 600;
 }
 
-main {
+main, body > div  {
     display: block;
     float: left;
     width: 90%;
@@ -559,6 +559,42 @@ main button#disconnect, main button#hangup {
     color: #1c3111;    
 }
 
+body > div > fieldset {
+    border-color: #ap892a;
+    border-radius: 5px;
+    background-color: #ebf3fb;
+    margin: 40px 20px 40px 20px;
+    
+}
+
+input[type="submit"] {
+        width: 100px;
+    margin: 0 auto;
+    display: block;
+    color: #0f382a;
+    background-color: #f5f1cc;
+    border-color: #d2c6b4;
+    border-radius: 5px;
+    padding: 20px 10px 20px 10px;
+    font-weight: 600;
+    letter-spacing: 1.4;
+}
+
+input[type="submit"]:hover {
+    background-color: #a6d66f;
+}
+
+body > div > a {
+    text-decoration: none;
+    color: #2aa0d6;
+    border-radius: 4px;
+    background-color: #d9f3f7;
+    padding: 8px 12px 8px 12px;
+}
+body > div > a:hover {
+    color: #1b2529;
+    background-color: #aaedf7;
+}
 
 body > h1, body > h2, body > a {
     display: block;
@@ -614,7 +650,7 @@ footer {
         width: 24.99%;
     }
 
-    main {
+    main, body > div  {
         width: 64.99%;
     }
 
@@ -627,4 +663,5 @@ footer {
         height: 100%;
         min-height: 100%;
     }
+    
 }

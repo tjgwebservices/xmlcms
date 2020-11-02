@@ -41,7 +41,8 @@ public class TopicController extends HttpServlet {
                    emitter.send(SseEmitter
                            .event()
                            .name("message")
-                           .data("[{\"message\": \""+commands[i]+"\"}]"));
+                           .data("[{\"message\": \""+commands[i]+"\","
+                                   + "\"event\":\"answer\"}]"));
                    TimeUnit.SECONDS.sleep(1);
                }
                emitter.complete();
@@ -65,7 +66,8 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("[{\"message\": \"json source topic\"}]"));
+                    .data("[{\"message\": \"json source topic\","
+                                   + "\"event\":\"answer\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,7 +88,8 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("[{\"message\": \"text plain source\"}]"));
+                    .data("[{\"message\": \"text plain source\","
+                                   + "\"event\":\"answer\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,7 +110,8 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("[{\"message\": \"xml source\"}]" ));
+                    .data("[{\"message\": \"xml source\","
+                                   + "\"event\":\"answer\"}]" ));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,7 +132,8 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("[{\"message\": \"event stream\"}]"));
+                    .data("[{\"message\": \"event stream\","
+                                   + "\"event\":\"answer\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,7 +154,8 @@ public class TopicController extends HttpServlet {
             emitter.send(SseEmitter
                     .event()
                     .name("topic")
-                    .data("[{\"message\": \"form encoded value\"}]"));
+                    .data("[{\"message\": \"form encoded value\","
+                                   + "\"event\":\"answer\"}]"));
         } catch (IOException ex) {
             Logger.getLogger(SocketRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
