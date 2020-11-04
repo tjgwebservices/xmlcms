@@ -83,6 +83,9 @@ div.chattext > ul {
     list-style-type: none;
     border: 1px solid #e4e4e4;
     background-color: #fefefe;
+    height: 150px;
+    overflow-x: auto;
+    overflow-y: scroll;
 }
 
 div.chattext > ul li {

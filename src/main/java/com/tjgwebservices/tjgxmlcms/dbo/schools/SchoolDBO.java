@@ -17,7 +17,7 @@ public class SchoolDBO extends DatabaseObject {
             tx = session.beginTransaction();
             String sql = "INSERT INTO School(schoolName,schoolLecturer) VALUES(?,?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,school.getSchoolName());
                 pstmt.setString(2,school.getSchoolLecturer());
@@ -36,7 +36,7 @@ public class SchoolDBO extends DatabaseObject {
             List<School> schoolList = new ArrayList<>();
             String sql = "SELECT id,schoolName,schoolLecturer FROM School;";
             try  {
-                        conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                        conn = DriverManager.getConnection(connectionURL);
                         Statement stmt = conn.createStatement();
                         ResultSet rs = stmt.executeQuery(sql);
                         while(rs.next()){

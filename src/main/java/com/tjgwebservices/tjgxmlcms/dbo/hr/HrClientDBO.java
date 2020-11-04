@@ -2,10 +2,6 @@ package com.tjgwebservices.tjgxmlcms.dbo.hr;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.hr.HrClient;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +17,7 @@ public class HrClientDBO extends DatabaseObject {
             tx = session.beginTransaction();
             String sql = "INSERT INTO HrClient(clientFirstName,clientLastName,clientSpecialty,clientContact,hrGroupId) VALUES(?,?,?,?,?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,hrClient.getClientFirstName());
                 pstmt.setString(2,hrClient.getClientLastName());
@@ -42,7 +38,7 @@ public class HrClientDBO extends DatabaseObject {
             tx = session.beginTransaction();
             String sql = "UPDATE HrClient SET clientFirstName=?,clientLastName=?,clientSpecialty=?,clientContact=?,hrGroupId=? WHERE id = ?";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,hrClient.getClientFirstName());
                 pstmt.setString(2,hrClient.getClientLastName());
@@ -65,7 +61,7 @@ public class HrClientDBO extends DatabaseObject {
             List<HrClient> hrClientList = new ArrayList<>();
             String sql = "SELECT id,clientFirstName,clientLastName,clientSpecialty,clientContact,hrGroupId FROM HrClient;";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){

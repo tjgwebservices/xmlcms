@@ -7,7 +7,7 @@ var requestanchor = document.createElement("a");
 requestanchor.setAttribute("href","#");
 requestanchor.innerHTML = "Request Service";
 var chatTitle = document.createElement("h1");
-chatTitle.innerHTML = "II Data School - Customer Service - Alpha Test";
+chatTitle.innerHTML = "Chat Application (Experimental) - Alpha Test";
 var button1 = document.createElement("button");
 button1.innerHTML = "Close";
 var spans = [];
@@ -65,7 +65,7 @@ function(e){
         xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == XMLHttpRequest.DONE) {   
                         if (xmlhttp.status == 200) {
-                                document.getElementById("updatemessage").innerHTML = xmlhttp.responseText;
+                                updateConversation(xmlhttp.responseText);
                                 textarea.disabled = false;
                                 textarea.setAttribute("placeholder","Please enter your message here...");
                         }
@@ -108,26 +108,30 @@ function(e){
 
 
 function updateConversation(response) {
-    var data = response.split("\n")[1];
-    var dataJson = data.substring(5,data.length)
-    var array1 = JSON.parse(dataJson);
-    if (array1.length> 0) {
-            while( textbox.firstChild ){
-              textbox.removeChild( textbox.firstChild );
-            }
-            for (i = 0;i < array1.length; i++) {
-                    var tli = document.createElement("li");
-                    if (array1[i]["to"]=="0") {
-                            tli.setAttribute("class","sent");
-                    } else {
-                            tli.setAttribute("class","from");								
-                    }
-                    var messageText="<p><span>"+array1[i]["time"]+"</span>"+array1[i]["message"]+"</p>";
-                    tli.innerHTML = messageText;
-                    textbox.appendChild(tli);
-            }
+    if (response==""){
+        console.log("no response");
+    } else {
+        var data = response.split("\n")[1];
+        var dataJson = data.substring(5,data.length)
+        var array1 = JSON.parse(dataJson);
+        if (array1.length> 0) {
+                /*
+                while( textbox.firstChild ){
+                  textbox.removeChild( textbox.firstChild );
+                }*/
+                for (var i = 0;i < array1.length; i++) {
+                        var tli = document.createElement("li");
+                        if (array1[i]["to"]=="0") {
+                                tli.setAttribute("class","sent");
+                        } else {
+                                tli.setAttribute("class","from");								
+                        }
+                        var messageText="<p><span>"+array1[i]["time"]+"</span>"+array1[i]["message"]+"</p>";
+                        tli.innerHTML = messageText;
+                        textbox.appendChild(tli);
+                }
+        }
     }
-
 
 }
 
@@ -165,7 +169,7 @@ this.runPoll = function () {
 		xmlhttp.open("POST", "chat/checkConversation");
 		xmlhttp.send(formData);
 		return false;
-    }, 5000);
+    }, 30000);
 };
 }
 

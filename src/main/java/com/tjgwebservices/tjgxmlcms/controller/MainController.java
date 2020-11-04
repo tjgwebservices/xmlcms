@@ -27,6 +27,7 @@ public class MainController {
  
     static {
     }
+    
     @Autowired
     private ServletContext context;
 
@@ -86,7 +87,7 @@ public class MainController {
             String password = loginForm.getPassword();
             if (username != null && password != null) {
                 //return "redirect:/authenticated/user";                
-                return "/display";
+                return "/authenticated/adminPage";
             } else {
                 error = "Error with fields!";
                 model.addAttribute("errorMessage", error);

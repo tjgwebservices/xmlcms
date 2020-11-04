@@ -7,36 +7,21 @@ import org.hibernate.Transaction;
 
 public class DatabaseObject {
 
-    public static String connectionURL;
-    public static Session session;
-    public static Transaction tx;
-    public static PreparedStatement pstmt;
-    public static Connection conn;
+    protected final static String connectionURL = "jdbc:sqlite:memory:articledb?cache=shared";
+    protected static Session session;
+    protected static Transaction tx;
+    protected static PreparedStatement pstmt;
+    protected static Connection conn;
     
-    private final static String TESTURL = "jdbc:sqlite:memory:articledb?cache=shared";
+    private static String TESTURL;
 
                 
                     
-    public DatabaseObject(){
-        this.connectionURL = TESTURL;    
-    }
-    
-    public DatabaseObject(String connectionURL){
-        this.connectionURL = connectionURL;    
-    
-    }
 
     public String getConnectionURL() {
         return connectionURL;
     }
 
-    public void setConnectionURL(String connectionURL) {
-        this.connectionURL = connectionURL;
-    }
-
-    public Session getSession() {
-        return session;
-    }
 
     public void setSession(Session session) {
         this.session = session;

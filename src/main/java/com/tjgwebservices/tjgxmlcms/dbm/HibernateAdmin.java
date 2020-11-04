@@ -1,14 +1,12 @@
 package com.tjgwebservices.tjgxmlcms.dbm;
 
 import com.tjgwebservices.tjgxmlcms.dbo.DBAdmin;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
+import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
 import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -17,7 +15,7 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 
-public class HibernateAdmin {
+public class HibernateAdmin extends DatabaseObject{
     private static SessionFactory sessionFactory = null;
     private static StandardServiceRegistry standardServiceRegistry = null;
     private static Boolean isDatabaseAttached = false;

@@ -2,10 +2,6 @@ package com.tjgwebservices.tjgxmlcms.dbo.hr;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.hr.HrGroup;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +17,7 @@ public class HrGroupDBO extends DatabaseObject {
             tx = session.beginTransaction();
             String sql = "INSERT INTO HrGroup(groupName) VALUES(?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,hrGroup.getGroupName());
                 pstmt.executeUpdate();
@@ -38,7 +34,7 @@ public class HrGroupDBO extends DatabaseObject {
             tx = session.beginTransaction();
             String sql = "UPDATE HrGroup SET groupName = ? WHERE id = ?";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,hrGroup.getGroupName());
                 pstmt.setInt(2,hrGroup.getId());
@@ -57,7 +53,7 @@ public class HrGroupDBO extends DatabaseObject {
             List<HrGroup> hrGroupList = new ArrayList<>();
             String sql = "SELECT id,groupName FROM HrGroup;";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){

@@ -2,10 +2,6 @@ package com.tjgwebservices.tjgxmlcms.dbo.research;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.research.Topic;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +17,7 @@ public class TopicDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "INSERT INTO Topic(topicName,topicSubject,topicDescription,researcherId) VALUES(?,?,?,?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,topic.getTopicName());
                 pstmt.setString(2,topic.getTopicSubject());
@@ -41,7 +37,7 @@ public class TopicDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "UPDATE Topic SET topicName=?,topicSubject=?,topicDescription=?,researcherId=? WHERE id=?";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,topic.getTopicName());
                 pstmt.setString(2,topic.getTopicSubject());
@@ -63,7 +59,7 @@ public class TopicDBO extends DatabaseObject{
             List<Topic> topicList = new ArrayList<>();
             String sql = "SELECT id,topicName,topicSubject,topicDescription,researcherId FROM Topic;";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){

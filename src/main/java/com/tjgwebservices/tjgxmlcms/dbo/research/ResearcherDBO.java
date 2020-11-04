@@ -1,10 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.dbo.research;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
+import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
 import com.tjgwebservices.tjgxmlcms.model.research.Researcher;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResearcherDBO {
+public class ResearcherDBO extends DatabaseObject{
 
 
     public static void saveSQLResearcher(Researcher researcher) {
@@ -21,7 +18,7 @@ public class ResearcherDBO {
             tx = session.beginTransaction();
             String sql = "INSERT INTO Researcher(researcherFirstName,researcherLastName,researcherDegree,researcherMajor,researcherInstitution,researcherSpecialty) VALUES(?,?,?,?,?,?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,researcher.getResearcherFirstName());
                 pstmt.setString(2,researcher.getResearcherLastName());
@@ -43,7 +40,7 @@ public class ResearcherDBO {
             tx = session.beginTransaction();
             String sql = "UPDATE Researcher SET researcherFirstName=?,researcherLastName=?,researcherDegree=?,researcherMajor=?,researcherInstitution=?,researcherSpecialty=? WHERE id=?";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,researcher.getResearcherFirstName());
                 pstmt.setString(2,researcher.getResearcherLastName());
@@ -67,7 +64,7 @@ public class ResearcherDBO {
             List<Researcher> researcherList = new ArrayList<>();
             String sql = "SELECT id,researcherFirstName,researcherLastName,researcherDegree,researcherMajor,researcherInstitution,researcherSpecialty FROM Researcher;";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){

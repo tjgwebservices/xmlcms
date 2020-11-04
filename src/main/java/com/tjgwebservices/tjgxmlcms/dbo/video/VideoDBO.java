@@ -1,10 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.dbo.video;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
+import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
 import com.tjgwebservices.tjgxmlcms.model.video.Video;
 import com.tjgwebservices.tjgxmlcms.services.DecodedMultipartFile;
 import java.io.IOException;
@@ -20,14 +17,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
-public class VideoDBO {
+public class VideoDBO extends DatabaseObject{
 
     public static void saveSQLVideo(Video video) {
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
             MultipartFile lp = video.getVideoContent();
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 //byte[] byteArrray = lp.getBytes();
                 //InputStream targetStream = new ByteArrayInputStream(byteArrray);
                 String sql = "INSERT INTO Video(videoName, videoPath) VALUES(?,?)";
@@ -50,7 +47,7 @@ public class VideoDBO {
             List<Video> videoList = new ArrayList<>();
             String sql = "SELECT videoName,videoPath FROM Video;";
             try  {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);                
                        while(rs.next()){

@@ -13,13 +13,11 @@ import java.util.List;
 
 public class AdministratorDBO extends DatabaseObject {
 
-        private final static String TESTURL = "jdbc:sqlite:memory:articledb?cache=shared";
-
     public static void saveSQLAdministrator(Administrator administrator) {
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
             String sql = "INSERT INTO Administrator(administratorName, administratorGroupId) VALUES(?,?)";
-            try (Connection conn = DriverManager.getConnection(TESTURL);
+            try (Connection conn = DriverManager.getConnection(connectionURL);
                 ){
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,administrator.getAdministratorName());
@@ -38,7 +36,7 @@ public class AdministratorDBO extends DatabaseObject {
             tx = session.beginTransaction();
             List<Administrator> administratorList = new ArrayList<>();
             String sql = "SELECT id,administratorName,administratorGroupId FROM Administrator;";
-            try (Connection conn = DriverManager.getConnection(TESTURL);
+            try (Connection conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
                        while(rs.next()){

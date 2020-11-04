@@ -195,6 +195,32 @@ public class DBAdmin {
                 "artist TEXT,\n" +
                 "videoName TEXT,\n" +
                 "videoPath TEXT);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS AccountUser (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "username TEXT NOT NULL,\n" +
+                "firstName TEXT NOT NULL,\n" +
+                "lastName TEXT NOT NULL,\n" +
+                "email TEXT NOT NULL,\n" +
+                "phoneNumber TEXT,\n" +
+                "address1 TEXT,\n" +
+                "address2 TEXT,\n" +
+                "city TEXT,\n" +
+                "statecode TEXT,\n" +
+                "zipcode TEXT,\n" +
+                "businessName TEXT,\n" +
+                "websiteName TEXT);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS AccountUserDetails (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "content1 TEXT NOT NULL,\n" +        
+                "content2 TEXT NOT NULL,\n" +        
+                "content3 TEXT NOT NULL,\n" +        
+                "accountUserId integer NOT NULL,\n" +
+                "FOREIGN KEY (accountUserId)\n" +
+                "REFERENCES AccountUser (id)\n" +
+                "ON UPDATE CASCADE\n" +
+                "ON DELETE CASCADE\n" +
+                ");\n" +
+                "\n");  
         runSQLQuery("CREATE TABLE IF NOT EXISTS Event (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "title text NOT NULL,\n" +

@@ -223,6 +223,33 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS AccountUser (
+id integer PRIMARY KEY,
+username TEXT NOT NULL,
+firstName TEXT NOT NULL,
+lastName TEXT NOT NULL,
+email TEXT NOT NULL,
+phoneNumber TEXT,
+address1 TEXT,
+address2 TEXT,
+city TEXT,
+statecode TEXT,
+zipcode TEXT,
+businessName TEXT,
+websiteName TEXT)
+
+CREATE TABLE IF NOT EXISTS AccountUserDetails (
+id integer PRIMARY KEY,
+content1 TEXT NOT NULL,
+content2 TEXT NOT NULL,
+content3 TEXT NOT NULL,      
+accountUserId integer NOT NULL,
+FOREIGN KEY (accountUserId)
+REFERENCES AccountUser (id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS Video(
 id integer PRIMARY KEY,
 artist TEXT,

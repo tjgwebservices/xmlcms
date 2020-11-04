@@ -2,8 +2,6 @@ package com.tjgwebservices.tjgxmlcms.dbo.schools;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.school.LectureNote;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +17,7 @@ public class LectureNoteDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "INSERT INTO LectureNote(noteInstructor,noteLecture,noteText) VALUES(?,?,?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,lectureNote.getNoteInstructor());
                 pstmt.setString(2,lectureNote.getNoteLecture());
@@ -39,7 +37,7 @@ public class LectureNoteDBO extends DatabaseObject{
             List<LectureNote> lectureNoteList = new ArrayList<>();
             String sql = "SELECT id,noteInstructor,noteLecture,noteText FROM LectureNote;";
             try  {
-                        conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                        conn = DriverManager.getConnection(connectionURL);
                         Statement stmt = conn.createStatement();
                         ResultSet rs = stmt.executeQuery(sql);                
                        while(rs.next()){

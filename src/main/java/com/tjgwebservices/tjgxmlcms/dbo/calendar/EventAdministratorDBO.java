@@ -1,10 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.dbo.calendar;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
+import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
 import com.tjgwebservices.tjgxmlcms.model.calendar.EventAdministrator;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventAdministratorDBO {
+public class EventAdministratorDBO extends DatabaseObject{
 
     public static void saveEventAdministrator(EventAdministrator eventAdministrator){
         try {
@@ -34,7 +31,7 @@ public class EventAdministratorDBO {
             tx = session.beginTransaction();
             String sql = "INSERT INTO EventAdministrator(administratorName, title, subTitle, contactInfo, eventId) VALUES(?,?,?,?,?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,eventAdministrator.getAdministratorName());
                 pstmt.setString(2,eventAdministrator.getTitle());
@@ -55,7 +52,7 @@ public class EventAdministratorDBO {
             tx = session.beginTransaction();
             String sql = "UPDATE EventAdvertisement SET administratorName =?, title =?, subTitle =?, contactInfo =?, eventId =? WHERE id = ?";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,eventAdministrator.getAdministratorName());
                 pstmt.setString(2,eventAdministrator.getTitle());
@@ -78,7 +75,7 @@ public class EventAdministratorDBO {
             List<EventAdministrator> eventAdministratorList = new ArrayList<>();
             String sql = "SELECT id,administratorName,title,subTitle,contactInfo,eventId FROM EventAdministrator;";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){

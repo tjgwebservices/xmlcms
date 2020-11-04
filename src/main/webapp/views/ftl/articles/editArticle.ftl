@@ -20,10 +20,10 @@
          <fieldset>
             <legend>Edit Article</legend>
             <form name="article" action="/articles/editArticle" method="POST">
-               <p>Author: <@spring.formInput "articleForm.author" "${articleEditForm.author}" "text"/></p><br/>
-               <p>Date: <@spring.formInput "articleForm.authorDate" "${articleEditForm.authorDate}" "text"/></p><br/>
-               <p>Title: <@spring.formInput "articleForm.title" "${articleEditForm.title}" "text"/></p><br/>
-               <p>Description: <@spring.formInput "articleForm.description" "${articleEditForm.description}" "text"/></p>
+               <p>Author: <input type="text" id="author" name="author" value="${articleEditForm.author}" /></p><br/>
+               <p>Date: <input type="text" id="authorDate" name="authorDate" value="${articleEditForm.authorDate}" /></p><br/>
+               <p>Title: <input type="text" id="title" name="title" value="${articleEditForm.title}" /></p><br/>
+               <p>Description: <input type="text" id="description" name="description" value="${articleEditForm.description}" /></p>
                <br/>
                <p>Content: <textarea id="content" name="content" value="">${articleEditForm.content}</textarea></p>
                <br/>

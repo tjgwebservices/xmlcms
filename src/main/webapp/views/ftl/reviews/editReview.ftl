@@ -19,12 +19,12 @@
          <fieldset>
             <legend>Edit Review</legend>
             <form name="review" action="" method="POST">
-               <p>Author: <@spring.formInput "reviewForm.author" "${reviewEditForm.author}" "text"/></p><br/>
-               <p>Date: <@spring.formInput "reviewForm.authorDate" "${reviewEditForm.authorDate}" "text"/></p><br/>
-               <p>Title: <@spring.formInput "reviewForm.title" "${reviewEditForm.title}" "text"/></p><br/>
-               <p>Description: <@spring.formInput "reviewForm.description" "${reviewEditForm.description}" "text"/></p>
+               <p>Author: <input type="text" id="author" name="author" value="${reviewEditForm.author}" /></p><br/>
+               <p>Date: <input type="text" id="authorDate" name="authorDate" value="${reviewEditForm.authorDate}" /></p><br/>
+               <p>Title: <input type="text" id="title" name="title" value="${reviewEditForm.title}" /></p><br/>
+               <p>Description: <input type="text" id="description" name="description" value="${reviewEditForm.description}" /></p>
                <br/>
-               <p>Content: <textarea id="content" name="content" value="">${articleEditForm.content}</textarea></p>
+               <p>Content: <textarea id="content" name="content" value="">${reviewEditForm.content}</textarea></p>
                <br/>
                <br/>
                <input type="submit" value="Create" />

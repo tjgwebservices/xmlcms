@@ -1,5 +1,8 @@
 package com.tjgwebservices.tjgxmlcms.controller;
 
+import static com.tjgwebservices.tjgxmlcms.controller.SocketRestController.getRooms;
+import com.tjgwebservices.tjgxmlcms.model.conference.Room;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,7 +88,8 @@ public class ConferenceController {
  
         model.addAttribute("message", reportMessage);
         model.addAttribute("conferenceName", conferenceName);
-         
+        List<Room> rooms = getRooms();
+        model.addAttribute("rooms", rooms);       
         return "conferences/room";
     }
 

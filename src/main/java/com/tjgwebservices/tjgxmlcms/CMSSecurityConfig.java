@@ -2,6 +2,7 @@ package com.tjgwebservices.tjgxmlcms;
 
 
 import com.tjgwebservices.tjgxmlcms.services.filters.CustomFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 @EnableWebSecurity(debug = true)
 public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Value("${administrator.password}")
+    private String adminPassword;
+
+    @Value("${guest.password}")
+    private String guestPassword;
+
     final private String[] ignorelist = {"/","/home","/index","/error","/login",
         "/success","/socket","/socket/**","/sockets","/socketDisplay",
         "/display","/css/**","/js/**","/courses/**","/images/**",
@@ -73,8 +80,8 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("guest1").password("{noop}password").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin1").password("{noop}administrator").roles("ADMIN");                
+        auth.inMemoryAuthentication().withUser("guest1").password("{noop}"+guestPassword).roles("USER");
+        auth.inMemoryAuthentication().withUser("admin1").password("{noop}"+adminPassword).roles("ADMIN");                
     }
 
     

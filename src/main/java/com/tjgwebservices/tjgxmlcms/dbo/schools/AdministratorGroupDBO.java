@@ -17,7 +17,7 @@ public class AdministratorGroupDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "INSERT INTO AdministratorGroup(groupName) VALUES(?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,administratorGroup.getGroupName());
                 pstmt.executeUpdate();
@@ -35,7 +35,7 @@ public class AdministratorGroupDBO extends DatabaseObject{
             List<AdministratorGroup> administratorGroupList = new ArrayList<>();
             String sql = "SELECT id,groupName FROM AdministratorGroup;";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){

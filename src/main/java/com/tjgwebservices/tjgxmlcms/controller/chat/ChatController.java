@@ -195,7 +195,7 @@ public class ChatController extends HttpServlet{
         try {
             String chatMessage = "[{\"to\":\""+conversationid
                    +"\", \"time\": \""+formatter.format(date)+
-                   "\": \"message\": \"How can we help you today?\"}]";
+                   "\", \"message\": \"How can we help you today?\"}]";
            emitter.send(
                     SseEmitter
                             .event()
@@ -234,7 +234,7 @@ public class ChatController extends HttpServlet{
                         for (Chat chat : conversationChats){
                             String chatMessage = "[{\"to\":\""+conversationid
                                     +"\", \"time\": \""+chat.getMessage()+
-                                    "\": \"message\": \""+chat.getMessage()+ "\"}]";
+                                    "\", \"message\": \""+chat.getMessage()+ "\"}]";
                             emitter.send(
                                 SseEmitter
                                 .event()
@@ -251,7 +251,7 @@ public class ChatController extends HttpServlet{
                 try {
                     String chatMessage = "[{\"to\":\""+conversationid
                             +"\", \"time\": \""+formatter.format(date)+
-                            "\": \"message\": \"No Messages\"}]";
+                            "\", \"message\": \"No Messages\"}]";
                     emitter.send(
                             SseEmitter
                                     .event()
@@ -289,7 +289,7 @@ public class ChatController extends HttpServlet{
                 for (Chat chat : conversationChats){
                     String chatMessage = "[{\"to\":\""+conversationid
                             +"\", \"time\": \""+chat.getMessage()+
-                            "\": \"message\": \""+chat.getMessage()+ "\"}]";
+                            "\", \"message\": \""+chat.getMessage()+ "\"}]";
                     emitter.send(
                         SseEmitter
                         .event()

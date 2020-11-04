@@ -2,8 +2,6 @@ package com.tjgwebservices.tjgxmlcms.dbo.schools;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.school.Lecture;
 import com.tjgwebservices.tjgxmlcms.services.DecodedMultipartFile;
 import java.io.ByteArrayInputStream;
@@ -26,7 +24,7 @@ public class LectureDBO extends DatabaseObject{
             tx = session.beginTransaction();
             MultipartFile lp = lecture.getLecturePoster();
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 byte[] byteArrray = lp.getBytes();
                 InputStream targetStream = new ByteArrayInputStream(byteArrray);
                 String sql = "INSERT INTO Lecture(lectureName, lecturePoster) VALUES(?,?)";
@@ -51,7 +49,7 @@ public class LectureDBO extends DatabaseObject{
             List<Lecture> lectureList = new ArrayList<>();
             String sql = "SELECT lectureName,lecturePoster FROM Lecture;";
             try  {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);                
                        while(rs.next()){

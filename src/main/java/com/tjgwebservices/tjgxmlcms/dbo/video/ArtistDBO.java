@@ -2,10 +2,6 @@ package com.tjgwebservices.tjgxmlcms.dbo.video;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.conn;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.pstmt;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.video.Artist;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +17,7 @@ public class ArtistDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "INSERT INTO Artist(artistName) VALUES(?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql); 
                 pstmt.setString(1,artist.getArtistName());
                 pstmt.executeUpdate();
@@ -39,7 +35,7 @@ public class ArtistDBO extends DatabaseObject{
             List<Artist> artistList = new ArrayList<>();
             String sql = "SELECT id,artistName FROM Artist;";
             try  {
-                        conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                        conn = DriverManager.getConnection(connectionURL);
                         Statement stmt = conn.createStatement();
                         ResultSet rs = stmt.executeQuery(sql);                
                        while(rs.next()){
