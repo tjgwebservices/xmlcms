@@ -305,6 +305,7 @@ public class ResourceTests {
 	}
 
 	@Test
+        @Disabled
 	void testEditReviewPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/reviews/editReview/1");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
