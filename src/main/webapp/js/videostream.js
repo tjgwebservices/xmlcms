@@ -233,7 +233,6 @@ rtcsendbutton.addEventListener("click",function(e){
     rtcpeerconnection = peerConnection;
     
     rtcpeerconnection.createOffer().then(function(offer){
-        console.log("send to server RTC Create Offer", offer);
 
         sendToServer({
             name: connectname,
@@ -271,17 +270,14 @@ var createPeerConnection = function (){
     });
 
     peerConnection.onicecandidate = ({candidate}) => function(event) {   
-        console.log("onicecandidate", candidate);
         ws.send({candidate});
         ws.send(JSON.stringify({"candidate": event.candidate}));
     };
     peerConnection.onaddstream = function(event) {
-        console.log("onaddstream", event);
         remoteView.src = URL.createObjectURL(event.stream);
     };
 
     peerConnection.onnegotiationneeded = async () => {
-        console.log("onnegotiationneeded");
         try {
             await peerConnection.setLocalDescription(await peerConnection.createOffer());
             ws.send({desc: peerConnection.localDescription});
@@ -298,7 +294,6 @@ var createPeerConnection = function (){
     };
 
     peerConnection.onmessage = function(message) {
-        console.log("Received message", message.data);
         var content = JSON.parse(message.data);
         var data = content[0].data;
 
@@ -468,7 +463,6 @@ function onsinglemessage(ws, data) {
     var package = JSON.parse(data);
     var data = package.data;
 
-    console.log("received single message: " + package.event);
     switch (package.event) {
         case 'client-call':
             clientCall(localStream);
@@ -487,7 +481,6 @@ function onsinglemessage(ws, data) {
 
 
 function startSession() {
-    console.log("start session");
     sessions["localSession"].addEventListener('loadedmetadata', 
         function () {
             publish(ws,'client-call', null)
@@ -496,7 +489,6 @@ function startSession() {
 }
 
 function clientCall(stream) {
-        console.log("client call stream",stream);
         icecandidate(stream);
         peerConnection.createOffer({
             offerToReceiveAudio: 1,
@@ -515,9 +507,7 @@ function clientCall(stream) {
 }
 
 function clientAnswer(data){
-        console.log("Client Answer: ", data);
         if (peerConnection==null) {
-        console.error('Missing client-offer');
         return false;
     }
     peerConnection.setRemoteDescription(new RTCSessionDescription(data),
@@ -528,7 +518,6 @@ function clientAnswer(data){
 }
 
 function clientOffer(localStream,data){
-    console.log("Client Offer local stream",localStream," Data: ",data);
     publishicecandidate(localStream);
     peerConnection.setRemoteDescription(new RTCSessionDescription(data), function(){
         if (!answer) {
@@ -551,8 +540,7 @@ function clientOffer(localStream,data){
 
 function clientCandidate(data){
     if (peerConnection==null) {
-     console.error('Missing client-offer');
-     return false;
+    return false;
      }
     peerConnection.addIceCandidate(new RTCIceCandidate(data), function(){}, 
         function(e) { console.log("Problem adding ice candidate: "+e
@@ -573,7 +561,6 @@ function sendMultipleMesageStreams(ws,event) {
 }
 
 function publishicecandidate(ws, localStream) {
-    console.log("publish candidate",ws," stream: ", localStream);
     peerConnection = new RTCPeerConnection(configuration);
     peerConnection.onicecandidate = function (event) {
         if (event.candidate) {
@@ -596,7 +583,6 @@ function publishicecandidate(ws, localStream) {
 }
 
 function publish(ws, event, data) {
-    console.log("sending ws.send: " + event);
     ws.send(JSON.stringify({
         event:event,
         data:data
@@ -605,12 +591,10 @@ function publish(ws, event, data) {
 
 
 function send(message){
-    console.log("send", message);
     ws.send(JSON.stringify(message));
 }
 
 async function startAsynchronousCall() {
-    console.log("Start Asynchronous Call");
     try {
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         stream.getTracks().forEach((track) =>
@@ -633,7 +617,6 @@ async function startAsynchronousCall() {
 };
 
 function setAsynchronousMessage(ws){
-    console.log("Set Asynchronous Message");
 ws.onmessage = async ({desc,candidate}) => {
     try {
         if (desc) {
@@ -682,10 +665,8 @@ var peerConfiguration = {
 };     
 
 function offerError(error){
-            console.log("Offer error",error);    
 }
 function handleOffer(offer){
-console.log("setting remote description", offer);
 }
 
 
@@ -694,7 +675,7 @@ function handleAnswer(answer){
     if (sessconfig != null) {
         peerConnection.setRemoteDescription(new RTCSessionDescription(sessconfig));
     } else {
-        console.log("config not defined");
+
     }
 }
 
@@ -806,12 +787,10 @@ function streamconnect() {
     
     dataChannel.ondatachannel = (e) => {
         if (dataChannel.readyState == "connecting"){
-            console.log("Unable to send message, ready state connecting");
 
         } else {
         dataChannel.send("message");
             dataChannel.onmessage = function (event){
-                console.log("Message", event.data);
             }
         }
     }
@@ -820,11 +799,9 @@ function streamconnect() {
     {
         try {
             const stream = openMediaDevices({'video':true, 'audio':true});
-            console.log('Received media stream:', stream);
             streamsocket.send(JSON.stringify('{"test":"test"}'));
             streamshowgreetings(JSON.parse(e.target).content);
         } catch(error) {
-            console.log('Error accessing media devices.', error);
         }
     };
 }
@@ -837,13 +814,11 @@ function streamdisconnect() {
     e.target.send(JSON.stringify('{"message":"test"}'));
     };
     setConnected(false);
-    console.log("Disconnected");
 }
 
 
 function rtcOnLogin(success) {
     if (success === false) {
-        console.log("onlogin connection error");
     } else {
         var streamconfiguration = {
             "iceServers" : [{"url": "stun:stun.1.google.com:19302"}]
@@ -885,11 +860,9 @@ function setRtcMessage(){
     };
 
     rtcpeerconnection.onopen = function () {
-        console.log("Connected");
         };
 
     rtcpeerconnection.onerror = function(err) {
-        console.log("RTC Connection", err);
     }
 
 }
@@ -1050,30 +1023,24 @@ var addSource = function(source){
 var ws = new EventSource('/socket/'+unique);
 
 ws.addEventListener("message", (event) => {
-   console.log(event.data); 
 });
 
 ws.addEventListener("open", (event) => {
-   console.log('connection is live');
 });
 
 ws.addEventListener("error", (event) => {
    if (event.readyState == EventSource.CLOSED) {
-      console.log('connection is closed');
    } else {
-      console.log("Error occured", event);
    }
    event.target.close();
 });
 
 ws.send = function (message){
-    console.log("ws send", message);
     sendMediaStream(message);
 };
 
 
 function testEventSourceSend(event,data){
-  console.log("Test Event Source Send");
     ws.send(JSON.stringify({
         event:event,
         data:data
@@ -1082,7 +1049,6 @@ function testEventSourceSend(event,data){
 };
 
 function sendToOneUser(target, msgString) {
-  console.log("Send to One User");
   var isUnique = true;
   var i;
 
@@ -1141,7 +1107,6 @@ function handleVideoOfferMsg(message) {
       sdp: newConnection.localDescription,
       topic: "video-offer-msg"
     };
-    console.log("send to server VideoOffer");
     sendToServer(message);
   })
   .catch(handleGetUserMediaError);
@@ -1150,9 +1115,7 @@ function handleVideoOfferMsg(message) {
 
 
 function hangUpCall() {
-  console.log("hang up call");
   closeVideoCall();
-  console.log("send to server Hang Up Call");
 
   sendToServer({
     name: myUsername,
@@ -1162,7 +1125,6 @@ function hangUpCall() {
 }
 
 function closeVideoCall() {
-  console.log("close video call");
   var remoteVideo = document.getElementById("received_video");
   var localVideo = document.getElementById("local_video");
 
