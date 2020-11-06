@@ -14,6 +14,13 @@
       <#if conferenceName??>
       <h2>${conferenceName} Experimental, Not Functional</h2>
       </#if>
+      <#if rooms??>
+        <#list rooms as room>
+        <tr>
+           <td>${room.id}</td>
+        </tr>
+        </#list>
 
-   <@nav.mainsection />
+      </#if>
+
    <@nav.footingconference />

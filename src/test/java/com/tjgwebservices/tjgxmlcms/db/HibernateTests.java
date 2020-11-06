@@ -72,7 +72,7 @@ public class HibernateTests {
             Statement stmt = conn.createStatement();
             //System.out.println(query.toString());
             boolean itr = stmt.execute(query.toString());
-            conn.commit();
+            //conn.commit();
             Assertions.assertFalse(itr);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -102,7 +102,7 @@ public class HibernateTests {
             Connection conn = DriverManager.getConnection(testdb);
             Statement stmt = conn.createStatement();
             Boolean itr = stmt.execute(sql); 
-            conn.commit();
+            //conn.commit();
             Assertions.assertFalse(itr);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -191,7 +191,7 @@ public class HibernateTests {
         pstmt.setString(4,article.getDescription());
         pstmt.setString(5,article.getContent());
         int itr = pstmt.executeUpdate(); 
-        conn.commit();
+        //conn.commit();
         Assertions.assertEquals(0, itr);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -211,7 +211,7 @@ public class HibernateTests {
         pstmt.setString(1,course.getCourseName());
         int itr = pstmt.executeUpdate();  
         Assertions.assertEquals(0, itr);
-        conn.commit();
+        //conn.commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -255,7 +255,7 @@ public class HibernateTests {
         pstmt.setString(2,student.getFirstName());
         pstmt.setInt(3,student.getCourseId());
         int itr = pstmt.executeUpdate();  
-        conn.commit();
+        //conn.commit();
         Assertions.assertEquals(0, itr);
         } catch (SQLException e) {
             e.printStackTrace();

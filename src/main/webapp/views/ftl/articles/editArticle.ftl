@@ -28,7 +28,8 @@
                <p>Content: <textarea id="content" name="content" value="">${articleEditForm.content}</textarea></p>
                <br/>
                <br/>
-               <input type="submit" value="Create" />
+                <p><input type="hidden" id="id" name="id" value="${articleEditForm.id}" /></p><br/>
+               <input type="submit" value="Edit" />
             </form>
          </fieldset>
       </div>

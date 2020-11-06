@@ -38,6 +38,16 @@ nav {
     width: 100%;	
 }
 
+nav h2 {
+    display: block;
+    text-align: center;
+    color: #544734;
+    text-shadow: 2px 2px #d4d1c1;
+    width: 100%;    
+    font-weight: 600;
+    font-size: 1.6em;
+}
+
 nav button {
     float: right;
     padding: 7px 10px;

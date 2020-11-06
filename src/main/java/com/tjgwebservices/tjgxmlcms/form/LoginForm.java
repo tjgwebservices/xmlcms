@@ -4,6 +4,7 @@ public class LoginForm {
 
     private String username;
     private String password;
+    private String referralPath;
 
     public String getUsername() {
         return username;
@@ -20,5 +21,14 @@ public class LoginForm {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public String getReferralPath() {
+        return referralPath;
+    }
+
+    public void setReferralPath(String referralPath) {
+        this.referralPath = referralPath;
+    }
+
     
 }

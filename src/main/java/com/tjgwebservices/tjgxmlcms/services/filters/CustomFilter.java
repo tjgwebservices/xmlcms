@@ -25,9 +25,17 @@ public class CustomFilter implements Filter  {
     }
 
     @Override
-    public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
-            fc.doFilter(sr, sr1);
+    public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc)  {
+            
+            try {
+                fc.doFilter(sr, sr1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
             //LOGGER.info("Custom Filter Do Filter");
+            
     }
 
     @Override

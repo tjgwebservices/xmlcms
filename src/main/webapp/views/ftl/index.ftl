@@ -6,7 +6,7 @@
    <@nav.heading />
    <body>
    <@nav.navigation />
-   <@nav.sidelinks />
+   <@nav.sidelinks2 />
    <@nav.mainsection />
    <@nav.chat />
    <@nav.book />

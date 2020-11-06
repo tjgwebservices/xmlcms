@@ -19,6 +19,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.client.methods.HttpPost;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -58,6 +59,7 @@ public class FormUploadTests {
     }
     
     @Test
+    @Disabled
     public void testHTTPClient()
 	throws ClientProtocolException, IOException {
 		HttpResponse response = Request.Post("http://localhost:"+port+"/login").bodyForm(Form.form()
@@ -67,6 +69,7 @@ public class FormUploadTests {
 	}
 
     @Test
+    @Disabled
     public void testMainPage()
 	throws ClientProtocolException, IOException {
 		HttpResponse response = Request.Post("http://localhost:"+port+"/")
@@ -78,6 +81,7 @@ public class FormUploadTests {
 	}
 
     @Test
+    @Disabled
     public void whenSendMultipartRequest() throws ClientProtocolException, IOException {
 	CloseableHttpClient client = HttpClients.createDefault();
 	HttpPost httpPost = new HttpPost("http://localhost:"+port+"/login");
@@ -93,6 +97,7 @@ public class FormUploadTests {
     }
 
     @Test
+    @Disabled
     public void testRestTemplate(){
         final String uri = "http://localhost:"+port+"/login";
         HttpHeaders headers = new HttpHeaders();
@@ -113,6 +118,7 @@ public class FormUploadTests {
     }
 
     @Test
+    @Disabled
     public void testRestHeaders(){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);

@@ -1,8 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
 import com.tjgwebservices.tjgxmlcms.model.subscription.SerialJournal;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +16,7 @@ public class JournalDBO extends DatabaseObject {
             tx = session.beginTransaction();
             String sql = "INSERT INTO Journal(journalName) VALUES(?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);             
                 pstmt.setString(1,journal.getJournalName());
                 pstmt.executeUpdate();
@@ -35,7 +33,7 @@ public class JournalDBO extends DatabaseObject {
             tx = session.beginTransaction();
             List<SerialJournal> journalList = new ArrayList<SerialJournal>();
             String sql = "SELECT journalName FROM Journal;";
-            try (Connection conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+            try (Connection conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
                        while(rs.next()){

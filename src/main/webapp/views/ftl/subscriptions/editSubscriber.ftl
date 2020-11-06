@@ -3,7 +3,7 @@
  
 <html>
    <head>
-      <title>Edit User</title>
+      <title>Edit Subscriber</title>
        <@nav.cssheading />
     
    </head>
@@ -17,7 +17,7 @@
        
       <div>
          <fieldset>
-            <legend>Edit User</legend>
+            <legend>Edit Subscriber</legend>
             <form name="user" action="" method="POST">
                <p>Username: <@spring.formInput "userForm.username" "${userEditForm.username}" "text"/></p><br/>
                <p>First Name: <@spring.formInput "userForm.firstName" "${userEditForm.firstName}" "text"/></p><br/>
@@ -40,13 +40,14 @@
                <br/>
                <br/>
                 <p><input type="hidden" id="id" name="id" value="${userEditForm.id}" /></p><br/>
-               <input type="submit" value="Create" />
+               <input type="submit" value="Edit" />
             </form>
          </fieldset>
       </div>
        
        
    <@nav.footingform />
+
 
 
 

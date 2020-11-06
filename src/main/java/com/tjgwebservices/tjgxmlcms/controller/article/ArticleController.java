@@ -50,6 +50,7 @@ public class ArticleController {
     @RequestMapping(value = { "/articles/addArticle" }, method = RequestMethod.POST)
     public String addArticleSave(Model model, //
         @ModelAttribute("articleForm") ArticleForm articleForm) {
+        articles = ArticleDBO.loadArticles();
         String author = articleForm.getAuthor();
         String authorDate = articleForm.getAuthorDate();
         String title = articleForm.getTitle();
@@ -76,6 +77,7 @@ public class ArticleController {
     @RequestMapping(value = { "/articles/editArticle/{id}" }, method = RequestMethod.GET)
     public String editArticleForm(Model model,
             @PathVariable("id") Integer id) {
+        articles = ArticleDBO.loadArticles();
  
         ArticleForm articleForm = new ArticleForm();
         ArticleForm articleEditForm = new ArticleForm();
@@ -92,9 +94,11 @@ public class ArticleController {
         return "/articles/editArticle/{id}";
     }
  
-    @RequestMapping(value = { "/articles/editArticle/{id}" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/articles/editArticle" }, method = RequestMethod.POST)
     public String editArticleSave(Model model, //
         @ModelAttribute("articleForm") ArticleForm articleForm) {
+        articles = ArticleDBO.loadArticles();
+        Integer id = articleForm.getId();
         String author = articleForm.getAuthor();
         String authorDate = articleForm.getAuthorDate();
         String title = articleForm.getTitle();
@@ -108,8 +112,8 @@ public class ArticleController {
                 && content != null && content.length() > 0) {
             Article newArticle = new Article(author, authorDate, 
                     title, description, content);
-            articles.add(newArticle);
-            ArticleDBO.saveSQLArticle(newArticle);
+            newArticle.setId(id);
+            ArticleDBO.updateArticle(newArticle);
             return "redirect:/articles/articleList";
         }
         String error = "All fieds are required!";

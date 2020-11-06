@@ -2,11 +2,20 @@ package com.tjgwebservices.tjgxmlcms.form;
 
 public class ArticleForm {
  
+    private Integer id;
     private String author;
     private String authorDate;
     private String title;
     private String description;
     private String content;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getAuthor() {
         return author;

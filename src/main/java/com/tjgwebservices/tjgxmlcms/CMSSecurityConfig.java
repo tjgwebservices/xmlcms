@@ -2,6 +2,7 @@ package com.tjgwebservices.tjgxmlcms;
 
 
 import com.tjgwebservices.tjgxmlcms.services.filters.CustomFilter;
+import com.tjgwebservices.tjgxmlcms.controller.RefererRedirectionAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,6 +28,7 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
         "/subscriptions/publish","/articles/articleList",
         "/articles/addArticle","/articles/editArticle","/articles/editArticle/*",
         "/subscriptions/subscriptionList","/subscriptions/addSubscription",
+        "/subscriptions/subscribe","/subscriptions/subscribers","/subscriptions/editSubscriber",
         "/uploads","/topics","/topics/**","/topic/*","/topics/messages/",
         "/topics/messages/**","/topics/messages/info/**",
         "/conferences/workshop","/conferences/conference","/conferences/test",
@@ -65,10 +67,12 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(ignorelist).permitAll()
                 .antMatchers("/authenticated/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/users/**").access("hasRole('ROLE_USER')")
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
+                    .successHandler(new RefererRedirectionAuthenticationSuccessHandler())
                     .permitAll();
         http.addFilterAfter(new CustomFilter(), BasicAuthenticationFilter.class);
     }

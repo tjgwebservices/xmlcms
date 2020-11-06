@@ -1,8 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.session;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.tx;
+import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.connectionURL;
 import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,7 +31,7 @@ public class ArticleDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "INSERT INTO Article(author, authorDate, title, description, content) VALUES(?,?,?,?,?)";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,article.getAuthor());
                 pstmt.setString(2,article.getAuthorDate());
@@ -53,7 +52,7 @@ public class ArticleDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "UPDATE Article SET author = ?, authorDate = ?, title = ?, description=?, content=? WHERE id = ?";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1,article.getAuthor());
                 pstmt.setString(2,article.getAuthorDate());
@@ -76,7 +75,7 @@ public class ArticleDBO extends DatabaseObject{
             List<Article> articleList = new ArrayList<>();
             String sql = "SELECT id,author,authorDate,title,description,content FROM Article;";
             try {
-                conn = DriverManager.getConnection("jdbc:sqlite:memory:articledb?cache=shared");
+                conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                        while(rs.next()){

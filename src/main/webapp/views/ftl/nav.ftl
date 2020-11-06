@@ -92,6 +92,7 @@
 </#macro>
 
 <#macro navigation>
+<h2>TJGXMLCMS - Demonstration Site</h2>
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -159,6 +160,14 @@
                 </span>
             </span>
             </li>
+            <li>
+            <span class="dropdown1">
+                <a href="/subscriptions/subscribe">Subscribe</a>
+                <span class="dropdown1-content">
+                    <a href="/subscriptions/subscribers">Subscribers</a>
+                </span>
+            </span>
+            </li>
         </ul>
    </nav>
 </#macro>
@@ -189,8 +198,44 @@
 		<li>Analytics</li>
 	</ul>
 
+
+
+
+
    </aside>
 </#macro>
+<#macro sidelinks2>
+   <aside>
+        <ul>
+            <li>TJGXMLCMS</li>
+            <li>Demo</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/research/researchers">Researchers</a></li>
+            <li><a href="/research/projects">Projects</a></li>
+            <li><a href="/research/topics">Topics</a></li>
+            <li><a href="/research/addResearcher">Add Researcher</a></li>
+            <li><a href="/research/addTopic">Add Topic</a></li>
+            <li><a href="/research/addProject">Add Project</a></li>
+        </ul>
+	<ul>
+            <li><a href="/aiml/aiAlgorithms">AI Algorithms</a></li>
+            <li><a href="/aiml/mlAlgorithms">ML Algorithms</a></li>
+            <li><a href="/aiml/addAiAlgorithm">Add Artificial Intelligence</a></li>
+            <li><a href="/aiml/addMlAlgorithm">Add Machine Learning</a></li>
+		<li>TJGXMLCMS Training</li>
+		<li>TJGXMLCMS Community Edition</li>
+		<li>TJGXMLCMS Enterprise Edition</li>
+		<li>Calendar</li>
+		<li>Comments</li>
+		<li>Integrations</li>
+		<li>Analytics</li>
+	</ul>
+
+
+
+</aside>
+</#macro>
+
 <#macro sidelinksadmin>
    <aside>
         <ul>
@@ -207,6 +252,13 @@
             <li><a href="<@spring.url '/schools/addStudent'/>">Add Student</a></li>
         </ul>
    </aside>
+</#macro>
+<#macro adminsection>
+   <main>
+		<h4>Administration Section</h4>
+		<p>Discussion topics:</p>
+		<br />
+   </main>
 </#macro>
 
 <#macro mainsection>
@@ -258,7 +310,9 @@
       <div>
         <button id="startcall" type="button">Start Call</button>
         <button id="testcall" type="button">Test Call</button>
-        <button id="testconnection" type="button">Test Connection</button>
+        <button id="testconnection" type="button">Test Connection 1</button>
+        <button id="testconnection2" type="button">Test Connection 2</button>
+        <button id="testconnection3" type="button">Test Connection 3</button>
         <button id="audioonly" type="button">Audio Only</button>
         <button id="audiofilter" type="button">Audio Filter</button>
         <button id="hangup" type="button">Hang Up</button>
@@ -299,6 +353,8 @@
         <p id="greetings"></p>
 
         <p id="conversation"></p>
+        <ul id="commands"></ul>
+        <table id="commandTable"></table>
 
 		<h4>Objectives</h4>
 		<p>The objectives of the Conference Series are:</p>

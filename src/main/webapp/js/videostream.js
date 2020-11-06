@@ -38,9 +38,13 @@ var videoElement = document.getElementById("liveStream");
 var conferenceroomButton = document.getElementById("startcall");
 var testcallButton = document.getElementById("testcall");
 var testconnectionButton = document.getElementById("testconnection");
+var testconnectionButton2 = document.getElementById("testconnection2");
+var testconnectionButton3 = document.getElementById("testconnection3");
 var conferenceroom = document.getElementById("conferenceroom");
 var audioonlyButton = document.getElementById("audioonly");
 var audiofilterButton = document.getElementById("audiofilter");
+var serverCommands = document.getElementById("commands");
+var greetings = document.getElementById("greetings");
 
 var unique = Math.floor(100000 + Math.random() * 999);
 
@@ -61,6 +65,7 @@ var view;
 var canvas=document.getElementById("canvas");
 var context=canvas.getContext("2d");
 var canvasInterval;
+var connectionDescription;
 
 var sessconfig = null,sessPoll=null;
 
@@ -104,8 +109,25 @@ function draw(){
          context.restore();    
 }
 
+function addCommand(commandText){
+    var cli = document.createElement("li");
+    cli.innerHTML = commandText;
+    serverCommands.appendChild(cli);
+}
 
+function displayPeerConnectionTable(){
+}
 
+function addTableRow(label,value){
+    var tableRow = document.createElement("tr");
+    var tableCellLabel = document.createElement("td");
+    tableCellLabel.innerHTML = label;
+    var tableCellValue = document.createElement("td");
+    tableCellValue.innerHTML = value;
+    tableRow.append(tableCellLabel);
+    tableRow.append(tableCellValue);
+    return tableRow;
+}
 rtcform.addEventListener("submit", 
 	function(e){
 		e.preventDefault(); 
@@ -138,6 +160,7 @@ var dataChannel = null;
 
 testcallButton.addEventListener("click",function(e){
    e.preventDefault();
+   startRoomConnection();
    createPeerConnection();
     navigator.mediaDevices.getUserMedia(constraints)
             .then(function(stream){ addStream(stream);
@@ -149,9 +172,22 @@ testcallButton.addEventListener("click",function(e){
 
 testconnectionButton.addEventListener("click",function(e){
    e.preventDefault();
+   displayPeerConnectionTable();
+   enableServerComm();
    rtcOnLogin(true);
    createCallSession();
    startAsynchronousCall();
+   
+   
+});
+testconnectionButton2.addEventListener("click",function(e){
+    e.preventDefault();
+    createPeerConnection2();   
+   
+});
+testconnectionButton3.addEventListener("click",function(e){
+   e.preventDefault();
+    createPeerConnection3();   
    
    
 });
@@ -312,6 +348,9 @@ var createPeerConnection = function (){
                 break;
         }
     };
+    
+    
+    
 
     dataChannel = peerConnection.createDataChannel("dataChannel",
             {reliable:true}
@@ -335,26 +374,90 @@ var createPeerConnection = function (){
 
 var createPeerConnection2 = function (){
 
-    peerConnection.setRemoteDescription(new RTCSessionDescription(peerConfiguration))
-            .then(function(stream){
-                createStream(stream);
-            })
-            .then(function() {
-                        return peerConnection.createAnswer();
-            }).then(function() {
-                peerConnection.createAnswer(function(answer){
-                    send({
-                    event: "answer",
-                    data : answer});
+//    peerConnection.setRemoteDescription(new RTCSessionDescription(peerConfiguration))
+    if (connectionDescription != null) {
+            navigator.getUserMedia({video:true, audio:true}, function(stream) {
+            peerConnection.setRemoteDescription(new RTCSessionDescription(connectionDescription))
+                    .then(function(stream){
+                        createStream(stream);
                     })
-             }).then(function(){
-                 console.log("Established connection");
+                    .then(function() {
+                                return peerConnection.createAnswer();
+                    }).then(function() {
+                        peerConnection.createAnswer(function(answer){
+                            send({
+                            event: "answer",
+                            data : answer});
+                            })
+                     }).then(function(){
+                         console.log("Established connection");
 
-             }).catch(offerError);
+                     }).catch(offerError);
+                 }, function(){
+                     console.log("Error getting audio, visual devices to stream.");
+                     
+                 });
+         } else {
+             console.log("connectionDescription",connectionDescription);
+         }
 };
 
+var enableServerComm = function(){
+    var messagesocket = new EventSource(hosturl);
+    messagesocket.send = (e) =>
+    {
+        console.log("messagesocket send",e);
+        addCommand("sent" + e);
+        if (peerConnection != null){
+            console.log()
+        }
+        ws.send(JSON.stringify('[{"message":"test"}]'));
+        //createOffer();
+        sendMediaStream(e);    
+    }
+
+    messagesocket.onopen = (e) =>
+    {
+        if (e.target.readyState !== EventSource.OPEN) return;
+        const authentication = {
+            msgType : 'Authenticate',
+            data : {
+                token : localStorage.getItem('authToken')
+            }
+        }
+        var newMessage = JSON.stringify('[{"message":"test"}]');
+        ws.send(newMessage);
+    };
+
+    messagesocket.onmessage = function(message) {
+        var content = JSON.parse(message.data);
+        var data = content[0].data;
+
+        switch(content[0].event) {
+            case "offer":
+                handleOffer(data);
+                break;
+            case "answer":            
+                handleAnswer(data);
+                break;
+            case "candidate":
+                handleCandidate(data);
+                break;
+            default:
+                break;
+        }
+    };
+    
+    function streamsendname(){
+        messagesocket.send("/topics/messages/", {}, 
+        JSON.stringify({'name':document.getElementById("name").value}));
+    }
+
+    
+}
 
 var localCall = function(){
+                console.log("local call");
                 testEventSourceSend("client-connect","1");
                 createTestCanvasAnimation();
                 var cStream;
@@ -430,6 +533,7 @@ function createRoom(){
 }
 
 function createCallSession(){
+    console.log("create call session");
     navigator.mediaDevices.getUserMedia({
            audio: true, 
             video: true
@@ -539,6 +643,7 @@ function clientOffer(localStream,data){
 }
 
 function clientCandidate(data){
+        console.log("Client Candidate: ",data);
     if (peerConnection==null) {
     return false;
      }
@@ -548,7 +653,8 @@ function clientCandidate(data){
     return true;
 }
 
-function sendMultipleMesageStreams(ws,event) {
+function sendMultipleMessageStreams(ws,event) {
+        console.log("Send Multiple Message Streams: ",event);
     if (event.data.includes("_MULTIPLEVENTS_")) {
             var multiple = event.data.split("_MULTIPLEVENTS_");
             for (var x=0; x<multiple.length; x++) {
@@ -642,6 +748,7 @@ ws.onmessage = async ({desc,candidate}) => {
     }
 
 function createStream(stream){
+    console.log("Create Stream",stream);
     navigator.mediaDevices.getUserMedia(constraints);
     var streamcanvas = document.getElementById("srcStream");
     var streamVideo = document.createElement("video");
@@ -671,6 +778,7 @@ function handleOffer(offer){
 
 
 function handleAnswer(answer){
+    console.log("handleAnswer",answer);
     
     if (sessconfig != null) {
         peerConnection.setRemoteDescription(new RTCSessionDescription(sessconfig));
@@ -680,58 +788,13 @@ function handleAnswer(answer){
 }
 
 function handleCandidate(candidate){
+    console.log("handleCandidate",candidate);
     peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
 }
 
 
-
-
-var messagesocket = new EventSource(hosturl);
-messagesocket.send = (e) =>
-{
-    ws.send(JSON.stringify('[{"message":"test"}]'));
-    //createOffer();
-    sendMediaStream(e);    
-}
-
-messagesocket.onopen = (e) =>
-{
-    if (e.target.readyState !== EventSource.OPEN) return;
-    const authentication = {
-        msgType : 'Authenticate',
-        data : {
-            token : localStorage.getItem('authToken')
-        }
-    }
-    var newMessage = JSON.stringify('[{"message":"test"}]');
-    ws.send(newMessage);
-};
-
-messagesocket.onmessage = function(message) {
-    var content = JSON.parse(message.data);
-    var data = content[0].data;
-    
-    switch(content[0].event) {
-        case "offer":
-            handleOffer(data);
-            break;
-        case "answer":            
-            handleAnswer(data);
-            break;
-        case "candidate":
-            handleCandidate(data);
-            break;
-        default:
-            break;
-    }
-};
-
-function streamsendname(){
-    messagesocket.send("/topics/messages/", {}, 
-    JSON.stringify({'name':document.getElementById("name").value}));
-}
-
 function streamshowgreetings(message){
+    console.log("stream show greetings",message);
     var greetings = document.getElementById("greetings");
     var newMessage = document.createElement("span");
     newMessage.appendChild(message);
@@ -740,6 +803,7 @@ function streamshowgreetings(message){
 
 
 function addStream(stream) {
+    console.log("add stream",stream);
     peerConnection.addStream(stream);
     peerConnection.onaddstream = function(event) {
         videoElement.srcObject = event.stream;
@@ -748,6 +812,7 @@ function addStream(stream) {
 
 
 function setstreamconnected(connected) {
+    console.log("set stream connected",connected);
     var connect = document.getElementById("connect");
     var disconnect = document.getElementById("disconnect");
     var conversation = document.getElementById("conversation");
@@ -765,6 +830,7 @@ function setstreamconnected(connected) {
 }
 
 function streamconnect() {
+    console.log("stream connect");
     peerConnection = new RTCPeerConnection(configuration);
     var dataChannel = peerConnection.createDataChannel("channel1");
     var streamsocket = new EventSource("/topics/messages");
@@ -807,6 +873,7 @@ function streamconnect() {
 }
 
 function streamdisconnect() {
+    console.log("stream disconnect");
     var peersocket = new EventSource('/topic/messages/disconnect');
     peersocket.onopen = (e) =>
     {
@@ -818,6 +885,7 @@ function streamdisconnect() {
 
 
 function rtcOnLogin(success) {
+    console.log("rtc on login", success);
     if (success === false) {
     } else {
         var streamconfiguration = {
@@ -838,6 +906,7 @@ function rtcOnLogin(success) {
 
 
 function setRtcMessage(){
+    console.log("set rtc message");
     rtcpeerconnection.onmessage = function(message) {
         var data = JSON.parse(message.data);
 
@@ -869,11 +938,13 @@ function setRtcMessage(){
 
 
 function rtcsend(message){
+    console.log("rtc send",message);
     ws.send(JSON.stringify(message));
 }
 
 function rtcOnOffer(offer,name){
-    connectedUser = name;
+    console.log("rtc on offer ",offer,"name: ",name);
+    //connectedUser = name;
     rtcpeerconnection.setRemoteDescription(new RTCSessionDescription(offer));
     rtcpeerconnection.createAnswer(function (answer){
         rtcpeerconnection.setLocalDescription(answer);
@@ -889,16 +960,20 @@ function rtcOnOffer(offer,name){
 }
 
 function rtcOnAnswer(answer){
+    console.log("rtc on answer",answer);
     rtcpeerconnection.setRemoteDescription(new RTCSessionDescription(answer));
 }
 
 function rtcOnCandidate(candidate) {
+    console.log("rtc on candidate",candidate);
     rtcpeerconnection.addIceCandidate(new RTCIceCandidate(candidate));
 }
 
 function sendMediaStream(message) {
+    console.log("send media stream",message);
     var xhttp = new XMLHttpRequest();
     var header={};
+    var formData = new FormData();
     xhttp.onreadystatechange = function() {
             if (this.readyState!=4) {
               return;
@@ -906,6 +981,7 @@ function sendMediaStream(message) {
             if (this.status != 200) {
             } else {
                 view = this.responseText;
+                console.log("send Media Stream Response",this.responseText);
                 var headers = xhttp.getAllResponseHeaders().toLowerCase();
                 var headersString  = headers.split("\n");
                 for (var i=0;i<headersString.length;i++){
@@ -921,7 +997,6 @@ function sendMediaStream(message) {
             }
     };
     xhttp.open('POST', '/socket/'+unique, true);
-    var formData = new FormData();
         switch (message.event) {
             case 'client-call':
                 clientCall(localStream);
@@ -936,13 +1011,19 @@ function sendMediaStream(message) {
                 clientCandidate(message.data);
                 break;
         }
-
-        formData.append("message",message);
-        
-    xhttp.send(formData);
+        if (message.desc !== undefined && message.desc !== null){
+            formData.append("message",message);
+            formData.append("sdp",message.desc.sdp);
+            formData.append("type",message.desc.type);
+            connectionDescription = message.desc;
+            xhttp.send(formData);
+        } else {
+            console.log("sending... ", message);
+        }
 }
 
 var sendToServer = function (jsonmessage){
+    console.log("send to server",jsonmessage);
     var xhttp = new XMLHttpRequest();
     var header={};
     xhttp.onreadystatechange = function() {
@@ -991,6 +1072,22 @@ var sendToServer = function (jsonmessage){
 }
 
 var addSource = function(source){
+    console.log("add source",source);
+    switch (source) {
+            case 'poll-rooms':
+                console.log("poll-rooms");
+                break;
+            case 'connect-room':
+                console.log("connect-room");
+                break;
+            case 'create-room':
+                console.log("create-room");
+                break;
+            case 'room-commands':
+                console.log("room-commands");
+                break;
+        
+    }
     var xhttp = new XMLHttpRequest();
     var header={};
     xhttp.onreadystatechange = function() {
@@ -1010,7 +1107,7 @@ var addSource = function(source){
                     }
                 }
                 if (header["custom-event-source"]!==undefined){
-                    addSource(header["custom-event-source"]);            
+                    addTopic(header["custom-event-source"]);            
                 }
             }
     };
@@ -1018,27 +1115,42 @@ var addSource = function(source){
     xhttp.setRequestHeader("Content-Type","Application/Json");
     xhttp.send(source);
     
-}
-
-var ws = new EventSource('/socket/'+unique);
-
-ws.addEventListener("message", (event) => {
-});
-
-ws.addEventListener("open", (event) => {
-});
-
-ws.addEventListener("error", (event) => {
-   if (event.readyState == EventSource.CLOSED) {
-   } else {
-   }
-   event.target.close();
-});
-
-ws.send = function (message){
-    sendMediaStream(message);
 };
 
+var addTopic =function (source){
+    var textNode = document.createTextNode("; new source: " + source);
+    greetings.appendChild(textNode);    
+};
+
+var startRoomConnection = function(){
+    if (ws==null){
+        ws = new EventSource('/socket/'+unique);
+
+        ws.addEventListener("message", (event) => {
+           console.log(event.data); 
+        });
+
+        ws.addEventListener("open", (event) => {
+           console.log('connection is live');
+        });
+
+        ws.addEventListener("error", (event) => {
+           if (event.readyState == EventSource.CLOSED) {
+              console.log('connection is closed');
+           } else {
+              console.log("Error occured", event);
+           }
+           event.target.close();
+        });
+
+        ws.send = function (message){
+            console.log("ws send", message);
+            sendMediaStream(message);
+        };
+    } else {
+        console.log("Web socket connection defined");
+    }
+};
 
 function testEventSourceSend(event,data){
     ws.send(JSON.stringify({
@@ -1065,7 +1177,8 @@ function sendToOneUser(target, msgString) {
 }
 
 
-function sendToServer(message) {
+function messageToServer(message) {
+    console.log("message to server ",message);
   var msgJSON = JSON.stringify(message);
 
   ws.send(msgJSON);

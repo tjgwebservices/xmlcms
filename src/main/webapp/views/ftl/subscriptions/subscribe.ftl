@@ -3,7 +3,7 @@
 
 <html>
    <head>
-      <title>Add User</title>
+      <title>Subscribe</title>
        <@nav.cssheading />
     
    </head>
@@ -18,7 +18,7 @@
        
       <div>
          <fieldset>
-            <legend>Add User</legend>
+            <legend>Subscribe</legend>
             <form name="user" action="" method="POST">
                <p>Username: <@spring.formInput "userForm.username" "" "text"/></p><br/>
                <p>First Name: <@spring.formInput "userForm.firstName" "" "text"/></p><br/>
@@ -48,5 +48,6 @@
        
        
    <@nav.footingform />
+
 
 

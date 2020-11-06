@@ -54,6 +54,7 @@ public class UserController {
     @RequestMapping(value = { "/authenticated/addUser" }, method = RequestMethod.POST)
     public String addUserSave(Model model, //
         @ModelAttribute("userForm") UserForm userForm) {
+        users = UserDBO.loadUsers();
         String username = userForm.getUsername();
         String firstName = userForm.getFirstName();
         String lastName = userForm.getLastName();
@@ -99,6 +100,7 @@ public class UserController {
     @RequestMapping(value = { "/authenticated/editUser/{id}" }, method = RequestMethod.GET)
     public String editUserForm(Model model,
             @PathVariable("id") Integer id) {
+        users = UserDBO.loadUsers();
  
         UserForm userForm = new UserForm();
         model.addAttribute("userForm", userForm);
@@ -145,9 +147,10 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = { "/authenticated/editUser/{id}" }, method = RequestMethod.POST)
-    public String editUserSave(Model model, @PathVariable("id") Integer id,//
+    @RequestMapping(value = { "/authenticated/editUser" }, method = RequestMethod.POST)
+    public String editUserSave(Model model,//
         @ModelAttribute("userForm") UserForm userForm) {
+        Integer id = userForm.getId();
         String username = userForm.getUsername();
         String firstName = userForm.getFirstName();
         String lastName = userForm.getLastName();

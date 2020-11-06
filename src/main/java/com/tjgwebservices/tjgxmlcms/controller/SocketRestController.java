@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -94,10 +95,15 @@ public class SocketRestController {
                 responseText = "Multiple rooms with id "+id;
                 roomInfo = "{}";
             } else {
-                
+                //String sdptext;
+                StringBuilder sb = new StringBuilder();
+                Stream<String> sdplines = rooms.get(0).getSdp().lines();
+                sdplines.forEach(sdpl->sb.append(sdpl));
                 responseText = "1 room with id: "+id+" and attendees: "+rooms.get(0).getAttendees();
-                roomInfo = "{\"sdp\":\""+rooms.get(0).getSdp()+"\"},{"+
-                        "\"type\": \""+rooms.get(0).getType()+"\"}";
+                roomInfo = "[{\"sdp\":\""+sb.toString()+"\"},"
+                        + "{\"attendees\": \""+rooms.get(0).getAttendees()+"\"},"
+                        + "{\"id\":\""+id+"\"},"
+                        + "{\"type\": \""+rooms.get(0).getType()+"\"}]";
             }
         }
         

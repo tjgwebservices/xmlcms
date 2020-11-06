@@ -18,6 +18,7 @@
             <form name="loginForm" action="" method="POST">
                Username: <@spring.formInput "loginForm.username" "" "text"/>    <br/>
                Password: <@spring.formInput "loginForm.password" "" "text"/>    <br/>
+                <input type="hidden" value="<#if loginForm.referralPath ??>${loginForm.referralPath}</#if>" />
                <input type="submit" value="Login" />
             </form>
          </fieldset>
