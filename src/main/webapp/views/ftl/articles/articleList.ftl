@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
       <div>
      <h3>Article List</h3>
      <a href="/articles/addArticle">Add Article</a>
@@ -42,5 +43,8 @@
       <a href="<@spring.url '/display'/>">Display Subscription List</a>  
       <a href="<@spring.url '/subscriptions/publish'/>">Publish to Subscription List</a>  
       </div>
-   </body>
-</html>
+       </main>
+
+
+   <@nav.footing />
+

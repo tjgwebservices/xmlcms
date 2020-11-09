@@ -8,7 +8,7 @@
 </head>
 <body>
    <@nav.navigation />
-
+<main>
 <#if errorMessage??>
 <div style="color:red;font-style:italic;">
    ${errorMessage}
@@ -34,9 +34,8 @@
 </div>
 
 
-</body>
-    
-</html>
+     </main>
+   <@nav.footing />
 
 
 

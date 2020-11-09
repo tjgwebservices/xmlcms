@@ -1,4 +1,4 @@
-package com.tjgwebservices.tjgxmlcms.controller;
+package com.tjgwebservices.tjgxmlcms.controller.conference;
 
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;

@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Topics</h3>
      <a href="/research/addTopic">Add Topic</a>
      <br><br>
@@ -33,3 +34,7 @@
          </table>
       </div>
 
+       </main>
+
+
+   <@nav.footing />

@@ -9,13 +9,13 @@
    </head>
    <body>
    <@nav.navigation />
+    <main>
 
       <#if errorMessage??>
       <div style="color:red;font-style:italic;">
          ${errorMessage}
       </div>
       </#if>
-       
       <div>
          <fieldset>
             <legend>Researcher</legend>
@@ -31,11 +31,11 @@
             </form>
          </fieldset>
       </div>
-       
-       
-   </body>
-    
-</html>
+       </main>
+
+
+   <@nav.footing />
+
 
 
 

@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Machine Learning Algorithms</h3>
      <a href="/aiml/addMlAlgorithm">Add Algorithm</a>
      <br><br>
@@ -28,6 +29,11 @@
             </#if>
          </table>
       </div>
+
+       </main>
+
+
+   <@nav.footing />
 
 
 

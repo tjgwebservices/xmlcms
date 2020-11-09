@@ -9,7 +9,7 @@
    </head>
    <body>
    <@nav.navigation />
-
+    <main>
       <#if errorMessage??>
       <div style="color:red;font-style:italic;">
          ${errorMessage}
@@ -39,8 +39,9 @@
             <p>No HR Groups <a href="/hr/addHrGroup">Add HR Group</a></p>
       </#if>       
        
-       
-   </body>
-    
-</html>
+       </main>
+
+
+   <@nav.footing />
+
 

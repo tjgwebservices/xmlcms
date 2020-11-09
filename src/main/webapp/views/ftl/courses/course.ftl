@@ -5,6 +5,7 @@
    <@nav.heading />
    <body>
    <@nav.navigation />
+    <main>
     <h3>Course Page</h3>
      <a href="/articles/addArticle">Add Article</a>
      <br><br>
@@ -56,7 +57,10 @@
       <a href="<@spring.url '/display'/>">Display Subscription List</a>  
       <a href="<@spring.url '/subscriptions/publish'/>">Publish to Subscription List</a>  
       </div>
-   </body>
-</html>
+       </main>
+
+
+   <@nav.footing />
+
 
  

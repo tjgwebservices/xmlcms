@@ -1,7 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.requests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tjgwebservices.tjgxmlcms.controller.WebSocketController;
+import com.tjgwebservices.tjgxmlcms.controller.conference.WebSocketController;
 import com.tjgwebservices.tjgxmlcms.model.socket.SocketSubscriber;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

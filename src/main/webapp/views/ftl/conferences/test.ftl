@@ -7,43 +7,26 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
-   <@nav.conference />
-      <#if conferenceName??>
-      <h2>${conferenceName}</h2>
+      <#if rooms??>
+      <main>
+        <table>
+        <tr>
+           <th>Available Conference Rooms</th>
+        </tr>
+        <#list rooms as room>
+        <tr>
+           <td>${room.id}</td>
+        </tr>
+        </#list>
+        </table>
+      </main>
       </#if>
+   <@nav.conference />
       <#if message??>
       <h2>${message}</h2>
       </#if>
-      <div>
-        <button id="test1" type="button">Test 1</button>
-        <button id="test2" type="button">Test 2</button>
-        <button id="test3" type="button">Test 3</button>
-      </div>
-      <div id="conferenceroom">
-      </div>
+      <#if conferenceName??>
+      <h2>${conferenceName} Experimental, Not Functional</h2>
+      </#if>
 
-<div class="flexChild" id="camera-container">
-  <div class="camera-box">
-    <video id="received_video" autoplay></video>
-    <video id="local_video" autoplay muted></video>
-    <button id="hangup-button" disabled>
-      Hang Up
-    </button>
-
-<ul class="userlistbox">
-    <li></li>
-</ul>
-
-  </div>
-</div>
-<div>
-
-<canvas id="canvas">
-</canvas>
-    <video id="leftVideo" autoplay></video>
-    <video id="rightVideo" autoplay></video>
-
-</div>
-
-   <@nav.footingconferenceroomtest />
-
+   <@nav.footingconferencetest />

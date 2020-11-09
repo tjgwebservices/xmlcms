@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Employers</h3>
      <a href="/hr/addEmployer">Add Employer</a>
      <br><br>
@@ -30,4 +31,9 @@
             </#if>
          </table>
       </div>
+
+       </main>
+
+
+   <@nav.footing />
 

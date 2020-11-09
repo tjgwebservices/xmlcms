@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>HR Groups</h3>
      <a href="/hr/addHrGroup">Add Group</a>
      <br><br>
@@ -24,4 +25,9 @@
             </#if>
          </table>
       </div>
+
+       </main>
+
+
+   <@nav.footing />
 

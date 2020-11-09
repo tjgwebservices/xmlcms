@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
       <div>
      <h3>User List</h3>
      <a href="/authenticated/addUser">Add User</a>
@@ -46,7 +47,10 @@
             </#list>
          </table>
       </div>
-   </body>
-</html>
+       </main>
+
+
+   <@nav.footing />
+
 
 

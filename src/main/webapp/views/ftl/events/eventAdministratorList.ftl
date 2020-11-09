@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Event Administrators</h3>
      <a href="/events/addEventAdministrator">Add Event Administrator</a>
      <br><br>
@@ -32,6 +33,11 @@
             </#if>
          </table>
       </div>
+       </main>
+
+
+   <@nav.footing />
+
 
 
 

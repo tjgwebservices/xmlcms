@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class UserDBO extends DatabaseObject{
 
@@ -109,6 +111,24 @@ public class UserDBO extends DatabaseObject{
             tx.rollback();
             }
         return userList;
+    }
+
+    public static boolean deleteUser(User user) {
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
+            String sql = "DELETE FROM AccountUser WHERE id = ?";
+            try {
+                conn = DriverManager.getConnection(connectionURL);
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1,user.getId());
+                tx.commit();
+                session.close();
+                return true;
+            } catch (SQLException e){
+                System.out.println(e.getMessage());
+                tx.rollback();                
+                return false;
+            }
     }
 
     

@@ -9,6 +9,7 @@
 <body>
    <@nav.navigation />
 
+       <main>
 <#if errorMessage??>
 <div style="color:red;font-style:italic;">
    ${errorMessage}
@@ -32,11 +33,10 @@
       </form>
    </fieldset>
 </div>
+       </main>
 
 
-</body>
-    
-</html>
+   <@nav.footing />
 
 
 

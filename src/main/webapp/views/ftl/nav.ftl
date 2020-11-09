@@ -76,10 +76,21 @@
     </footer>
     </body>
        <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/stream.js'/>"></script>
+
+</html>
+</#macro>
+<#macro footingconferencetest>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
        <script src="<@spring.url '/js/videostream.js'/>"></script>
 
 </html>
 </#macro>
+
 <#macro footingform>
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
@@ -165,6 +176,8 @@
                 <a href="/subscriptions/subscribe">Subscribe</a>
                 <span class="dropdown1-content">
                     <a href="/subscriptions/subscribers">Subscribers</a>
+                    <a href="/subscriptions/unsubscribe">Unsubscribe</a>
+                    <a href="/subscriptions/editSubscription">Edit Subscription</a>
                 </span>
             </span>
             </li>
@@ -233,6 +246,91 @@
 
 
 
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0013.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0013.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0014.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0014.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0015.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0015.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0016.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0016.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0017.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0017.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0018.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0018.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0019.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0019.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0020.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0020.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0021.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0021.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0022.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0022.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0023.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0023.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0024.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0024.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0026.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0026.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
 </aside>
 </#macro>
 
@@ -286,6 +384,252 @@
             <li>Reporting tools</li>
         </ul>
 
+
+<article>
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0007.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0007.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0008.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0008.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0009.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0009.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+</article>
+
+
+
+<article>
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0010.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0010.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0011.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0011.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+	
+	<section>
+
+<video width="320" height="240" controls="">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0012.ogg">
+<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0012.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
+
+	</section>
+</article>
+
+
+        <iframe src="//tjgwebservices.com/management/" ></iframe>
+
+
+<article>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+</article>
+<article>
+</article>
+<article>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+</article>
+
+		<iframe height="600" src="//testing.tjgwebservices.com/api/tags.php"></iframe>
+
+<article>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+</article>
+
+		<iframe height="600" src="//testing.tjgwebservices.com/api/strategies.php"></iframe>
+<article>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+</article>
+
+
+
+		<iframe height="600" src="//testing.tjgwebservices.com/api/components.php"></iframe>
+
+<article>
+	<section>
+            <a href="//github.com/tjgwebservices/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+	</section>
+	<section>
+            <a href="//github.com/tjgwebservices/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+	<section>
+            <a href="//github.com/tjgwebservices/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+</article>
+
+
+		<iframe height="650" src="//development.tjgwebservices.com/api/productdevelopment.php"></iframe>
+
+<article>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+</article>
+
+		<iframe height="600" src="//development.tjgwebservices.com/api/testingintro.php"></iframe>
+
+<article>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+</article>
+
+		<iframe height="600" src="//development.tjgwebservices.com/api/calendar.php"></iframe>
+
+<article>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
+
+	</section>
+</article>
+
+		<iframe height="600" src="//development.tjgwebservices.com/api/reportissue.php"></iframe>
+
+<article>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+	<section>
+            <a href="//tjgwebservices.com/subscriptions">
+            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
+            </a>
+
+	</section>
+</article>
+
    </main>
 </#macro>
 <#macro videosection>
@@ -308,54 +652,81 @@
    <main>
 
       <div>
+        <button id="testcall" type="button">Activate Room</button>
         <button id="startcall" type="button">Start Call</button>
-        <button id="testcall" type="button">Test Call</button>
-        <button id="testconnection" type="button">Test Connection 1</button>
-        <button id="testconnection2" type="button">Test Connection 2</button>
-        <button id="testconnection3" type="button">Test Connection 3</button>
+        <button id="testconnection" type="button">Connect</button>
+        <button id="testconnection2" type="button">Test 2</button>
+        <button id="testconnection3" type="button">Test 3</button>
         <button id="audioonly" type="button">Audio Only</button>
         <button id="audiofilter" type="button">Audio Filter</button>
         <button id="hangup" type="button">Hang Up</button>
+        <button id="startcall" type="button">Initiate Call</button>
       </div>
       <div>
-        <button id="startcall" type="button">Start Call</button>
+        <table id="eventTable">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
       </div>
       <div id="conferenceroom">
       </div>
-
-        <form id="rtcform">
-        <label for="rtcconnectname">Connect to video name: </label>
-        <input type="text" id="rtcconnectname" name="rtcconnectname" />
-        <label for="rtcconnectbutton">Connection:</label>
-        <button id="rtcconnectbutton">Connect</button>
-        <label for="rtcsend">Send Message:</label>
-        <button id="rtcsend">Send</button>
-        <video id="rtcremote">
-        </video>
-        <video id="rtcself">
-        </video>
-        </form>
-        <canvas id="canvas"></canvas>
-        <canvas id="srcStream"></canvas>
-        <canvas id="peerStream"></canvas>
-        <video id="liveStream"></video>
+      <article>
+      <section>
+        <div>
+            <form id="rtcform">
+            <label for="rtcconnectname">Connect to video name: </label>
+            <input type="text" id="rtcconnectname" name="rtcconnectname" />
+            <label for="rtcconnectbutton">Connection:</label>
+            <button id="rtcconnectbutton">Connect</button>
+            <label for="rtcsend">Send Message:</label>
+            <button id="rtcsend">Send</button>
+            <video id="rtcremote">
+            </video>
+            <video id="rtcself">
+            </video>
+            </form>
+        </div>
+        </section>
+        <section>
+            <canvas id="canvas"></canvas>
+            <canvas id="srcStream"></canvas>
+            <canvas id="peerStream"></canvas>
+            <video id="liveStream"></video>
+        </section>
+        <section>
         <form id="connectform">
         <label for="connect">Websocket connection: </label>
         <button id="connect">Connect</button>
         <button id="disconnect">Disconnect</button>
         </form>
-        <form id="sendmessage">
-        <label for="name">Your name:</label>
-        <input type="text" id="name" />
-        <button id="send">Send</button>
-        </form>
-
+        </section>
+        </article>
+        <article>
+        <section>
+            <form id="sendmessage">
+            <label for="name">Your name:</label>
+            <input type="text" id="name" />
+            <button id="send">Send</button>
+            </form>
+        </section>
+        <section>
         <p id="greetings"></p>
-
+        </section>
+        <section>
         <p id="conversation"></p>
         <ul id="commands"></ul>
         <table id="commandTable"></table>
+        </section>
+        </article>
 
+        <article>
+        <section>
 		<h4>Objectives</h4>
 		<p>The objectives of the Conference Series are:</p>
 		<ul>
@@ -364,9 +735,14 @@
 			<li>Share strategies for success</li>
 			<li>Provide guidance for mistakes made along the way</li>
 		</ul>
-
+        </section>
+         <section>
 		<br />
+        </section>
+         <section>
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
+        </section>
+        </article>
    </main>
 </#macro>
 <#macro book>

@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Chats</h3>
      <a href="/chat/addChat">Add Chat</a>
      <br><br>
@@ -34,6 +35,11 @@
             </#if>
          </table>
       </div>
+       </main>
+
+
+   <@nav.footing />
+
 
 
 

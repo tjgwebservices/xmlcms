@@ -2,7 +2,7 @@ package com.tjgwebservices.tjgxmlcms;
 
 
 import com.tjgwebservices.tjgxmlcms.services.filters.CustomFilter;
-import com.tjgwebservices.tjgxmlcms.controller.RefererRedirectionAuthenticationSuccessHandler;
+import com.tjgwebservices.tjgxmlcms.controller.conference.RefererRedirectionAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -31,6 +31,8 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
         "/subscriptions/subscribe","/subscriptions/subscribers","/subscriptions/editSubscriber",
         "/uploads","/topics","/topics/**","/topic/*","/topics/messages/",
         "/topics/messages/**","/topics/messages/info/**",
+        "/stream/media","/stream/video",
+        "/stream/media/**","/stream/video/**",
         "/conferences/workshop","/conferences/conference","/conferences/test",
         "/conferences/forum","/conferences/project","/conferences/room",
         "/videos/addArtist","/videos/addVideo","/videos/videoList",
@@ -42,7 +44,7 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
         "/events/editEventAdministrator","/events/editEventAdministrator/*",
         "/events/editEventAdvertisement/*","/events/editEvent/*",
         "/reviews/editReview/*","/aiml/mlAlgorithms","/aiml/aiAlgorithms",
-        "/aiml/addAiAlgorithms","/aiml/editAiAlgorithm","/aiml/addMlAlgorithm",
+        "/aiml/addAiAlgorithm","/aiml/editAiAlgorithm","/aiml/addMlAlgorithm",
         "/aiml/editMlAlgorithm","/aiml/editMlAlgorithm/*","/aiml/editAiAlgorithm/*",
         "/conferences/learn","/conferences/report","/schools/addAdministrator",
         "/schools/addAdministratorGroup","/schools/addLecture",

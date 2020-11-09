@@ -9,7 +9,7 @@
    </head>
    <body>
    <@nav.navigation />
-
+    <main>
       <#if errorMessage??>
       <div style="color:red;font-style:italic;">
          ${errorMessage}
@@ -20,21 +20,22 @@
          <fieldset>
             <legend>Add AI Algorithm</legend>
             <form name="artificialIntelligence" action="" method="POST">
-               <p>Title: <@spring.formInput "artificialIntelligence.title" "" "text"/></p><br/>
-               <p>Description: <@spring.formInput "artificialIntelligence.description" "" "text"/></p><br/>
-               <p>Algorithm Path: <@spring.formInput "artificialIntelligence.algorithmPath" "" "text"/></p><br/>
-               <p>Data Source: <@spring.formInput "artificialIntelligence.dataSourcePath" "" "text"/></p>
-               <p>Data Target: <@spring.formInput "artificialIntelligence.dataTargetPath" "" "text"/></p>
+               <p>Title: <@spring.formInput "artificialIntelligenceForm.title" "" "text"/></p><br/>
+               <p>Description: <@spring.formInput "artificialIntelligenceForm.description" "" "text"/></p><br/>
+               <p>Algorithm Path: <@spring.formInput "artificialIntelligenceForm.algorithmPath" "" "text"/></p><br/>
+               <p>Data Source: <@spring.formInput "artificialIntelligenceForm.dataSourcePath" "" "text"/></p>
+               <p>Data Target: <@spring.formInput "artificialIntelligenceForm.dataTargetPath" "" "text"/></p>
                <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>
       </div>
        
-       
-   </body>
-    
-</html>
+       </main>
+
+
+   <@nav.footing />
+
 
 
 

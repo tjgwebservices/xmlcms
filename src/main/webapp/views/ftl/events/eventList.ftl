@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Events</h3>
      <a href="/events/addEvent">Add Event</a>
      <br><br>
@@ -34,4 +35,9 @@
             </#if>
          </table>
       </div>
+
+       </main>
+
+
+   <@nav.footing />
 

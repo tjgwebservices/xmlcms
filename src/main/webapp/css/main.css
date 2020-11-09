@@ -553,7 +553,8 @@ main > video, main > canvas {
     border-radius: 15px;
 }
 main > article > section > video,
-aside > video {
+aside > video, #conferenceroom video, 
+main article section a img {
     display: block;
     width: 100%;
 }
@@ -615,6 +616,15 @@ body > h1, body > h2, body > a {
     font-size: 16px;
 }
 
+body > h2 {
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-shadow: 2px 2px #8496ca;
+    border-radius: 10px;
+    background-color: #cbe0f3;
+    padding: 30px 0px 20px 0px;
+}
+
 div fieldset form p {
     display: block;
     width: 100%;
@@ -653,6 +663,21 @@ footer {
     float: left;
     width: 100%;
 }
+
+#eventTable {
+    border: 2px inset #c8c8e8;
+    border-radius: 10px;
+    background-color: #ece2db;
+    color: #58492d;
+    font-family: Courier;
+    font-size: .6em;
+}
+
+#eventTable td{
+    border: 2px inset #c8c8e8;
+    border-radius: 10px;
+}
+
 @media (min-width: 600px) {
 
     aside {

@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Clients</h3>
      <a href="/hr/addClient">Add Client</a>
      <br><br>
@@ -30,3 +31,9 @@
             </#if>
          </table>
       </div>
+
+       </main>
+
+
+   <@nav.footing />
+

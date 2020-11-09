@@ -1,6 +1,6 @@
-package com.tjgwebservices.tjgxmlcms.controller;
+package com.tjgwebservices.tjgxmlcms.controller.conference;
 
-import com.tjgwebservices.tjgxmlcms.controller.SocketRestController.RequestMessage;
+import com.tjgwebservices.tjgxmlcms.controller.conference.SocketRestController.RequestMessage;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -60,7 +60,7 @@ public class TopicController extends HttpServlet {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type","text/event-stream");
         headers.add("Cache-Control","no-cache");
-        headers.add("Custom-Event-Source","json-source");
+        headers.add("Custom-Event-Source","post-topic-request");
         emitter = new SseEmitter();
         try {
             emitter.send(SseEmitter

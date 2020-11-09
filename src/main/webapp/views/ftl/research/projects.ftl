@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Projects</h3>
      <a href="/research/addProject">Add Project</a>
      <br><br>
@@ -30,3 +31,6 @@
             </#if>
          </table>
       </div>
+
+     </main>
+   <@nav.footing />

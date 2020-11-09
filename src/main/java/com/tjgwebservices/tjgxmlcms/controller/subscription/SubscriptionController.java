@@ -255,6 +255,43 @@ public class SubscriptionController implements Subscription {
         model.addAttribute("errorMessage", error);
         return "/subscriptions/editSubscription/{id}";
     }
+
+
+    @RequestMapping(value = { "/subscriptions/unsubscribe" }, method = RequestMethod.GET)
+    public String unsubscribeForm(Model model) {
+
+        UserForm userForm = new UserForm();
+        model.addAttribute("userForm", userForm);
+ 
+        return "subscriptions/unsubscribe";
+
+    }
+    
+   @RequestMapping(value = { "/subscriptions/unsubscribe" }, method = RequestMethod.POST)
+    public String unsubscribeSave(Model model, //
+        @ModelAttribute("userForm") UserForm userForm) {
+        String username = userForm.getUsername();
+        if (username != null && username.length() > 0){
+            
+            List<User> currentUsers = users.stream()
+                .filter((user) -> Objects.equals(user.getUsername(), username))
+                .collect(Collectors.toList());
+            if (currentUsers.size()==1){
+                users = UserDBO.loadUsers();
+                users.remove(currentUsers.get(0));
+                UserDBO.deleteUser(currentUsers.get(0));
+                return "subscriptions/subscribers";        
+            } else {
+                String error = "Username not found!";
+                model.addAttribute("errorMessage", error);                
+                return "redirect:/subscriptions/subscribe";
+            }
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "subscriptions/subscribe";
+    }
+
     
     @Override
     public void request(long n) {

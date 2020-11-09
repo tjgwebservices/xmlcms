@@ -1,4 +1,4 @@
-package com.tjgwebservices.tjgxmlcms.controller;
+package com.tjgwebservices.tjgxmlcms.controller.conference;
 
 import com.tjgwebservices.tjgxmlcms.WebSocketConfig;
 import java.io.IOException;

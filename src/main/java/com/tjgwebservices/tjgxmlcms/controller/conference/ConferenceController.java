@@ -1,6 +1,6 @@
-package com.tjgwebservices.tjgxmlcms.controller;
+package com.tjgwebservices.tjgxmlcms.controller.conference;
 
-import static com.tjgwebservices.tjgxmlcms.controller.SocketRestController.getRooms;
+import static com.tjgwebservices.tjgxmlcms.controller.conference.SocketRestController.getRooms;
 import com.tjgwebservices.tjgxmlcms.model.conference.Room;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;

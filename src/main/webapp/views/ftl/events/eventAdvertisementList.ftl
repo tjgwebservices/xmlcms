@@ -6,6 +6,7 @@
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
+    <main>
      <h3>Event Advertisements</h3>
      <a href="/events/addEventAdvertisement">Add Event Advertisement</a>
      <br><br>
@@ -32,6 +33,12 @@
             </#if>
          </table>
       </div>
+
+
+       </main>
+
+
+   <@nav.footing />
 
 
 
