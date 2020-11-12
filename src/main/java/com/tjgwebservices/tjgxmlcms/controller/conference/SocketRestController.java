@@ -55,7 +55,7 @@ public class SocketRestController {
                                    + "\"response\":\""+retrieveRoomList()+"\","
                                    //+ "\"RTCSessionDescription\":{\"type\":\""+type+"\",\"sdp\":\""+sdp+"\"},"
                                    + "\"channel\":\""+channels[i]+"\","
-                                   + "\"event\":\"offer\"}]"));
+                                   + "\"event\":\"answer\"}]"));
                    TimeUnit.SECONDS.sleep(15);
                }
                emitter.complete();
@@ -105,6 +105,7 @@ public class SocketRestController {
                            .data("[{\"data\": \""+channels[i]+"\","
                                    + "\"response\":\""+responseText+"\","
                                    + "\"room\":"+roomInfo+","
+                                   + "\"RTCSessionDescription\":{\"type\":\""+rooms.get(0).getType()+"\",\"sdp\":\""+rooms.get(0).getSdp()+"\"},"
                                    + "\"event\":\"answer\"}]"));
                    TimeUnit.SECONDS.sleep(1);
                }
@@ -163,6 +164,8 @@ public class SocketRestController {
             Room room = new Room(id, sdp, type, 1);
             rooms.add(room);
         }
+        String roomInfo = retrieveRoomInfo(id,rooms.get(0));
+        
         emitter = new SseEmitter();
        cachedThreadPool.execute(() -> {
            try {
@@ -170,6 +173,7 @@ public class SocketRestController {
                            .event()
                            .name("message")
                            .data("[{\"data\":\"Post request for sockets"+message+"\","
+                                   + "\"room\":"+roomInfo+","
                                    + "\"event\":\"answer\"}]"));
                emitter.complete();
            } catch (Exception e) {
@@ -306,10 +310,10 @@ public class SocketRestController {
     }
     
     private String retrieveRoomInfo(Integer id, Room room) {
-                StringBuilder sb = new StringBuilder();
-                Stream<String> sdplines = room.getSdp().lines();
-                sdplines.forEach(sdpl->sb.append(sdpl));
-                return "[{\"sdp\":\""+sb.toString()+"\"},"
+                //StringBuilder sb = new StringBuilder();
+                //Stream<String> sdplines = room.getSdp().lines();
+                //sdplines.forEach(sdpl->sb.append(sdpl));
+                return "[{\"sdp\":\""+room.getSdp()+"\"},"
                         + "{\"attendees\": \""+room.getAttendees()+"\"},"
                         + "{\"id\":\""+id+"\"},"
                         + "{\"type\": \""+room.getType()+"\"}]";

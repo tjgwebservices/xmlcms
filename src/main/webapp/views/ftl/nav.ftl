@@ -657,6 +657,8 @@ Your browser does not support the video tag.
         <button id="testconnection" type="button">Connect</button>
         <button id="testconnection2" type="button">Test 2</button>
         <button id="testconnection3" type="button">Test 3</button>
+        <button id="testconnection4" type="button">Test 4</button>
+        <button id="testconnection5" type="button">Test 5</button>
         <button id="audioonly" type="button">Audio Only</button>
         <button id="audiofilter" type="button">Audio Filter</button>
         <button id="hangup" type="button">Hang Up</button>

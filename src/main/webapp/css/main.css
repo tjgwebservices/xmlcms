@@ -146,29 +146,27 @@ nav div {
 
 .dropdown1-content {
 	color: #000;
-	/* background-color: #018f49; */
-	background-color: #e8d7d7;
+	background-color: #dad9cc;
 	box-shadow: 0 4px 8px 0 rgba(105, 179, 119, 0.2),0 6px 20px 0 rgba(98, 182, 128, 0.19);
 	cursor: auto;
 	display: none;
 	min-width: 80px;
-	max-width: 160px;
+	max-width: 200px;
 	margin: 0;
 	padding: 0;
 	position: absolute;
 	z-index: 900;
-	margin-left: -90px;
-	/* top: 44px; */
-	top: 74px;
+	margin-left: -8.5em;
+        margin-top: 40px;
 	border-radius: 15px;
 }
 
 .dropdown1-content a {
 	display: block;
 	margin: 5px 10px;
-	width:80%;
+	width:70%;
 	border-radius: 15px;
-	background-color: #dedede;
+	background-color: #e2e6cb;
 	box-shadow: 2px 7px 7px #c3e3cf;
 }
 
@@ -190,6 +188,32 @@ main {
     margin-top: 60px;
     float: left;
     background-color: #e5e5e5;
+}
+
+body > main > ul {
+    display: block;
+    float: left;
+    width: 80%;
+    margin: 0 20% 0 0;
+}
+
+body > main > ul li{
+    display: block;
+    float: left;
+    list-style-type: none;
+    width: 29%;
+    margin: 1px;
+    padding: 4px;
+    background-color: #cbe0f3;
+    border-radius: 4px;
+    font-size: .5em;
+}
+
+body > main > ul li a{
+    text-align: center;
+    color: #0f382a;
+    height: 100%;
+    display: block;
 }
 
 aside {
@@ -559,6 +583,17 @@ main article section a img {
     width: 100%;
 }
 
+main > article > section > video,
+aside > video {
+    float: left;
+    width: 100%;
+}
+
+#conferenceroom video {
+    float: left;
+    width: 49%;
+}
+
 div#chatBox{
     display: block;
     float: left;
@@ -624,6 +659,15 @@ body > h2 {
     background-color: #cbe0f3;
     padding: 30px 0px 20px 0px;
 }
+main > table > tbody > tr > td > span {
+    display: block;
+    float: left;
+    font-size: .5em;
+    color: #2c5e94;
+    background-color: #dbedfb;
+    border-radius: 4px;
+    margin: 4px;
+}
 
 div fieldset form p {
     display: block;
@@ -640,8 +684,10 @@ div fieldset form p input, div fieldset form p textarea{
 canvas {
     display: block;
     float: left;
-    width: 300px;
-    height: 300px;
+    width: 32%;
+    border: 1px solid #773824;
+    border-radius: 10px;
+    margin: 1px;
 }
 
 main > iframe {
