@@ -189,7 +189,7 @@
                 <span class="dropdown1-content">
                     <a href="/conferences/forum">Forum</a>
                     <a href="/conferences/room">Conference Room</a>
-                    <a href="/conferences/room">Presentation Room</a>
+                    <a href="/conferences/presentation">Presentation Room</a>
                     <a href="/conferences/project">Projects</a>
                     <a href="/conferences/workshop">Workshops</a>
                 </span>

@@ -437,6 +437,16 @@ var sendMediaStream = function(message) {
 
 }
 
+var addVideoStream = function(stream){
+    var videoElem = document.createElement("video");
+    videoElem.setAttribute("id","peercall"+Math.floor(Math.random() * Math.floor(20)));
+    videoElem.setAttribute("autoplay","true");
+    conferenceroom.appendChild(videoElem);
+    videoElem.srcObject = stream;        
+    
+    
+};
+
 
 
 function handleAnswer(answer) {
@@ -462,6 +472,72 @@ function logVideoAudioTrackInfo(localStream) {
         updateEventTableValue("Using audio device:",audioTracks[0].label);
     }
 };
+
+
+
+var handleVideoOfferMsg = function (message) {
+    updateEventTableValue2("HandleVideoOfferMessage", message);
+    var localStream = null;
+    myUsername = "['attendee':'1']";
+    targetUsername = "['room':'5555']";
+    if (message !== null) {
+        var desc = new RTCSessionDescription(message);
+
+        peerConnection.setRemoteDescription(desc).then(function () {
+            return navigator.mediaDevices.getUserMedia(constraints);
+        })
+        .then(function(stream) {
+            var remoteStream = stream;
+            remoteView.src = URL.createObjectURL(stream);            
+            remoteStream = remoteView.srcObject;
+            remoteStream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+              
+              
+            peerConnection.addStream(stream);
+            
+            rtcremote.srcObject = localStream;
+            localStream.getTracks().forEach(track => 
+            function(){
+                try {
+                    peerConnection.addTrack(track
+            , localStream);
+                              } catch (e) {
+                      console.log("Error adding track", e);
+                  }
+                  });
+
+        })
+        .then(function() {
+          return peerConnection.createAnswer();
+        })
+        .then(function(answer) {
+          return peerConnection.setLocalDescription(answer);
+        })
+        .then(function() {
+          var message = {
+            name: myUsername,
+            target: targetUsername,
+            type: "video-answer",
+            sdp: peerConnection.localDescription,
+            topic: "video-offer-msg"
+          };
+          sendToServer(message);
+        })
+        .catch(handleGetUserMediaError);
+    } else {
+        updateEventTableValue2("video offer message is null","");
+    }
+}
+
+var handleGetUserMediaError = function (error){
+    updateEventTableValue2("user media error", error);
+}
+
+
+function offerError(error){
+    updateEventTableValue2("Offer error",error);
+
+}
 
 })();
 

@@ -641,7 +641,8 @@ var screenCapture=function(){
 
 var addVideoStream = function(stream){
     var videoElem = document.createElement("video");
-    videoElem.setAttribute("id","peercall"+Math.floor(Math.random() * Math.floor(20)))
+    videoElem.setAttribute("id","peercall"+Math.floor(Math.random() * Math.floor(20)));
+    videoElem.setAttribute("autoplay","true");
     conferenceroom.appendChild(videoElem);
     videoElem.srcObject = stream;        
     
