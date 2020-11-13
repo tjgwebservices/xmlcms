@@ -1,4 +1,6 @@
 <#import "/spring.ftl" as spring/>
+<#import "/conferencelinks.ftl" as links/>
+
 
 <#macro heading>
    <head>
@@ -80,6 +82,27 @@
 
 </html>
 </#macro>
+<#macro footingpresentation>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/presentation.js'/>"></script>
+
+</html>
+</#macro>
+<#macro footingworkshop>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/workshop.js'/>"></script>
+
+</html>
+</#macro>
+
 <#macro footingconferencetest>
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
@@ -166,6 +189,7 @@
                 <span class="dropdown1-content">
                     <a href="/conferences/forum">Forum</a>
                     <a href="/conferences/room">Conference Room</a>
+                    <a href="/conferences/room">Presentation Room</a>
                     <a href="/conferences/project">Projects</a>
                     <a href="/conferences/workshop">Workshops</a>
                 </span>
@@ -385,250 +409,11 @@ Your browser does not support the video tag.
         </ul>
 
 
-<article>
-	<section>
 
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0007.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0007.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
+   <@links.videos />
 
-	</section>
-	
-	<section>
+   <@links.frames />
 
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0008.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0008.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-	</section>
-	
-	<section>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0009.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0009.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-	</section>
-</article>
-
-
-
-<article>
-	<section>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0010.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0010.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-	</section>
-	
-	<section>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0011.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0011.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-	</section>
-	
-	<section>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0012.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0012.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-	</section>
-</article>
-
-
-        <iframe src="//tjgwebservices.com/management/" ></iframe>
-
-
-<article>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-</article>
-<article>
-</article>
-<article>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-</article>
-
-		<iframe height="600" src="//testing.tjgwebservices.com/api/tags.php"></iframe>
-
-<article>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-</article>
-
-		<iframe height="600" src="//testing.tjgwebservices.com/api/strategies.php"></iframe>
-<article>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-</article>
-
-
-
-		<iframe height="600" src="//testing.tjgwebservices.com/api/components.php"></iframe>
-
-<article>
-	<section>
-            <a href="//github.com/tjgwebservices/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-	</section>
-	<section>
-            <a href="//github.com/tjgwebservices/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-	<section>
-            <a href="//github.com/tjgwebservices/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-</article>
-
-
-		<iframe height="650" src="//development.tjgwebservices.com/api/productdevelopment.php"></iframe>
-
-<article>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-</article>
-
-		<iframe height="600" src="//development.tjgwebservices.com/api/testingintro.php"></iframe>
-
-<article>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-</article>
-
-		<iframe height="600" src="//development.tjgwebservices.com/api/calendar.php"></iframe>
-
-<article>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/xmlcms/" target="_parent"><img src="//tjgnews.com/img/tjgxmlcms2.png" title="TJGXMLCMS" alt="TJGXMLCMS" /></a>
-
-	</section>
-</article>
-
-		<iframe height="600" src="//development.tjgwebservices.com/api/reportissue.php"></iframe>
-
-<article>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0001.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0002.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-	<section>
-            <a href="//tjgwebservices.com/subscriptions">
-            <img src="//tjgwebservices.com/images/tjg_web_services_subscriptions0003.png" width="300" height="200" alt="TJG Web Services" title="TJG Web Services" />
-            </a>
-
-	</section>
-</article>
 
    </main>
 </#macro>
@@ -797,11 +582,51 @@ Your browser does not support the video tag.
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>
 </#macro>
+<#macro presentation>
+   <main>
+		<h4>Presentation</h4>
+		<br />
+		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
+        <button id="startcall" type="button">Start Presentation</button>
+      <div>
+        <table id="eventTable">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+      </div>
+      <div id="conferenceroom">
+      </div>
+
+   </main>
+</#macro>
+
 <#macro workshop>
    <main>
 		<h4>Workshops</h4>
 		<br />
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
+        <button id="startcall" type="button">Start Workshop</button>
+      <div>
+        <table id="eventTable">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+      </div>
+      <div id="conferenceroom">
+      </div>
+
    </main>
 </#macro>
 <#macro project>

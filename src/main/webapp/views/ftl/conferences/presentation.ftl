@@ -11,7 +11,7 @@
       <main>
         <table>
         <tr>
-           <th>Workshop Attendees</th>
+           <th>Presentation Attendees</th>
         </tr>
         <#list rooms as room>
         <tr>
@@ -21,13 +21,13 @@
         </table>
       </main>
       </#if>
-   <@nav.workshop />
-
-      <#if conferenceName??>
-      <h2>${conferenceName}</h2>
-      </#if>
-      <h2>Workshops</h2>
+   <@nav.presentation />
       <#if message??>
       <h2>${message}</h2>
       </#if>
-   <@nav.footingworkshop />
+      <#if conferenceName??>
+      <h2>${conferenceName} Experimental, Not Functional</h2>
+      </#if>
+
+   <@nav.footingpresentation />
+

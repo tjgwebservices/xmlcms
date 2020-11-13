@@ -881,7 +881,6 @@ var enableServerComm = function(){
     messagesocket.send = (e) =>
     {
         updateEventTableValue2("messagesocket send",e);
-        addCommand("sent" + e);
         if (peerConnection != null){
              updateEventTableValue2("sending message",unique);
             var socketMessage = {
@@ -918,6 +917,7 @@ var enableServerComm = function(){
     };
 
     messagesocket.onmessage = function(message) {
+        console.log("message socket", message);
         var content, data;
         if(message.data) {
             try {
@@ -940,6 +940,8 @@ var enableServerComm = function(){
              updateEventTableValue("Error parsing ",message.data);
              updateEventTableValue2(" to JSON: ",e);
             }
+        } else {
+            console.log("Message data not found");
         }
     
 

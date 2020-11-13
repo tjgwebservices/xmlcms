@@ -35,6 +35,7 @@ public class CMSSecurityConfig extends WebSecurityConfigurerAdapter {
         "/stream/media/**","/stream/video/**",
         "/conferences/workshop","/conferences/conference","/conferences/test",
         "/conferences/forum","/conferences/project","/conferences/room",
+        "/conferences/presentation",
         "/videos/addArtist","/videos/addVideo","/videos/videoList",
         "/reviews/reviewList","/reviews/addReview","/reviews/editReview",
         "/reviews/editReview/*","/events/eventList",

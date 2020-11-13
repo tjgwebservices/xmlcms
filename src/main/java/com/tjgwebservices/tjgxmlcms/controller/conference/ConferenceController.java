@@ -93,6 +93,16 @@ public class ConferenceController {
         return "conferences/room";
     }
 
+    @RequestMapping(value = { "/conferences/presentation" }, method = RequestMethod.GET)
+    public String showConferencePresentation(Model model) {
+ 
+        model.addAttribute("message", reportMessage);
+        model.addAttribute("conferenceName", conferenceName);
+        List<Room> rooms = getRooms();
+        model.addAttribute("rooms", rooms);       
+        return "conferences/presentation";
+    }
+
     @RequestMapping(value = { "/conferences/test" }, method = RequestMethod.GET)
     public String showTestRoom(Model model) {
  
