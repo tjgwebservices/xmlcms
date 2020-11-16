@@ -70,14 +70,15 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+                       <scope>test</scope>
                         <version>5.2.9.RELEASE</version>
-			<scope>test</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.junit.vintage</groupId>
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		 <type>jar</type>
 		</dependency>
                 <dependency>
                  <groupId>org.java-websocket</groupId>

@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -40,7 +41,8 @@ public class SocketRestController {
 
     private static List<Room> rooms = new ArrayList<>();
 
-    @RequestMapping(value = "/socket", method = RequestMethod.GET)
+    @RequestMapping(value = "/socket", method = RequestMethod.GET,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody    
     public ResponseEntity<ResponseBodyEmitter> pollEvents() {
         emitter = new SseEmitter();
@@ -54,7 +56,7 @@ public class SocketRestController {
                                    + "\"response\":\""+retrieveRoomList()+"\","
                                    //+ "\"RTCSessionDescription\":{\"type\":\""+type+"\",\"sdp\":\""+sdp+"\"},"
                                    + "\"channel\":\""+channels[i]+"\","
-                                   + "\"event\":\"answer\"}]"));
+                                   + "\"event\":\"offer\"}]"));
                    TimeUnit.SECONDS.sleep(15);
                }
                emitter.complete();
@@ -73,15 +75,17 @@ public class SocketRestController {
             @PathVariable("id") Integer id) {
         String responseText;
         String roomInfo;
+        String roomCreated;
         List<Room> currentRooms = rooms.stream()
             .filter((room) -> Objects.equals(room.getId(), id))
             .collect(Collectors.toList());
         
         if (currentRooms.size() < 1){
             responseText = "No rooms with id "+id;
-            roomInfo = "{\"roomInfo\":\"room created\"}";
-            Room room = new Room(id, "", "", 1);
-            rooms.add(room);
+            roomInfo = "{\"roomInfo\":\"No room created\"}";
+            //Room room = new Room(id, "", "", 1);
+            //rooms.add(room);
+            roomCreated = "";
             
         } else {
             if (currentRooms.size() > 1){
@@ -92,6 +96,7 @@ public class SocketRestController {
                 responseText = retrieveRoomSize(id,rooms.get(0));
                 roomInfo = retrieveRoomInfo(id,rooms.get(0));
             }
+            roomCreated = "\"RTCSessionDescription\":{\"type\":\""+rooms.get(0).getType()+"\",\"sdp\":\""+rooms.get(0).getSdp()+"\"},";
         }
         
         emitter = new SseEmitter();
@@ -104,7 +109,7 @@ public class SocketRestController {
                            .data("[{\"data\": \""+channels[i]+"\","
                                    + "\"response\":\""+responseText+"\","
                                    + "\"room\":"+roomInfo+","
-                                   + "\"RTCSessionDescription\":{\"type\":\""+rooms.get(0).getType()+"\",\"sdp\":\""+rooms.get(0).getSdp()+"\"},"
+                                   + roomCreated
                                    + "\"event\":\"answer\"}]"));
                    TimeUnit.SECONDS.sleep(1);
                }
@@ -141,6 +146,7 @@ public class SocketRestController {
     
     @RequestMapping(value = "/socket/{id}", method = RequestMethod.POST,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)  
+    @Transactional(timeout = 20)
     @ResponseBody 
     public ResponseEntity<ResponseBodyEmitter> postForEvents(
             @Validated VideoForm file, BindingResult result,

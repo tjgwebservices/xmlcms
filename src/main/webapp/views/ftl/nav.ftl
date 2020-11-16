@@ -4,51 +4,14 @@
 
 <#macro heading>
    <head>
-      <meta charset="UTF-8" />
-      <title>TJGXMLCMS - State of the Art Content Management System</title>
-        <meta name="description" content="TJGXMLCMS - State of the Art Content Management System" />
-        <meta name="keywords" content="TJGXMLCMS Content Management System" />
-        <meta name="author" content="TJGXMLCMS">
-        <meta name="robots" content="index, follow">
-        <meta name="revisit-after" content="3 day">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />      
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-        <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/style.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/chat.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/book.css'/>"/>
-        <link rel="stylesheet"
-             type="text/css" href="<@spring.url '/css/main.css'/>"/>
-        <link rel="stylesheet"
-             type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
+   <@links.templateheading />
    </head>
 </#macro>
 <#macro cssheading>
-      <meta charset="UTF-8" />
-        <meta name="description" content="TJGXMLCMS - State of the Art Content Management System" />
-        <meta name="keywords" content="TJGXMLCMS Content Management System" />
-        <meta name="author" content="TJGXMLCMS">
-        <meta name="robots" content="index, follow">
-        <meta name="revisit-after" content="3 day">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />      
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/style.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/chat.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/book.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/main.css'/>"/>
-      <link rel="stylesheet"
-           type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
+   <@links.templateheading />
+</#macro>
+<#macro consultingheading>
+   <@links.consultingheading />
 </#macro>
 <#macro footinghome>
       <p><a href="<@spring.url '/'/>">Home</a></p>
@@ -92,6 +55,31 @@
 
 </html>
 </#macro>
+<#macro footingscreenshare>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+      <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+       <script src="<@spring.url '/js/eventtable.js'/>"></script>
+       <script src="<@spring.url '/js/screenshare.js'/>"></script>
+
+</html>
+</#macro>
+<#macro footingslides>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+      <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+       <script src="<@spring.url '/js/eventtable.js'/>"></script>
+       <script src="<@spring.url '/js/slides.js'/>"></script>
+
+</html>
+</#macro>
+
 <#macro footingworkshop>
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
@@ -132,6 +120,34 @@
             <li><a href="/">Home</a></li>
             <li>
             <span class="dropdown1">
+                <a href="/events/eventList">Events</a>
+                <span class="dropdown1-content">
+                    <a href="/events/addEvent">Add Event</a>
+                    <a href="/events/addEventAdvertisement">Add Event Advertisement</a>
+                    <a href="/events/addEventAdministrator">Add Event Administrator</a>
+                    <a href="/events/eventAdvertisementList">Advertisement List</a>
+                    <a href="/consulting/groups">Consulting</a>
+                    <a href="/consulting/about">About</a>
+                    <a href="/consulting/contact">Contact</a>
+                </span>
+            </span>
+            </li>
+            <li>
+            <span class="dropdown1">
+                    <a href="/news/reports">News</a>
+                <span class="dropdown1-content">
+                    <a href="/shop/shop">Shop</a>                
+                    <a href="/career/careers">Careers</a>                
+                    <a href="/videos/videoList">Videos</a>                
+                    <a href="/videos/addVideo">Add Video</a>
+                    <a href="/reviews/reviewList">Reviews</a>
+                    <a href="/research/addArtist">Add Artist</a>
+                <a href="/reviews/addReview">Add Review</a>
+                </span>
+            </span>
+            </li>
+            <li>
+            <span class="dropdown1">
                 <a href="/research/researchers">Researchers</a>
                 <span class="dropdown1-content">
                     <a href="/research/addResearcher">Add Researcher</a>
@@ -142,27 +158,20 @@
                 </span>
             </span>
             </li>
-            <li><a href="/videos/videoList">Videos</a>
-            <span class="dropdown1">
-                <a href="/videos/addVideo">Add Video</a>
-                <span class="dropdown1-content">
-                    <a href="/reviews/reviewList">Reviews</a>
-                    <a href="/research/addArtist">Add Artist</a>
-                <a href="/reviews/addReview">Add Review</a>
-                </span>
-            </span>
-            </li>
             <li>
             <span class="dropdown1">
-                <a href="/events/eventList">Events</a>
+                <a href="/game/games">Games</a>
                 <span class="dropdown1-content">
-                    <a href="/events/addEvent">Add Event</a>
-                    <a href="/events/addEventAdvertisement">Add Event Advertisement</a>
-                    <a href="/events/addEventAdministrator">Add Event Administrator</a>
-                    <a href="/events/eventAdvertisementList">Advertisement List</a>
+                    <a href="/game/blocks">Blocks</a>
+                    <a href="/game/discotrucks">Disco Trucks</a>
+                    <a href="/game/ghosts">Ghosts</a>
+                    <a href="/game/pastelblocks">Pastel Blocks</a>
+                    <a href="/game/rhythmblocks">Rhythm Blocks</a>
+                    <a href="/game/tankblocks">Tank Blocks</a>
                 </span>
             </span>
             </li>
+
             <li>
             <span class="dropdown1">
                 <a href="/articles/articleList">Articles</a>
@@ -192,6 +201,8 @@
                     <a href="/conferences/presentation">Presentation Room</a>
                     <a href="/conferences/project">Projects</a>
                     <a href="/conferences/workshop">Workshops</a>
+                    <a href="/conferences/screenshare">Screenshare</a>
+                    <a href="/conferences/slides">Slides</a>
                 </span>
             </span>
             </li>
@@ -269,91 +280,8 @@
 	</ul>
 
 
+   <@links.videos />
 
-
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0013.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0013.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0014.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0014.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0015.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0015.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0016.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0016.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0017.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0017.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0018.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0018.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0019.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0019.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0020.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0020.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0021.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0021.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0022.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0022.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0023.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0023.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0024.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0024.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
-
-<video width="320" height="240" controls="">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0026.ogg">
-<source src="//forum.tjgwebservices.com/platforms/II_Data_Science_0026.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video>
 
 </aside>
 </#macro>
@@ -629,6 +557,94 @@ Your browser does not support the video tag.
 
    </main>
 </#macro>
+<#macro screenshare>
+   <main>
+		<h4>Screenshare</h4>
+		<br />
+		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
+        <button id="startcall" type="button">Start Workshop</button>
+        <h1>Realtime communication with WebRTC</h1>
+
+        <video id="localVideo" autoplay playsinline></video>
+        <video id="remoteVideo" autoplay playsinline></video>
+
+        <div>
+          <button id="startButton">Start</button>
+          <button id="callButton">Call</button>
+          <button id="hangupButton">Hang Up</button>
+        </div>
+      <div>
+        <table id="eventTable">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+            <canvas id="photo"></canvas>
+        <textarea id="dataChannelSend"></textarea>
+        <textarea id="dataChannelReceive"></textarea>
+        <div>
+          <button id="snap">Snap</button>
+          <button id="send">Send</button>
+          <button id="snapAndSend">Snap and Send</button>
+        </div>
+        <div id="trail">
+        </div>
+      </div>
+      <div id="conferenceroom">
+      </div>
+
+   </main>
+</#macro>
+<#macro slides>
+   <main>
+		<h4>Slides</h4>
+		<br />
+		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
+        <button id="startcall" type="button">Start Workshop</button>
+        <h1>Realtime communication with WebRTC</h1>
+
+        <video id="localVideo" autoplay playsinline></video>
+        <video id="remoteVideo" autoplay playsinline></video>
+
+        <div>
+          <button id="startButton">Start</button>
+          <button id="callButton">Call</button>
+          <button id="hangupButton">Hang Up</button>
+        </div>
+      <div>
+        <table id="eventTable">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+      </div>
+            <canvas id="photo"></canvas>
+        <textarea id="dataChannelSend"></textarea>
+        <textarea id="dataChannelReceive"></textarea>
+        <div>
+          <button id="snap">Snap</button>
+          <button id="send">Send</button>
+          <button id="snapAndSend">Snap and Send</button>
+        </div>
+        <div id="trail">
+        </div>
+
+      <div id="conferenceroom">
+      </div>
+
+   </main>
+</#macro>
+
 <#macro project>
    <main>
 		<h4>Projects</h4>

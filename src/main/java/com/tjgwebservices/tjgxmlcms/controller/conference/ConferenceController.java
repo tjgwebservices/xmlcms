@@ -103,6 +103,26 @@ public class ConferenceController {
         return "conferences/presentation";
     }
 
+    @RequestMapping(value = { "/conferences/screenshare" }, method = RequestMethod.GET)
+    public String showConferenceScreenshare(Model model) {
+ 
+        model.addAttribute("message", reportMessage);
+        model.addAttribute("conferenceName", conferenceName);
+        List<Room> rooms = getRooms();
+        model.addAttribute("rooms", rooms);       
+        return "conferences/screenshare";
+    }
+
+    @RequestMapping(value = { "/conferences/slides" }, method = RequestMethod.GET)
+    public String showConferenceSlides(Model model) {
+ 
+        model.addAttribute("message", reportMessage);
+        model.addAttribute("conferenceName", conferenceName);
+        List<Room> rooms = getRooms();
+        model.addAttribute("rooms", rooms);       
+        return "conferences/slides";
+    }
+
     @RequestMapping(value = { "/conferences/test" }, method = RequestMethod.GET)
     public String showTestRoom(Model model) {
  

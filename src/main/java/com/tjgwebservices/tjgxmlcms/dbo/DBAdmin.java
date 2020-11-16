@@ -82,6 +82,15 @@ public class DBAdmin {
                 "subject TEXT,\n" +
                 "message TEXT\n" +
                 ");"); 
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Course\n" +
+                "( id INTEGER PRIMARY KEY,\n" +
+                "courseName text NOT NULL);"); 
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Game (\n" +
+                "id integer PRIMARY KEY,\n" +
+                "title text NOT NULL,\n" +
+                "highScore integer NOT NULL,\n" +
+                "created datetime DEFAULT CURRENT_TIMESTAMP,\n" +
+                "lastUpdated datetime DEFAULT CURRENT_TIMESTAMP);"); 
         runSQLQuery("CREATE TABLE IF NOT EXISTS Lecture(\n" +
                 "instructor TEXT,\n" +
                 "lectureName TEXT,\n" +
@@ -107,9 +116,6 @@ public class DBAdmin {
                 "REFERENCES Lecturer(id) \n" +
                 "ON UPDATE CASCADE\n" +
                 ");\n"); 
-        runSQLQuery("CREATE TABLE IF NOT EXISTS Course\n" +
-                "( id INTEGER PRIMARY KEY,\n" +
-                "courseName text NOT NULL);"); 
         runSQLQuery("CREATE TABLE IF NOT EXISTS Journal (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "journal text NOT NULL);\n"); 

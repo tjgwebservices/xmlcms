@@ -89,7 +89,6 @@ dataSourcePath text,
 dataTargetPath text);
 
 
-
 CREATE TABLE IF NOT EXISTS Subscription (
 id integer PRIMARY KEY,
 subscriptionPlan text NOT NULL,
@@ -255,3 +254,11 @@ id integer PRIMARY KEY,
 artist TEXT,
 videoName TEXT,
 videoPath TEXT);
+
+CREATE TABLE IF NOT EXISTS Game (
+id integer PRIMARY KEY,
+title text NOT NULL,
+highScore integer NOT NULL,
+created datetime DEFAULT CURRENT_TIMESTAMP,
+lastUpdated datetime DEFAULT CURRENT_TIMESTAMP);
+

@@ -36,9 +36,9 @@ public class ChatDBO extends DatabaseObject{
                 pstmt.setInt(1,chat.getUserIdFrom());
                 pstmt.setInt(2,chat.getUserIdTo());
                 pstmt.setString(3,chat.getDateTime());
-                pstmt.setInt(3,chat.getPriority());
-                pstmt.setString(4,chat.getSubject());
-                pstmt.setString(5,chat.getMessage());
+                pstmt.setInt(4,chat.getPriority());
+                pstmt.setString(5,chat.getSubject());
+                pstmt.setString(6,chat.getMessage());
                 pstmt.executeUpdate();
                 tx.commit();
                 session.close();

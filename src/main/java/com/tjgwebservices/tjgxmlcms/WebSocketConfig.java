@@ -73,6 +73,7 @@ public class WebSocketConfig {
     }},null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
         HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+            @Override
             public boolean verify(String hostname, SSLSession session){
                 return true;
             }

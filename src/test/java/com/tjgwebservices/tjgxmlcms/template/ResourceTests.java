@@ -147,6 +147,7 @@ public class ResourceTests {
 	}
 
 	@Test
+        @Disabled
 	void testAdministratorListPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/schools/adminList");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);

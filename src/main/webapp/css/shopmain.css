@@ -1,0 +1,580 @@
+body {
+	background-color: #abb7d0;
+	color: #2c2944;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	padding: 0 20px;
+	margin: 0;
+	min-width: 950px;
+	min-height: 600px;
+	width: 1100px;
+	height: 100%;
+}
+
+@-webkit-keyframes animateMargin {
+	from {margin-left: -100px;}
+	to {margin-left: 0px;}
+}
+
+@keyframes animateMargin {
+	from {margin-left: -100px;}
+	to {margin-left: 0px;}
+}
+
+#page-loading {
+	color: #FFF;
+	font-size: 3em;
+	left: 40%;
+	top: 40%;
+}
+
+nav {
+	margin: 0px auto;
+	width: auto;
+	z-index: 0;
+	height: 17px;
+	display: block;
+	visibility: visible;
+	font-weight: bold;
+	padding: 1em 1em;
+	background: #FFF;
+	border: 1px solid #BBB;
+	padding: 10px;
+	overflow: auto;
+}
+
+span.theme{
+	overflow-x: hidden;
+	z-index: 10;
+	float: right;
+}
+
+footer {
+	margin: 0px auto;
+	width: auto;
+	z-index: 0;
+	display: block;
+	visibility: visible;
+	height: 17px;
+}
+
+footer p{
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-weight: 700;
+	padding: 3px 0px 20px 0px;
+}
+
+main {
+	margin: 0px auto;
+	height: 610px;
+	width: 1098px;
+	z-index: 0;
+	display: block;
+	visibility: visible;
+	overflow: hidden;
+	background: #DDD;
+	padding: 0;
+	border-bottom: 0;
+	padding-bottom: 0;
+	border-radius: 0;
+}
+
+ul.tabbuttons {
+	margin: 0px;
+	width: auto;
+	z-index: 0;
+	display: block;
+	visibility: visible;
+	height: 37px;
+}
+
+ul.tabbuttons li {
+	list-style: none;
+	float: left;
+	position: relative;
+	margin: 0 .2em 1px 0;
+	border-bottom: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+
+ul.tabbuttons li a {
+	float: left;
+	padding: .5em 1em;
+	text-decoration: none;
+	color: #2a4569;
+}
+
+ul.tabbuttons li.selected {
+	margin-bottom: 0;
+	padding-bottom: 1px;
+}
+
+ul.tabbuttons li.active {
+	border: 1px solid #aaaaaa;
+	background: #ffffff  50% 50% repeat-x;
+	font-weight: normal;
+	color: #212121;
+	border: 1px solid #d3d3d3;
+	background: #e6e6e6 50% 50% repeat-x;
+	font-weight: normal;
+	color: #555555;
+}
+
+main aside, main figure, main section {
+	display: block;
+	float: left;
+	overflow: hidden;
+	visibility: visible;
+}
+	
+main section {
+	margin: 0px;
+	height: 657px;
+	width: 1096px;
+	padding: 0;
+	background: #FFF;
+	border: 1px solid #BBB;
+	padding: 10px;
+	overflow: auto;
+	border: 4px solid #aaaaaa;
+	background: #b9d3e8 50% 50% repeat-x;
+	color: #222222;
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1.1em;
+	float: left;
+}
+
+
+main section section {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	padding: 1em 1.4em;
+	background: none;
+	padding: 1ex;
+	overflow: auto;
+}
+
+aside {
+	margin: 0px;
+	height: 557px;
+	z-index: 0;
+	width: 168px;
+	background-color: #ededed;
+	color: #2e2e2e;
+/*	  -webkit-animation-name: animateMargin; 
+	-webkit-animation-duration: 2s; 
+	animation-name: animateMargin;
+	animation-duration: 2s;
+	transition-duration: 1s; */
+}
+
+main footer {
+	margin: 0px;
+	width: auto;
+	z-index: 0;
+	display: block;
+	visibility: visible;
+	height: 37px;
+
+}
+
+main footer span {
+	border: 1px solid #d3d3d3;
+	background: #e6e6e6  50% 50% repeat-x;
+	font-weight: normal;
+	color: #555555;
+}
+
+
+main aside {
+	background-color: #bac7ce;
+	color: #6ea0c7;
+}
+
+main aside ul {
+	list-style-type:none;
+	background-color: #4e8096;
+	color: #ebf3e4;
+	border-radius: 5px;
+	margin: 4px 5px;
+	text-indent: -6px;
+}
+
+main aside span {
+	width: 80%;
+	height: 20px;
+	background-color: #dedede;
+	border: 2px solid #bdb3b3;
+	border-radius: 6px;
+	display: block;
+	cursor: pointer;
+	margin: 20px 10% 20px 10%;
+}
+
+main aside span:hover {
+	border: 2px solid #e3e3e3;
+	background-color: #d5deaf;
+}
+
+main aside label, main aside input {
+	display: inline-block;
+	margin: 10px auto;
+	font-weight: 500;
+	width: 40%;
+}
+main aside label {
+	float: left;
+}
+main aside input {
+	float: right;
+}
+
+main aside button {
+	text-align: center;
+	display: block;
+	width: auto;
+	padding: 2px 6px 2px 6px;
+	background-color: #a6ec94;
+	border: 2px solid #64ce6b;
+	border-radius: 4px;
+	float: left;
+	margin: 20px 20% 20px 20%;
+}
+
+main aside button:hover {
+	background-color: #c5e218;
+	border: 2px solid #64800b;
+}
+
+
+main main {
+	margin: 0px;
+	height: 557px;
+	z-index: 1;
+	display: block;
+	visibility: visible;
+}
+
+main main main{
+	margin: 0px;
+	height: 557px;
+	width: 874px;
+	z-index: 2;
+	display: block;
+	visibility: visible;
+	width: auto;
+/*	-webkit-animation-name: animateMargin; 
+	-webkit-animation-duration: 4s; 
+	animation-name: animateMargin;
+	animation-duration: 4s;
+	transition-duration: 2s;*/
+	overflow-y: scroll;
+	overflow-x: hidden;
+	float: left;
+}
+
+main aside:nth-of-type(2) {
+	margin: 0px;
+	height: 557px;
+	visibility: visible;
+	width: 148px;
+}
+
+main figure {
+	background-color: #dedede;
+	border: 1px solid #1e1e1e;
+	padding: 0px;
+	margin: 0px;
+	font-size: 1px;
+	text-align: left;
+	overflow: hidden;
+	z-index: 1;
+	cursor: pointer;
+	height: 519px;
+	width: 40px;
+	border-radius: 5px;
+	margin-left: -10px;
+	-webkit-animation-name: animateMargin; 
+	-webkit-animation-duration: 4s; 
+	animation-name: animateMargin;
+	animation-duration: 4s;
+	transition-duration: 2s;
+
+}
+
+
+/*
+main div div, main div:nth-of-type(2) div {
+	background-color: #dedede;
+	border: 1px solid #1e1e1e;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1px;
+    text-align: left;
+    overflow: hidden;
+    z-index: 2;
+    cursor: pointer;
+    height: 559px;
+    width: 10px;
+}
+*/
+
+main figure:nth-of-type(2) {
+
+}
+
+main figure div {
+	margin-top: 200px;
+}
+main figure div span, main figure div a {
+	background-color: #ededed;
+	border: 2px solid #787b82;
+	border-radius: 4px;
+	cursor: pointer;
+	display: block;
+	font-size: 1px;
+	height: 80px;
+	margin: 0px 1px 0px 1px;
+	overflow: hidden;
+	padding: 0px;
+	text-align: center;
+	width: 30px;
+	visibility: visible;
+	z-index: 1;
+}
+
+main figure div span {
+	margin-top: 180px;
+}
+main figure:nth-of-type(2) a{
+	margin-left:0px;
+}
+
+main figure div a:hover {
+    background-color: #e4f966;
+
+}
+
+aside div {
+    padding: 0px;
+    margin: 0px;
+    font-size: 1px;
+    text-align: left;
+    overflow: hidden;
+    z-index: 2;
+    cursor: n-resize;
+    width: 188px;
+    height: 10px;
+	background-color: #dedede;
+    border: 1px solid #1e1e1e;
+}
+
+aside div div {
+	background-color: #ededed;
+	border: 1px solid #e1e1e1;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1px;
+    cursor: pointer;
+    z-index: 1;
+    visibility: visible;
+    width: 48px;
+    height: 10px;
+}
+
+aside div div span {
+	background-position: -96px -192px;
+	background-position: -128px -16px;
+	background-position: 0 -16px;
+	margin-top: -3px;
+	margin: 0 auto;
+	width: 16px;
+	height: 16px;
+	background-color:#a4a4a4;
+
+}
+
+main div div div {
+	border: 1px solid #f1f1f1;
+	display: none;
+	margin-top: 15px;
+	color: #666;
+	font-size: 12px;
+	font-weight: bold;
+	width: 100%;
+	padding-bottom: 0.35ex;
+	position: fixed;
+	display: block;
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+	text-align: center;
+	font-size: 1px;
+	cursor: pointer;
+	z-index: 1;
+	visibility: visible;
+	height: 48px;
+	width: 10px;
+}
+
+main div div:nth-of-type(2) div {
+	color: #666;
+	font-size: 12px;
+	font-weight: bold;
+	width: 100%;
+	padding-bottom: 0.35ex;
+
+}
+
+main div div div a {
+	background-position: -48px -192px;
+	background-position: -144px -16px;
+	background-position: -32px -16px;
+	margin-left: -3px;
+	margin: 0 auto;
+	width: 16px;
+	height: 16px;
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-color:#a4a4a4;
+}
+summary {
+	position:absolute;
+	margin-left: 1000px;
+	text-indent: -9999px;
+	width:1px;
+	height:1px;
+}
+summary:before {
+	content: "600px";
+}
+
+body > article {
+	display: block;
+	float: left;
+	width: 200px;
+	height: 40px;
+}
+
+body > article button {
+
+}
+
+main main section main ul > li > img {
+	width: 80%;
+	height: 100%;
+	border: 4px solid #839a6e;
+	border-radius: 15px;
+}
+
+@media all and (min-width: 300px) {
+	body {width: 300px}
+	main, footer, nav {margin: 0px}
+	main {width: 300px}
+	nav {width: 300px}
+	main section {width: 250px}
+	main main main {width: 150px}
+	main aside {width: 50px}
+	main aside:nth-of-type(2) {left: 150px}
+	main figure:nth-of-type(2) {left: 150px}	
+	summary {margin-left: 300px;}
+	summary:before {content: "150px";}
+}
+
+@media all and (max-width: 480px) {
+	main, footer, nav {margin: 0px}
+	main aside, main figure {display: none; visibility:hidden}
+	main main main {margin-left: -200px;max-width: 300px;
+	transition-duration: 1s;animation-duration: 1s;}
+
+}
+
+@media all and (min-width: 480px) {
+	body {width: 450px}
+	main {width: 450px}
+	nav {width: 450px}
+	main, footer, nav {margin: 0px}
+	main section {width: 450px}
+	main main main {width: 175px}
+	main aside {width: 90px}
+	main aside:nth-of-type(2) {left: 300px}
+	main figure:nth-of-type(2) {left: 300px}	
+	summary {margin-left: 450px;}
+	summary:before {content: "175px";}
+	main aside, main figure {display: block; visibility: visible}
+}
+
+@media all and (min-width: 600px) {
+	body {width: 600px}
+	main {width: 600px}
+	nav {width: 600px}
+	main, footer, nav {margin: 0px}
+	main section {width: 600px}
+	main main main {width: 275px}
+	main aside {width: 90px}
+	main aside:nth-of-type(2) {left: 300px}
+	main figure:nth-of-type(2) {left: 300px}	
+	summary {margin-left: 600px;}
+	summary:before {content: "275px";}
+	main aside, main figure {display: block; visibility: visible}
+}
+@media all and (min-width: 900px) {
+	body {width: 900px; margin: 0px auto}
+	main {width: 900px}
+	nav {width: 900px}
+	main, footer, nav {margin: 0px}
+	main section {width: 850px}
+	main main main {width: 500px}
+	main aside {width: 180px}
+	main aside:nth-of-type(2) {left: 650px}
+	main figure:nth-of-type(2) {left: 620px}	
+	summary {margin-left: 900px;}
+	summary:before {content: "400px";}
+	main aside, main figure {display: block}
+
+}
+
+@media all and (min-width: 1100px) {
+	body {width: 900px; margin: 0px auto}
+	main, footer, nav {margin: 0px auto}
+	main { width: 900px}
+	nav {width: 900px}
+	main section {width: 850px}
+	main main main {width: 580px}
+	main aside {width: 190px}
+	main aside:nth-of-type(2) {left: 650px}
+	main figure:nth-of-type(2) {left: 620px}	
+	summary {margin-left: 900px;}
+	summary:before {content: "500px";}
+}
+
+main main main ul{
+	list-style-type: none;
+	background-color: #eeefe7;
+	color: #008080;
+	border: 1px solid #00ff00;
+}
+
+main main main ul li{
+	padding: 2px 4px;
+	border-radius: 2px;
+	border: 1px solid #90ec9b;
+	margin: 40px 5px 40px 5px;
+	border-radius: 5px;
+}
+
+main main main ul li:hover {
+	background-color: #ffc;
+}
+
+
