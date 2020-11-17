@@ -89,7 +89,7 @@
 <header>
 	<h1>Welcome!</h1>
         <p>Welcome to TJG Web Services, LLC.</p>
-        <p><a href="#">Learn more »</a></p>
+        <p><a href="/index">Learn more</a></p>
 	<span>
 	<ol>
 		<li></li>
@@ -165,7 +165,7 @@
 </div>
 </main>
 <footer>
-        <p>© TJG Web Services, LLC 2020</p>
+        <p>TJG Web Services, LLC 2020</p>
       </footer>
 </body>
 <script src="/js/carousel.js?v=0.0.2"></script>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<title>TJGXMLCMS Shop - Experimental</title>
 <link rel="stylesheet" href="/css/shopmain.css?v=" />
 <link rel="stylesheet" href="/css/shopmodal.css?v=" />
 <link rel="stylesheet" href="/css/shopform.css?v=" />
 </head>
 <body>
 <nav>
-<span class="theme"></span>
+<span class="theme">Experimental Shop - Alpha Test</span>
 </nav>
 <summary></summary>
 <footer>
-<p></p>
+<p>TJGXMLCMS</p>
 </footer>
 <div id="page-loading">
 </div>
@@ -24,7 +24,7 @@
 <p>Qualitative Design Methods</p>
 <p>Qualitative Design available for managing artifacts and the resource process.</p>
 <button type="button" onclick="document.getElementById('download').style.display='none">Design Tools</button>
-<a href="">Learn More</a>
+<a href="/index">Learn More</a>
 </div>
 </div>
 </div>
@@ -35,7 +35,7 @@
 <h2></h2>
 <p>Qualitative Design Methods</p>
 <button type="button" onclick="document.getElementById('viewExample').style.display='none">Design Tools</button>
-<a href="">Learn More</a>
+<a href="/index">Learn More</a>
 </div>
 </div>
 </div>

@@ -99,11 +99,11 @@ public class ChatController extends HttpServlet{
         int userIdTo = chatForm.getUserIdTo();
         int priority = chatForm.getPriority();
         String subject = chatForm.getSubject();
-        String message = chatForm.getMessage();
+        String messagetext = chatForm.getMessage();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
         Date date = new Date();  
         if (subject != null && subject.length() > 0 && 
-                message != null && message.length() > 0){
+                messagetext != null && messagetext.length() > 0){
             Chat chat = new Chat(userIdFrom, 0,
                                     formatter.format(date), 0,
                                     "Customer Service Request", 
@@ -269,17 +269,25 @@ public class ChatController extends HttpServlet{
     @RequestMapping(value = { "/chat/continueConversation" }, method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ResponseBodyEmitter> continueConversation(
-            @RequestParam String conversationid, Model model) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+            @RequestParam String conversationid, @RequestParam String messagetext,
+            Model model) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
         Date date = new Date();  
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type","text/event-stream");
         headers.add("Cache-Control","no-cache");
         headers.add("Custom-Event-Source","checkConversation");
+        Chat newchat = new Chat();
+        newchat.setMessage(messagetext);
+        newchat.setPriority(0);
+        newchat.setSubject("Customer Service");
+        newchat.setDateTime(formatter.format(date));
+        newchat.setUserIdFrom(Integer.valueOf(conversationid));
+        newchat.setUserIdTo(0);
+        ChatDBO.saveSQLChat(newchat);
         emitter = new SseEmitter();
         chats = ChatDBO.loadChats();
-        List<Chat> conversationChats = chats.stream()
-                
+        List<Chat> conversationChats = chats.stream()       
             .filter((chat) -> Objects.equals(chat.getUserIdFrom(), conversationid))
             .filter((chat) -> chat.getDateTime().contains(formatter.format(date)))
             .collect(Collectors.toList());

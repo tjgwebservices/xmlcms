@@ -1,12 +1,21 @@
+<#import "/spring.ftl" as spring/>
+<#import "/nav.ftl" as nav/>
 <!DOCTYPE html>
-<head>
-<title></title>
+<html>
+   <head>
+      <title>Games Demo - Blocks</title>
+       <@nav.cssheading />
 <style>
 canvas {
 	border: 1px solid #899de2;
     background-color: #acbae0;
+    width: 90%;
 }
 </style>
+    
+   </head>
+   <body>
+   <@nav.navigation />
 
 </head>
 <body>
@@ -16,9 +25,17 @@ canvas {
 </main>
 <div>
 </div>
+
+<footer>
+<h4>TJG Web Services - Blocks</h4>
+<p>Click on the screen to change direction to avoid obstacles.</p>
+<p>Add custom built HTML5 games to your website with developers from TJG Web Services.</p>
+<p>Advertise on game sites with TJG Web Services Consulting Group.</p>
+
+</footer>
 </body>
 <script>
-var highscore = 0;
+var highscore = <#if highscore??>${highscore}</#if>;
 
 var main = document.getElementsByTagName("main")[0];
 
@@ -502,6 +519,7 @@ function updateArea() {
     }
 	if (currentScore > highscore) {
 		updateHighScore(currentScore);
+                highscore=currentScore;
 	}
 
 	score.innerHTML = currentScore;
@@ -532,24 +550,50 @@ function pointInCircle(x, y, cx, cy, radius) {
   return distancesquared <= radius * radius;
 }
 
+
+var updatePoll = new Date();
+
+function checkPoll(){
+    var currentTime = new Date();
+    if (currentTime>updatePoll.getTime()+1000*30){
+        updatePoll = new Date();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function updateHighScore(number){
 //	e.preventDefault();
-	var formData = new FormData();
-	formData.append("gameid",15);
-	formData.append("score",number);
-	var xmlhttp = new XMLHttpRequest();
+        if (checkPoll()){
+            var formData = new FormData();
+            formData.append("gameid","1");
+            formData.append("score","" + number);
+            var xmlhttp = new XMLHttpRequest();
 
-	xmlhttp.onreadystatechange = function() {
-		if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-			if (xmlhttp.status == 200) {
-				label.innerHTML = "New High Score!";
-				
-			}
-		}
-	};
-	xmlhttp.open("POST", "/game/highscore");
-	xmlhttp.send(formData);
-	return false;
+            xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                            if (xmlhttp.status == 200) {
+                                    console.log("Headers",xhttp.getAllResponseHeaders().toLowerCase());
+                                    console.log("Response Text",this.responseText)
+                                    label.innerHTML = "New High Score!";
+
+                            }
+                            else if (xmlhttp.status == 400) {
+                                console.log("Response status 400");
+                            }
+                            else if (xmlhttp.status == 406) {
+                                console.log("Response status 406");
+                            }
+                            else {
+                            }
+                    }
+            };
+            xmlhttp.open("POST", "/game/highscore");
+            xmlhttp.send(formData);
+            return false;
+        }
 
 }
 

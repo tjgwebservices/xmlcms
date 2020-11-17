@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,9 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @Controller
 public class GameController {
     private static List<Game> games = new ArrayList<Game>();
+
+    private SseEmitter emitter;
+    private final ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
     static {
     }
@@ -48,59 +52,103 @@ public class GameController {
 
     @RequestMapping(value = { "/game/blocks" }, method = RequestMethod.GET)
     public String blocks(Model model) {
-         
+        Integer highscore = retrieveGameFromId(1).getHighScore();                
+        model.addAttribute("highscore", highscore);
         return "game/blocks";
     }
 
     @RequestMapping(value = { "/game/discotrucks" }, method = RequestMethod.GET)
     public String discoTrucks(Model model) {
-         
+        Integer highscore = retrieveGameFromId(2).getHighScore();                
+        model.addAttribute("highscore", highscore);         
         return "game/discotrucks";
     }
 
     @RequestMapping(value = { "/game/ghosts" }, method = RequestMethod.GET)
     public String ghosts(Model model) {
-         
+        Integer highscore = retrieveGameFromId(3).getHighScore();                
+        model.addAttribute("highscore", highscore);                  
         return "game/ghosts";
     }
 
     @RequestMapping(value = { "/game/pastelblocks" }, method = RequestMethod.GET)
     public String pastelBlocks(Model model) {
+        Integer highscore = retrieveGameFromId(4).getHighScore();                
+        model.addAttribute("highscore", highscore);                  
          
         return "game/pastelblocks";
     }
 
     @RequestMapping(value = { "/game/rhythmblocks" }, method = RequestMethod.GET)
     public String rhythmBlocks(Model model) {
+        Integer highscore = retrieveGameFromId(5).getHighScore();                
+        model.addAttribute("highscore", highscore);                  
          
         return "game/rhythmblocks";
     }
 
     @RequestMapping(value = { "/game/tankblocks" }, method = RequestMethod.GET)
     public String tankBlocks(Model model) {
+        Integer highscore = retrieveGameFromId(6).getHighScore();                
+        model.addAttribute("highscore", highscore);                  
          
         return "game/tankblocks";
     }
 
-    @RequestMapping(value = { "/game/highscore" }, method = RequestMethod.POST,
+    @RequestMapping(value = { "/game/highscore" }, method = RequestMethod.GET,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)
  
     @ResponseBody 
-    public ResponseEntity<ResponseBodyEmitter>  saveChatIdForm(Model model, @RequestParam Integer gameid, 
-            @RequestParam Integer score) {
+    public ResponseEntity<ResponseBodyEmitter>  highScore(Model model, @RequestParam String gameid, 
+            @RequestParam String score) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type","text/event-stream");
         headers.add("Cache-Control","no-cache");
         headers.add("Custom-Event-Source","high-score");
+        
+        Integer id = Integer.valueOf(gameid);
  
-        List<Game> games = GameDBO.loadGames();
-        List<Game> specificgame = games.stream()
-            .filter((game) -> Objects.equals(game.getId(), gameid))
-            .collect(Collectors.toList());        
-        GameDBO.updateGame(specificgame.get(0));
+        Game specificgame = retrieveGameFromId(id);  
+        specificgame.setHighScore(Integer.valueOf(score));
+        GameDBO.updateGame(specificgame);
 
-        SseEmitter emitter = new SseEmitter();
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+        emitter = new SseEmitter();
+            cachedThreadPool.execute(() -> {
+                try {
+                        emitter.send(SseEmitter
+                                .event()
+                                .name("message")
+                                .data("[{\"highscore\":\""+score+"\","
+                                        + "\"event\":\"high score\"}]"));
+                    emitter.complete();
+                } catch (Exception e) {
+                    emitter.completeWithError(e);
+                }
+            });
+        
+        
+       return new ResponseEntity<>(emitter, headers, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = { "/game/highscore" }, method = RequestMethod.POST,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
+    @Transactional(timeout = 20)
+    @ResponseBody 
+    public ResponseEntity<ResponseBodyEmitter>  postHighScore(@RequestParam String gameid, 
+            @RequestParam String score, Model model) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type","text/event-stream");
+        headers.add("Cache-Control","no-cache");
+        headers.add("Custom-Event-Source","high-score");
+        
+        Integer id = Integer.valueOf(gameid);
+ 
+        Game specificgame = retrieveGameFromId(id);  
+        specificgame.setHighScore(Integer.valueOf(score));
+        GameDBO.updateGame(specificgame);
+
+        emitter = new SseEmitter();
             cachedThreadPool.execute(() -> {
                 try {
                         emitter.send(SseEmitter
@@ -157,9 +205,7 @@ public class GameController {
         GameForm gameForm = new GameForm();
         GameForm gameEditForm = new GameForm();
         games = GameDBO.loadGames();
-        Game editGame = games.stream()
-            .filter((game) -> Objects.equals(game.getId(), id))
-            .collect(Collectors.toList()).get(0);
+        Game editGame = retrieveGameFromId(id);
         gameEditForm.setTitle(editGame.getTitle());
         gameEditForm.setHighScore(editGame.getHighScore());
         gameEditForm.setCreated(editGame.getCreated());
@@ -195,5 +241,12 @@ public class GameController {
         return "game/editGame/{id}";
     }
    
+    private Game retrieveGameFromId(Integer id){ 
+        List<Game> allgames = GameDBO.loadGames();
+        List<Game> specificgame = allgames.stream()
+            .filter((game) -> Objects.equals(game.getId(), id))
+            .collect(Collectors.toList());      
+        return specificgame.get(0);
+    }
     
 }

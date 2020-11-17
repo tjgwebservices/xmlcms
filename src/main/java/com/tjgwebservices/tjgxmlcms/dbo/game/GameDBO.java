@@ -66,7 +66,7 @@ public class GameDBO extends DatabaseObject{
     public static void updateGame(Game game) {
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
-            String sql = "UPDATE Game SET title = ?, highScore = ?, created = ?, lastUpdated =?WHERE id = ?";
+            String sql = "UPDATE Game SET title = ?, highScore = ?, created = ?, lastUpdated =? WHERE id = ?";
             try {
                 conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
