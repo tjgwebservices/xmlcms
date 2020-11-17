@@ -39,11 +39,11 @@ function createVideoElement(elementId){
     return element;
 }
 
-var sessions = {"localSession":createVideoElement("localVideo"),
-                "remoteSession":createVideoElement("remoteVideo")};
+var sessions = {"clientView":createVideoElement("localVideo"),
+                "remoteView":createVideoElement("remoteVideo")};
 
-var selfView = sessions["localSession"];
-var remoteView = sessions["remoteSession"];
+var selfView = sessions["clientView"];
+var remoteView = sessions["remoteView"];
 var peerConnection = null, peerRemoteDescription = null;
 var getPeerRemoteDescription = function(){
     return peerRemoteDescription;
@@ -158,7 +158,8 @@ testconnectionButton.addEventListener("click",function(e){
 testconnectionButton2.addEventListener("click",function(e){
     e.preventDefault();
     testPeerCall();
-    openMediaDevices = navigator.mediaDevices.getUserMedia(constraints);
+    openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
+    .catch(function(error){console.log("Error with media devices", error);});
     streamconnect();
     enableServerComm();
 });
@@ -166,8 +167,8 @@ testconnectionButton3.addEventListener("click",function(e){
     e.preventDefault();
     triggerMessageEvent();
     startAsynchronousCall();
-    openMediaDevices = navigator.mediaDevices.getUserMedia(constraints);
-
+    openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
+    .catch(function(error){console.log("Error with media devices", error);});
     streamconnect(openMediaDevices);
     createServerConnection();      
 });
@@ -176,6 +177,8 @@ testconnectionButton4.addEventListener("click", function(e){
     e.preventDefault();
     var senders = peerConnection.getSenders();
     console.log("Number of peer connections: ",senders.length);
+    makePeerCall(peerConnection);
+    startAsynchronousCall();
     /*
     for (var i=0; i<senders.length; i++){
         if (senders[i].track  != null && senders[i].track.kind  == "video"){
@@ -189,12 +192,18 @@ testconnectionButton4.addEventListener("click", function(e){
 
 testconnectionButton5.addEventListener("click", function(e){
     e.preventDefault();
+    openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
+    .catch(function(error){console.log("Error with media devices", error);});    
+    setAsynchronousMessage(ws);
     
 });
 
 conferenceroomButton.addEventListener("click",function(e){
     e.preventDefault();
     sendMediaStream("test button 1");
+    openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
+    .catch(function(error){console.log("Error with media devices", error);});    
+    streamconnect(openMediaDevices);
 });
 
 audioonlyButton.addEventListener("click",function(e){
@@ -240,7 +249,8 @@ var connect = document.getElementById("connect");
 connect.addEventListener("click", 
     function(e){
         e.preventDefault();
-        openMediaDevices = navigator.mediaDevices.getUserMedia(constraints);
+        openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
+                .catch(function(error){console.log("Error with media devices", error);});
         streamconnect();
 
     });
@@ -249,7 +259,8 @@ var disconnect = document.getElementById("disconnect");
 disconnect.addEventListener("click", 
     function(e){
         e.preventDefault();
-        openMediaDevices = navigator.mediaDevices.getUserMedia(constraints);
+        openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
+            .catch(function(error){console.log("Error with media devices", error);});
         streamdisconnect();
 
     });
@@ -334,7 +345,7 @@ function displayRemoteStream(e) {
     }
 };
 
-var createPeerConnection = function (){
+var createPeerConnection = async function (){
     peerConnection = new RTCPeerConnection(configuration,{
                 optional : [{
                 RtpDataChannels : true
@@ -480,7 +491,7 @@ var createPeerConnection = function (){
          }
         createTestCanvasAnimation();
         var cStream;
-        navigator.mediaDevices.getUserMedia({
+        const userMediaStream = navigator.mediaDevices.getUserMedia({
             video: {
                 width: {min: 480, ideal: 480 },
                 height: { min: 270, ideal: 270 },
@@ -502,7 +513,7 @@ var createPeerConnection = function (){
         peerStream.srcObject = canvasStream;
         sourceStream.onplay = function() {
             var stream = sourceStream.captureStream();
-            for (const track of stream.getTracks()) {
+            for (const track of userMediaStream.getTracks()) {
               peerConnection.addTrack(track);
             }           
         };
@@ -526,7 +537,7 @@ var makePeerCall= function(peerConnection){
             video: true
         }).then(function (stream) {
             
-            for (const track of stream.getTracks()) {
+            for (const track of peerCallConnectionStream.getTracks()) {
                 try {
                       peerConnection.addTrack(track);
                   }catch (e) {
@@ -534,7 +545,7 @@ var makePeerCall= function(peerConnection){
                   }
             }
 
-            sessions["localSession"].srcObject = stream;
+            sessions["clientView"].srcObject = stream;
             localStream = stream;
 
             try {
@@ -547,7 +558,7 @@ var makePeerCall= function(peerConnection){
                 };
 
                 ws.onmessage = function(e) {
-                    sendMultipleMessageStreams(ws,e);
+                    onsinglemessage(ws,e);
                 };
                 
                 ws.addEventListener('message',function(e){
@@ -560,7 +571,7 @@ var makePeerCall= function(peerConnection){
 
             startSession();
             var stream = selfView.captureStream();
-            for (const track of stream.getTracks()) {
+            for (const track of peerCallConnectionStream.getTracks()) {
                 try {
                       peerConnection.addTrack(track);
                   } catch (e) {
@@ -574,9 +585,9 @@ var makePeerCall= function(peerConnection){
 		
 };
 
-var streamSyncPeer=function(){
+var streamSyncPeer=async function(){
 try {
-    navigator.getUserMedia({video:true, audio:true}, function() {
+    const userMediaStream = navigator.getUserMedia({video:true, audio:true}, function() {
     peerConnection.setRemoteDescription(new RTCSessionDescription(connectionDescription))
             .then(function(stream){
                 streamPeerConnection(stream);
@@ -602,7 +613,7 @@ try {
             .then(function(){
                 updateEventTableValue2("Established connection","");
                 var stream = selfView.captureStream();
-                for (const track of stream.getTracks()) {
+                for (const track of userMediaStream.getTracks()) {
                     try {
                             peerConnection.addTrack(track);
                         } catch (e) {
@@ -625,13 +636,13 @@ try {
 }
 
 var streamPeerConnection=function(stream){
-        selfView.src = URL.createObjectURL(stream);
+        remoteView.src = stream;
         peerConnection.addStream(stream);
     
 }
 
-var screenCapture=function(){
-                    navigator.mediaDevices.getDisplayMedia({video: true})
+var screenCapture=async function(){
+                    const userMediaStream = navigator.mediaDevices.getDisplayMedia({video: true})
                       .then(function(stream){
                           remoteView.srcObject=stream;
                           peerConnection.addStream(stream);
@@ -649,12 +660,12 @@ var addVideoStream = function(stream){
     
 };
 
-var testPeerCall=function(){
+var testPeerCall=async function(){
       try {
-        navigator.mediaDevices.getUserMedia(constraints)
+        const userMediaStream = navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(stream){ 
                     updateEventTableValue2("Adding stream",stream);
-                    for (const track of stream.getTracks()) {
+                    for (const track of userMediaStream.getTracks()) {
                         try {
                               peerConnection.addTrack(track);
                       } catch (e) {
@@ -703,8 +714,10 @@ var processServerHeaders = function(headers){
 
 var processFormMessage = function(message){
     var formData = new FormData();
+            console.log("Processing form message",message);
     
         if (message.desc !== undefined && message.desc !== null){
+            console.log("Sending message description");
             if (message.desc !== undefined && message.desc !== null &&
             message.desc.sdp !== undefined && message.desc.sdp !== null &&
             message.desc.type !== undefined && message.desc.type !== null) {
@@ -718,8 +731,18 @@ var processFormMessage = function(message){
                 return ['POST','/socket/'+unique,formData];
             } else {
                 formData.append("message",message);
-                return ['POST','/topics/'+unique,formData];                
+                return ['POST','/topic/'+unique,formData];                
             }            
+        } else if (message.type !== null && message.sdp !== null){
+                peerRemoteDescription = message;
+                formData.append("message",message);
+                formData.append("sdp",message.sdp);
+                formData.append("type",message.type);
+                connectionDescription = message;
+                handleVideoOfferMsg(message);
+                localSdp = message.sdp;
+                return ['POST','/socket/'+unique,formData];            
+            
         } else if (message !== null){
             try {
                 var messageobj = JSON.parse(JSON.parse(message));
@@ -999,8 +1022,8 @@ function createVideoElements(id){
 }
 
 function createRoom(){
-    conferenceroom.appendChild(sessions["localSession"]);
-    conferenceroom.appendChild(sessions["remoteSession"]);
+    conferenceroom.appendChild(sessions["clientView"]);
+    conferenceroom.appendChild(sessions["remoteView"]);
 }
 
 function onsinglemessage(ws, data) {
@@ -1032,7 +1055,7 @@ function onsinglemessage(ws, data) {
 
 
 function startSession() {
-    sessions["localSession"].addEventListener('loadedmetadata', 
+    sessions["clientView"].addEventListener('loadedmetadata', 
         function () {
             publish(ws,'client-call', null)
         }
@@ -1047,7 +1070,8 @@ function clientCall(stream) {
         }).then(function (desc) {
             peerConnection.setLocalDescription(desc).then(
                 function () {
-                    publish('client-offer', peerConnection.localDescription);
+                    publish(ws,'client-offer', peerConnection.localDescription);
+                    ws.send(desc);
                 }
             ).catch(function (e) {
              updateEventTableValue("publishing client offer error: ",e);
@@ -1076,7 +1100,8 @@ function clientOffer(localStream,data){
         if (!answer) {
             peerConnection.createAnswer(function (desc) {
                     peerConnection.setLocalDescription(desc, function () {
-                        publish('client-answer', peerConnection.localDescription);
+                        publish(ws,'client-answer', peerConnection.localDescription);
+                        ws.send(desc);
                     }, function(e){
                      updateEventTableValue2("Client answer error: ",e);
                     });
@@ -1104,18 +1129,6 @@ function clientCandidate(data){
     return true;
 }
 
-function sendMultipleMessageStreams(ws,event) {
-            updateEventTableValue("Send Multiple Message Streams: ",event);
-    if (event.data.includes("_MULTIPLEVENTS_")) {
-            var multiple = event.data.split("_MULTIPLEVENTS_");
-            for (var x=0; x<multiple.length; x++) {
-                    onsinglemessage(multiple[x]);
-            }
-    } else {
-            onsinglemessage(ws,event.data);
-    }
-    
-}
 
 function publishicecandidate(ws, localStream) {
     peerConnection = new RTCPeerConnection(configuration);
@@ -1156,7 +1169,7 @@ function publish(ws, event, data) {
 
 function send(message){
     sendMediaStream(JSON.stringify(message));
-    ws.send(JSON.stringify(message));
+    //ws.send(JSON.stringify(message));
 }
 
 async function startAsynchronousCall() {
@@ -1174,7 +1187,7 @@ async function startAsynchronousCall() {
 async function captureStream(){
         await peerConnection.setRemoteDescription(serverRemoteDescription);
         try {
-            sessions["localSession"].srcObject = captureLocalVideo();
+            sessions["clientView"].srcObject = captureLocalVideo();
             if (isCaller) {
                 updateEventTableValue("Is Caller connection","");
                 peerConnection.createOffer(receivedDescription);
@@ -1204,7 +1217,8 @@ async function captureStream(){
 }
 
 async function captureLocalVideo(){
-            var stream = await navigator.mediaDevices.getUserMedia(constraints);
+            var stream = await navigator.mediaDevices.getUserMedia(constraints)
+                .catch(function(error){console.log("Error with media devices", error);});
             stream.getTracks().forEach((track) => function()
             {
                 try {
@@ -1228,7 +1242,8 @@ function setAsynchronousMessage(ws){
                 if (desc) {
                     if (desc.type === 'offer') {
                         await peerConnection.setRemoteDescription(desc);
-                        const stream = captureLocalVideo();
+                        const stream = captureLocalVideo()
+                            .catch(function(error){console.log("Error with media devices", error);});
                         await peerConnection.setLocalDescription(await peerConnection.createAnswer());
                         ws.send({desc: peerConnection.localDescription});
                     } else if (desc.type === 'answer') {
@@ -1248,9 +1263,12 @@ function setAsynchronousMessage(ws){
 
 function createStream(stream){
     updateEventTableValue2("Create Stream",stream);
-    navigator.mediaDevices.getUserMedia(constraints);
+    //navigator.mediaDevices.getUserMedia(constraints);
     var streamVideo = document.createElement("video");
-    sourceStream.appendChild(streamVideo);
+    streamVideo.setAttribute("autoplay","true");
+    streamVideo.setAttribute("muted","muted");
+    streamVideo.setAttribute("id",Math.floor(20 + Math.random() * 99));
+    conferenceroom.appendChild(streamVideo);
     updateEventTableValue2("Creating stream",stream);
     streamVideo.srcObject = stream;
     peerConnection.addStream(stream);
@@ -1299,7 +1317,7 @@ var streamshowgreetings = function (message){
     var newMessage = document.createElement("span");
     newMessage.appendChild(message);
     greetings.appendChild(newMessage);
-}
+};
 
 
 var addStream = function(stream) {
@@ -1365,14 +1383,15 @@ function streamconnect(openMediaDevices) {
     streamsocket.onopen = (e) =>
     {
         try {
-            const stream = navigator.mediaDevices.getUserMedia(constraints);
-            var selfStream = stream;
-            selfView.src = URL.createObjectURL(stream);            
+            const userMediaStream = navigator.mediaDevices.getUserMedia(constraints)
+                .catch(function(error){console.log("Error with media devices", error);});
+            var selfStream = userMediaStream;
+            selfView.src = userMediaStream;            
             //remoteStream = remoteView.srcObject;
-            selfStream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+            selfStream.getTracks().forEach(track => peerConnection.addTrack(track, userMediaStream));
               
               
-            peerConnection.addStream(stream);
+            peerConnection.addStream(userMediaStream);
             
             rtcremote.srcObject = localStream;
             localStream.getTracks().forEach(track => 
@@ -1583,15 +1602,17 @@ var handleVideoOfferMsg = function (message) {
     var localStream = null;
     myUsername = "['attendee':'1']";
     targetUsername = "['room':'5555']";
-    if (message !== null) {
+    if (message !== null && message.sdp !== null && message.sdp !== undefined) {
         var desc = new RTCSessionDescription(message);
 
         peerConnection.setRemoteDescription(desc).then(function () {
-            return navigator.mediaDevices.getUserMedia(constraints);
+            return navigator.mediaDevices.getUserMedia(constraints)
+                .catch(function(error){console.log("Error with media devices", error);});
+        ws.send({desc: peerConnection.localDescription});
         })
         .then(function(stream) {
             var remoteStream = stream;
-            remoteView.src = URL.createObjectURL(stream);            
+            remoteView.src = stream;            
             remoteStream = remoteView.srcObject;
             remoteStream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
               
@@ -1627,8 +1648,11 @@ var handleVideoOfferMsg = function (message) {
           sendToServer(message);
         })
         .catch(handleGetUserMediaError);
+    } else if (message.message !== null && message.message !== undefined){
+        updateEventTableValue2("video offer message is ",message.message);
     } else {
-        updateEventTableValue2("video offer message is null","");
+        updateEventTableValue2("message is null ",message);
+        
     }
 }
 
@@ -1698,13 +1722,14 @@ async function displayLocalStreamAndSignal(firstTime) {
     const localVideo = document.getElementById('localVideo');
     let localStream;
     try {
-        const stream = await navigator.mediaDevices.getDisplayMedia({
+        const userMediaStream = await navigator.mediaDevices.getDisplayMedia({
             audio: true,
             video: true
-        });
+        })
+            .catch(function(error){console.log("Error with media devices", error);});
         updateEventTableValue2('Received local stream','');
-        localVideo.srcObject = stream;
-        localStream = stream;
+        localVideo.srcObject = userMediaStream;
+        localStream = userMediaStream;
         logVideoAudioTrackInfo(localStream);
         if (firstTime) {
             setTimeout(
@@ -1808,6 +1833,8 @@ function logVideoAudioTrackInfo(localStream) {
         updateEventTableValue("Using audio device:",audioTracks[0].label);
     }
 };
+
+
 
 })();
 
