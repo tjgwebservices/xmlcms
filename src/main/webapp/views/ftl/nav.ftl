@@ -120,20 +120,6 @@
             <li><a href="/">Home</a></li>
             <li>
             <span class="dropdown1">
-                <a href="/events/eventList">Events</a>
-                <span class="dropdown1-content">
-                    <a href="/events/addEvent">Add Event</a>
-                    <a href="/events/addEventAdvertisement">Add Event Advertisement</a>
-                    <a href="/events/addEventAdministrator">Add Event Administrator</a>
-                    <a href="/events/eventAdvertisementList">Advertisement List</a>
-                    <a href="/consulting/groups">Consulting</a>
-                    <a href="/consulting/about">About</a>
-                    <a href="/consulting/contact">Contact</a>
-                </span>
-            </span>
-            </li>
-            <li>
-            <span class="dropdown1">
                     <a href="/news/reports">News</a>
                 <span class="dropdown1-content">
                     <a href="/shop/shop">Shop</a>                
@@ -143,18 +129,6 @@
                     <a href="/reviews/reviewList">Reviews</a>
                     <a href="/research/addArtist">Add Artist</a>
                 <a href="/reviews/addReview">Add Review</a>
-                </span>
-            </span>
-            </li>
-            <li>
-            <span class="dropdown1">
-                <a href="/research/researchers">Researchers</a>
-                <span class="dropdown1-content">
-                    <a href="/research/addResearcher">Add Researcher</a>
-                    <a href="/research/addProject">Add Project</a>
-                    <a href="/research/addTopic">Add Topic</a>
-                    <a href="/research/projects">Projects</a>
-                    <a href="/research/topics">Topics</a>
                 </span>
             </span>
             </li>
@@ -171,6 +145,33 @@
                 </span>
             </span>
             </li>
+            <li>
+            <span class="dropdown1">
+                <a href="/research/researchers">Researchers</a>
+                <span class="dropdown1-content">
+                    <a href="/research/addResearcher">Add Researcher</a>
+                    <a href="/research/addProject">Add Project</a>
+                    <a href="/research/addTopic">Add Topic</a>
+                    <a href="/research/projects">Projects</a>
+                    <a href="/research/topics">Topics</a>
+                </span>
+            </span>
+            </li>
+
+            <li>
+            <span class="dropdown1">
+                <a href="/events/eventList">Events</a>
+                <span class="dropdown1-content">
+                    <a href="/events/addEvent">Add Event</a>
+                    <a href="/events/addEventAdvertisement">Add Event Advertisement</a>
+                    <a href="/events/addEventAdministrator">Add Event Administrator</a>
+                    <a href="/events/eventAdvertisementList">Advertisement List</a>
+                    <a href="/consulting/groups">Consulting</a>
+                    <a href="/consulting/about">About</a>
+                    <a href="/consulting/contact">Contact</a>
+                </span>
+            </span>
+            </li>
 
             <li>
             <span class="dropdown1">
@@ -180,7 +181,6 @@
                 </span>
             </span>
             </li>
-
             <li>
             <span class="dropdown1">
                 <a href="/hr/employers">Employers</a>
@@ -206,6 +206,7 @@
                 </span>
             </span>
             </li>
+
             <li>
             <span class="dropdown1">
                 <a href="/subscriptions/subscribe">Subscribe</a>

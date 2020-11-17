@@ -15,10 +15,10 @@
 </#list>
 </#list>
 </ul>
-<h2>${consulting.heading}</h2>
 </nav>
 </section>
 <aside>
+<h2>${consulting.heading}</h2>
 <h4><a href="//tjgwebservices.com/">TJG Web Services</a></h4>
 <ul>
 <#list consulting.tabs as tab>
@@ -31,9 +31,11 @@
 <main>
 <#list consulting.mainarticles as mainarticle>
 <article>
-<#list mainarticle as article> 
 
-<article><h2><a href=\"articles\\?articleid=${article[1]}">${article}</a></h2>
+<article><h2><a href="/index">${mainarticle[0]}</a></h2>
+<p>${mainarticle[0]}</p>
+<img src="img/${mainarticle[2]}" alt="TJG Web Services Consulting Group" title="TJG Web Services Consulting Group" />
+
 </p>
 <span></span>
 <span></span>
@@ -41,32 +43,27 @@
 <span></span>
 </article>
 
-</#list>
 </article>
 </#list>
 
 <#list consulting.subarticles as subarticle>
 <article>
-<#list subarticle as article> 
 
-<section><h2><a href=\"articles\\?articleid=${article[1]}">${article}</a></h2>
-</p>
-<p><img src="" /></p>
+<section><h2><a href="/index">${subarticle[0]}</a></h2>
+
+<p><img src="${subarticle[2]}" />${subarticle[1]}</p>
 </section>
 
-</#list>
 </article>
 </#list>
 
 <#list consulting.leadarticles as leadarticle>
 <article>
-<#list leadarticle as article> 
 
-<div><h2><a href=\"articles\\?articleid=${article[1]}">${article}</a></h2>
-</p>
+<div><h2><a href="/index">${leadarticle[0]}</a></h2>
+<p><img src="${leadarticle[2]}" />${leadarticle[1]}</p>
 </div>
 
-</#list>
 </article>
 </#list>
 
