@@ -68,7 +68,7 @@ nav a {
 	float: left;
 	padding: 10px 20px 10px;
 	margin-left: -20px;
-	font-size: 20px;
+	font-size: 1.2em;
 	font-weight: 200;
 	text-shadow: 0 1px 0 #ffffff;
 	color: #d40b27;
@@ -190,7 +190,7 @@ main aside ul {
 main aside ul li {
 	display: block;
 	padding: 3px 15px;
-	font-size: 14px;
+	font-size: 1.1em;
 	padding: 20px 0px 40px 0px;
 }
 
@@ -213,7 +213,7 @@ main aside ul li a{
 }
 
 main aside ul li a{
-	font-size: 18px;
+	font-size: 1.2em;
 	color: #FFFFFF;
 	background: #232323;
 	text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
@@ -239,7 +239,7 @@ main aside span a {
 	/*	background: #94b55e;*/
 	text-shadow: -5px 5px 0px #6b7940, -10px 10px 0px #8b9044, -15px 15px 0px #565f26;
 	font-weight: 700;
-	font-size: 36px;
+	font-size: 1.3em;
 	padding: 4px 2px 4px 2px;
 	text-stroke: 5px rgba(80,167,225,0.29);
 	margin-left: 10px;
@@ -287,7 +287,7 @@ main div header a {
 	border-color: #0044cc #0044cc #002a80;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	padding: 11px 19px;
-	font-size: 17.5px;
+	font-size: 1.4em;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -420,7 +420,7 @@ main div article section a.btn{
 	padding: 4px 12px;
 	margin-bottom: 0;
 	*margin-left: .3em;
-	font-size: 14px;
+	font-size: 1.1em;
 	line-height: 20px;
 	color: #333333;
 	text-align: center;
@@ -443,7 +443,7 @@ main div article section a.btn{
 
 main div article section a.artbtn{
 	background-color: #d0da99;
-	font-size: 18px;
+	font-size: 1.2em;
 	padding: 8px 12px;
 	border-radius: 15px;
 	font-weight: 800;
@@ -473,12 +473,12 @@ main > div > article > h2 {
 	color: #33220a;
 	padding: 4px;
 	text-align: center;
-	font-size: 48px;
+	font-size: 1.8em;
 }
 
 main > div > article > p {
 	font-family: Arial;
-	font-size: x-large;
+	font-size: 1.7em;
 	color: #33220a;
 	padding: 4px;
 	margin-left: 10px;
@@ -488,7 +488,7 @@ main > div > article > p:nth-child(1),
 main > div > article > p:nth-child(2),
 main > div > article > p:nth-child(3) {
 	font-weight: 500;
-	font-size: 28px;
+	font-size: 1.2em;
 }
 
 @media (min-width: 900px) {

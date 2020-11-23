@@ -30,5 +30,38 @@ public class NewsController {
          
         return "news/reports";
     }
+
+    @RequestMapping(value = { "/news/forum" }, method = RequestMethod.GET)
+    public String newsForum(Model model) {
+        String xmlPath = context.getRealPath("") +
+                "xml" + File.separator + "consulting.xml";
+
+        Consulting consulting = retrieveConsultantPage(xmlPath);
+        model.addAttribute("consulting", consulting);
+         
+        return "news/forum";
+    }
+
+    @RequestMapping(value = { "/news/news" }, method = RequestMethod.GET)
+    public String newsNews(Model model) {
+        String xmlPath = context.getRealPath("") +
+                "xml" + File.separator + "consulting.xml";
+
+        Consulting consulting = retrieveConsultantPage(xmlPath);
+        model.addAttribute("consulting", consulting);
+         
+        return "news/news";
+    }
+
+    @RequestMapping(value = { "/news/freelance" }, method = RequestMethod.GET)
+    public String newsFreelance(Model model) {
+        String xmlPath = context.getRealPath("") +
+                "xml" + File.separator + "consulting.xml";
+
+        Consulting consulting = retrieveConsultantPage(xmlPath);
+        model.addAttribute("consulting", consulting);
+         
+        return "news/freelance";
+    }
     
 }

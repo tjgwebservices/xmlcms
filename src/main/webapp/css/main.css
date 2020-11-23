@@ -212,7 +212,6 @@ body > main > ul li{
 body > main > ul li a{
     text-align: center;
     color: #0f382a;
-    height: 100%;
     display: block;
 }
 
@@ -321,6 +320,10 @@ aside > section h6 {
     padding: 0px;
     color: #274816;
     font-weight: 600;
+}
+
+aside > article > section > video {
+    width: 100%;
 }
 
 main, body > div  {
