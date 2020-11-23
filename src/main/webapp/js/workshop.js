@@ -222,7 +222,7 @@ var createPeerConnection = function (){
         };
 
         ws.onmessage = function(e) {
-            sendMultipleMessageStreams(ws,e);
+            processMessageEvent(e);
         };
 
         ws.addEventListener('message',function(e){
@@ -290,6 +290,31 @@ try {
 };
 
 
+function createStream(stream){
+    updateEventTableValue2("Create Stream",stream);
+    //navigator.mediaDevices.getUserMedia(constraints);
+    var streamVideo = document.createElement("video");
+    streamVideo.setAttribute("autoplay","true");
+    streamVideo.setAttribute("muted","muted");
+    streamVideo.setAttribute("id",Math.floor(20 + Math.random() * 99));
+    conferenceroom.appendChild(streamVideo);
+    updateEventTableValue2("Creating stream",stream);
+    streamVideo.srcObject = stream;
+    peerConnection.addStream(stream);
+    streamVideo.addEventListener('loadedmetadata', ()=>{
+        console.log("playing video from metadata");
+        var videoPromise = streamVideo.play();
+        if (videoPromise !== undefined) {
+            videoPromise.then(promise => {
+            updateEventTableValue2("play started", promise);
+            }).catch(error => {
+            updateEventTableValue2("play start error",error);
+            });
+        }
+    });
+}
+
+
 function handleOffer(offer) {
     updateEventTableValue2("Handle Offer", offer);
     if (offer.type !== undefined && offer.type=="offer"){
@@ -345,7 +370,7 @@ var processServerHeaders = function(headers){
         } else {
             updateEventTableValue2("received event source, ",
             header["custom-event-source"]);
-            addSource(header["custom-event-source"]);
+            //addSource(header["custom-event-source"]);
         }
     }
     return true;
@@ -413,6 +438,71 @@ var processMessageEvent = function(message){
 
 }
 
+function clientCall(stream) {
+        icecandidate(stream);
+        peerConnection.createOffer({
+            offerToReceiveAudio: 1,
+            offerToReceiveVideo: 1
+        }).then(function (desc) {
+            peerConnection.setLocalDescription(desc).then(
+                function () {
+                    publish(ws,'client-offer', peerConnection.localDescription);
+                }
+            ).catch(function (e) {
+             updateEventTableValue("publishing client offer error: ",e);
+            });
+        }).catch(function (e) {
+             updateEventTableValue("client-call error: ",e);
+        });
+}
+
+function clientAnswer(data){
+        if (peerConnection==null) {
+             updateEventTableValue("client-answer with peer connection null: ","not answering");
+        return false;
+    }
+    peerConnection.setRemoteDescription(new RTCSessionDescription(data),
+    function(){}, 
+        function(e) { 
+             updateEventTableValue("client-answer Error: ",e);
+    });
+    return true;
+}
+
+function clientOffer(localStream,data){
+    publishicecandidate(localStream);
+    peerConnection.setRemoteDescription(new RTCSessionDescription(data), function(){
+        if (!answer) {
+            peerConnection.createAnswer(function (desc) {
+                    peerConnection.setLocalDescription(desc, function () {
+                        publish(ws,'client-answer', peerConnection.localDescription);
+                    }, function(e){
+                     updateEventTableValue2("Client answer error: ",e);
+                    });
+                }
+            ,function(e){
+                     updateEventTableValue2("Client offer error: ",e);
+            });
+            answer = 1;
+        }
+    }, function(e){
+            updateEventTableValue2("Client offer error: ",e);
+    });    
+}
+
+function clientCandidate(data){
+            updateEventTableValue("Client Candidate: ",data);
+    if (peerConnection==null) {
+    return false;
+     }
+    peerConnection.addIceCandidate(new RTCIceCandidate(data), function(){}, 
+        function(e) { 
+            updateEventTableValue("Problem adding ice candidate: ",e);
+            
+   });
+    return true;
+}
+
 
 var sendMediaStream = function(message) {
     updateEventTableValue("send media stream",message);
@@ -478,8 +568,6 @@ function logVideoAudioTrackInfo(localStream) {
 var handleVideoOfferMsg = function (message) {
     updateEventTableValue2("HandleVideoOfferMessage", message);
     var localStream = null;
-    myUsername = "['attendee':'1']";
-    targetUsername = "['room':'5555']";
     if (message !== null) {
         var desc = new RTCSessionDescription(message);
 
@@ -495,7 +583,7 @@ var handleVideoOfferMsg = function (message) {
               
             peerConnection.addStream(stream);
             
-            rtcremote.srcObject = localStream;
+            selfView.srcObject = localStream;
             localStream.getTracks().forEach(track => 
             function(){
                 try {
@@ -515,8 +603,8 @@ var handleVideoOfferMsg = function (message) {
         })
         .then(function() {
           var message = {
-            name: myUsername,
-            target: targetUsername,
+            name: 'client',
+            target: 'server',
             type: "video-answer",
             sdp: peerConnection.localDescription,
             topic: "video-offer-msg"
@@ -527,6 +615,13 @@ var handleVideoOfferMsg = function (message) {
     } else {
         updateEventTableValue2("video offer message is null","");
     }
+}
+
+function publish(ws, event, data) {
+    ws.send(JSON.stringify({
+        event:event,
+        data:data
+    }));
 }
 
 var handleGetUserMediaError = function (error){

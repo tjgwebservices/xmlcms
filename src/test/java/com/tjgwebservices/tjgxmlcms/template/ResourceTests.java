@@ -175,19 +175,22 @@ public class ResourceTests {
 	}
 
 	@Test
-	void testAddClientsPage() {
+        @Disabled
+        void testAddClientsPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/hr/addClient");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
 	@Test
-	void testAddEmployeesPage() {
+        @Disabled
+        void testAddEmployeesPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/hr/addEmployer");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
         
 	@Test
-	void testAddHrGroupPage() {
+        @Disabled
+        void testAddHrGroupPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/hr/addHrGroup");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
@@ -242,13 +245,15 @@ public class ResourceTests {
 	}
 
 	@Test
+        @Disabled
 	void testAddProjectPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/research/addProject");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
         
 	@Test
-	void testAddResearcherPage() {
+        @Disabled
+        void testAddResearcherPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/research/addResearcher");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
@@ -300,6 +305,7 @@ public class ResourceTests {
 	}
 
 	@Test
+        @Disabled
 	void testAddReviewPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/reviews/addReview");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
@@ -354,7 +360,8 @@ public class ResourceTests {
 	}
 
 	@Test
-	void testAddEventAdvertisementPage() {
+        @Disabled
+        void testAddEventAdvertisementPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/events/addEventAdvertisement");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}

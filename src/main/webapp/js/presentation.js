@@ -13,6 +13,7 @@ var dataChannel = null;
 var remoteanswer = null, inboundStream = null, serverChannel = null;
 var ws = null, serverRemoteDescription = null, localStream = null;
 var hosturl = "/socket";
+var localSdp = null, isCaller=true;
 var connectionDescription=null, unique=5555, loalSdp=null, answer=0;
 var conferenceroomButton = document.getElementById("startcall");
 var conferenceroom = document.getElementById("conferenceroom");
@@ -343,7 +344,9 @@ var createPeerConnection = function (){
                 };
 
                 ws.onmessage = function(e) {
-                    sendMultipleMessageStreams(ws,e);
+                    //sendMultipleMessageStreams(ws,e);
+                    processFormMessage(e);
+                    updateEventTableValue("Sending message",e);
                 };
                 
                 ws.addEventListener('message',function(e){
@@ -365,7 +368,8 @@ var createPeerConnection = function (){
 			
         }).catch(function (e) {
                     updateEventTableValue2("AV error",e);
-        });
+        })
+            .catch(function(error){console.log("Error with media devices", error);});;
         
     navigator.getUserMedia({video:true, audio:true}, function() {
     peerConnection.setRemoteDescription(new RTCSessionDescription(connectionDescription))
@@ -556,7 +560,7 @@ function clientCall(stream) {
         }).then(function (desc) {
             peerConnection.setLocalDescription(desc).then(
                 function () {
-                    publish('client-offer', peerConnection.localDescription);
+                    publish(ws,'client-offer', peerConnection.localDescription);
                 }
             ).catch(function (e) {
              updateEventTableValue("publishing client offer error: ",e);
@@ -585,7 +589,7 @@ function clientOffer(localStream,data){
         if (!answer) {
             peerConnection.createAnswer(function (desc) {
                     peerConnection.setLocalDescription(desc, function () {
-                        publish('client-answer', peerConnection.localDescription);
+                        publish(ws,'client-answer', peerConnection.localDescription);
                     }, function(e){
                      updateEventTableValue2("Client answer error: ",e);
                     });
@@ -713,7 +717,9 @@ async function captureStream(){
 }
 
 async function captureLocalVideo(){
-            var stream = await navigator.mediaDevices.getUserMedia(constraints);
+            var stream = await navigator.mediaDevices.getUserMedia(constraints)
+                .catch(function(error){console.log("Error with media devices", error);});
+
             stream.getTracks().forEach((track) => function()
             {
                 try {
@@ -737,7 +743,8 @@ function setAsynchronousMessage(ws){
                 if (desc) {
                     if (desc.type === 'offer') {
                         await peerConnection.setRemoteDescription(desc);
-                        const stream = captureLocalVideo();
+                        const stream = captureLocalVideo()
+                            .catch(function(error){console.log("Error with media devices", error);});
                         await peerConnection.setLocalDescription(await peerConnection.createAnswer());
                         ws.send({desc: peerConnection.localDescription});
                     } else if (desc.type === 'answer') {
@@ -757,8 +764,11 @@ function setAsynchronousMessage(ws){
 
 function createStream(stream){
     updateEventTableValue2("Create Stream",stream);
-    navigator.mediaDevices.getUserMedia(constraints);
+    //navigator.mediaDevices.getUserMedia(constraints);
     var streamVideo = document.createElement("video");
+    streamVideo.setAttribute("autoplay","true");
+    streamVideo.setAttribute("muted","muted");
+    streamVideo.setAttribute("id",Math.floor(20 + Math.random() * 99));
     conferenceroom.appendChild(streamVideo);
     updateEventTableValue2("Creating stream",stream);
     streamVideo.srcObject = stream;
@@ -774,6 +784,7 @@ function createStream(stream){
             });
         }
     });
+
 }
 
 var addVideoStream = function(stream){
@@ -797,7 +808,8 @@ var handleVideoOfferMsg = function (message) {
         var desc = new RTCSessionDescription(message);
 
         peerConnection.setRemoteDescription(desc).then(function () {
-            return navigator.mediaDevices.getUserMedia(constraints);
+            return navigator.mediaDevices.getUserMedia(constraints)
+                .catch(function(error){console.log("Error with media devices", error);});
         })
         .then(function(stream) {
             var remoteStream = stream;

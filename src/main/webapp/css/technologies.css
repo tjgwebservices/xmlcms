@@ -1,0 +1,266 @@
+body {
+    max-width: 1200px;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Montserrat", sans-serif;
+    font-family: Verdana,sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+nav {
+    z-index: 3;
+    width: 250px;
+    color: #000;
+    background-color: #fff;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+    width: 200px;
+    background-color: #fff;
+    position: fixed!important;
+    z-index: 1;
+    overflow: auto;
+    /* overflow-y: scroll; */
+    overflow-y: hidden;
+}
+
+nav nav {
+    font-weight: bold;
+    color: #757575;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    font-size: 18px;
+}
+
+nav nav a {
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0;
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+ 
+ nav nav button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;  
+}
+ 
+nav nav button:hover {
+    background-color: #c7e0f1;
+ }
+ 
+header {
+    color: #fff;
+    background-color: #000;
+    font-size: 24px;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+}
+
+.overlay {
+    cursor: pointer;
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+main, footer {
+    margin-left: 250px;
+    transition: margin-left .4s;
+}
+
+main main {
+    margin-top: 83px;
+}
+
+main header {
+    position: fixed; /* Make it stick/fixed */
+    top: 0; /* Stay on top */
+    width: 100%; /* Full width */
+    transition: top 0.3s; /* Transition effect when sliding down (and up) */
+}
+
+main header {
+    margin-top: 83px;
+    padding: 0.01em 16px;
+}
+
+main header p:nth-of-type(1) {
+    float: left;
+}
+
+main header p:nth-of-type(2) {
+    float: right;	
+}
+
+main main {
+    padding: 0.01em 16px;
+    position: relative;
+    margin-left: 0px;	
+}	
+
+main main img {
+    width: 100%;
+    opacity: 0.5;
+}
+
+main main main {
+    padding: 24px 48px;	
+}
+
+main article {
+    width: 100%;
+    color: #757575;
+    padding: 0.01em 16px;
+    display: block;
+    height: auto;
+    float: left;
+    background-color: #cdd6cc;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+main article section {
+    filter: grayscale(75%);
+    float: left;
+    width: 100%;
+}
+
+/*
+main article section:hover {
+    content: "";
+    display: table;
+    clear: both;
+}
+*/
+
+main article section img {
+    width: 100%;
+    vertical-align: middle;
+    border-style: none;
+}
+
+main form {
+    color: #fff;
+    background-color: #000;
+}
+
+main form input {
+    padding: 8px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    overflow: visible;
+    width: 80%;
+    margin-left: 2%;
+    margin-right: 18%;
+}
+
+main form button {
+    color: #fff;
+    background-color: #f44336;
+    margin: 16px 10px 8px 10px;
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+footer {
+    color: #000;
+    background-color: #f1f1f1;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    text-align: center;
+    font-size: 12px;
+}
+
+footer article {
+    width: 100%;
+}
+
+footer article section {
+    float: left;
+}
+
+@media (min-width: 993px) {
+	main article section {
+            width: 24.99999%;
+	}
+	footer article section {
+            width: 33.33333%;
+            text-align: justify;
+            font-size: 12px;
+            font-family: "Montserrat", sans-serif;
+	}
+	
+}
+
+
+@media (min-width: 993px) {
+	main main h2:nth-of-type(2) {
+            display: none;
+	}
+}
+
+@media (max-width: 992px) {
+    nav {
+        display: none;
+    }
+}
+
+@media (min-width: 993px) {
+    .overlay {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    main, footer {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+}
+

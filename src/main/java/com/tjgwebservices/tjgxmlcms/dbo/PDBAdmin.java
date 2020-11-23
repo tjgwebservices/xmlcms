@@ -1,6 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.dbo;
 
 import com.tjgwebservices.tjgxmlcms.model.DbConfig;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -36,7 +37,8 @@ public class PDBAdmin {
     public void connectToPDB(){
         try {
             XPath xpath = XPathFactory.newInstance().newXPath();
-            InputSource inputSource = new InputSource(xmlPath);
+            String configPath = context.getRealPath("")+ File.separator + "sqlconfig.xml";
+            InputSource inputSource = new InputSource(configPath);
             NodeList nodes = (NodeList)xpath.evaluate("/sqlconfig/databases/database/configuration",
                     inputSource, XPathConstants.NODESET);
             Node node = nodes.item(0);

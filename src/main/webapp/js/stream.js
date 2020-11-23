@@ -1,3 +1,4 @@
+'use strict';
 (function () {
 
 const connectionArray = [];
@@ -76,7 +77,6 @@ var audiofilterButton = document.getElementById("audiofilter");
 var serverCommands = document.getElementById("commands");
 var greetings = document.getElementById("greetings");
 
-//var unique = Math.floor(100000 + Math.random() * 999);
 var eventTable = document.getElementById("eventTable");
 
 var loginInput = document.getElementById("rtcconnectname");
@@ -86,7 +86,8 @@ var rtcform = document.getElementById("rtcform");
 var rtcsendbutton = document.getElementById("rtcsend");
 var rtcremote = document.getElementById("rtcremote");
 var rtcself = document.getElementById("rtcself");
-var unique = 5555;
+var unique = Math.floor(100000 + Math.random() * 999);
+
 var myUsername = "testMyUser";
 var targetUsername = "testTarget";
 
@@ -159,7 +160,7 @@ testconnectionButton2.addEventListener("click",function(e){
     e.preventDefault();
     testPeerCall();
     openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
-    .catch(function(error){console.log("Error with media devices", error);});
+    .catch(function(error){updateEventTableValue2("Error with media devices", error);});
     streamconnect();
     enableServerComm();
 });
@@ -168,7 +169,7 @@ testconnectionButton3.addEventListener("click",function(e){
     triggerMessageEvent();
     startAsynchronousCall();
     openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
-    .catch(function(error){console.log("Error with media devices", error);});
+    .catch(function(error){updateEventTableValue2("Error with media devices", error);});
     streamconnect(openMediaDevices);
     createServerConnection();      
 });
@@ -176,17 +177,9 @@ testconnectionButton3.addEventListener("click",function(e){
 testconnectionButton4.addEventListener("click", function(e){
     e.preventDefault();
     var senders = peerConnection.getSenders();
-    console.log("Number of peer connections: ",senders.length);
+    updateEventTableValue("Number of peer connections: ",senders.length);
     makePeerCall(peerConnection);
     startAsynchronousCall();
-    /*
-    for (var i=0; i<senders.length; i++){
-        if (senders[i].track  != null && senders[i].track.kind  == "video"){
-            var recVideo = document.createElement("video");
-            recVideo.srcObject = URL.createObjectURL(senders[i].track);
-            conferenceroom.appendChild(recVideo);
-        }
-    }*/
 
 });
 
@@ -200,7 +193,6 @@ testconnectionButton5.addEventListener("click", function(e){
 
 conferenceroomButton.addEventListener("click",function(e){
     e.preventDefault();
-    sendMediaStream("test button 1");
     openMediaDevices = navigator.mediaDevices.getUserMedia(constraints)
     .catch(function(error){console.log("Error with media devices", error);});    
     streamconnect(openMediaDevices);
@@ -224,7 +216,7 @@ audiofilterButton.addEventListener("click",function(e){
         audioContext = new webkitAudioContext();
         createAudioFilter(audioContext)
     } else {
-        console.log("Audio not supported");
+        updateEventTableValue("Audio not supported");
     }
 });
 
@@ -288,7 +280,7 @@ rtcsendbutton.addEventListener("click",function(e){
         });
         rtcpeerconnection.setLocalDescription(offer);
     }).catch(function(error){
-        console.log("rtcsenderror",error);
+        updateEventTableValue("rtcsenderror",error);
     });
     
     });    
@@ -340,6 +332,7 @@ function displayRemoteStream(e) {
     }else {
         if (remoteVideo.srcObject !== e.streams[0]) {
             remoteVideo.srcObject = e.streams[0];
+            remoteVideo.play();
             updateEventTableValue2('pc2 received remote stream','');
         }
     }
@@ -353,20 +346,19 @@ var createPeerConnection = async function (){
     });
     
     peerConnection.onicecandidate = ({candidate}) => function(event) {
-        updateEventTableValueAll("candidate",candidate,"event",event)
-        ws.send({candidate});
-        ws.send(JSON.stringify({"candidate": event.candidate}));
+        updateEventTableAll("candidate",candidate,"event",event);
+        ws.send({"candidate": event.candidate});
     };
     peerConnection.onaddstream = function(event) {
-        console.log("senders",peerConnection.getSenders().length);
-        console.log("receivers",peerConnection.getReceivers().length);        
+        updateEventTableAll("senders",peerConnection.getSenders().length,
+        "receivers",peerConnection.getReceivers().length);        
         addVideoStream(event.stream);
         updateEventTableValue2("adding stream",event.stream);
     };
 
     peerConnection.onaddtrack = function(event) {
-        console.log("senders",peerConnection.getSenders().length);
-        console.log("receivers",peerConnection.getReceivers().length);
+        updateEventTableAll("senders",peerConnection.getSenders().length,
+        peerConnection.getReceivers().length);
         addVideoStream(event.stream);
         updateEventTableValue2("adding stream",event.stream);
     };
@@ -407,7 +399,7 @@ var createPeerConnection = async function (){
                 
             });
         }catch (err) {
-            console.log(err);
+            updateEventTableValue2("Error",err);
         }
         //await peerConnection.setLocalDescription(await peerConnection.createOffer());
         if (peerConnection.localDescription !== null){
@@ -424,6 +416,7 @@ var createPeerConnection = async function (){
             updateEventTableValue2("tracking...","adding 1 stream");
             addVideoStream(event.stream);                  
             remoteView.srcObject = event.streams[0];
+            remoteView.play();
           } else if (event.stream){
             updateEventTableValue2("tracking...","adding stream");
             addVideoStream(event.stream);
@@ -461,7 +454,7 @@ var createPeerConnection = async function (){
                     break;
             }
         } catch (e) {
-            console.log("peerConnection onmessage JSON parse error", e);
+            updateEventTableValue2("peerConnection onmessage JSON parse error", e);
         }
     };
     
@@ -473,11 +466,27 @@ var createPeerConnection = async function (){
     );
 
     dataChannel.onerror = function(error){
-        console.log("Error", error);   
+        updateEventTableValue2("Error", error);   
     };
 
     dataChannel.onmessage = function(event) {
-        updateEventTableValue2("data channel message",event.data);
+        updateEventTableValue2("data channel message", event);
+        try {
+            const message = JSON.parse(event);
+            if (message.ice) {
+              peerConnection.addIceCandidate(message.ice).catch(e => {
+                updateEventTableValue2("Failure during addIceCandidate(): ", e.name);
+              });
+            } else {                
+                    if (event.data) {
+                      updateEventTableValue2("data channel message",event.data);
+                    }else {
+                        updateEventTableValue2("data channel message",event);                  
+                    }
+            }        
+        } catch (error){
+                  updateEventTableValue2("Json parsing error",event,error);
+              }
     };
 
     dataChannel.onclose = function() {
@@ -491,7 +500,7 @@ var createPeerConnection = async function (){
          }
         createTestCanvasAnimation();
         var cStream;
-        const userMediaStream = navigator.mediaDevices.getUserMedia({
+        const userMediaStream = await navigator.mediaDevices.getUserMedia({
             video: {
                 width: {min: 480, ideal: 480 },
                 height: { min: 270, ideal: 270 },
@@ -503,20 +512,25 @@ var createPeerConnection = async function (){
             }
         }).then(stream =>{
             selfView.srcObject = stream;
+            selfView.play();
             cStream = stream;
+            videoElement.srcObject = cStream;
+            videoElement.play();
+            var canvasStream = canvas.captureStream(25);
+            peerStream.srcObject = canvasStream;
+            peerStream.play();
+            sourceStream.onplay = function() {
+                var srcstream = sourceStream.captureStream();
+                for (const track of srcstream.getTracks()) {
+                  peerConnection.addTrack(track);
+                }           
+            };
+            
+            
         }).catch(error =>
                 function (error){
                     console.log(error);
                 });
-        videoElement.srcObject = cStream;
-        var canvasStream = canvas.captureStream(25);
-        peerStream.srcObject = canvasStream;
-        sourceStream.onplay = function() {
-            var stream = sourceStream.captureStream();
-            for (const track of userMediaStream.getTracks()) {
-              peerConnection.addTrack(track);
-            }           
-        };
 
         return peerConnection;
 
@@ -530,44 +544,60 @@ var triggerMessageEvent= function(){
     peerConnection.dispatchEvent(event);
 };
 
-var makePeerCall= function(peerConnection){
+var makePeerCall= async function(peerConnection){
             updateEventTableValue2("make peer call","");
-    const peerCallConnectionStream = navigator.mediaDevices.getUserMedia({
+    const peerCallConnectionStream = await navigator.mediaDevices.getUserMedia({
            audio: true, 
             video: true
         }).then(function (stream) {
             
-            for (const track of peerCallConnectionStream.getTracks()) {
-                try {
-                      peerConnection.addTrack(track);
-                  }catch (e) {
-                        updateEventTableValue2("Error adding track",e);
-                  }
+            try {
+                for (const track of stream.getTracks()) {
+                    try {
+                          peerConnection.addTrack(track);
+                      }catch (e) {
+                            updateEventTableValue2("Error adding track",e);
+                      }
+                }
+            } catch (e) {
+                updateEventTableValue("Unable to get tracks", e);
+                updateEventTableValue2("peerCallConnectionStream", peerCallConnectionStream);
             }
-
             sessions["clientView"].srcObject = stream;
+            sessions["clientView"].play();
             localStream = stream;
 
             try {
                 ws = new EventSource('/socket/'+unique);
-            } catch(e) {
-                updateEventTableValue2("Could not create eventSource ",e);
-            }
+                
                 ws.send = function send(message) {
                     sendMediaStream(message);
                 };
 
                 ws.onmessage = function(e) {
+                    updateEventTableValue("received server message",e);
                     onsinglemessage(ws,e);
                 };
+
+                ws.addEventListener('open', function(e) {
+                    updateEventTableValue("opened ws connection",e);
+                }, false);
+
+                ws.addEventListener('error', function(e) {
+                    updateEventTableValue2("opened ws connection",e);
+                  if (e.readyState == EventSource.CLOSED) {
+                  }
+                }, false);        
                 
                 ws.addEventListener('message',function(e){
                     updateEventTableValue("Received web socket message event",e.data);
-                });
+                    updateEventTableValue2("ws message",e);
+                });                
                 
-                ws.addEventListener('open',function(e){
-                    updateEventTableValue("Received web socket open event",e.data);
-                });
+            } catch(e) {
+                updateEventTableValue2("Could not create eventSource ",e);
+            }
+
 
             startSession();
             var stream = selfView.captureStream();
@@ -613,14 +643,18 @@ try {
             .then(function(){
                 updateEventTableValue2("Established connection","");
                 var stream = selfView.captureStream();
-                for (const track of userMediaStream.getTracks()) {
-                    try {
-                            peerConnection.addTrack(track);
-                        } catch (e) {
-                        updateEventTableValue2("Error adding track",e);
+                try {
+                    for (const track of userMediaStream.getTracks()) {
+                        try {
+                                peerConnection.addTrack(track);
+                            } catch (e) {
+                            updateEventTableValue2("Error adding track",e);
+                        }
                     }
+                } catch (e) {
+                        updateEventTableAll("userMediaStream gettracks",e,
+                        "userMediaStream", userMediaStream);
                 }
-
 
              }).catch(offerError);
          }, function(){
@@ -637,6 +671,7 @@ try {
 
 var streamPeerConnection=function(stream){
         remoteView.src = stream;
+        remoteView.play();
         peerConnection.addStream(stream);
     
 }
@@ -645,6 +680,7 @@ var screenCapture=async function(){
                     const userMediaStream = navigator.mediaDevices.getDisplayMedia({video: true})
                       .then(function(stream){
                           remoteView.srcObject=stream;
+                          remoteView.play();
                           peerConnection.addStream(stream);
                       },
                             function(error){console.log(error);});    
@@ -655,7 +691,8 @@ var addVideoStream = function(stream){
     videoElem.setAttribute("id","peercall"+Math.floor(Math.random() * Math.floor(20)));
     videoElem.setAttribute("autoplay","true");
     conferenceroom.appendChild(videoElem);
-    videoElem.srcObject = stream;        
+    videoElem.srcObject = stream;
+    videoElem.play();
     
     
 };
@@ -665,20 +702,24 @@ var testPeerCall=async function(){
         const userMediaStream = navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(stream){ 
                     updateEventTableValue2("Adding stream",stream);
-                    for (const track of userMediaStream.getTracks()) {
-                        try {
-                              peerConnection.addTrack(track);
-                      } catch (e) {
-                        updateEventTableValue2("Error adding track",e);
-                      }
+                    try {
+                        for (const track of userMediaStream.getTracks()) {
+                            try {
+                                  peerConnection.addTrack(track);
+                          } catch (e) {
+                            updateEventTableValue2("Error adding track",e);
+                          }
 
+                        }
+                    } catch (e) {
+                        updateEventTableAll("userMediaStream gettracks", 
+                        e,"userMediaStream:", userMediaStream);
                     }
-                    //addStream(stream);
                     addVideoStream(stream);
                     rtcOnLogin(true);})
                 .catch(function(err){
-                    updateEventTableValue2("AV Devices not detected",err);
-                    updateEventTableValue2("Streaming screen","Screen capture");
+                    updateEventTableAll("AV Devices not detected",err, 
+                    "Streaming screen","Screen capture");
                     screenCapture();
 
 
@@ -689,10 +730,20 @@ var testPeerCall=async function(){
     
 }
 
+var processServerResponse = function(response){
+    updateEventTableValue("Received server response",response);
+    updateEventTableValue2("Received server response",response);
+    try {
+        JSON.parse(response);
+    } catch (e) {
+        updateEventTableValue("Unable to parse response received error",e);
+    }
+        
+};
+
 var processServerHeaders = function(headers){
     var header={};
     var headersString  = headers.split("\n");
-    //console.log("ProcessServerHeaders: ",headersString);
     for (var i=0;i<headersString.length;i++){
         var key = headersString[i].split(":")[0];
         var value = headersString[i].split(":")[1];
@@ -712,12 +763,11 @@ var processServerHeaders = function(headers){
     return true;
 }
 
-var processFormMessage = function(message){
+var processFormMessage = async function(message){
     var formData = new FormData();
-            console.log("Processing form message",message);
-    
+            updateEventTableValue("Processing form message","");
         if (message.desc !== undefined && message.desc !== null){
-            console.log("Sending message description");
+            updateEventTableValue("Sending message description","");
             if (message.desc !== undefined && message.desc !== null &&
             message.desc.sdp !== undefined && message.desc.sdp !== null &&
             message.desc.type !== undefined && message.desc.type !== null) {
@@ -728,12 +778,13 @@ var processFormMessage = function(message){
                 connectionDescription = message.desc;
                 handleVideoOfferMsg(message.desc);
                 localSdp = message.desc.sdp;
-                return ['POST','/socket/'+unique,formData];
+                return ['POST','/socket/'+unique,formData, true];
             } else {
                 formData.append("message",message);
-                return ['POST','/topic/'+unique,formData];                
+                return ['POST','/topic/'+unique,formData, false];                
             }            
-        } else if (message.type !== null && message.sdp !== null){
+        } else if (message.type !== null && message.type !== undefined && 
+                    message.sdp !== null && message.sdp !== undefined){
                 peerRemoteDescription = message;
                 formData.append("message",message);
                 formData.append("sdp",message.sdp);
@@ -741,8 +792,15 @@ var processFormMessage = function(message){
                 connectionDescription = message;
                 handleVideoOfferMsg(message);
                 localSdp = message.sdp;
-                return ['POST','/socket/'+unique,formData];            
-            
+                return ['POST','/socket/'+unique,formData, true];            
+        } else if (message.desc === null){
+                    formData.append("server-message","undefined");
+                    return ['POST','/stream/video',formData, false];            
+        } else if (message.message !== null && message.message !== undefined &&
+                message.messagesource !== null && message.messagesource !== undefined){
+                    formData.append("message",message.message);
+                    formData.append("server-message",message.messagesource);
+                    return ['POST','/socket/'+message.messagesource,formData, true];                        
         } else if (message !== null){
             try {
                 var messageobj = JSON.parse(JSON.parse(message));
@@ -751,12 +809,12 @@ var processFormMessage = function(message){
                     formData.append("message",message.desc.sdp);
                     
                     formData.append("type",message.desc.type);
-                    return ['POST','/stream/media',formData];
+                    return ['POST','/stream/media',formData, false];
                     
                 }else {
                     formData.append("server-message","send");
                     formData.append("message",message);
-                    return ['POST','/stream/video',formData];
+                    return ['POST','/stream/video',formData, false];
                     
                 }
                     
@@ -768,7 +826,7 @@ var processFormMessage = function(message){
     
 };
 
-var processMessageEvent = function(message){
+var processMessageEvent = async function(message){
         switch (message.event) {
             case 'client-call':
                 clientCall(localStream);
@@ -787,7 +845,7 @@ var processMessageEvent = function(message){
 }
     
     
-var sendGetMessage = function(message) {
+var sendGetMessage = async function(message) {
     updateEventTableValue("send media stream",message);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -796,7 +854,7 @@ var sendGetMessage = function(message) {
             }
             if (this.status != 200) {
             } else {
-                view = this.responseText;
+                processServerResponse(this.responseText);
                 updateEventTableValue("sendGetMessage Response: ",this.responseText);
                 processServerHeaders(xhttp.getAllResponseHeaders().toLowerCase());
             }
@@ -820,16 +878,19 @@ function sendMediaStream(message) {
             }
             if (this.status != 200) {
             } else {
-                view = this.responseText;
+                processServerResponse(this.responseText);
                 updateEventTableValue("send Media Stream Response",this.responseText);
                 processServerHeaders(xhttp.getAllResponseHeaders().toLowerCase());
             }
     };
     processMessageEvent(message);
     var sendPackage=processFormMessage(message);
-    xhttp.open(sendPackage[0], sendPackage[1], true);
-    xhttp.send(sendPackage[2]);            
-
+    if (sendPackage[3]){
+        xhttp.open(sendPackage[0], sendPackage[1], true);
+        xhttp.send(sendPackage[2]);            
+    } else {
+            updateEventTableValue("Skipping...",sendPackage[2]);
+    }
 }
 
 
@@ -843,7 +904,7 @@ var sendToServer = function (jsonmessage){
             }
             if (this.status != 200) {
             } else {
-                view = this.responseText;
+                processServerResponse(this.responseText);
                 processServerHeaders(xhttp.getAllResponseHeaders().toLowerCase());
             }
     };
@@ -888,7 +949,7 @@ var addSource = function(source){
             }
             if (this.status != 200) {
             } else {
-                view = this.responseText;
+                processServerResponse(this.responseText);
                 processServerHeaders(xhttp.getAllResponseHeaders().toLowerCase());
             }
     };
@@ -909,11 +970,9 @@ var enableServerComm = function(){
              updateEventTableValue2("sending message",unique);
             var socketMessage = {
                 "message": "enabling server communication",
-                "message-source": unique
+                "messagesource": unique
             };
-            //ws.send(JSON.stringify('[{"message":"test"}]'));
             ws.send(socketMessage);
-            //createOffer();
             sendMediaStream(e);  
         }
     };
@@ -929,7 +988,7 @@ var enableServerComm = function(){
         }
         var socketMessage = {
             "message": "enabling server communication message socket on open",
-            "message-source": unique
+            "messagesource": unique
         }
         if (ws==null){
             makePeerCall(peerConnection);
@@ -941,7 +1000,6 @@ var enableServerComm = function(){
     };
 
     messagesocket.onmessage = function(message) {
-        console.log("message socket", message);
         var content, data;
         if(message.data) {
             try {
@@ -961,11 +1019,11 @@ var enableServerComm = function(){
                         break;
                 }
             } catch(e) {
-             updateEventTableValue("Error parsing ",message.data);
-             updateEventTableValue2(" to JSON: ",e);
+             updateEventTableAll("Error parsing ",message.data,
+                                        " to JSON: ",e);
             }
         } else {
-            console.log("Message data not found");
+            updateEventTableValue("Message data not found", "");
         }
     
 
@@ -1011,7 +1069,7 @@ function streamAudio(){
     mediaStreamSource.connect(filterNode);
     gainNode.connect(audioContext.destination);        
 });
-}
+};
 
 function createVideoElements(id){
     var element = document.createElement("video");
@@ -1019,21 +1077,21 @@ function createVideoElements(id){
     element.setAttribute("autoplay","true");
     element.setAttribute("muted","muted");
     return element;
-}
+};
 
 function createRoom(){
     conferenceroom.appendChild(sessions["clientView"]);
     conferenceroom.appendChild(sessions["remoteView"]);
-}
+};
 
-function onsinglemessage(ws, data) {
-    var package;
-        if(data) {
+var onsinglemessage = async function (ws, data) {
+        if(data!== null && data !== undefined) {
+            var datapackage;
             try {
-                package = JSON.parse(data);
-                var data = package.data;
+                datapackage = JSON.parse(data);
+                var data = datapackage.data;
 
-                switch (package.event) {
+                switch (data.event) {
                     case 'client-call':
                         clientCall(localStream);
                         break;
@@ -1048,7 +1106,7 @@ function onsinglemessage(ws, data) {
                         break;
                 }
             } catch(e){
-             updateEventTableValue("Error parsing onsinglemessage data",data);
+                updateEventTableValue("Error parsing onsinglemessage data",data);
             }
         }
 };
@@ -1057,20 +1115,19 @@ function onsinglemessage(ws, data) {
 function startSession() {
     sessions["clientView"].addEventListener('loadedmetadata', 
         function () {
-            publish(ws,'client-call', null)
+            publish('client-call', null)
         }
     );    
 }
 
 function clientCall(stream) {
-        icecandidate(stream);
         peerConnection.createOffer({
             offerToReceiveAudio: 1,
             offerToReceiveVideo: 1
         }).then(function (desc) {
             peerConnection.setLocalDescription(desc).then(
                 function () {
-                    publish(ws,'client-offer', peerConnection.localDescription);
+                    publish('client-offer', peerConnection.localDescription);
                     ws.send(desc);
                 }
             ).catch(function (e) {
@@ -1095,25 +1152,34 @@ function clientAnswer(data){
 }
 
 function clientOffer(localStream,data){
+    updateEventTableValue("client offer", localStream, data);
     publishicecandidate(localStream);
-    peerConnection.setRemoteDescription(new RTCSessionDescription(data), function(){
-        if (!answer) {
-            peerConnection.createAnswer(function (desc) {
-                    peerConnection.setLocalDescription(desc, function () {
-                        publish(ws,'client-answer', peerConnection.localDescription);
-                        ws.send(desc);
-                    }, function(e){
-                     updateEventTableValue2("Client answer error: ",e);
+    if (data !== undefined){
+        try {
+            peerConnection.setRemoteDescription(new RTCSessionDescription(data), function(){
+                if (!answer) {
+                    peerConnection.createAnswer(function (desc) {
+                            peerConnection.setLocalDescription(desc, function () {
+                                publish('client-answer', peerConnection.localDescription);
+                                ws.send(desc);
+                            }, function(e){
+                             updateEventTableValue2("Client answer error: ",e);
+                            });
+                        }
+                    ,function(e){
+                             updateEventTableValue2("Client offer error: ",e);
                     });
+                    answer = 1;
                 }
-            ,function(e){
-                     updateEventTableValue2("Client offer error: ",e);
-            });
-            answer = 1;
+            }, function(e){
+                    updateEventTableValue2("Client offer error: ",e);
+            });  
+        } catch (error) {
+            updateEventTableValue("Failure constructing description with", data + error);
         }
-    }, function(e){
-            updateEventTableValue2("Client offer error: ",e);
-    });    
+    } else {
+            updateEventTableValue("received data for client offer",data);
+    }
 }
 
 function clientCandidate(data){
@@ -1130,47 +1196,65 @@ function clientCandidate(data){
 }
 
 
-function publishicecandidate(ws, localStream) {
-    peerConnection = new RTCPeerConnection(configuration);
+function publishicecandidate(ws, stream) {
     peerConnection.onicecandidate = function (event) {
         if (event.candidate) {
-            publish(ws, 'client-candidate', event.candidate);
+            publish('client-candidate', event.candidate);
         }
+    publish('client-candidate', event.candidate);
     };
     try {
-        peerConnection.addStream(localStream);
+        if (stream.type == "video"){
+            peerConnection.addStream(stream);
+        } else {
+            updateEventTableValue("stream is of type ",stream.type);
+        }
     }catch(e){
-        var tracks = localStream.getTracks();
-        for(var i=0;i<tracks.length;i++){
-            try {
-            peerConnection.addTrack(tracks[i], localStream);
-                  } catch (e) {
-                        updateEventTableValue2("Error adding track",e);
-                  }
+        updateEventTableValue("Error adding stream", e);
+        try {
+            if (stream !== undefined) {
+                var tracks = stream.getTracks();
+                for(var i=0;i<tracks.length;i++){
+                    peerConnection.addTrack(tracks[i], stream);
+                }
+            } else {
+                updateEventTableValue("stream is undefined", stream);
+            }
+        } catch (e) {
+            updateEventTableValue("stream",stream);
+                  updateEventTableValue2("Error adding track",e);
         }
     }
+    
+    
     peerConnection.ontrack = function (e) {
         sessions["remote"].style.display="block";
         sessions["local"].style.display="none";
         sessions["remote"].srcObject = e.streams[0];
+        sessions["remote"].play();
         var videoPeer = document.createElement("video");
         peerStream.appendChild(videoPeer);
         videoPeer.srcObject = e.streams[0];
     };
 }
 
-function publish(ws, event, data) {
-    ws.send(JSON.stringify({
-        event:event,
-        data:data
-    }));
-}
+function publish(event, data) {
+    
+    if (ws !== null && ws !== undefined){
+        ws.send({
+            'event':event,
+            'data':data
+            });
+        
+    } else {
+            updateEventTableValue("Event source not defined sending ", event);
+    }
+};
 
 
 function send(message){
-    sendMediaStream(JSON.stringify(message));
-    //ws.send(JSON.stringify(message));
-}
+    sendMediaStream(message);
+};
 
 async function startAsynchronousCall() {
             updateEventTableValue("Starting Asynchronous Call","");
@@ -1188,6 +1272,7 @@ async function captureStream(){
         await peerConnection.setRemoteDescription(serverRemoteDescription);
         try {
             sessions["clientView"].srcObject = captureLocalVideo();
+            sessions["clientView"].play();
             if (isCaller) {
                 updateEventTableValue("Is Caller connection","");
                 peerConnection.createOffer(receivedDescription);
@@ -1196,7 +1281,6 @@ async function captureStream(){
                 updateEventTableValue("peerRemoteDescription",peerRemoteDescription);
                 if (peerRemoteDescription !== null ){
                 updateEventTableValue("Get Peer Remote Description", getPeerRemoteDescription);
-                    //peerConnection.createAnswer(peerConnection.remoteDescription,receivedDescription);
                     peerConnection.createAnswer(getPeerRemoteDescription,receivedDescription);
                 } else {
                     peerConnection.createAnswer(peerConnection.remoteDescription,receivedDescription);
@@ -1209,8 +1293,7 @@ async function captureStream(){
     function receivedDescription(desc){
         updateEventTableValue("Received description", desc);
         peerConnection.setLocalDescription(desc);
-        //ws.send(JSON.stringify({"sdp":desc}));
-        ws.send(JSON.stringify({"sdp":localSdp,"channel":"channel1"}));
+        ws.send({"sdp":localSdp,"channel":"channel1"});
 
     }
     
@@ -1218,17 +1301,25 @@ async function captureStream(){
 
 async function captureLocalVideo(){
             var stream = await navigator.mediaDevices.getUserMedia(constraints)
-                .catch(function(error){console.log("Error with media devices", error);});
-            stream.getTracks().forEach((track) => function()
-            {
-                try {
-                    peerConnection.addTrack(track,stream);
-                                      } catch (e) {
-                      console.log("Error adding track", e);
-                  }
+                .catch(function(error){updateEventTableValue(
+                    "Error with media devices", error);});
+        
+            try {
+                stream.getTracks().forEach((track) => function()
+                {
+                    try {
+                        peerConnection.addTrack(track,stream);
+                        } catch (e) {
+                          updateEventTableValue("Error adding track", e);
+                      }
 
-                });
-                return stream;
+                    });
+                    return stream;
+            } catch (e) {
+                updateEventTableAll("stream gettracks", e,
+                            "stream", stream);
+
+            }
 }
 
 function setAsynchronousMessage(ws){
@@ -1243,7 +1334,9 @@ function setAsynchronousMessage(ws){
                     if (desc.type === 'offer') {
                         await peerConnection.setRemoteDescription(desc);
                         const stream = captureLocalVideo()
-                            .catch(function(error){console.log("Error with media devices", error);});
+                            .catch(function(error){
+                                updateEventTableValue("Error with media devices", error);}
+                            );
                         await peerConnection.setLocalDescription(await peerConnection.createAnswer());
                         ws.send({desc: peerConnection.localDescription});
                     } else if (desc.type === 'answer') {
@@ -1271,9 +1364,10 @@ function createStream(stream){
     conferenceroom.appendChild(streamVideo);
     updateEventTableValue2("Creating stream",stream);
     streamVideo.srcObject = stream;
+    streamVideo.play();
     peerConnection.addStream(stream);
     streamVideo.addEventListener('loadedmetadata', ()=>{
-        console.log("playing video from metadata");
+        updateEventTableValue("playing video from metadata","");
         var videoPromise = streamVideo.play();
         if (videoPromise !== undefined) {
             videoPromise.then(promise => {
@@ -1325,7 +1419,7 @@ var addStream = function(stream) {
       try {
     peerConnection.addTrack(track, stream);
                   } catch (e) {
-                      console.log("Error adding track", e);
+                      updateEventTableValue("Error adding track", e);
                   }
       
   });
@@ -1351,16 +1445,16 @@ function setstreamconnected(connected) {
 
 function streamconnect(openMediaDevices) {
     updateEventTableValue("stream connect","");
-    peerConnection = new RTCPeerConnection(configuration);
-    var dataChannel = peerConnection.createDataChannel("channel1");
+    var pc = new RTCPeerConnection(configuration);
+    var dc = pc.createDataChannel("channel1");
     var streamsocket = new EventSource("/topics/messages");
-    dataChannel.onopen = (e) => {
-        dataChannel.send("Channel 1 open");
+    dc.onopen = (e) => {
+        dc.send("Channel 1 open");
     };
-    dataChannel.onmessage = (e) => {
+    dc.onmessage = (e) => {
         updateEventTableValue("data channel message",e.data);
     };
-    peerConnection.ondatachannel = (e) => {
+    pc.ondatachannel = (e) => {
         var channel = e.channel;
         channel.onopen = (e) => {
             channel.send('channel response');
@@ -1370,53 +1464,76 @@ function streamconnect(openMediaDevices) {
         };
     };
     
-    dataChannel.ondatachannel = (e) => {
-        if (dataChannel.readyState == "connecting"){
-
+    dc.ondatachannel = (e) => {
+        if (dc.readyState == "connecting"){
+            updateEventTableValue2("data channel connecting...");
         } else {
-        dataChannel.send("message");
-            dataChannel.onmessage = function (event){
+            
+            updateEventTableValue2("data channel on", e);
+            dc.onmessage = function (e){
+                let obj = {
+                  "message": e,
+                  "timestamp": new Date()
+                }
+                dataChannel.send(JSON.stringify(obj));
             }
         }
     }
 
-    streamsocket.onopen = (e) =>
+    streamsocket.onopen = async (e) =>
     {
         try {
-            const userMediaStream = navigator.mediaDevices.getUserMedia(constraints)
-                .catch(function(error){console.log("Error with media devices", error);});
-            var selfStream = userMediaStream;
-            selfView.src = userMediaStream;            
-            //remoteStream = remoteView.srcObject;
-            selfStream.getTracks().forEach(track => peerConnection.addTrack(track, userMediaStream));
-              
-              
-            peerConnection.addStream(userMediaStream);
-            
-            rtcremote.srcObject = localStream;
-            localStream.getTracks().forEach(track => 
-            function(){
-                try {
-                    peerConnection.addTrack(track
-            , localStream);
-                              } catch (e) {
-                      console.log("Error adding track", e);
-                  }
-                  });
+            const userMediaStream = await navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(stream){
+                
+                    var selfStream = stream;
+                    selfView.src = stream;
+                    selfView.play();
+                    //remoteStream = remoteView.srcObject;
+                    selfStream.getTracks().forEach(
+                            track => peerConnection.addTrack(
+                            track,
+                            userMediaStream)
+                    );
+                    peerConnection.addStream(userMediaStream);
+                    rtcremote.srcObject = localStream;
+                    rtcremote.play();
+                    localStream.getTracks().forEach(track => 
+                    function(){
+                        try {
+                            peerConnection.addTrack(track
+                    , localStream);
+                                      } catch (e) {
+                              updateEventTableValue2("Error adding track", e);
+                          }
+                          });
 
+                
+                        
+                    })
+                .catch(function(error){updateEventTableValue2("Error with media devices", error);});
 
             var socketMessage = {
                 "message": "streamsocket onopen",
-                "message-source": unique
+                "messagesource": unique
                 }
 
-            streamsocket.send(socketMessage);
+            ws.send(socketMessage);
             
             streamshowgreetings(JSON.parse(e.target).content);
         } catch(error) {
             updateEventTableValue2("Stream socket  error",error);
         }
     };
+    
+    streamsocket.addEventListener("message", function(event){
+            updateEventTableValue2("stream socket message", event);
+    });
+
+    streamsocket.addEventListener("error", function(error){
+            updateEventTableValue2("stream socket error", error);
+    });
+
 }
 
 function streamdisconnect() {
@@ -1427,7 +1544,7 @@ function streamdisconnect() {
         if (e.target.readyState !== EventSource.OPEN) return;
             var socketMessage = {
                 "message": "stream disconnect",
-                "message-source": unique
+                "messagesource": unique
                 }
         
     e.target.send(socketMessage);
@@ -1437,8 +1554,8 @@ function streamdisconnect() {
 
 
 function rtcOnLogin(success) {
-    console.log("RTC on login...",success);
-    updateEventTableValue2("rtc on login", success);
+    updateEventTableAll("RTC on login...",success,
+                             "rtc on login", success);
     if (success === false) {
     } else {
         var streamconfiguration = {
@@ -1499,11 +1616,11 @@ function setRtcMessage(){
 
 function rtcsend(message){
     updateEventTableValue2("rtc send",message);
-    ws.send(JSON.stringify(message));
+    ws.send(message);
 };
 
 function rtcOnOffer(offer,name){
-    updateEventTableValueAll("rtc on offer ",offer,"name: ",name);
+    updateEventTableAll("rtc on offer ",offer,"name: ",name);
     rtcpeerconnection.setRemoteDescription(new RTCSessionDescription(offer));
     rtcpeerconnection.createAnswer(function (answer){
         rtcpeerconnection.setLocalDescription(answer);
@@ -1565,11 +1682,10 @@ var createServerConnection = function(){
 };
 
 var testEventSourceSend = function (event,data){
-    ws.send(JSON.stringify({
+    ws.send({
         event:event,
         data:data
-    }));
-    
+    });
 };
 
 var sendToOneUser = function (target, msgString) {
@@ -1590,9 +1706,7 @@ var sendToOneUser = function (target, msgString) {
 
 var messageToServer = function (message) {
     updateEventTableValue2("message to server ",message);
-  var msgJSON = JSON.stringify(message);
-
-  ws.send(msgJSON);
+    ws.send(message);
 }
 
 
@@ -1607,26 +1721,27 @@ var handleVideoOfferMsg = function (message) {
 
         peerConnection.setRemoteDescription(desc).then(function () {
             return navigator.mediaDevices.getUserMedia(constraints)
-                .catch(function(error){console.log("Error with media devices", error);});
+                .catch(function(error){
+                    updateEventTableValue("Error with media devices", error);}
+                );
         ws.send({desc: peerConnection.localDescription});
         })
         .then(function(stream) {
             var remoteStream = stream;
-            remoteView.src = stream;            
+            remoteView.src = stream; 
+            remoteView.play();
             remoteStream = remoteView.srcObject;
             remoteStream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
-              
-              
             peerConnection.addStream(stream);
-            
             rtcremote.srcObject = localStream;
+            rtcremote.play();
             localStream.getTracks().forEach(track => 
             function(){
                 try {
                     peerConnection.addTrack(track
             , localStream);
                               } catch (e) {
-                      console.log("Error adding track", e);
+                      updateEventTableValue("Error adding track", e);
                   }
                   });
 
@@ -1710,7 +1825,7 @@ function closeVideoCall() {
 function sendSignal(signal) {
     updateEventTableValue2("sending signal",signal);
     if (ws.readyState > 0) {
-        ws.send(JSON.stringify(signal));
+        ws.send(signal);
     } else {
         updateEventTableValue2("signalling state not ready","");
     }
@@ -1726,9 +1841,12 @@ async function displayLocalStreamAndSignal(firstTime) {
             audio: true,
             video: true
         })
-            .catch(function(error){console.log("Error with media devices", error);});
+            .catch(function(error){
+                updateEventTableValue("Error with media devices", error);
+        });
         updateEventTableValue2('Received local stream','');
         localVideo.srcObject = userMediaStream;
+        localVideo.play();
         localStream = userMediaStream;
         logVideoAudioTrackInfo(localStream);
         if (firstTime) {

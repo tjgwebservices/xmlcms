@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+<heading>TJGXMLCMS</heading>
+<headingtitle>TJGXMLCMS</headingtitle>
+<headingdescription>TJGXMLCMS</headingdescription>
+<links>
+	<link>tjgwebservices.com</link>
+</links>
+<additionallinks>
+	<link>tjgwebservices.com</link>
+</additionallinks>
+<sitelinks>
+	<link>tjgwebservices.com</link>
+</sitelinks>
+<topics>
+	<topic>
+		<subject>Software Testing</subject>
+		<description>Software Testing and Quality Assurance</description>
+	</topic>
+</topics>
+<services>
+	<service>
+		<title>Online Journal Subscriptions</title>
+		<description>Development of Journal Subscription Platform</description>
+	</service>	
+</services>
+<analyses>
+<analysis>
+	<title>Political Analysis</title>
+	<description>Studies of refugees and asylum seekers.</description>	
+</analysis>
+
+</analyses>
+<sessions>
+<session>
+	<course>DevOps Training</course>
+	<description></description>
+</session>
+</sessions>
+<figures>
+<figure>
+	<title>Business Intelligence</title>
+	<description>Technology News</description>
+		<list>
+			<element>Decision Science</element>
+			<element>Workflow Management</element>
+			<element>Data Mining</element>
+		</list>
+</figure>
+</figures>
+<articles>
+<article>
+	<title>Organizational Strategies Training</title>
+	<section>Management, professional development, pilots, prototypes, simulations, and models</section>
+</article>
+</articles>
+</catalog>
+
