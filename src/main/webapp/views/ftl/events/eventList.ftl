@@ -2,12 +2,19 @@
 <#import "/nav.ftl" as nav/>
  
 <html>
-   <@nav.heading />
+   <head>
+      <title>Events</title>
+       <@nav.cssheading />
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/calendar.css'/>"/>
+
    <body>
    <@nav.navigation />
    <@nav.sidelinks />
     <main>
      <h3>Events</h3>
+     <div id="calendarDisplayContainer">
+     </div>
      <a href="/events/addEvent">Add Event</a>
      <br><br>
       <div>
@@ -39,5 +46,5 @@
        </main>
 
 
-   <@nav.footing />
+   <@nav.footingcalendardisplay />
 

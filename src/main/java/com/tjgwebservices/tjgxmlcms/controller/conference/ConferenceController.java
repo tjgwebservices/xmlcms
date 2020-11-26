@@ -131,5 +131,14 @@ public class ConferenceController {
          
         return "conferences/test";
     }
+
+    @RequestMapping(value = { "/conferences/messages" }, method = RequestMethod.GET)
+    public String showMessageRoom(Model model) {
+ 
+        model.addAttribute("message", reportMessage);
+        model.addAttribute("conferenceName", conferenceName);
+         
+        return "conferences/messages";
+    }
     
 }

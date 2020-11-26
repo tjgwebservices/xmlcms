@@ -35,6 +35,16 @@
 
 </html>
 </#macro>
+<#macro footingcalendardisplay>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/calendarDisplay.js'/>"></script>
+
+</html>
+</#macro>
 <#macro footingconference>
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
@@ -51,7 +61,7 @@
     </footer>
     </body>
        <script src="<@spring.url '/js/script.js'/>"></script>
-       <script src="<@spring.url '/js/messages.js'/>"></script>
+       <script src="<@spring.url '/js/message.js'/>"></script>
 
 </html>
 </#macro>
@@ -133,6 +143,12 @@
             <span class="dropdown1">
                     <a href="/news/news">News</a>
                 <span class="dropdown1-content">
+                    <a href="/international/international">International</a>
+                    <a href="/international/news">News</a>
+                    <a href="/international/politics">Politics</a>
+                    <a href="/international/finance">Finance</a>
+                    <a href="/international/business">Business</a>
+                    <a href="/international/local">Local News</a>
                     <a href="/consulting/groups">Consulting</a>
                     <a href="/news/reports">Reports</a>                
                     <a href="/news/forum">Forum</a>                
@@ -164,37 +180,18 @@
             </li>
             <li>
             <span class="dropdown1">
-                <a href="/medical/technologies">Medical</a>
+                <a href="/consulting/groups">Networks</a>
                 <span class="dropdown1-content">
+                    <a href="/network/education">Education Network</a>
+                    <a href="/network/freelance">Freelance Network</a>
+                    <a href="/network/news">News Network</a>
+                    <a href="/medical/technologies">Medical</a>
                     <a href="/medical/technologies">Technologies</a>
                     <a href="/medical/research">Research</a>
                     <a href="/medical/consulting">Consulting</a>
                 </span>
             </span>
             </li>
-            <li>
-            <span class="dropdown1">
-                <a href="/consulting/groups">Networks</a>
-                <span class="dropdown1-content">
-                    <a href="/network/education">Education Network</a>
-                    <a href="/network/freelance">Freelance Network</a>
-                    <a href="/network/news">News Network</a>
-                </span>
-            </span>
-            </li>
-            <li>
-            <span class="dropdown1">
-                <a href="/international/international">International</a>
-                <span class="dropdown1-content">
-                    <a href="/international/news">News</a>
-                    <a href="/international/politics">Politics</a>
-                    <a href="/international/finance">Finance</a>
-                    <a href="/international/business">Business</a>
-                    <a href="/international/local">Local News</a>
-                </span>
-            </span>
-            </li>
-
             <li>
             <span class="dropdown1">
                 <a href="/events/eventList">Events</a>

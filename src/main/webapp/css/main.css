@@ -708,9 +708,22 @@ body > h1, body > h2, body > p {
 }
 
 footer {
+padding: 15px 0px 15px 0px;
+    text-align: center;
+    color: #2b4242;
+    background-color: #e2e6cb;
+    border-radius: 2px;
+    font-size: 1.4em;
+    margin: 5px 0px 5px 0px;
     display: block;
     float: left;
-    width: 100%;
+    width: 99%;
+}
+
+footer > h6 {
+    text-align: center;
+    color: #2b4242;
+    background-color: #e2e6cb;
 }
 
 #eventTable {
