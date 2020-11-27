@@ -19,7 +19,7 @@
      <br><br>
       <div>
           
-         <table border="1">
+         <table id="eventDisplayTable" border="1">
             <tr>
                <th>Title</th>
                <th>Start Date</th>

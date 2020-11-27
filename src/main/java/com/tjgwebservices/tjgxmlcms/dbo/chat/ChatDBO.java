@@ -18,7 +18,7 @@ public class ChatDBO extends DatabaseObject{
             tx = session.beginTransaction();
             session.save(chat);
             session.flush();
-                tx.commit();
+                //tx.commit();
                 session.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -40,7 +40,24 @@ public class ChatDBO extends DatabaseObject{
                 pstmt.setString(5,chat.getSubject());
                 pstmt.setString(6,chat.getMessage());
                 pstmt.executeUpdate();
-                tx.commit();
+                //tx.commit();
+                session.close();
+            } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+            tx.rollback();
+            }
+    }
+
+    public static void deleteSQLChat(Chat chat) {
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
+            String sql = "DELETE FROM Chat WHERE id = ?";
+            try {
+                conn = DriverManager.getConnection(connectionURL);
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1,chat.getId());
+                pstmt.executeUpdate();
+                //tx.commit();
                 session.close();
             } catch (SQLException e) {
                     System.out.println(e.getMessage());
@@ -68,7 +85,7 @@ public class ChatDBO extends DatabaseObject{
                            chat.setMessage(rs.getString("message"));
                            chatList.add(chat);
                        }
-                tx.commit();
+                //tx.commit();
                 session.close();
                 return chatList;
             } catch (SQLException e) {

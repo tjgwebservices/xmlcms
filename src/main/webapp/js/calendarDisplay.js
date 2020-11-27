@@ -33,6 +33,7 @@ function incrementMonth(){
         currentDate[0] = currentDate[0]+1;
         currentDate[1] = 1;
     }
+    startCalendar();
 }
 
 function decrementMonth(){
@@ -44,6 +45,7 @@ function decrementMonth(){
         currentDate[0] = currentDate[0]-1;
         currentDate[1] = 12;
     }    
+    startCalendar();
 }
 
 getSelectedDate = function(selectedDate){
@@ -77,6 +79,32 @@ function displayDate(){
 }
 
 function calendarInit(){
+    var eventList = [];
+    var eventsTable = document.getElementById("eventDisplayTable");
+    var eventRows = eventsTable.querySelectorAll("tr");
+    for (var i=1;i<eventRows.length;i++) {
+        var displayStart, displayEnd;
+        var startDate = new Date(eventRows[i].querySelectorAll("td")[1].innerHTML);
+        var endDate = new Date(eventRows[i].querySelectorAll("td")[2].innerHTML);
+        var firstDayofMonth = new Date(months[d.getMonth()] + " 1," + currentDate[0]);
+        var lastDayofMonth = new Date(months[d.getMonth()] + " " + getDaysInMonth(currentDate[0],currentDate[1]) + "," + currentDate[0]);
+        if (startDate > firstDayofMonth && startDate < lastDayofMonth){
+            displayStart=true;
+        } else {
+            displayStart=false;
+        }
+        if (endDate > firstDayofMonth && endDate < lastDayofMonth){
+            displayEnd=true;
+        } else {
+            displayEnd=false;
+        }        
+        if (displayStart) {
+            eventList.push([startDate.getDay(),endDate.getDay()]);
+        }
+        
+    }
+    //console.log(eventList);
+    
     
 }
 
@@ -113,7 +141,7 @@ function createCalendarHeader(){
     nexta.setAttributeNode(nexta_href);
     nexta.addEventListener("click", function(e){
         e.preventDefault();
-        decrementMonth();
+        incrementMonth();
     });
     var caption = document.createElement("caption");
     caption.innerHTML = "Calendar";
@@ -179,7 +207,9 @@ function createCalendarContent(dateobj,daysMonth){
             } else {
                     daytext="";
             }
-            if (offsetday==currentDate[2]){
+            dayli[j].setAttribute("class","calendarday");
+            dayli[j].setAttribute("data-date",j);
+           if (offsetday==currentDate[2]){
                     dayli[j].setAttributeNode(currentday_class);
             }
             dayListener[j] = document.createElement("a");
@@ -234,11 +264,16 @@ function createCalendar(){
     return (newtablenode);
 }
 
-
-var calendarDisplayContainer = document.getElementById("calendarDisplayContainer");
-calendarDisplayContainer.appendChild(createCurrentDay());       
-calendarDisplayContainer.appendChild(createCalendar());
- var today = months[d.getMonth()] + " " + currentDate[2] + "," + currentDate[0];
- document.getElementById("currentDay").innerHTML = today;
+var startCalendar = function(){
+    var calendarDisplayContainer = document.getElementById("calendarDisplayContainer");
+    calendarDisplayContainer.innerHTML = "";
+    calendarDisplayContainer.appendChild(createCurrentDay());       
+    calendarDisplayContainer.appendChild(createCalendar());
+     var today = months[d.getMonth()] + " " + currentDate[2] + "," + currentDate[0];
+     document.getElementById("currentDay").innerHTML = today;
+     calendarInit();
+     }
+     
+startCalendar();
 
 })();

@@ -592,6 +592,21 @@ aside > video {
     width: 100%;
 }
 
+body > p > a {
+    display: block;
+    float: left;
+    color: #e8e8df;
+    background-color: #1479ed;
+    padding: 4px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+body > p > a:hover {
+    color: #134152;
+    background-color: #d9dce0;    
+}
+
 #conferenceroom video {
     float: left;
     width: 49%;

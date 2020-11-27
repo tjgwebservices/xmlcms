@@ -169,7 +169,7 @@ this.runPoll = function () {
 		xmlhttp.open("POST", "chat/checkConversation");
 		xmlhttp.send(formData);
 		return false;
-    }, 30000);
+    }, 7000);
 };
 }
 

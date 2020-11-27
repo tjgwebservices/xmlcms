@@ -183,6 +183,7 @@ public class ChatController extends HttpServlet{
         headers.add("Content-Type","text/event-stream");
         headers.add("Cache-Control","no-cache");
         headers.add("Custom-Event-Source","newConversation");
+        emitter = new SseEmitter();
         int id = Integer.valueOf(conversationid);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
         Date date = new Date();  
@@ -224,7 +225,8 @@ public class ChatController extends HttpServlet{
         if (chats.size()>0) {
             List<Chat> conversationChats = chats.stream()
 
-                .filter((chat) -> Objects.equals(chat.getUserIdFrom(), conversationid))
+                .filter((chat) -> ((Objects.equals(chat.getUserIdFrom(), Integer.valueOf(conversationid))) ||
+                        Objects.equals(chat.getUserIdTo(), Integer.valueOf(conversationid))))
                 .filter((chat) -> chat.getDateTime().contains(formatter.format(date)))
                 .collect(Collectors.toList());
 
@@ -288,7 +290,8 @@ public class ChatController extends HttpServlet{
         emitter = new SseEmitter();
         chats = ChatDBO.loadChats();
         List<Chat> conversationChats = chats.stream()       
-            .filter((chat) -> Objects.equals(chat.getUserIdFrom(), conversationid))
+            .filter((chat) -> ((Objects.equals(chat.getUserIdFrom(), Integer.valueOf(conversationid))) ||
+                Objects.equals(chat.getUserIdTo(), Integer.valueOf(conversationid))))
             .filter((chat) -> chat.getDateTime().contains(formatter.format(date)))
             .collect(Collectors.toList());
         
