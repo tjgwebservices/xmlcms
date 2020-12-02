@@ -137,6 +137,85 @@ public class DBAdmin {
                 "REFERENCES Course(id)\n" +
                 "ON DELETE CASCADE\n" +
                 ");");         
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopCart (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "customerId INTEGER,\n" +
+                "paymentId INTEGER,\n" +
+                "lastModified DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+                "datePurchased DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+                "cartStatus INTEGER,\n" +
+                "cartDateFinished DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+                "currency TEXT,\n" +
+                "currencyValue FLOAT,\n" +
+                "FOREIGN KEY customerId REFERENCES AccountUser(id)\n" +
+                ");");         
+        runSQLQuery("CREATE TABLE IF NOT EXISTS CartItem (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "cartId INTEGER,\n" +
+                "itemId INTEGER\n" +
+                "FOREIGN KEY cartId REFERENCES ShopCart(id)\n" +
+                "FOREIGN KEY itemId REFERENCES ShopItem(id)\n" +
+                ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS CartStatus (\n" +
+                "id INTEGER PRIMARY KEY\n" +
+                "description TEXT);");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopItem (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "productId INTEGER,\n" +
+                "quantity INTEGER,\n" +
+                "FOREIGN KEY productId REFERENCES Product(id)\n" +
+                ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopMessage (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "message TEXT,\n" +
+                "email TEXT,\n" +
+                "body TEXT,\n" +
+                "createdTime DATETIME DEFAULT CURRENT_TIMESTAMP\n" +
+                ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopOrder (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "customerId INTEGER,\n" +
+                "lastModified DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+                "datePurchased DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+                "orderAmount FLOAT,\n" +
+                "FOREIGN KEY customerId REFERENCES AccountUser(id)\n" +
+                ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopOrderCart (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "orderId INTEGER,\n" +
+                "cartId INTEGER,\n" +
+                "orderPrice FLOAT NOT NULL DEFAULT 0.00,\n" +
+                "orderTax FLOAT NOT NULL DEFAULT 0.00,\n" +
+                "FOREIGN KEY orderId REFERENCES ShopOrder(id)\n" +
+                ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopOrderStatus (\n" +
+            "id INTEGER PRIMARY KEY,\n" +
+            "description TEXT\n" +
+            ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopPayment (\n" +
+            "id INTEGER PRIMARY KEY,\n" +
+            "paymentType INTEGER,\n" +
+            "ccType TEXT,\n" +
+            "ccOwner TEXT,\n" +
+            "ccNumber TEXT,\n" +
+            "ccExpires TEXT,\n" +
+            "lastModified DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+            "datePurchased DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+            "orderStatus INTEGER NOT NULL DEFAULT 0,\n" +
+            "orderDateFinished DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
+            "currency TEXT,\n" +
+            "currencyValue FLOAT,\n" +
+            "FOREIGN KEY paymentType REFERENCES ShopPaymentType(id)\n" +
+            ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopPaymentType (\n" +
+            "id INTEGER PRIMARY KEY,\n" +
+            "paymentTypeDescription TEXT\n" +
+            ");");
+        runSQLQuery("CREATE TABLE IF NOT EXISTS ShopProduct(\n" +
+            "id INTEGER PRIMARY KEY,\n" +
+            "description TEXT,\n" +
+            "price FLOAT\n" +
+            ");");
         runSQLQuery("CREATE TABLE IF NOT EXISTS HrGroup (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "groupName TEXT NOT NULL\n" +
