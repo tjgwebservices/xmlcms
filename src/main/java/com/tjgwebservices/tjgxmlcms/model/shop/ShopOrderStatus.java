@@ -9,20 +9,19 @@ import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Indexed
-@Table(name = "CartStatus")
-public class CartStatus {
+@Table(name = "ShopOrderStatus")
+public class ShopOrderStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String description;
 
-    public CartStatus(){}
+    public ShopOrderStatus(){}
     
-    public CartStatus(String description) {
+    public ShopOrderStatus(String description) {
         this.description = description;
     }
-
 
     public Integer getId() {
         return id;
@@ -39,6 +38,5 @@ public class CartStatus {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
+    
 }

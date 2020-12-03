@@ -3,7 +3,7 @@
  
 <html>
    <head>
-      <title>Add Shopping Cart Status</title>
+      <title>Add Shop Order Status</title>
    <@nav.cssheading />
 
    </head>
@@ -18,9 +18,9 @@
        
       <div>
          <fieldset>
-            <legend>Add Shopping Cart Status</legend>
-            <form name="cartStatus" action="" method="POST">
-               Shopping Cart Status: <@spring.formInput "cartStatusForm.description" "" "text"/>    <br/>
+            <legend>Add Shop Order Status</legend>
+            <form name="shopOrderStatus" action="" method="POST">
+               Order Status: <@spring.formInput "shopOrderStatusForm.description" "" "text"/>    <br/>
                <input type="submit" value="Create" />
             </form>
          </fieldset>
@@ -29,5 +29,6 @@
 
 
    <@nav.footing />
+
 
 
