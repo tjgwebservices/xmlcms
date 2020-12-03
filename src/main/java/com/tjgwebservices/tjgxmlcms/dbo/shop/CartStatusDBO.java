@@ -2,6 +2,7 @@ package com.tjgwebservices.tjgxmlcms.dbo.shop;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
 import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
+import com.tjgwebservices.tjgxmlcms.model.hr.HrGroup;
 import com.tjgwebservices.tjgxmlcms.model.shop.CartStatus;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -29,6 +30,25 @@ public class CartStatusDBO extends DatabaseObject {
             }
     }
 
+    public static void updateCartStatus(CartStatus cartStatus) {
+            session = HibernateAdmin.getSession();
+            tx = session.beginTransaction();
+            String sql = "UPDATE CartStatus SET description = ? WHERE id = ?";
+            try {
+                conn = DriverManager.getConnection(connectionURL);
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1,cartStatus.getDescription());
+                pstmt.setInt(2,cartStatus.getId());
+                pstmt.executeUpdate();
+                tx.commit();
+                session.close();
+            } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+            tx.rollback();
+            }
+    }
+    
+    
     public static List<CartStatus> loadCartStatuses(){
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();

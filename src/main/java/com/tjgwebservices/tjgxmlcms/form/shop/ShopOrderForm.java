@@ -1,6 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.form.shop;
 
-public class ShopOrder {
+public class ShopOrderForm {
 
     private Integer id;
     private Integer customerId;

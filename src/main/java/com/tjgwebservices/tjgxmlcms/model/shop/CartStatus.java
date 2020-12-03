@@ -17,6 +17,12 @@ public class CartStatus {
     private Integer id;
     private String description;
 
+    CartStatus(){}
+    
+    public CartStatus(String description) {
+        this.description = description;
+    }
+
     public Integer getId() {
         return id;
     }

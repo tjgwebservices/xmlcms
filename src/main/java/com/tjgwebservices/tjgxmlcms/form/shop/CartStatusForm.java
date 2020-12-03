@@ -1,10 +1,9 @@
 package com.tjgwebservices.tjgxmlcms.form.shop;
 
-public class ShopProduct {
+public class CartStatusForm {
 
     private Integer id;
     private String description;
-    private Float price;
 
     public Integer getId() {
         return id;
@@ -22,12 +21,5 @@ public class ShopProduct {
         this.description = description;
     }
 
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
     
 }

@@ -1,6 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.form.shop;
 
-public class ShopPaymentType {
+public class ShopPaymentTypeForm {
 
     private Integer id;
     private String paymentTypeDescription;

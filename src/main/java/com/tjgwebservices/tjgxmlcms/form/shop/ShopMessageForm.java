@@ -1,6 +1,6 @@
 package com.tjgwebservices.tjgxmlcms.form.shop;
 
-public class ShopMessage {
+public class ShopMessageForm {
 
     private Integer id;
     private String message;
