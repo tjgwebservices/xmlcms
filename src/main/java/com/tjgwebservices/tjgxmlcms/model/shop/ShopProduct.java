@@ -18,6 +18,13 @@ public class ShopProduct {
     private String description;
     private Float price;
 
+    public ShopProduct(){}
+    
+    public ShopProduct(String description, Float price) {
+        this.description = description;
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }

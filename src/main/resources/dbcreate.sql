@@ -158,7 +158,7 @@ cartDateFinished DATETIME DEFAULT CURRENT_TIMESTAMP,
 currency TEXT,
 currencyValue FLOAT,
 FOREIGN KEY customerId REFERENCES AccountUser(id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS CartItem (
 id INTEGER PRIMARY KEY,
@@ -166,11 +166,11 @@ cartId INTEGER,
 itemId INTEGER
 FOREIGN KEY cartId REFERENCES ShopCart(id)
 FOREIGN KEY itemId REFERENCES ShopItem(id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS CartStatus (
 id INTEGER PRIMARY KEY
-description TEXT)
+description TEXT);
 
 
 CREATE TABLE IF NOT EXISTS ShopItem (
@@ -178,7 +178,7 @@ id INTEGER PRIMARY KEY,
 productId INTEGER,
 quantity INTEGER,
 FOREIGN KEY productId REFERENCES Product(id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS ShopMessage (
 id INTEGER PRIMARY KEY,
@@ -186,7 +186,7 @@ message TEXT,
 email TEXT,
 body TEXT,
 createdTime DATETIME DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE IF NOT EXISTS ShopOrder (
 id INTEGER PRIMARY KEY,
@@ -195,7 +195,7 @@ lastModified DATETIME DEFAULT CURRENT_TIMESTAMP,
 datePurchased DATETIME DEFAULT CURRENT_TIMESTAMP,
 orderAmount FLOAT,
 FOREIGN KEY customerId REFERENCES AccountUser(id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS ShopOrderCart (
 id INTEGER PRIMARY KEY,
@@ -204,12 +204,12 @@ cartId INTEGER,
 orderPrice FLOAT NOT NULL DEFAULT 0.00,
 orderTax FLOAT NOT NULL DEFAULT 0.00,
 FOREIGN KEY orderId REFERENCES ShopOrder(id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS ShopOrderStatus (
 id INTEGER PRIMARY KEY,
 description TEXT
-)
+);
 
 CREATE TABLE IF NOT EXISTS ShopPayment (
 id INTEGER PRIMARY KEY,
@@ -225,18 +225,18 @@ orderDateFinished DATETIME DEFAULT CURRENT_TIMESTAMP,
 currency TEXT,
 currencyValue FLOAT,
 FOREIGN KEY paymentType REFERENCES ShopPaymentType(id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS ShopPaymentType (
 id INTEGER PRIMARY KEY,
 paymentTypeDescription TEXT
-)
+);
 
 CREATE TABLE IF NOT EXISTS ShopProduct(
 id INTEGER PRIMARY KEY,
 description TEXT,
 price FLOAT
-)
+);
 
 CREATE TABLE IF NOT EXISTS HrGroup (
 id integer PRIMARY KEY,

@@ -3,11 +3,17 @@ package com.tjgwebservices.tjgxmlcms.controller.shop;
 import static com.tjgwebservices.tjgxmlcms.controller.consulting.ConsultingController.retrieveConsultantPage;
 import com.tjgwebservices.tjgxmlcms.dbo.shop.CartStatusDBO;
 import com.tjgwebservices.tjgxmlcms.dbo.shop.ShopOrderStatusDBO;
+import com.tjgwebservices.tjgxmlcms.dbo.shop.ShopPaymentTypeDBO;
+import com.tjgwebservices.tjgxmlcms.dbo.shop.ShopProductDBO;
 import com.tjgwebservices.tjgxmlcms.form.shop.CartStatusForm;
 import com.tjgwebservices.tjgxmlcms.form.shop.ShopOrderStatusForm;
+import com.tjgwebservices.tjgxmlcms.form.shop.ShopPaymentTypeForm;
+import com.tjgwebservices.tjgxmlcms.form.shop.ShopProductForm;
 import com.tjgwebservices.tjgxmlcms.model.Consulting;
 import com.tjgwebservices.tjgxmlcms.model.shop.CartStatus;
 import com.tjgwebservices.tjgxmlcms.model.shop.ShopOrderStatus;
+import com.tjgwebservices.tjgxmlcms.model.shop.ShopPaymentType;
+import com.tjgwebservices.tjgxmlcms.model.shop.ShopProduct;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +32,8 @@ public class ShopController {
 
     private static List<CartStatus> cartStatuses = new ArrayList<CartStatus>();
     private static List<ShopOrderStatus> shopOrderStatuses = new ArrayList<ShopOrderStatus>();
+    private static List<ShopPaymentType> shopPaymentTypes = new ArrayList<ShopPaymentType>();
+    private static List<ShopProduct> shopProducts = new ArrayList<ShopProduct>();
     
     static {
     }
@@ -45,6 +53,14 @@ public class ShopController {
         return "shop/shop";
     }
 
+    @RequestMapping(value = { "/shop/productList" }, method = RequestMethod.GET)
+    public String reviewList(Model model) {
+        shopProducts = ShopProductDBO.loadShopProducts();
+        model.addAttribute("shopProducts", shopProducts);
+ 
+        return "shop/productList";
+    }
+    
     @RequestMapping(value = { "/shop/addCartStatus" }, method = RequestMethod.GET)
     public String addCartStatusForm(Model model) {
  
@@ -88,7 +104,7 @@ public class ShopController {
         return "shop/editCartStatus";
         } else {
             model.addAttribute("errorMessage","Cart Status id not found");
-            return "hr/hrgroups";            
+            return "shop/editCartStatus/"+id;            
             
         }
     }
@@ -116,7 +132,7 @@ public class ShopController {
         ShopOrderStatusForm shopOrderStatusForm = new ShopOrderStatusForm();
         model.addAttribute("shopOrderStatusForm", shopOrderStatusForm);
  
-        return "/shop/shopOrderStatus";
+        return "/shop/addShopOrderStatus";
     }
  
     @RequestMapping(value = { "/shop/addShopOrderStatus" }, method = RequestMethod.POST)
@@ -172,6 +188,140 @@ public class ShopController {
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
         return "/shop/addShopOrderStatus";
+    }
+
+
+    @RequestMapping(value = { "/shop/addShopPaymentType" }, method = RequestMethod.GET)
+    public String addShopPaymentTypeForm(Model model) {
+ 
+        ShopPaymentTypeForm shopPaymentTypeForm = new ShopPaymentTypeForm();
+        model.addAttribute("shopPaymentTypeForm", shopPaymentTypeForm);
+ 
+        return "/shop/addShopPaymentType";
+    }
+ 
+    @RequestMapping(value = { "/shop/addShopPaymentType" }, method = RequestMethod.POST)
+    public String addShopPaymentTypeSave(Model model, //
+        @ModelAttribute("shopPaymentTypeForm") ShopPaymentTypeForm shopPaymentTypeForm) {
+        String paymentTypeDescription = shopPaymentTypeForm.getPaymentTypeDescription();
+         if (paymentTypeDescription != null && paymentTypeDescription.length() > 0){
+            ShopPaymentType shopPaymentType = new ShopPaymentType(paymentTypeDescription);
+            shopPaymentTypes.add(shopPaymentType);
+            ShopPaymentTypeDBO.saveSQLShopPaymentType(shopPaymentType);
+            return "redirect:shop/shop";
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "/shop/addShopPaymentType";
+    }
+
+    @RequestMapping(value = { "/shop/editShopPaymentType/{id}" }, method = RequestMethod.GET)
+    public String editShopPaymentTypeForm(Model model,
+            @PathVariable("id") Integer id) {
+ 
+        ShopPaymentTypeForm shopPaymentTypeForm = new ShopPaymentTypeForm();
+        model.addAttribute("shopPaymentTypeForm", shopPaymentTypeForm);
+        ShopPaymentTypeForm shopPaymentTypeEditForm = new ShopPaymentTypeForm();
+                List<ShopPaymentType> editShopPaymentTypees = shopPaymentTypes.stream()
+            .filter((shopPaymentType) -> shopPaymentType.getId() == id)
+            .collect(Collectors.toList());
+        if (editShopPaymentTypees.size()==1) { 
+        ShopPaymentType editShopPaymentType = editShopPaymentTypees.get(0);
+        shopPaymentTypeEditForm.setPaymentTypeDescription(editShopPaymentType.getPaymentTypeDescription());
+        shopPaymentTypeEditForm.setId(id);
+        model.addAttribute("shopPaymentTypeEditForm", shopPaymentTypeEditForm);
+ 
+        return "shop/editShopPaymentType";
+        } else {
+            model.addAttribute("errorMessage","Shop Payment Type id not found");
+            return "shop/shop";            
+            
+        }
+    }
+ 
+    @RequestMapping(value = { "shop/editShopPaymentType" }, method = RequestMethod.POST)
+    public String editShopPaymentTypeSave(Model model, //
+        @ModelAttribute("shopPaymentTypeForm") ShopPaymentTypeForm shopPaymentTypeForm) {
+        Integer id = shopPaymentTypeForm.getId();
+        String paymentTypeDescription = shopPaymentTypeForm.getPaymentTypeDescription();
+         if (paymentTypeDescription != null && paymentTypeDescription.length() > 0){
+            ShopPaymentType shopPaymentType = new ShopPaymentType(paymentTypeDescription);
+            shopPaymentType.setId(id);
+            ShopPaymentTypeDBO.updateShopPaymentType(shopPaymentType);
+            return "redirect:/shop/shop";
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "/shop/addShopPaymentType";
+    }
+
+    @RequestMapping(value = { "/shop/addShopProduct" }, method = RequestMethod.GET)
+    public String addShopProductForm(Model model) {
+ 
+        ShopProductForm shopProductForm = new ShopProductForm();
+        model.addAttribute("shopProductForm", shopProductForm);
+ 
+        return "/shop/addShopProduct";
+    }
+ 
+    @RequestMapping(value = { "/shop/addShopProduct" }, method = RequestMethod.POST)
+    public String addShopProductSave(Model model, //
+        @ModelAttribute("shopProductForm") ShopProductForm shopProductForm) {
+        String description = shopProductForm.getDescription();
+        Float price = shopProductForm.getPrice();
+         if (description != null && description.length() > 0 &&
+                 price != null && price >= 0){
+            ShopProduct shopProduct = new ShopProduct(description,price);
+            shopProducts.add(shopProduct);
+            ShopProductDBO.saveSQLShopProduct(shopProduct);
+            return "redirect:shop/shop";
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "/shop/addShopProduct";
+    }
+
+    @RequestMapping(value = { "/shop/editShopProduct/{id}" }, method = RequestMethod.GET)
+    public String editShopProductForm(Model model,
+            @PathVariable("id") Integer id) {
+ 
+        ShopProductForm shopProductForm = new ShopProductForm();
+        model.addAttribute("shopProductForm", shopProductForm);
+        ShopProductForm shopProductEditForm = new ShopProductForm();
+                List<ShopProduct> editShopProductes = shopProducts.stream()
+            .filter((shopProduct) -> shopProduct.getId() == id)
+            .collect(Collectors.toList());
+        if (editShopProductes.size()==1) { 
+        ShopProduct editShopProduct = editShopProductes.get(0);
+        shopProductEditForm.setDescription(editShopProduct.getDescription());
+        shopProductEditForm.setPrice(editShopProduct.getPrice());
+        shopProductEditForm.setId(id);
+        model.addAttribute("shopProductEditForm", shopProductEditForm);
+ 
+        return "shop/editShopProduct";
+        } else {
+            model.addAttribute("errorMessage","Shop Product id not found");
+            return "shop/shop";            
+            
+        }
+    }
+ 
+    @RequestMapping(value = { "shop/editShopProduct" }, method = RequestMethod.POST)
+    public String editShopProductSave(Model model, //
+        @ModelAttribute("shopProductForm") ShopProductForm shopProductForm) {
+        Integer id = shopProductForm.getId();
+        String description = shopProductForm.getDescription();
+        Float price = shopProductForm.getPrice();
+         if (description != null && description.length() > 0 &&
+             price != null && price>= 0){
+            ShopProduct shopProduct = new ShopProduct(description, price);
+            shopProduct.setId(id);
+            ShopProductDBO.updateShopProduct(shopProduct);
+            return "redirect:/shop/shop";
+        }
+        String error = "All fieds are required!";
+        model.addAttribute("errorMessage", error);
+        return "/shop/addShopProduct";
     }
 
 

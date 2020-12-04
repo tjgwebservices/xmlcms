@@ -51,7 +51,7 @@ public class ShopProductDBO extends DatabaseObject {
     
     
     
-    public static List<ShopProduct> loadShopProduct(){
+    public static List<ShopProduct> loadShopProducts(){
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
             List<ShopProduct> shopProductList = new ArrayList<>();

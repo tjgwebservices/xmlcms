@@ -17,6 +17,13 @@ public class ShopPaymentType {
     private Integer id;
     private String paymentTypeDescription;
 
+    public ShopPaymentType(){}
+    
+    
+    public ShopPaymentType(String paymentTypeDescription) {
+        this.paymentTypeDescription = paymentTypeDescription;
+    }
+
     public Integer getId() {
         return id;
     }
