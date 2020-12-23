@@ -140,5 +140,14 @@ public class ConferenceController {
          
         return "conferences/messages";
     }
+
+    @RequestMapping(value = { "/conferences/music" }, method = RequestMethod.GET)
+    public String showMusicRoom(Model model) {
+ 
+        model.addAttribute("message", reportMessage);
+        model.addAttribute("conferenceName", conferenceName);
+         
+        return "conferences/music";
+    }
     
 }

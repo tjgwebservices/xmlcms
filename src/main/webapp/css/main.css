@@ -89,6 +89,7 @@ nav a {
     margin-right: 40px;
     border-radius: 10px;
     margin-bottom: 15px;
+    border: 2px outset #f4ebaf;
 }
 
 nav a:hover {
@@ -206,7 +207,7 @@ body > main > ul li{
     padding: 4px;
     background-color: #cbe0f3;
     border-radius: 4px;
-    font-size: .5em;
+    font-size: .9em;
 }
 
 body > main > ul li a{
@@ -278,6 +279,7 @@ aside ul li a{
     border-radius: 6px;
     width: 100%;
     margin: 10px 5px 10px 0px;
+    border: 1px solid #b2ad78;
 }
 
 aside ul li a:hover{
@@ -505,6 +507,15 @@ main article section p {
     padding: 5px;
     color: #504e63;
 }
+body > main > p {
+    color: #3c3d2c;
+    font-size: 20px;
+    background-color: #dbddc5cf;
+    border-radius: 5px;
+    padding: 10px 5px 10px 5px;
+    font-family: "Dejavu Sans";
+    font-weight: 300;
+}
 
 main article section a{
     background-color: #f5f5f5;
@@ -596,7 +607,7 @@ body > p > a {
     display: block;
     float: left;
     color: #e8e8df;
-    background-color: #1479ed;
+    background-color: #a29e33;
     padding: 4px;
     border-radius: 3px;
     text-decoration: none;
@@ -674,9 +685,14 @@ body > h2 {
     letter-spacing: 1.2px;
     text-shadow: 2px 2px #8496ca;
     border-radius: 10px;
-    background-color: #cbe0f3;
     padding: 30px 0px 20px 0px;
+    background-color: #e3ecb3;
+    background-image: linear-gradient(to right,rgb(240 234 183 / 70%) 0,rgb(225 223 168 / 70%) 100%);
+    background-repeat: repeat-x;
+    border: 1px solid #bebb8d;
+    font-size: 1.6em;
 }
+
 main > table > tbody > tr > td > span {
     display: block;
     float: left;

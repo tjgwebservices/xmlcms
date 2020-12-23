@@ -2,71 +2,16 @@
 <#import "/nav.ftl" as nav/>
  
 <html>
-   <@nav.heading />
-<style>
-main > h2 {
-	color: rgb(253,241,5);
-	font-size: 1.8em;
-	display: block;
-	text-align: center;
-	width: 100%;
-	font-size: 2.6em;
-	font-family: Arial;
-	font-weight: 300;
-}
+<head>
+    <@nav.cssheading />
+      <link rel="stylesheet"
+           type="text/css" href="<@spring.url '/css/shop.css'/>"/>
+</head>
 
-main > ul {
-	width: 100%;
-	float: left;
-	display: block;
-}
-
-main > ul li {
-	display: inline-block;
-	width: 28%;
-	text-decoration: none;
-	margin: 3px;
-	list-style-type: none;
-	border-radius: 15px;
-    color: rgb(53, 52, 52);
-	background-color: rgb(214, 212, 212);
-	text-align: center;
-	padding: 8px;
-
-}
-
-main > ul li a{
-	text-decoration: none;
-	text-align: center;
-	padding: 8px;
-	color: #292d28;
-	font-size: 1.2em;
-	font-weight: 600;
-}
-
-main > div > span  {
-	width: 100%;
-	display: block;
-    margin: 10px 0px 10px 0px;
-}
-
-main > div > span > a {
-	color: #f0e9f1;
-	background-color: #f53763;
-	padding: 4px;
-	margin: 6px;
-	display: block;
-	float: left;
-	width: 50%;
-	font-weight: 600;	
-}
-
-</style>
-
-   <body>
-   <@nav.navigation />
-   <@nav.sidelinks />
-     <main>
+<body>
+<@nav.navigation />
+<@nav.sidelinks />
+<main>
 
 
 <h2>Office Supplies</h2>

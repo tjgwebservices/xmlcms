@@ -10,7 +10,9 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class GameDBO extends DatabaseObject{
@@ -74,6 +76,7 @@ public class GameDBO extends DatabaseObject{
                 pstmt.setInt(2,game.getHighScore());
                 pstmt.setTimestamp(3,convertTimeStamp(game.getCreated()));
                 pstmt.setTimestamp(4,convertTimeStamp(game.getLastUpdated()));
+                pstmt.setInt(5,game.getId());
                 pstmt.executeUpdate();
                 tx.commit();
                 session.close();
@@ -86,10 +89,18 @@ public class GameDBO extends DatabaseObject{
     public static Timestamp convertTimeStamp(String timestampAsString){
         String pattern = "MMM dd, yyyy HH:mm:ss.SS";
         //String timestampAsString = "Nov 12, 2018 13:02:56.12345678";
+        Timestamp timestamp;
+        try {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         LocalDateTime localDateTime = LocalDateTime.from(formatter.parse(timestampAsString));
-        Timestamp timestamp = Timestamp.valueOf(localDateTime);
+        timestamp = Timestamp.valueOf(localDateTime);
+        } catch (DateTimeParseException e){
+            Date date = new Date();
+            timestamp = new Timestamp(date.getTime());
+        }
         return timestamp;
+        
+        
         
     }
     
