@@ -35,6 +35,16 @@
 
 </html>
 </#macro>
+<#macro footingmusic>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/music.js'/>"></script>
+
+</html>
+</#macro>
 <#macro footingcalendardisplay>
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
@@ -121,6 +131,16 @@
 
 </html>
 </#macro>
+<#macro footingtest>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+       <script src="<@spring.url '/js/test.js'/>"></script>
+
+</html>
+</#macro>
 
 <#macro footingform>
     <footer>
@@ -133,37 +153,24 @@
 </html>
 </#macro>
 
+<#macro footingdataforum>
+    <footer>
+        <h6>Powered by TJGXMLCMS</h6>
+    </footer>
+    </body>
+       <script src="<@spring.url '/js/script.js'/>"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+       <script src="<@spring.url '/js/forum.js'/>"></script>
+
+</html>
+</#macro>
+
 <#macro navigation>
 <h2><img src="/images/iidataschool_banner001.png" alt="II Data School" title="II Data School" /></h2>
 <h2>II Data School - Requirements Gathering Committee</h2>
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li>
-            <span class="dropdown1">
-                    <a href="/news/news">News</a>
-                <span class="dropdown1-content">
-                    <a href="/international/international">International</a>
-                    <a href="/international/news">News</a>
-                    <a href="/international/politics">Politics</a>
-                    <a href="/international/finance">Finance</a>
-                    <a href="/international/business">Business</a>
-                    <a href="/international/local">Local News</a>
-                    <a href="/consulting/groups">Consulting</a>
-                    <a href="/news/reports">Reports</a>                
-                    <a href="/news/forum">Forum</a>                
-                    <a href="/news/news">News</a>
-                    <a href="/shop/shop">Shop</a>                
-                    <a href="/videos/videoList">Videos</a>                
-                    <a href="/videos/addVideo">Add Video</a>
-                    <a href="/reviews/reviewList">Reviews</a>
-                    <a href="/research/addArtist">Add Artist</a>
-                    <a href="/reviews/addReview">Add Review</a>
-                    <a href="/articles/articleList">Articles</a>
-                    <a href="/articles/addArticle">Add Article</a>
-                </span>
-            </span>
-            </li>
             <li>
             <span class="dropdown1">
                 <a href="/research/researchers">Researchers</a>
@@ -175,6 +182,21 @@
                     <a href="/research/topics">Topics</a>
                     <a href="/subscriptions/subscribe">Subscribe</a>
                     <a href="/subscriptions/unsubscribe">Unsubscribe</a>
+                </span>
+            </span>
+            </li>
+            <li>
+            <span class="dropdown1">
+                <a href="/conferences/learn">Training</a>
+                <span class="dropdown1-content">
+                    <a href="/conferences/forum">Forum</a>
+                    <a href="/conferences/music">Music</a>
+                    <a href="/conferences/room">Conference Room</a>
+                    <a href="/conferences/presentation">Presentation Room</a>
+                    <a href="/conferences/project">Projects</a>
+                    <a href="/conferences/workshop">Workshops</a>
+                    <a href="/conferences/screenshare">Screenshare</a>
+                    <a href="/conferences/slides">Slides</a>
                 </span>
             </span>
             </li>
@@ -205,6 +227,31 @@
                 </span>
             </span>
             </li>
+            <li>
+            <span class="dropdown1">
+                    <a href="/news/news">News</a>
+                <span class="dropdown1-content">
+                    <a href="/international/international">International</a>
+                    <a href="/international/news">News</a>
+                    <a href="/international/politics">Politics</a>
+                    <a href="/international/finance">Finance</a>
+                    <a href="/international/business">Business</a>
+                    <a href="/international/local">Local News</a>
+                    <a href="/consulting/groups">Consulting</a>
+                    <a href="/news/reports">Reports</a>                
+                    <a href="/news/forum">Forum</a>                
+                    <a href="/news/news">News</a>
+                    <a href="/shop/shop">Shop</a>                
+                    <a href="/videos/videoList">Videos</a>                
+                    <a href="/videos/addVideo">Add Video</a>
+                    <a href="/reviews/reviewList">Reviews</a>
+                    <a href="/research/addArtist">Add Artist</a>
+                    <a href="/reviews/addReview">Add Review</a>
+                    <a href="/articles/articleList">Articles</a>
+                    <a href="/articles/addArticle">Add Article</a>
+                </span>
+            </span>
+            </li>
 
             <li>
             <span class="dropdown1">
@@ -214,20 +261,6 @@
                     <a href="/hr/clients">Clients</a>
                     <a href="/hr/addClient">Clients</a>
                     <a href="/hr/hrgroups">Human Resource Groups</a>
-                </span>
-            </span>
-            </li>
-            <li>
-            <span class="dropdown1">
-                <a href="/conferences/learn">Training</a>
-                <span class="dropdown1-content">
-                    <a href="/conferences/forum">Forum</a>
-                    <a href="/conferences/room">Conference Room</a>
-                    <a href="/conferences/presentation">Presentation Room</a>
-                    <a href="/conferences/project">Projects</a>
-                    <a href="/conferences/workshop">Workshops</a>
-                    <a href="/conferences/screenshare">Screenshare</a>
-                    <a href="/conferences/slides">Slides</a>
                 </span>
             </span>
             </li>
