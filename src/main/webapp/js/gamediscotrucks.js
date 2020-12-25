@@ -9,8 +9,8 @@ canvas.setAttribute("width","640");
 canvas.setAttribute("height", "400");
 
 var div = document.createElement("div");
-div.style.float= "left";
-div.style.width = "50%";
+//div.style.float= "left";
+//div.style.width = "50%";
 
 div.appendChild(canvas);
 main.appendChild(div);
@@ -22,12 +22,12 @@ svg.setAttribute("height", "400");
 svg.setAttribute("id","sliderControl");
 
 var div = document.createElement("div");
-div.style.float= "left";
-div.style.width = "50%";
+//div.style.float= "left";
+//div.style.width = "50%";
 div.appendChild(svg);
 main.appendChild(div);
 
-
+/*
 var g1 = document.createElementNS("http://www.w3.org/2000/svg","g");
 g1.setAttribute("id","controlzone");
 g1.setAttribute("transform","translate(40,0)");
@@ -119,7 +119,7 @@ g1.appendChild(g5);
 
 svg.appendChild(g1);
 
-
+*/
 
 var text = document.createElementNS("http://www.w3.org/2000/svg","text");
 text.setAttribute("x",2);
