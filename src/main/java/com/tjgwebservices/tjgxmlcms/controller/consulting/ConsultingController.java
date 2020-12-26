@@ -144,7 +144,7 @@ public class ConsultingController {
             return consulting;
             
         } catch (XPathExpressionException ex) {
-            Logger.getLogger(BookController.class.getName())
+            Logger.getLogger(ConsultingController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
         return consulting;        

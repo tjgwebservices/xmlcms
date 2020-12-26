@@ -556,11 +556,12 @@ main article section a:hover, main article section a:focus{
 }
 
 body > h2 > img, main > article > img {
-    display: block;
-    width:50%;
-    float:left;
-    margin: 0% 25% 0% 25%;
+        display: block;
+        width: 100%;
+        float: left;
+        margin:0px;
 }
+
 main article > section > ul > li {
     list-style-type: none;
     border-bottom: 1px solid #d3ecb9;
@@ -814,8 +815,10 @@ nav > ul > li:nth-child(7), nav > ul > li:nth-child(8), nav > ul > li:nth-child(
 
     body > h2 > img, main > article > img {
         display: block;
-        width: 100%;
-        float: left;
+        width:50%;
+        float:left;
+        margin: 0% 25% 0% 25%;
+
     }
 
     main article section {

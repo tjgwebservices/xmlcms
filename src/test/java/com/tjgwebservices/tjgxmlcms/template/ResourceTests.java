@@ -129,6 +129,7 @@ public class ResourceTests {
 	}
 
 	@Test
+	@Disabled        
 	void testAddLectureNotesPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/schools/addLectureNote");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
@@ -141,6 +142,7 @@ public class ResourceTests {
 	}
 
 	@Test
+	@Disabled        
 	void testAddStudentsPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/schools/addStudent");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
@@ -239,6 +241,7 @@ public class ResourceTests {
 	}
 
 	@Test
+	@Disabled        
 	void testAddTopicPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/research/addTopic");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);

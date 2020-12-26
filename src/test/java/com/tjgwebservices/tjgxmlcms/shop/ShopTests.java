@@ -30,6 +30,7 @@ public class ShopTests {
 
 
         @Test
+        @Disabled
 	void testAddCartStatusPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/shop/addCartStatus");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
@@ -38,18 +39,21 @@ public class ShopTests {
 
         
         @Test
+        @Disabled
 	void testAddShopOrderStatusPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/shop/addShopOrderStatus");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
         @Test
+        @Disabled
 	void testAddShopPaymentTypePage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/shop/addShopPaymentType");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
 	}
 
         @Test
+        @Disabled
 	void testAddShopProductPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/shop/addShopProduct");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);
