@@ -1,7 +1,7 @@
-package com.tjgwebservices.tjgxmlcms.dbo;
+package com.tjgwebservices.tjgxmlcms.dbo.article;
 
 import com.tjgwebservices.tjgxmlcms.dbm.HibernateAdmin;
-import static com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject.connectionURL;
+import com.tjgwebservices.tjgxmlcms.dbo.DatabaseObject;
 import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

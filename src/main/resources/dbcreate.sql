@@ -30,6 +30,14 @@ id INTEGER PRIMARY KEY,
 artistName TEXT
 );
 
+CREATE TABLE IF NOT EXISTS Blog (
+id integer PRIMARY KEY,
+author text NOT NULL,
+authorDate text NOT NULL,
+title text NOT NULL,
+description text NOT NULL,
+content text NOT NULL);
+
 CREATE TABLE IF NOT EXISTS Chat (
 id INTEGER PRIMARY KEY,
 userIdFrom INTEGER NOT NULL,

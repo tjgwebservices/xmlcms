@@ -59,6 +59,34 @@ public class RestTopicController {
        return new ResponseEntity<>(emitter, createHeaders("poll-rooms"), HttpStatus.OK);
     }    
 
+    @RequestMapping(value = "/message/{id}", method = RequestMethod.GET,
+            produces=MediaType.TEXT_EVENT_STREAM_VALUE)
+    @ResponseBody    
+    public ResponseEntity<ResponseBodyEmitter> pollMessagesForId(
+            @PathVariable("id") Integer id, Model model) {
+        emitter = new SseEmitter();
+       cachedThreadPool.execute(() -> {
+           try {
+               for (int i = 0; i < channels.length; i++) {
+                   emitter.send(SseEmitter
+                           .event()
+                           .name("message")
+                           .data("[{\"data\": \""+channels[i]+"\","
+                                   + "\"response\":\"polling messages\","
+                                   //+ "\"RTCSessionDescription\":{\"type\":\""+type+"\",\"sdp\":\""+sdp+"\"},"
+                                   + "\"channel\":\""+channels[i]+"\","
+                                   + "\"event\":\"offer\"}]"));
+                   TimeUnit.SECONDS.sleep(15);
+               }
+               emitter.complete();
+           } catch (Exception e) {
+               emitter.completeWithError(e);
+           }
+       });
+
+       return new ResponseEntity<>(emitter, createHeaders("poll-rooms"), HttpStatus.OK);
+    }    
+
     @RequestMapping(value = "/message/{id}/{command}", method = RequestMethod.POST,
             produces=MediaType.TEXT_EVENT_STREAM_VALUE)  
     @ResponseBody 

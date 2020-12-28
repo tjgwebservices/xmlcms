@@ -173,19 +173,6 @@
             <li><a href="/">Home</a></li>
             <li>
             <span class="dropdown1">
-                <a href="/game/games">Games</a>
-                <span class="dropdown1-content">
-                    <a href="/game/blocks">Blocks</a>
-                    <a href="/game/discotrucks">Disco Trucks</a>
-                    <a href="/game/ghosts">Ghosts</a>
-                    <a href="/game/pastelblocks">Pastel Blocks</a>
-                    <a href="/game/rhythmblocks">Rhythm Blocks</a>
-                    <a href="/game/tankblocks">Tank Blocks</a>
-                </span>
-            </span>
-            </li>
-            <li>
-            <span class="dropdown1">
                     <a href="/news/news">News</a>
                 <span class="dropdown1-content">
                     <a href="/international/international">International</a>
@@ -262,6 +249,19 @@
                     <a href="/events/eventAdvertisementList">Advertisement List</a>
                     <a href="/consulting/about">About</a>
                     <a href="/consulting/contact">Contact</a>
+                </span>
+            </span>
+            </li>
+            <li>
+            <span class="dropdown1">
+                <a href="/game/games">Games</a>
+                <span class="dropdown1-content">
+                    <a href="/game/blocks">Blocks</a>
+                    <a href="/game/discotrucks">Disco Trucks</a>
+                    <a href="/game/ghosts">Ghosts</a>
+                    <a href="/game/pastelblocks">Pastel Blocks</a>
+                    <a href="/game/rhythmblocks">Rhythm Blocks</a>
+                    <a href="/game/tankblocks">Tank Blocks</a>
                 </span>
             </span>
             </li>

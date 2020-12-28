@@ -1,7 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.template;
 
 import com.tjgwebservices.tjgxmlcms.SpringWebConfig;
-import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
+import com.tjgwebservices.tjgxmlcms.form.article.ArticleForm;
 import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;

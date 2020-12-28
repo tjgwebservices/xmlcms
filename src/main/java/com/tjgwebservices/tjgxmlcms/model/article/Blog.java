@@ -1,7 +1,18 @@
-package com.tjgwebservices.tjgxmlcms.form;
+package com.tjgwebservices.tjgxmlcms.model.article;
 
-public class ArticleForm {
- 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.search.annotations.Indexed;
+
+@Entity
+@Indexed
+@Table(name = "Blog")
+public class Blog {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String author;
     private String authorDate;
@@ -9,13 +20,28 @@ public class ArticleForm {
     private String description;
     private String content;
 
-    public Integer getId() {
-        return id;
+    public Blog() {
+ 
+    }
+ 
+    public Blog(String author, String authorDate,
+            String title, String description,
+            String content) {
+        this.author = author;
+        this.authorDate = authorDate;
+        this.title = title;
+        this.description = description;
+        this.content = content;              
     }
 
+        public Integer getId() {
+        return id;
+    }
+ 
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getAuthor() {
         return author;
@@ -32,7 +58,6 @@ public class ArticleForm {
     public void setAuthorDate(String authorDate) {
         this.authorDate = authorDate;
     }
-
  
     public String getTitle() {
         return title;
@@ -57,5 +82,5 @@ public class ArticleForm {
     public void setContent(String content) {
         this.content = content;
     }
-
+    
 }

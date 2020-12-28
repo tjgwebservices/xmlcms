@@ -1,12 +1,20 @@
+body {
+    display: block;
+    width:98%;
+}
 body, html, p, h1, h2, h3, h4, h5, h6 {
     color: #212121;
+    background: rgba(22, 22, 20, 1.0);
+    background: -webkit-radial-gradient(bottom left, rgba(22, 22, 20, 1.0), rgba(42, 46, 28, 1.0));
+    background: -moz-radial-gradient(bottom left, rgba(22, 22, 20, 1.0), rgba(42, 46, 28, 1.0));
+    background: radial-gradient(to top right, rgba(22, 22, 20, 1.0), rgba(42, 46, 28, 1.0));
 }
 
 h4 {
     font-size: 24px;
     font-weight: 400;
     letter-spacing: 4px;
-    background-color: #f1ece5;
+    background: #f1ece5;
     padding: 10px;
     border-radius: 5px;
     color: #062f19;
@@ -19,9 +27,72 @@ h2 {
     color: #242907;
 }
 
+h1,h2,h3,h4,h5,h6{
+    background: #e0e0d8;
+    border-radius: 7px;
+    font-weight: 600;
+    padding: 4px;
+}
+
 p {
     color: #212121;
     font-size: 20px;
+    background: #e0e0d8;
+    padding: 2px;
+    border-radius:3px;
+}
+
+table {
+    display: block;
+    float: left;
+    margin: 20px 0 20px 0px;    
+}
+
+main, body > div  {
+    display: block;
+    float: left;
+    width: 90%;
+    min-height: 30px;
+    margin-left: 2.564102564102564%;
+    margin: 20px 0px 20px 0px;
+    border-radius: 20px;
+    background: #e3e2db;
+}
+
+body > h1, body > h2, body > a {
+    display: block;
+    float: left;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+body > h2 {
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-shadow: 2px 2px #8496ca;
+    border-radius: 10px;
+    padding: 30px 0px 20px 0px;
+    background-color: #e3ecb3;
+    background-image: linear-gradient(to right,rgb(240 234 183 / 70%) 0,rgb(225 223 168 / 70%) 100%);
+    background-repeat: repeat-x;
+    background: rgb(208,198,130);
+    background: linear-gradient(90deg, rgba(208,198,130,1) 0%, rgba(132,168,43,1) 50%, rgba(232,252,69,1) 100%);
+    border: 1px solid #bebb8d;
+    font-size: 1.6em;
+}
+
+body > div > a {
+    text-decoration: none;
+    color: #2aa0d6;
+    border-radius: 4px;
+    background-color: #d9f3f7;
+    padding: 8px 12px 8px 12px;
+}
+body > div > a:hover {
+    color: #1b2529;
+    background-color: #aaedf7;
 }
 
 nav {
@@ -30,12 +101,14 @@ nav {
     margin-bottom: 20px;
     overflow: visible;
     min-height: 40px;
-    background-color: #f3f2eb;
+    background: #f3f2eb;
+    background: rgb(208,198,130);
+    background: linear-gradient(90deg, rgb(227 220 169) 0%, rgb(233 244 190) 50%, rgb(238 231 170) 100%);
     border: 1px solid #efe4bd;
     border-radius: 4px;
     padding-right: 20px;
     padding-left: 20px;
-    width: 100%;	
+    width: 96%;
 }
 
 nav h2 {
@@ -54,7 +127,7 @@ nav button {
     margin-right: 5px;
     margin-left: 5px;
     color: #ffffff;
-    background-color: #ededed;
+    background: #ededed;
     border-color: #e5e5e5 #e5e5e5 #bfbfbf;
 }
 
@@ -94,6 +167,10 @@ nav a {
 
 nav a:hover {
     color: #dedede;
+    background: rgba(128, 134, 98, 1.0);
+    background: -webkit-radial-gradient(top right, rgba(128, 134, 98, 1.0), rgba(213, 230, 138, 1.0));
+    background: -moz-radial-gradient(top right, rgba(128, 134, 98, 1.0), rgba(213, 230, 138, 1.0));
+    background: radial-gradient(to bottom left, rgba(128, 134, 98, 1.0), rgba(213, 230, 138, 1.0));
 }
 
 nav div {
@@ -147,7 +224,7 @@ nav div {
 
 .dropdown1-content {
 	color: #000;
-	background-color: #dad9cc;
+	background: #dad9cc;
 	box-shadow: 0 4px 8px 0 rgba(105, 179, 119, 0.2),0 6px 20px 0 rgba(98, 182, 128, 0.19);
 	cursor: auto;
 	display: none;
@@ -167,14 +244,14 @@ nav div {
 	margin: 5px 10px;
 	width:70%;
 	border-radius: 15px;
-	background-color: #e2e6cb;
+	background: #e2e6cb;
 	box-shadow: 2px 7px 7px #c3e3cf;
 }
 
 .dropdown1-content a:hover {
 /*	background-color: #f1f1f1;
 	background-color: #4CAF50;*/
-	background-color: #dbedfb;
+	background: #dbedfb;
 	}
 
 .dropdown1:hover .dropdown1-content {
@@ -188,7 +265,7 @@ main {
     width: 100%;
     margin-top: 60px;
     float: left;
-    background-color: #e5e5e5;
+    background: #e5e5e5;
 }
 
 body > main > ul {
@@ -205,7 +282,7 @@ body > main > ul li{
     width: 29%;
     margin: 1px;
     padding: 4px;
-    background-color: #cbe0f3;
+    background: #cbe0f3;
     border-radius: 4px;
     font-size: .9em;
 }
@@ -221,7 +298,7 @@ aside {
     width: 100%;
     min-height: 1px;
     margin: 20px 0px 20px 0px;
-    background-color: #f2f2f2;
+    background: #f2f2f2;
     border-radius: 15px;
 }
 
@@ -273,7 +350,7 @@ aside ul li a{
     margin: 2px 5px;
     transition: 0.7s;
     font-size: 18px;
-    background-color: #e6e6cc;
+    background: #e6e6cc;
     padding: 10px 5px 10px 5px;
     display: block;
     border-radius: 6px;
@@ -283,7 +360,7 @@ aside ul li a{
 }
 
 aside ul li a:hover{
-    background-color: #3e8e41;
+    background: #3e8e41;
     color: #fff;
 }
 
@@ -292,7 +369,7 @@ body > aside > ul:nth-of-type(1) {
 }
 
 body > aside > ul:nth-of-type(1) li{
-    background-color: #e8ead5;
+    background: #e8ead5;
     border-radius: 5px;
     margin: 4px 5px 4px 5px;
     color: #9a9e87;
@@ -301,7 +378,7 @@ body > aside > ul:nth-of-type(1) li{
 aside > section {
     padding: 4px 2px 4px 2px;
     border: 2px solid #dedede;
-    background-color: #e1e1e1;
+    background: #e1e1e1;
     border-radius: 10px;
     margin: 10px 20px 40px 20px;
     font-family: "Open Sans", "Roboto", sans-serif;
@@ -328,15 +405,6 @@ aside > article > section > video {
     width: 100%;
 }
 
-main, body > div  {
-    display: block;
-    float: left;
-    width: 90%;
-    min-height: 30px;
-    margin-left: 2.564102564102564%;
-    margin: 20px 0px 20px 0px;
-    border-radius: 20px;
-}
 
 main a {
     color: #81aede;
@@ -345,12 +413,12 @@ main a {
     border-radius: 5px;
     padding: 5px;
     border: 2px solid #d3d4b1;
-    background-color: #ece7d4;
+    background: #ece7d4;
     font-weight: 600;
 }
 
 main a:hover {
-    background-color: #d5e43d;
+    background: #d5e43d;
     color: #2c5e94;
 }
 
@@ -384,7 +452,7 @@ main header a {
     color: #ffffff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     text-decoration: none;
-    background-color: #86ad58;
+    background: #86ad58;
     border-color: #4CAF50 #CDDC39 #CDDC39;
     padding: 11px 19px;
     font-size: 17.5px;
@@ -392,12 +460,12 @@ main header a {
 }
 
 main header a:hover  {
-    background-color: #0088cc;
+    background: #0088cc;
 }
 
 main header span {
     display: block;
-    background-color: #eee;
+    background: #eee;
     margin: 20px 10px 20px 10px;
     padding: 5px 20px 5px 0px;
     border-radius: 15px;
@@ -466,7 +534,7 @@ main article > h2 {
     padding-bottom: 16px;
     font-family: "Arial", "Arial Bold", sans-serif;
     color: #506b6f;
-    background-color: #afdede;
+    background: #afdede;
     margin-top: 16px;
     margin-bottom: 64px;
 }
@@ -481,31 +549,31 @@ main article section {
     float: left;
     box-shadow: 4px 3px 8px 1px #969696;
     -webkit-box-shadow: 4px 3px 8px 1px #969696;
-    background-color: #f5f4f0;
+    background: #f5f4f0;
 }
 
 main article:nth-of-type(even) section:nth-of-type(1) {
-    background-color: #5080ff10;
+    background: #5080ff10;
 }
 
 main article:nth-of-type(even) section:nth-of-type(2) {
-    background-color: #698eb310;
+    background: #698eb310;
 }
 
 main article:nth-of-type(even) section:nth-of-type(3) {
-    background-color: #87b8da10;
+    background: #87b8da10;
 }
 
 main article:nth-of-type(odd) section:nth-of-type(1) {
-    background-color: #c2d4ea10;
+    background: #c2d4ea10;
 }
 
 main article:nth-of-type(odd) section:nth-of-type(2) {
-    background-color: #b3e8ec10;
+    background: #b3e8ec10;
 }
 
 main article:nth-of-type(odd) section:nth-of-type(3) {
-    background-color: #b7c0e810;
+    background: #b7c0e810;
 }
 
 main article section h4 {
@@ -516,11 +584,12 @@ main article section h4 {
 main article section p {
     padding: 5px;
     color: #504e63;
+    background: #dedbcf;
 }
 body > main > p {
     color: #3c3d2c;
     font-size: 20px;
-    background-color: #dbddc5cf;
+    background: #dbddc5cf;
     border-radius: 5px;
     padding: 10px 5px 10px 5px;
     font-family: "Dejavu Sans";
@@ -676,39 +745,6 @@ input[type="submit"]:hover {
     background-color: #a6d66f;
 }
 
-body > div > a {
-    text-decoration: none;
-    color: #2aa0d6;
-    border-radius: 4px;
-    background-color: #d9f3f7;
-    padding: 8px 12px 8px 12px;
-}
-body > div > a:hover {
-    color: #1b2529;
-    background-color: #aaedf7;
-}
-
-body > h1, body > h2, body > a {
-    display: block;
-    float: left;
-    width: 100%;
-    font-size: 12px;
-    text-align: center;
-    font-size: 16px;
-}
-
-body > h2 {
-    font-weight: 500;
-    letter-spacing: 1.2px;
-    text-shadow: 2px 2px #8496ca;
-    border-radius: 10px;
-    padding: 30px 0px 20px 0px;
-    background-color: #e3ecb3;
-    background-image: linear-gradient(to right,rgb(240 234 183 / 70%) 0,rgb(225 223 168 / 70%) 100%);
-    background-repeat: repeat-x;
-    border: 1px solid #bebb8d;
-    font-size: 1.6em;
-}
 
 main > table > tbody > tr > td > span {
     display: block;

@@ -1,7 +1,7 @@
 package com.tjgwebservices.tjgxmlcms.controller.article;
 
-import com.tjgwebservices.tjgxmlcms.dbo.ArticleDBO;
-import com.tjgwebservices.tjgxmlcms.form.ArticleForm;
+import com.tjgwebservices.tjgxmlcms.dbo.article.ArticleDBO;
+import com.tjgwebservices.tjgxmlcms.form.article.ArticleForm;
 import com.tjgwebservices.tjgxmlcms.form.SocketDisplay;
 import com.tjgwebservices.tjgxmlcms.model.article.Article;
 import java.util.ArrayList;
