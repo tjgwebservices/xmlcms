@@ -1,18 +1,11 @@
 'use strict';
 
-// On this codelab, you will be streaming only video (video: true).
 const mediaStreamConstraints = {video: true};
 
-// Video element where stream will be placed.
-//const localVideo = document.querySelector('video');
-
-// Set up to exchange only video.
 const offerOptions = {offerToReceiveVideo: 1};
 
-// Define initial start time of the call (defined as connection between peers).
 let startTime = null;
 
-// Define peer connections, streams and video elements.
 const localVideo = document.getElementById('localVideo');
 const remoteVideo = document.getElementById('remoteVideo');
 
@@ -21,8 +14,6 @@ let remoteStream;
 
 let localPeerConnection;
 let remotePeerConnection;
-
-// Local stream that will be reproduced on the video.
 
 var sendChannel;
 var receiveChannel;

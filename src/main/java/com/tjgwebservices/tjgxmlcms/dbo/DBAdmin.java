@@ -89,6 +89,21 @@ public class DBAdmin {
                 "subject TEXT,\n" +
                 "message TEXT\n" +
                 ");"); 
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Configuration (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "messages TEXT NOT NULL,\n" +
+                "views INTEGER NOT NULL,\n" +
+                "shares INTEGER NOT NULL,\n" +
+                "users INTEGER NOT NULL,\n" +
+                "dateTime TEXT NOT NULL\n" +
+                ");"); 
+        runSQLQuery("CREATE TABLE IF NOT EXISTS Social (\n" +
+                "id INTEGER PRIMARY KEY,\n" +
+                "postname TEXT NOT NULL,\n" +
+                "content TEXT NOT NULL,\n" +
+                "reviewed INTEGER NOT NULL,\n" +
+                "published TEXT NOT NULL\n" +
+                ");"); 
         runSQLQuery("CREATE TABLE IF NOT EXISTS Course\n" +
                 "( id INTEGER PRIMARY KEY,\n" +
                 "courseName text NOT NULL);"); 

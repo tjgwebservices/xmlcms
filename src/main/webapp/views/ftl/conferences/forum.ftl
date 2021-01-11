@@ -1,6 +1,6 @@
 <#import "/spring.ftl" as spring/>
 <#import "/nav.ftl" as nav/>
- 
+<#import "/templatelinks.ftl" as templ/> 
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -17,7 +17,7 @@
       <header class="header">
         <div class="logo-container">
           <h1 class="logo-text">
-            TJG <span class="logo-highlight">Web Services Data Forum</span>
+            <span class="logo-highlight"><@templ.templatetitle /></span>
           </h1>
         </div>
       </header>

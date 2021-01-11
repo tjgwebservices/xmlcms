@@ -78,7 +78,7 @@ public class ShopController {
             CartStatus cartStatus = new CartStatus(description);
             cartStatuses.add(cartStatus);
             CartStatusDBO.saveSQLCartStatus(cartStatus);
-            return "redirect:shop/shop";
+            return "redirect:/shop/shop";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -208,7 +208,7 @@ public class ShopController {
             ShopPaymentType shopPaymentType = new ShopPaymentType(paymentTypeDescription);
             shopPaymentTypes.add(shopPaymentType);
             ShopPaymentTypeDBO.saveSQLShopPaymentType(shopPaymentType);
-            return "redirect:shop/shop";
+            return "redirect:/shop/shop";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -274,7 +274,7 @@ public class ShopController {
             ShopProduct shopProduct = new ShopProduct(description,price);
             shopProducts.add(shopProduct);
             ShopProductDBO.saveSQLShopProduct(shopProduct);
-            return "redirect:shop/shop";
+            return "redirect:/shop/shop";
         }
         String error = "All fieds are required!";
         model.addAttribute("errorMessage", error);
@@ -298,10 +298,10 @@ public class ShopController {
         shopProductEditForm.setId(id);
         model.addAttribute("shopProductEditForm", shopProductEditForm);
  
-        return "shop/editShopProduct";
+        return "/shop/editShopProduct";
         } else {
             model.addAttribute("errorMessage","Shop Product id not found");
-            return "shop/shop";            
+            return "/shop/shop";            
             
         }
     }

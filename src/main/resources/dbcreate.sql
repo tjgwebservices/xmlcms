@@ -48,6 +48,23 @@ subject TEXT,
 message TEXT
 );
 
+CREATE TABLE IF NOT EXISTS Configuration (
+id INTEGER PRIMARY KEY,
+messages TEXT NOT NULL,
+views INTEGER NOT NULL,
+shares INTEGER NOT NULL,
+users INTEGER NOT NULL,
+dateTime TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Social (
+id INTEGER PRIMARY KEY,
+postname TEXT NOT NULL,
+content TEXT NOT NULL,
+reviewed INTEGER NOT NULL,
+published TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS Event (
 id integer PRIMARY KEY,
 title text NOT NULL,

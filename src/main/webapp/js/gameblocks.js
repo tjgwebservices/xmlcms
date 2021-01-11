@@ -1,149 +1,6 @@
 'use strict';
 (function () {
 
-var main = document.getElementsByTagName("main")[0];
-
-var canvas = document.createElement("canvas");
-canvas.setAttribute("width","640");
-canvas.setAttribute("height", "400");
-
-var div = document.createElement("div");
-//div.style.float= "left";
-//div.style.width = "50%";
-
-div.appendChild(canvas);
-main.appendChild(div);
-
-var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("style", "border:1px solid black");
-svg.setAttribute("width","640");
-svg.setAttribute("height", "400");
-svg.setAttribute("id","sliderControl");
-
-var div = document.createElement("div");
-//div.style.float= "left";
-//div.style.width = "50%";
-div.appendChild(svg);
-main.appendChild(div);
-
-/*
-var g1 = document.createElementNS("http://www.w3.org/2000/svg","g");
-g1.setAttribute("id","controlzone");
-g1.setAttribute("transform","translate(40,0)");
-
-var g2 = document.createElementNS("http://www.w3.org/2000/svg","g");
-g2.setAttribute("class","rollover slider1");
-
-var circle = document.createElementNS("http://www.w3.org/2000/svg","circle");
-circle.setAttribute("cx", 10);
-circle.setAttribute("cy", 10);
-circle.innerHTML = "<title>Zoom out 50%</title";
-circle.setAttribute("r", 8);
-
-
-var line = document.createElementNS("http://www.w3.org/2000/svg","line");
-line.setAttribute("x1",5);
-line.setAttribute("x2",15);
-line.setAttribute("y1",10);
-line.setAttribute("y2",10);
-
-
-g2.appendChild(circle);
-g2.appendChild(line);
-
-var line1 = document.createElementNS("http://www.w3.org/2000/svg","line");
-line1.setAttribute("x1",20);
-line1.setAttribute("x2",120);
-line1.setAttribute("y1",9.5);
-line1.setAttribute("y2",9.5);
-line1.setAttribute("stroke","#666");
-
-var line2 = document.createElementNS("http://www.w3.org/2000/svg","line");
-line2.setAttribute("x1",20);
-line2.setAttribute("x2",120);
-line2.setAttribute("y1",10.5);
-line2.setAttribute("y2",10.5);
-line2.setAttribute("stroke","#ddd");
-
-g1.appendChild(g2);
-g1.appendChild(line1);
-g1.appendChild(line2);
-
-
-
-var g3 = document.createElementNS("http://www.w3.org/2000/svg","g");
-g3.setAttribute("id","slidezone");
-g3.setAttribute("transform","translate(24.5, 8.5)");
-
-var g4 = document.createElementNS("http://www.w3.org/2000/svg","g");
-g4.setAttribute("id","slidemover");
-g4.setAttribute("transform","translate(45, 0)");
-
-var polygon = document.createElementNS("http://www.w3.org/2000/svg","polygon");
-polygon.setAttribute("id","slider");
-polygon.setAttribute("points", "-4,-4 4,-4 4,5 0,9 -4,5");
-polygon.innerHTML = "<title>Move left to zoom out, right to zoom in</title>";
-
-
-g4.appendChild(polygon);
-g3.appendChild(g4);
-
-var g5 = document.createElementNS("http://www.w3.org/2000/svg","g");
-g5.setAttribute("class", "rollover sliderr");
-var circle1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
-circle1.setAttribute("id","plus");
-circle1.setAttribute("cx", 130);
-circle1.setAttribute("cy",10);
-circle1.setAttribute("r", 8);
-circle1.innerHTML = "<title>Zoom in 50%</title>";
-
-var line3 = document.createElementNS("http://www.w3.org/2000/svg","line");
-line3.setAttribute("x1",125);
-line3.setAttribute("x2",135);
-line3.setAttribute("y1",10);
-line3.setAttribute("y2",10);
-
-var line4 = document.createElementNS("http://www.w3.org/2000/svg","line");
-line4.setAttribute("x1",130);
-line4.setAttribute("x2",130);
-line4.setAttribute("y1",5);
-line4.setAttribute("y2",15);
-
-g5.appendChild(circle1);
-g5.appendChild(line3);
-g5.appendChild(line4);
-
-g1.appendChild(g3);
-g1.appendChild(g5);
-
-svg.appendChild(g1);
-*/
-
-var text = document.createElementNS("http://www.w3.org/2000/svg","text");
-text.setAttribute("x",2);
-text.setAttribute("y",15);
-text.style.fontFamily ="Sans-Serif";
-text.style.fontSize ="9pt";
-text.setAttribute("fill","gray");
-text.setAttribute("id","readout");
-text.innerHTML = "100%";
-
-var score = text.cloneNode(true);
-svg.appendChild(text);
-score.innerHTML = 0;
-score.setAttribute("x",50);
-score.setAttribute("y",200);
-score.style.fontSize="38px";
-score.style.fontWeight="800";
-svg.appendChild(score);
-
-var label = score.cloneNode(true);
-label.setAttribute("y",150);
-label.setAttribute("x",50);
-label.style.fontWeight="400";
-label.style.fontSize="12px";
-label.innerHTML = "Your Current Score:";
-svg.appendChild(label);
 
 var numberBalls = score.cloneNode(true);
 numberBalls.setAttribute("x",300);
@@ -156,95 +13,18 @@ svg.appendChild(ballsLabel);
 
 var minHeight = 20, maxHeight = 200, minGap = 50, maxGap = 200, obstacles = [], bouncingballs = [], currentScore = 0;
 
-var Rnd = Math.random,
-    Sin = Math.sin,
-    Floor = Math.floor;
 
-var warpZ = 16,
-    units = 200,
-    Z = 0.025 + (1/25 * 2);
-
-function resetstar(a)
-{
-   a.x = (Rnd() * canvas.width - (canvas.width * 0.5)) * warpZ;
-   a.y = (Rnd() * canvas.height - (canvas.height * 0.5)) * warpZ;
-   a.z = warpZ;
-   a.px = 0;
-   a.py = 0;
-}
 
 var stars = [];
 for (var i=0, n; i<units; i++)
 {
   n = {};
-  resetstar(n);
+  resetstar(n, canvas);
   stars.push(n);
 }
 var cycle = 0;
    
-   
-
 var context = canvas.getContext("2d");
-
-
-var grd = context.createLinearGradient(0, 0, 170, 0);
-grd.addColorStop(.2, "#008800");
-grd.addColorStop(.8, "#080800");
-
-var my_gradient = context.createLinearGradient(0, 0, 170, 0);
-my_gradient.addColorStop(0, "black");
-my_gradient.addColorStop(0.5 ,"red");
-my_gradient.addColorStop(1, "white");
-
-
-var grd1 = context.createLinearGradient(0, 0, 170, 0);
-grd1.addColorStop(0, "#536c57");
-grd1.addColorStop(1, "#6f917a");
-
-var radial_gradient1 = context.createRadialGradient(40,50,40, 50,30,170);
-radial_gradient1.addColorStop(0, '#536c57');
-radial_gradient1.addColorStop(.9, '#6f917a');
-radial_gradient1.addColorStop(1, '#536c57');
-
-
-
-var rnd = Math.random;
-function rgb() {
-   return Math.floor(100 + rnd()*10).toString();
-}
-
-function randomInt(){
-	var randomnum = Math.floor(Math.random()*99) + 1; 
-	randomnum *= Math.floor(Math.random()*2) == 1 ? 1 : -1; 
-	return randomnum;
-}
-
-
-
-function mixf(xy1, xy2, mix)
-{
-   return {
-      x: xy1.x * mix + xy2.x * (1-mix),
-      y: xy1.y * mix + xy2.y * (1-mix)
-   };
-}
-
-function f1(t)
-{
-   return {
-      x: rnd()*50*Math.cos(t) - rnd()*50*Math.cos(60/6*t),
-      y: rnd()*50*Math.sin(t) - rnd()*50*Math.sin(50/6*t)
-   };
-}
-
-function f2(t)
-{
-   return {
-      x: 3 * (Math.cos(3*t)),
-      y: 2 * (3*Math.sin(t))
-   };
-}
-
 
 
 function component(x, y, width, height, type) {
@@ -407,6 +187,12 @@ var Area = {
 	}
 }
 
+function everyinterval(n) {
+    if ((Area.frameNo / n) % 1 == 0) {return true;}
+    return false;
+}
+
+
 function updateStars() {
 var cx = canvas.width / 2,
     cy = canvas.height / 2;
@@ -436,7 +222,7 @@ for (var i=0; i<units; i++)
    
    if (n.z < Z || n.px > canvas.width || n.py > canvas.height)
    {
-      resetstar(n);
+      resetstar(n, canvas);
    }
 }
 
@@ -489,10 +275,6 @@ function updateArea() {
 	score.innerHTML = currentScore;
 }
 
-function everyinterval(n) {
-    if ((Area.frameNo / n) % 1 == 0) {return true;}
-    return false;
-}
 
 Area.start();
 
@@ -509,25 +291,6 @@ canvas.addEventListener("mousemove", function (e){
 	}
 });
 
-function pointInCircle(x, y, cx, cy, radius) {
-  var distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
-  return distancesquared <= radius * radius;
-}
-
-
-var updatePoll = new Date();
-
-function checkPoll(){
-    var currentTime = new Date();
-    if (currentTime>updatePoll.getTime()+1000*5){
-        updatePoll = new Date();
-        return true;
-    } else {
-        return false;
-    }
-}
-
-
 function updateHighScore(number){
 //	e.preventDefault();
         if (checkPoll()){
@@ -539,8 +302,6 @@ function updateHighScore(number){
             xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                             if (xmlhttp.status == 200) {
-                                    console.log("Headers",xhttp.getAllResponseHeaders().toLowerCase());
-                                    console.log("Response Text",this.responseText)
                                     label.innerHTML = "New High Score!";
 
                             }

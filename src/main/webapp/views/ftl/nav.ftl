@@ -22,7 +22,7 @@
        <script src="<@spring.url '/js/script.js'/>"></script>
        <script src="<@spring.url '/js/chat.js'/>"></script>
        <script src="<@spring.url '/js/book.js'/>"></script>
-
+       <script src="<@spring.url '/js/conference.js'/>"></script>
 </html>
 </#macro>
 <#macro footing>
@@ -167,7 +167,7 @@
 
 <#macro navigation>
 <h2><img src="/images/iidataschool_banner001.png" alt="II Data School" title="II Data School" /></h2>
-<h2>II Data School - Requirements Gathering Committee</h2>
+<h2>Humanity and Technology Conference</h2>
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -278,6 +278,7 @@
             </li>
             <li>
             <span class="dropdown1">
+                <a href="/login">Login</a>
                 <span class="dropdown1-content">
                 </span>
             </span>

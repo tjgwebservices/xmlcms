@@ -125,6 +125,7 @@ public class CalendarController {
             eventEditForm.setTitle(editEvent.getTitle());
             eventEditForm.setStartDate(editEvent.getStartDate());
             eventEditForm.setEndDate(editEvent.getEndDate());
+            eventEditForm.setLocation(editEvent.getLocation());
             eventEditForm.setId(id);
             model.addAttribute("eventEditForm", eventEditForm);
             return "/events/editEvent";            

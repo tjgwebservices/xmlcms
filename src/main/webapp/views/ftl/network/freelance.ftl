@@ -7,9 +7,9 @@
    <@nav.navigation />
    <@nav.sidelinks />
      <main>
-<h2>${worldNewsTitle}</h2>
-<p>${worldNewsDescription}</p>
-<p>${worldNewsTopics}</p>
+<h2>${internationalNewsTitle}</h2>
+<p>${internationalNewsDescription}</p>
+<p>${internationalNewsTopics}</p>
 
 
      </main>

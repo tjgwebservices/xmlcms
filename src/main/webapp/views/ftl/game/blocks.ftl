@@ -37,6 +37,7 @@ canvas {
 <script>
 var highscore = <#if highscore??>${highscore}</#if>;
 </script>
+<script src="<@spring.url '/js/gamebase.js'/>"></script>
 <script src="<@spring.url '/js/gameblocks.js'/>"></script>
 </html>
 
