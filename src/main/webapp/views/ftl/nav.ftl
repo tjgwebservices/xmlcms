@@ -184,8 +184,14 @@
                     <a href="/consulting/groups">Consulting</a>
                     <a href="/news/reports">Reports</a>                
                     <a href="/news/forum">Forum</a>                
-                    <a href="/news/news">News</a>
+                </span>
+            </span>
+            </li>
+            <li>
+            <span class="dropdown1">
                     <a href="/shop/shop">Shop</a>                
+                <span class="dropdown1-content">
+                    <a href="/shop/productList">Products</a>                
                     <a href="/videos/videoList">Videos</a>                
                     <a href="/videos/addVideo">Add Video</a>
                     <a href="/reviews/reviewList">Reviews</a>
