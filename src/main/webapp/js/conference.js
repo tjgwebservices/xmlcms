@@ -17,7 +17,7 @@ for (var i=0;i<signupButtons.length;i++){
 }
 
 
-var countDownDate = new Date("Jan 11, 2021 08:00:00").getTime();
+var countDownDate = new Date("Feb 1, 2021 00:00:00").getTime();
 var x = setInterval(function() {
 var now = new Date().getTime();
 var distance = countDownDate - now;
@@ -25,11 +25,11 @@ var days = Math.floor(distance / (1000 * 60 * 60 * 24));
 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-document.getElementById("countdown").innerHTML = "HATC 2021 starts in: " + days + "d " + hours + "h "
+document.getElementById("countdown").innerHTML = "African American History Month starts in: " + days + "d " + hours + "h "
 + minutes + "m " + seconds + "s ";
 if (distance < 0) {
 	clearInterval(x);
-	document.getElementById("countdown").innerHTML = "Welcome to HATC 2021";
+	document.getElementById("countdown").innerHTML = "Welcome to African American History Month  2021 - Resources";
 }
 }, 1000);
 

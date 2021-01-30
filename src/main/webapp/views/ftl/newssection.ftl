@@ -1,59 +1,8 @@
+<#import "/templatelinks.ftl" as templ/>
+
 <#macro indexpage>
 
-        <h4>2021 Conference Planning</h4>
-        <article>
-            <section>
-                <h4>II Data School</h4>
-                <p>Planning Committee</p>
-            </section>
-            <section>
-                <h4>II Data School</h4>
-                <p>Needs Analysis</p>
-            </section>
-            <section>
-                <h4>II Data School</h4>
-                <p>Requirements Gathering</p>
-            </section>
-        </article>
-        <article>
-            <section>
-                <h4>II Data School</h4>
-                <p>Preliminary Data</p>
-            </section>
-            <section>
-                <h4>II Data School</h4>
-                <p>Big Data</p>
-            </section>
-            <section>
-                <h4>II Data School</h4>
-                <p>Data Analysis</p>
-            </section>
-        </article>
-
-        <article>
-                <img src="/images/iidataschool2.png" alt="II Data School" title="II Data School" />
-        </article>
-        
-
-        <p>II Data School Requirements Gathering</p>
-        <p> - The XML Content Management System is a content management system that separates content from presentation with XML</p>
-        <p> The content management system, CMS, is a tool designed to provide an easier management of content on the web.</p>
-        <p> To find out more about the TJGXMLCMS, or support the project, contact <a href="mailto:info@tjgwebservices.com">info@tjgwebservices.com</a></p>
-        <p>Design Strategies for the CMS</p>
-        <ul>
-            <li>model based software engineering</li>
-            <li>test driven development</li>
-            <li>component based software engineering</li>
-        </ul>
-        <p>Current component development</p>
-        <ul>
-            <li>Interface for accessing application programming interfaces</li>
-            <li>Security authentication and authorization</li>
-            <li>Content editing tools</li>
-            <li>Data management</li>
-            <li>Reporting tools</li>
-        </ul>
-
+<@templ.templateconferencehome />
 
 </#macro>
 

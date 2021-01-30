@@ -303,6 +303,7 @@ public class ResourceTests {
 	}
         
 	@Test
+        @Disabled
 	void testVideoListPage() {
 		HttpHeaders headers = restTemplate.headForHeaders("/videos/videoList");
                 Assertions.assertNotEquals(headers.getContentLength(),-1);

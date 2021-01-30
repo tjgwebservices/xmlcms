@@ -320,10 +320,10 @@
 	</ul>
 
 
+   <@links.videos />
 
 
-
-   </aside>
+</aside>
 </#macro>
 <#macro sidelinks2>
    <aside>
@@ -352,11 +352,76 @@
 		<li>Analytics</li>
 	</ul>
 
+	<ul>
+            <li>News</li>
+            <li><a href="/international/international">International</a></li>
+            <li><a href="/international/news">News</a></li>
+            <li><a href="/international/politics">Politics</a></li>
+            <li><a href="/international/finance">Finance</a></li>
+            <li><a href="/international/business">Business</a></li>
+            <li><a href="/international/local">Local News</a></li>
+            <li>Content</li>
+            <li><a href="/consulting/groups">Consulting</a></li>
+            <li><a href="/news/reports">Reports</a></li>                
+            <li><a href="/news/forum">Forum</a></li>                
+            <li><a href="/shop/productList">Products</a></li>                
+            <li><a href="/videos/videoList">Videos</a></li>                
+            <li>Articles</li>
+            <li><a href="/reviews/reviewList">Reviews</a></li>
+            <li><a href="/articles/articleList">Articles</a></li>
+            <li><a href="/research/researchers">Researchers</a></li>
+            <li>Projects</li>
+            <li><a href="/research/projects">Projects</a></li>
+            <li><a href="/research/topics">Topics</a></li>
+            <li><a href="/conferences/learn">Training</a></li>
+            <li><a href="/conferences/forum">Forum</a></li>
+            <li><a href="/conferences/music">Music</a></li>
+            <li><a href="/conferences/room">Conference Room</a></li>
+            <li><a href="/conferences/presentation">Presentation Room</a></li>
+            <li><a href="/conferences/project">Projects</a></li>
+            <li><a href="/conferences/workshop">Workshops</a></li>
+            <li><a href="/conferences/screenshare">Screenshare</a></li>
+            <li><a href="/conferences/slides">Slides</a></li>
+            <li>Networks</li>
+            <li><a href="/consulting/groups">Networks</a></li>
+            <li><a href="/network/education">Education Network</a></li>
+            <li><a href="/network/freelance">Freelance Network</a></li>
+            <li><a href="/network/news">News Network</a></li>
+            <li>Medical Technologies</li>
+            <li><a href="/medical/technologies">Medical</a></li>
+            <li><a href="/medical/technologies">Technologies</a></li>
+            <li><a href="/medical/research">Research</a></li>
+            <li><a href="/medical/consulting">Consulting</a></li>
+            <li>Events</li>
+            <li><a href="/events/eventList">Events</a></li>
+            <li><a href="/events/eventAdvertisementList">Advertisement List</a></li>
+            <li>Consulting</li>
+            <li><a href="/consulting/about">About</a></li>
+            <li><a href="/consulting/contact">Contact</a></li>
+            <li>Games</li>
+            <li><a href="/game/games">Games</a></li>
+            <li><a href="/game/blocks">Blocks</a></li>
+            <li><a href="/game/discotrucks">Disco Trucks</a></li>
+            <li><a href="/game/ghosts">Ghosts</a></li>
+            <li><a href="/game/pastelblocks">Pastel Blocks</a></li>
+            <li><a href="/game/rhythmblocks">Rhythm Blocks</a></li>
+            <li><a href="/game/tankblocks">Tank Blocks</a></li>
+            <li>Resources</li>
+            <li><a href="/hr/employers">Employers</a></li>
+            <li><a href="/hr/clients">Clients</a></li>
+            <li><a href="/hr/hrgroups">Human Resource Groups</a></li>
+            <li>Subscriptions</li>
+            <li><a href="/subscriptions/subscribe">Subscribe</a></li>
+            <li><a href="/subscriptions/unsubscribe">Unsubscribe</a></li>
+	</ul>
 
-   <@links.videos />
+
+	<ul>
+            <li>News</li>
 
 
-</aside>
+   </aside>
+
 </#macro>
 
 <#macro sidelinksadmin>
@@ -373,6 +438,18 @@
             <li><a href="<@spring.url '/schools/addCourse'/>">Add Course</a></li>
             <li><a href="<@spring.url '/schools/addSchool'/>">Add School</a></li>
             <li><a href="<@spring.url '/schools/addStudent'/>">Add Student</a></li>
+            <li><a href="/videos/addVideo">Add Video</a></li>
+            <li><a href="/hr/addEmployer">Add Employer</a></li>                
+            <li><a href="/hr/addClient">Clients</a></li>
+            <li><a href="/events/addEvent">Add Event</a></li>
+            <li><a href="/events/addEventAdvertisement">Add Event Advertisement</a></li>
+            <li><a href="/events/addEventAdministrator">Add Event Administrator</a></li>
+            <li><a href="/research/addArtist">Add Artist</a></li>
+            <li><a href="/reviews/addReview">Add Review</a></li>
+            <li><a href="/articles/addArticle">Add Article</a></li>
+            <li><a href="/research/addResearcher">Add Researcher</a></li>
+            <li><a href="/research/addProject">Add Project</a></li>
+            <li><a href="/research/addTopic">Add Topic</a></li>
         </ul>
    </aside>
 </#macro>
