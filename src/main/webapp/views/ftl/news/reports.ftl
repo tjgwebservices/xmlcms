@@ -8,77 +8,7 @@
     </head>
    <body>
    <@nav.navigation />
-   <@nav.sidelinks />
-
-
-
 <main>
-<nav>
-	<a href="#">${consulting.heading}</a>
-	<button>${consulting.heading}</button>
-	<div>
-		<ul>
-			      <li><a href="/index">Home</a></li>
-			      <li><a href="/news/reports">Reports</a></li>
-			      <li><a href="/consulting/groups">Consulting</a></li>
-
-		</ul>
-	</div>
-</nav>
-
-
-<div>
-<header>
-	<h1>Welcome!</h1>
-        <p>Welcome to TJG Web Services, LLC.</p>
-        <p><a href="/index">Learn more</a></p>
-	<span>
-	<ol>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ol>
-
-
-<figure>    <h1>Knowledge Management</h1>
-    <p>Knowledge Management</p>
-    <ul><li>Decision Science</li><li>Workflow Management</li><li>Data Mining</li>    </ul></figure><figure>    <h1>Data Analysis</h1>
-    <p>Data Analysis</p>
-    <ul><li>Analytical Tools</li><li>Machine Learning</li><li>Visualization</li>    </ul></figure><figure>    <h1>Data Storage</h1>
-    <p>Data Storage</p>
-    <ul><li>Database Systems</li><li>Distributed Storage</li><li>Data Warehousing</li>    </ul></figure>	<figure>
-		<h1>Financial Management</h1>
-		<p>Financial managmenet strategies</p>
-		<ul>
-		        <li>Decision Science</li>
-		        <li>Workflow Management</li>
-		        <li>Data Mining</li>
-		</ul>
-		<a href="/">Home</a>
-	</figure>
-	<figure>
-		<h1>Economical Analysis</h1>
-		<p>Political, social, and economical topics</p>
-		<ul>
-		        <li>Anlytical Tools</li>
-		        <li>Machine Learning</li>
-		        <li>Visualization</li>
-		</ul>
-		<a href="/">Home</a>
-	</figure>
-	<figure>
-		<h1>Videos</h1>
-		<p>Instructional Videos</p>
-		<ul>
-		        <li>Database Systems</li>
-		        <li>Distributed Storage</li>
-		        <li>Data Warehousing</li>
-		</ul>
-		<a href="/" target='_parent'>Home</a>
-	</figure>
-
-	</span>
-</header>
 
 <div>
 
@@ -95,7 +25,9 @@
             </section>
           </article>
 
+</main>
 
+<main>
 
 <article>
 
@@ -479,9 +411,79 @@
 
 </div>
 </main>
-<footer>
-        <p>TJG Web Services, LLC 2020</p>
-      </footer>
-     </main>
+
+<main>
+
+<nav>
+	<a href="#">${consulting.heading}</a>
+	<button>${consulting.heading}</button>
+	<div>
+		<ul>
+			      <li><a href="/index">Home</a></li>
+			      <li><a href="/news/reports">Reports</a></li>
+			      <li><a href="/consulting/groups">Consulting</a></li>
+
+		</ul>
+	</div>
+</nav>
+
+
+<div>
+</main>
+
+<main>
+<header>
+	<h1>Welcome!</h1>
+        <p>Welcome to TJG Web Services, LLC.</p>
+        <p><a href="/index">Learn more</a></p>
+	<span>
+	<ol>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ol>
+
+
+<figure>    <h1>Knowledge Management</h1>
+    <p>Knowledge Management</p>
+    <ul><li>Decision Science</li><li>Workflow Management</li><li>Data Mining</li>    </ul></figure><figure>    <h1>Data Analysis</h1>
+    <p>Data Analysis</p>
+    <ul><li>Analytical Tools</li><li>Machine Learning</li><li>Visualization</li>    </ul></figure><figure>    <h1>Data Storage</h1>
+    <p>Data Storage</p>
+    <ul><li>Database Systems</li><li>Distributed Storage</li><li>Data Warehousing</li>    </ul></figure>	<figure>
+		<h1>Financial Management</h1>
+		<p>Financial managmenet strategies</p>
+		<ul>
+		        <li>Decision Science</li>
+		        <li>Workflow Management</li>
+		        <li>Data Mining</li>
+		</ul>
+		<a href="/">Home</a>
+	</figure>
+	<figure>
+		<h1>Economical Analysis</h1>
+		<p>Political, social, and economical topics</p>
+		<ul>
+		        <li>Anlytical Tools</li>
+		        <li>Machine Learning</li>
+		        <li>Visualization</li>
+		</ul>
+		<a href="/">Home</a>
+	</figure>
+	<figure>
+		<h1>Videos</h1>
+		<p>Instructional Videos</p>
+		<ul>
+		        <li>Database Systems</li>
+		        <li>Distributed Storage</li>
+		        <li>Data Warehousing</li>
+		</ul>
+		<a href="/" target='_parent'>Home</a>
+	</figure>
+
+	</span>
+</header>
+</main>
+
 <script src="/js/carousel.js?v=0.0.2"></script>
    <@nav.footing />

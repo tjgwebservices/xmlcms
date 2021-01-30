@@ -8,6 +8,9 @@
    <@nav.sidelinks />
      <main>
         <h2>International Finance News</h2>
+
+       <@nav.rsssection />
+
         <article>
             <section>
                 <h4>News</h4>

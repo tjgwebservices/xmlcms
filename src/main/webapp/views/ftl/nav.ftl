@@ -595,3 +595,24 @@
 		<p>More info: <a href="//conferences.tjgwebservices.com">Conferences</a></p>
    </main>
 </#macro>
+<#macro rsssection>
+
+<section>
+<h2>News Feed</h2>
+<p><#if rssFeed??>${rssFeed.channelTitle}</#if></p>
+<p><#if rssFeed??>${rssFeed.channelLink}</#if></p>
+<p><#if rssFeed??>${rssFeed.channelDescription}</#if></p>
+
+<article>
+<#if rssFeed??>
+<#list rssFeed.items as item>
+<section>
+
+<h2><a href="${item[1]}">${item[0]}</a></h2>
+<p>${item[2]}</p>
+</section>
+
+</#list>
+</#if>
+
+</#macro>

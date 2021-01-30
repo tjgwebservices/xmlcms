@@ -11,6 +11,7 @@
    <@nav.sidelinks />
      <main>
 
+       <@nav.rsssection />
 
      </main>
    <@nav.footing />

@@ -1,7 +1,9 @@
 package com.tjgwebservices.tjgxmlcms.controller.news;
 
 import static com.tjgwebservices.tjgxmlcms.controller.consulting.ConsultingController.retrieveConsultantPage;
+import static com.tjgwebservices.tjgxmlcms.controller.news.NewsController.retrieveRssFeed;
 import com.tjgwebservices.tjgxmlcms.model.Consulting;
+import com.tjgwebservices.tjgxmlcms.model.RssFeed;
 import java.io.File;
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,8 @@ public class InternationalNewsController {
 
         Consulting consulting = retrieveConsultantPage(xmlPath);
         model.addAttribute("consulting", consulting);
+        RssFeed rssFeed = retrieveRssFeed("http://tjgnews.com/rss/");
+        model.addAttribute("rssFeed", rssFeed);        
         model.addAttribute("internationalNewsTitle", internationalNewsTitle);
         model.addAttribute("internationalNewsDescription", internationalNewsDescription);
         model.addAttribute("internationalNewsTopics", internationalNewsTopics);         
@@ -49,6 +53,8 @@ public class InternationalNewsController {
 
         Consulting consulting = retrieveConsultantPage(xmlPath);
         model.addAttribute("consulting", consulting);
+        RssFeed rssFeed = retrieveRssFeed("http://tjgnews.com/rss/");
+        model.addAttribute("rssFeed", rssFeed);        
         model.addAttribute("internationalNewsTitle", internationalNewsTitle);
         model.addAttribute("internationalNewsDescription", internationalNewsDescription);
         model.addAttribute("internationalNewsTopics", internationalNewsTopics);         
@@ -63,6 +69,8 @@ public class InternationalNewsController {
 
         Consulting consulting = retrieveConsultantPage(xmlPath);
         model.addAttribute("consulting", consulting);
+        RssFeed rssFeed = retrieveRssFeed("http://tjgnews.com/rss/");
+        model.addAttribute("rssFeed", rssFeed);        
         model.addAttribute("internationalNewsTitle", internationalNewsTitle);
         model.addAttribute("internationalNewsDescription", internationalNewsDescription);
         model.addAttribute("internationalNewsTopics", internationalNewsTopics);         
@@ -77,6 +85,8 @@ public class InternationalNewsController {
 
         Consulting consulting = retrieveConsultantPage(xmlPath);
         model.addAttribute("consulting", consulting);
+        RssFeed rssFeed = retrieveRssFeed("http://tjgnews.com/rss/");
+        model.addAttribute("rssFeed", rssFeed);        
         model.addAttribute("internationalNewsTitle", internationalNewsTitle);
         model.addAttribute("internationalNewsDescription", internationalNewsDescription);
         model.addAttribute("internationalNewsTopics", internationalNewsTopics);         
@@ -91,6 +101,8 @@ public class InternationalNewsController {
 
         Consulting consulting = retrieveConsultantPage(xmlPath);
         model.addAttribute("consulting", consulting);
+        RssFeed rssFeed = retrieveRssFeed("http://tjgnews.com/rss/");
+        model.addAttribute("rssFeed", rssFeed);        
         model.addAttribute("internationalNewsTitle", internationalNewsTitle);
         model.addAttribute("internationalNewsDescription", internationalNewsDescription);
         model.addAttribute("internationalNewsTopics", internationalNewsTopics);         
@@ -105,6 +117,8 @@ public class InternationalNewsController {
 
         Consulting consulting = retrieveConsultantPage(xmlPath);
         model.addAttribute("consulting", consulting);
+        RssFeed rssFeed = retrieveRssFeed("http://tjgnews.com/rss/");
+        model.addAttribute("rssFeed", rssFeed);        
         model.addAttribute("internationalNewsTitle", internationalNewsTitle);
         model.addAttribute("internationalNewsDescription", internationalNewsDescription);
         model.addAttribute("internationalNewsTopics", internationalNewsTopics);         
