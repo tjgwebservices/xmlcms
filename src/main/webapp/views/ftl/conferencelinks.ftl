@@ -76,4 +76,10 @@
 
 </#macro>
 
+<#macro footertext>
+
+<@templ.templatefootertext />
+
+</#macro>
+
 

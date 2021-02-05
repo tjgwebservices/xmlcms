@@ -29,12 +29,30 @@
 </ul>
 </aside>
 <main>
+
+<article>
+<form action="/formsubmission" method="POST">
+<label for="fullname">Name:</label>
+<br>
+<input type="text" id="fullname" name="fullname" placeholder="Full Name" />
+<br>
+<label for="email">Email:</label>
+<br>
+<input type="text" id="email" name="email" placeholder="Email" />
+<br>
+<label for="message">Message:</label>
+<br>
+<textarea id="message" name="message" placeholder="message"></textarea>
+<br>
+<input type="submit" value="Submit" /><br></form>
+</article>
+
 <#list consulting.mainarticles as mainarticle>
 <article>
 
 <article><h2><a href="/index">${mainarticle[0]}</a></h2>
 <p>${mainarticle[0]}</p>
-<img src="img/${mainarticle[2]}" alt="TJG Web Services Consulting Group" title="TJG Web Services Consulting Group" />
+<img src="${mainarticle[2]}" alt="TJG Web Services Consulting Group" title="TJG Web Services Consulting Group" />
 
 </p>
 <span></span>

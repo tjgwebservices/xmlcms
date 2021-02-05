@@ -34,7 +34,7 @@
 
 <article><h2><a href="/index">${mainarticle[0]}</a></h2>
 <p>${mainarticle[0]}</p>
-<img src="img/${mainarticle[2]}" alt="TJG Web Services Consulting Group" title="TJG Web Services Consulting Group" />
+<img src="${mainarticle[2]}" alt="TJG Web Services Consulting Group" title="TJG Web Services Consulting Group" />
 
 </p>
 <span></span>

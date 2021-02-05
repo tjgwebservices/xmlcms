@@ -2,6 +2,10 @@
 <catalog>
 <bookpages>
 <bookpage>
+	<title>TJGXMLCMS Books</title>
+	<content>Here you can educate your audience with brief guides on a selection of topics.</content>
+</bookpage>
+<bookpage>
 	<title>II Data School</title>
 	<content>II Data School provides education and training for data analysis solutions and applications for the analysis of big data.</content>
 </bookpage>

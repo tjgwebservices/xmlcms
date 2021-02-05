@@ -78,7 +78,7 @@ body > h2 {
     background-image: linear-gradient(to right,rgb(240 234 183 / 70%) 0,rgb(225 223 168 / 70%) 100%);
     background-repeat: repeat-x;
     background: rgb(239 233 194);
-    background: linear-gradient(90deg, rgb(234 224 156 / 25%) 0%, rgb(214 241 148 / 40%) 50%, rgb(223 232 144 / 60%) 100%);
+    background: linear-gradient(90deg, rgb(190 173 52 / 25%) 0%, rgb(169 198 106 / 40%) 50%, rgb(218 221 176 / 60%) 100%);
     border: 1px solid #bebb8d;
     font-size: 1.8em;
     color: #f5f3e0;
@@ -136,7 +136,7 @@ nav {
     min-height: 40px;
     background: #f3f2eb;
     background: rgb(208,198,130);
-    background: linear-gradient(90deg, rgb(227 220 169) 0%, rgb(233 244 190) 50%, rgb(238 231 170) 100%);
+    background: linear-gradient(90deg, rgb(237 234 208) 0%, rgb(224 229 202) 50%, rgb(213 211 198) 100%);
     border: 1px solid #efe4bd;
     border-radius: 4px;
     padding-right: 20px;

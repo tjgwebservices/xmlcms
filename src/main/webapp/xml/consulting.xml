@@ -49,108 +49,108 @@
 <sideimages>
 	<sideimage>
 		<title>Section Header</title>
-		<url>img/tjg_web_services_consulting_0001.png</url>
+		<url>/images/tjg_web_services_consulting_0001.png</url>
 	</sideimage>
 	<sideimage>
 		<title>Section Header</title>
-		<url>img/tjg_web_services_consulting_0002.png</url>
+		<url>/images/tjg_web_services_consulting_0002.png</url>
 	</sideimage>
 	<sideimage>
 		<title>Section Header</title>
-		<url>img/tjg_web_services_consulting_0003.png</url>
+		<url>/images/tjg_web_services_consulting_0003.png</url>
 	</sideimage>
 	<sideimage>
 		<title>Section Header</title>
-		<url>img/tjg_web_services_consulting_0001.png</url>
+		<url>/images/tjg_web_services_consulting_0001.png</url>
 	</sideimage>
 	<sideimage>
 		<title>Section Header</title>
-		<url>img/tjg_web_services_consulting_0002.png</url>
+		<url>/images/tjg_web_services_consulting_0002.png</url>
 	</sideimage>
 	<sideimage>
 		<title>Section Header</title>
-		<url>img/tjg_web_services_consulting_0003.png</url>
+		<url>/images/tjg_web_services_consulting_0003.png</url>
 	</sideimage>
 </sideimages>
 <mainarticles>
 	<mainarticle>
 		<title>Information Security</title>
 		<articletext>Audits and Assessments</articletext>
-		<articleimage>img/tjg_web_services_consulting_0004.png</articleimage>
+		<articleimage>/images/tjg_web_services_consulting_0004.png</articleimage>
 	</mainarticle>
 	<mainarticle>
 		<title>Data Analytics</title>
 		<articletext>Big Data and Machine Learning</articletext>
-		<articleimage>img/tjg_web_services_consulting_0005.png</articleimage>
+		<articleimage>/images/tjg_web_services_consulting_0005.png</articleimage>
 	</mainarticle>
 	<mainarticle>
 		<title>Energy Efficiency</title>
 		<articletext>Energy Efficient Computing</articletext>
-		<articleimage>img/tjg_web_services_consulting_0006.png</articleimage>
+		<articleimage>/images/tjg_web_services_consulting_0006.png</articleimage>
 	</mainarticle>
 </mainarticles>
 <subarticles>
 	<subarticle>
 		<title>Programming</title>
 		<articletext>Software Engineering</articletext>
-		<articleimage>img/tjg_web_services_consulting_0007.png</articleimage>
+		<articleimage>/images/tjg_web_services_consulting_0007.png</articleimage>
 	</subarticle>
 	<subarticle>
 		<title>Machine Learning</title>
 		<articletext>Predictive Analytics</articletext>
-		<articleimage>img/tjg_web_services_consulting_0008.png</articleimage>
+		<articleimage>/images/tjg_web_services_consulting_0008.png</articleimage>
 	</subarticle>
 	<subarticle>
 		<title>Big Data</title>
 		<articletext>Data Warehousing</articletext>
-		<articleimage>img/tjg_web_services_consulting_0009.png</articleimage>
+		<articleimage>/images/tjg_web_services_consulting_0009.png</articleimage>
 	</subarticle>
 </subarticles>
 <leadarticles>
 	<leadarticle>
 		<title>Requirements Gathering</title>
 		<articletext>Collecting Data from Unstructured Sources - TJG Web Services provides big data and data analytics services in text mining, natural language processing, sentiment analysis, and machine learning.  Let consultants with TJG Web Services handle data mining and machine learning needs to obtain knowledge from unstructured data sources.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0010.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0010.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Data Processing</title>
 		<articletext>Combining Structured and Unstructured Data - TJG Web Services conducts quantitative and qualitative analysis in information technology research.  Consultants with TJG Web Services can provide in depth analysis of raw data and provide data visualizations and reports.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0011.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0011.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Data Analysis</title>
 		<articletext>Quantitative and Qualitative Analysis - TJG Web Services analyzes structured data such as financial, economical, or health data and unstructured data such as social media streams, documents, and news feeds to provide data visualizations and reports.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0012.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0012.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Systems Integration</title>
 		<articletext>Autonomous Networks - TJG Web Services implements software designed networking to integrate systems among devices, workstations, and servers to provide state of the art communication for your workforce.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0010.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0010.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Natural Language Processing</title>
 		<articletext>Text Mining - TJG Web Services provides text mining and machine learning to analyze unstructured data sets and supports analysis of audio and video information for interactive applications.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0011.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0011.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Data Driven Development</title>
 		<articletext>Software Automation - TJG Web Services researches the latest strategies in software development to deliver automated systems that process real time streaming data sources.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0012.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0012.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Requirements Tracing</title>
 		<articletext>Decision Support - TJG Web Services consultants communicate requirements with stakeholders to ensure software meets the needs of all participants and benefits the community.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0010.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0010.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Capabilities Measurement</title>
 		<articletext>Software Engineering - TJG Web Services develops software systems that are custom and flexible to service future generations and can integrate with new technologies.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0011.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0011.png</articleimage>	
 	</leadarticle>
 	<leadarticle>
 		<title>Resource Planning</title>
 		<articletext>Platform Optimization - TJG Web Services provides performance benchmarking for software and hardware systems to determine the optimal strategies for developing architectures.</articletext>
-		<articleimage>img/tjg_web_services_consulting_0012.png</articleimage>	
+		<articleimage>/images/tjg_web_services_consulting_0012.png</articleimage>	
 	</leadarticle>
 </leadarticles>
 </catalog>

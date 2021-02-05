@@ -358,6 +358,9 @@ main * {
 article {
 	padding-top: 20px;
 	padding-bottom: 20px;
+        display: block;
+        float: left;
+        width: 30%;
 }
 
 article article h2 a, article section h2 a, article div h2 a {
@@ -446,13 +449,35 @@ article section:after{
 }
 
 article section p {
-	box-shadow: 0 0 2px silver,
-				0 0 5px rgba(0, 0, 0, 1),
-				inset 0 0 5px rgba(0, 0, 0, 1);
-	border-radius: 10px;
-	color: dimgray;
+    box-shadow: 0 0 2px silver,
+                            0 0 5px rgba(0, 0, 0, 1),
+                            inset 0 0 5px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    color: dimgray;
 }
 
+main article > form > label {
+    display: block;
+    color: #e5e5cf;
+    font-weight: 600;
+    padding: 2px;
+}
+
+main article form textarea {
+    display: block;
+    width: 80%;
+    height: 200px;
+}
+
+main article form input[type="submit"]{
+    display: block;
+    color: #342805;
+    background-color: #ebe3b7;
+    padding: 4px 6px 4px 6px;
+    border-radius: 6px;
+    margin: 0px 25% 0px 25px;
+}
+    
 main article div {
     position: relative;
     z-index: 0;
@@ -718,5 +743,6 @@ main {
 }
 article section {
 	width: 33.3333%;
+        width: 96%;
 }
 }

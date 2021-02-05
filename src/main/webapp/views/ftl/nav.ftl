@@ -15,6 +15,7 @@
 </#macro>
 <#macro footinghome>
       <p><a href="<@spring.url '/'/>">Home</a></p>
+   <@links.footertext />
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
@@ -27,6 +28,7 @@
 </#macro>
 <#macro footing>
       <p><a href="<@spring.url '/'/>">Home</a></p>
+      <@links.footertext />
     <footer>
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
@@ -37,6 +39,7 @@
 </#macro>
 <#macro footingmusic>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -47,6 +50,7 @@
 </#macro>
 <#macro footingcalendardisplay>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -57,6 +61,7 @@
 </#macro>
 <#macro footingconference>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -67,6 +72,7 @@
 </#macro>
 <#macro footingmessages>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -77,6 +83,7 @@
 </#macro>
 <#macro footingpresentation>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -87,6 +94,7 @@
 </#macro>
 <#macro footingscreenshare>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -99,6 +107,7 @@
 </#macro>
 <#macro footingslides>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -112,6 +121,7 @@
 
 <#macro footingworkshop>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -123,6 +133,7 @@
 
 <#macro footingconferencetest>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -133,6 +144,7 @@
 </#macro>
 <#macro footingtest>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -144,6 +156,7 @@
 
 <#macro footingform>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
@@ -155,6 +168,7 @@
 
 <#macro footingdataforum>
     <footer>
+       <@links.footertext />
         <h6>Powered by TJGXMLCMS</h6>
     </footer>
     </body>
