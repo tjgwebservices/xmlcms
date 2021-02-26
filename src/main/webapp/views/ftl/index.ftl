@@ -2,7 +2,7 @@
 <#import "/nav.ftl" as nav/>
 <#import "/templatelinks.ftl" as templ/>
  
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
     <head>
         <@nav.cssheading />

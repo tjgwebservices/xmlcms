@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#import "/nav.ftl" as nav/>
  
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
     <head>
         <@nav.cssheading />

@@ -208,30 +208,33 @@
         <article>
         <h2>Big Data Analysis in Financial Markets</h2>
         </article>
-<article class="rowpadding breadcrumbs"><section class="third" style="margin-left: 0px;">
-		<p class="secanim"><a href="//blackinai2020.vercel.app/"><img src="https://blackinai2020.vercel.app/static/media/bai-logo.44f8f823.png"></a></p>
-		<p class=""><a href="//blackinai2020.vercel.app/">Black in AI</a></p>
-		</section><section class="third" style="margin-left: 0px;">
-		<p class=""><a href="//blackinai2020.vercel.app/">Addressing the diversity crisis in AI</a></p>
-		</section><section class="third" style="margin-left: 0px;">
-		<p class=""><a href="//blackinai2020.vercel.app/"><img src="https://blackinai2020.vercel.app/static/media/bai-logo.44f8f823.png"></a></p>
-		<p class=""><a href="//blackinai2020.vercel.app/">Black in AI</a></p>
-		</section>
+<article class="rowpadding breadcrumbs">
+    <section class="third">
+        <p class="secanim"><a href="//blackinai2020.vercel.app/"><img src="https://blackinai2020.vercel.app/static/media/bai-logo.44f8f823.png"></a></p>
+        <p class=""><a href="//blackinai2020.vercel.app/">Black in AI</a></p>
+    </section>
+    <section class="third">
+        <p class=""><a href="//blackinai2020.vercel.app/">Addressing the diversity crisis in AI</a></p>
+    </section>
+    <section class="third">
+        <p class=""><a href="//blackinai2020.vercel.app/"><img src="https://blackinai2020.vercel.app/static/media/bai-logo.44f8f823.png"></a></p>
+        <p class=""><a href="//blackinai2020.vercel.app/">Black in AI</a></p>
+    </section>
 </article>
 
 <article class="rowpadding breadcrumbs">
-		<section class="third" style="margin-left: 0px;">
-		<p class=""><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p><a href="//www.md4sg.com/index.html">
-		</a><p class=""><a href="//www.md4sg.com/index.html"></a><a href="//www.md4sg.com/">Mecchanism Design 4 Social Good</a></p>
-		</section>
-		<section class="third" style="margin-left: 0px;">
-		<p class=""><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p><a href="//www.md4sg.com/index.html">
-		</a><p class=""><a href="//www.md4sg.com/index.html"></a><a href="//www.md4sg.com/">Mecchanism Design 4 Social Good</a></p>
-		</section>
-		<section class="third" style="margin-left: 0px;">
-		<p class=""><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p><a href="//www.md4sg.com/index.html">
-		</a><p class=""><a href="//www.md4sg.com/index.html"></a><a href="//www.md4sg.com/">Mecchanism Design 4 Social Good</a></p>
-		</section>
+    <section class="third">
+    <p><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p>
+    <p><a href="//www.md4sg.com/">Mechanism Design 4 Social Good</a></p>
+    </section>
+    <section class="third">
+    <p><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p>
+    <p><a href="//www.md4sg.com/">Mechanism Design 4 Social Good</a></p>
+    </section>
+    <section class="third">
+    <p><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p>
+    <p><a href="//www.md4sg.com/">Mechanism Design 4 Social Good</a></p>
+    </section>
   </article>
 
 <article class="rowpadding">
