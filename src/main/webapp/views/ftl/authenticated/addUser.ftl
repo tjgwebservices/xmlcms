@@ -32,6 +32,7 @@
                <p>Zip Code: <@spring.formInput "userForm.zipcode" "" "text"/></p><br/>
                <p>Business Name: <@spring.formInput "userForm.businessName" "" "text"/></p><br/>
                <p>Website Name: <@spring.formInput "userForm.websiteName" "" "text"/></p><br/>
+               <p>Image Path: <@spring.formInput "userForm.profileImagePath" "" "text"/></p><br/>
                <br/>
                 <p>Provide a brief introduction to your website or consulting practice:</p>
                <p><textarea id="content1" name="content1" value=""></textarea></p>

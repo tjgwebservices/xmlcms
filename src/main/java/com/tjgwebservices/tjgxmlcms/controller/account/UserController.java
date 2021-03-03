@@ -67,6 +67,7 @@ public class UserController {
         String zipcode = userForm.getZipcode();
         String businessName = userForm.getBusinessName();
         String websiteName = userForm.getWebsiteName();
+        String profileImagePath = userForm.getWebsiteName();
 
         String content1 = userForm.getContent1();
         String content2 = userForm.getContent2();
@@ -81,7 +82,7 @@ public class UserController {
             User newUser = new User(username, firstName, 
                     lastName, email, phoneNumber, address1,
                 address2, city, statecode, zipcode,businessName,
-                websiteName);
+                websiteName, profileImagePath);
             users.add(newUser);
             UserDBO.saveSQLUser(newUser);
             
@@ -129,6 +130,7 @@ public class UserController {
             userEditForm.setZipcode(editUser.getZipcode());
             userEditForm.setBusinessName(editUser.getBusinessName());
             userEditForm.setWebsiteName(editUser.getWebsiteName());
+            userEditForm.setProfileImagePath(editUser.getProfileImagePath());
             userEditForm.setId(id);
             if (editUserDetails.size() == 1) {
                 userEditForm.setContent1(editUserDetails.get(0).getContent1());
@@ -163,6 +165,7 @@ public class UserController {
         String zipcode = userForm.getZipcode();
         String businessName = userForm.getBusinessName();
         String websiteName = userForm.getWebsiteName();
+        String profileImagePath = userForm.getProfileImagePath();
 
         String content1 = userForm.getContent1();
         String content2 = userForm.getContent2();
@@ -177,7 +180,7 @@ public class UserController {
             User user = new User(username, firstName, 
                     lastName, email, phoneNumber, address1,
                 address2, city, statecode, zipcode,businessName,
-                websiteName);
+                websiteName, profileImagePath);
             user.setId(id);
             UserDBO.updateUser(user);
             

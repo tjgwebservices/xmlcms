@@ -32,6 +32,7 @@
                <p>Zip: <@spring.formInput "userForm.zipcode" "${userEditForm.zipcode}" "text"/></p>
                <p>Business Name: <@spring.formInput "userForm.businessName" "${userEditForm.businessName}" "text"/></p>
                <p>Web Site: <@spring.formInput "userForm.websiteName" "${userEditForm.websiteName}" "text"/></p>
+               <p>Image Path: <@spring.formInput "userForm.profileImagePath" "${userEditForm.profileImagePath}" "text"/></p>
                <p>Provide a brief introduction to your website or consulting practice:</p>
                <p><textarea id="content1" name="content1" value="">${userEditForm.content1}</textarea></p>
                <p>In what ways can you benefit from consulting services:</p>

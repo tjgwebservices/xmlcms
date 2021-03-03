@@ -15,6 +15,7 @@ public class UserForm {
     private String zipcode;
     private String businessName;
     private String websiteName;
+    private String profileImagePath;
     private String content1;
     private String content2;
     private String content3;
@@ -121,6 +122,14 @@ public class UserForm {
 
     public void setWebsiteName(String websiteName) {
         this.websiteName = websiteName;
+    }
+
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
     }
 
     public String getContent1() {

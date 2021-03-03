@@ -44,6 +44,11 @@
 
                 </td>
             </tr>
+            <tr>
+               <td colspan="3">
+                <img src="${user.profileImagePath}" />
+                </td>
+            </tr>
             </#list>
          </table>
       </div>

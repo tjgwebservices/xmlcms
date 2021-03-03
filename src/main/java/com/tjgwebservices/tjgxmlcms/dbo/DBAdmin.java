@@ -315,7 +315,8 @@ public class DBAdmin {
                 "statecode TEXT,\n" +
                 "zipcode TEXT,\n" +
                 "businessName TEXT,\n" +
-                "websiteName TEXT);");
+                "websiteName TEXT,\n" + 
+                "profileImagePath TEXT);");
         runSQLQuery("CREATE TABLE IF NOT EXISTS AccountUserDetails (\n" +
                 "id integer PRIMARY KEY,\n" +
                 "content1 TEXT NOT NULL,\n" +        

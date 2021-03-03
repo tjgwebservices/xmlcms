@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class UserDBO extends DatabaseObject{
 
@@ -18,8 +16,8 @@ public class UserDBO extends DatabaseObject{
             session = HibernateAdmin.getSession();
             tx = session.beginTransaction();
             String sql = "INSERT INTO AccountUser(username, firstName, lastName, email, phoneNumber,"
-                    + "address1, address2, city, statecode, zipcode, businessName, websiteName) "
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "address1, address2, city, statecode, zipcode, businessName, websiteName, profileImagePath) "
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
@@ -35,6 +33,7 @@ public class UserDBO extends DatabaseObject{
                 pstmt.setString(10,user.getZipcode());
                 pstmt.setString(11,user.getBusinessName());
                 pstmt.setString(12,user.getWebsiteName());
+                pstmt.setString(13,user.getProfileImagePath());
                 pstmt.executeUpdate();
                 tx.commit();
                 session.close();
@@ -49,7 +48,7 @@ public class UserDBO extends DatabaseObject{
             tx = session.beginTransaction();
             String sql = "UPDATE AccountUser SET username =?, firstName =?, lastName =?, email =?, phoneNumber =?, "
                     + "address1 =?, address2 =?, city =?, statecode =?, zipcode =?, businessName =?, "
-                    + "websiteName =? WHERE id =?";
+                    + "websiteName =?, profileImagePath=? WHERE id =?";
             try {
                 conn = DriverManager.getConnection(connectionURL);
                 pstmt = conn.prepareStatement(sql);
@@ -65,6 +64,7 @@ public class UserDBO extends DatabaseObject{
                 pstmt.setString(10,user.getZipcode());
                 pstmt.setString(11,user.getBusinessName());
                 pstmt.setString(12,user.getWebsiteName());
+                pstmt.setString(13,user.getProfileImagePath());
                 pstmt.setInt(13,user.getId());
                 pstmt.executeUpdate();
                 tx.commit();
@@ -81,7 +81,7 @@ public class UserDBO extends DatabaseObject{
             List<User> userList = new ArrayList<>();
             String sql = "SELECT id,username,firstName,lastName,email,phoneNumber,"
                     + "address1,address2,city,statecode,zipcode,businessName,"
-                    + "websiteName FROM AccountUser;";
+                    + "websiteName,profileImagePath FROM AccountUser;";
             try {
                 conn = DriverManager.getConnection(connectionURL);
                 Statement stmt = conn.createStatement();
@@ -101,6 +101,7 @@ public class UserDBO extends DatabaseObject{
                            user.setZipcode(rs.getString("zipcode"));
                            user.setBusinessName(rs.getString("businessName"));
                            user.setWebsiteName(rs.getString("websiteName"));
+                           user.setProfileImagePath(rs.getString("profileImagePath"));
                            userList.add(user);
                        }
                 tx.commit();

@@ -353,7 +353,8 @@ city TEXT,
 statecode TEXT,
 zipcode TEXT,
 businessName TEXT,
-websiteName TEXT)
+websiteName TEXT,
+profileImagePath TEXT)
 
 CREATE TABLE IF NOT EXISTS AccountUserDetails (
 id integer PRIMARY KEY,

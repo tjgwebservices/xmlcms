@@ -27,10 +27,12 @@ public class User {
     private String zipcode;
     private String businessName;
     private String websiteName;
+    private String profileImagePath;
+
 
     public User(){}
     
-    public User(String username, String firstName, String lastName, String email, String phoneNumber, String address1, String address2, String city, String statecode, String zipcode, String businessName, String websiteName) {
+    public User(String username, String firstName, String lastName, String email, String phoneNumber, String address1, String address2, String city, String statecode, String zipcode, String businessName, String websiteName, String profileImagePath) {
             this.username = username;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -43,6 +45,7 @@ public class User {
             this.zipcode = zipcode;
             this.businessName = businessName;
             this.websiteName = websiteName;
+            this.profileImagePath = profileImagePath;
     }
 
     public Integer getId() {
@@ -149,5 +152,12 @@ public class User {
         this.websiteName = websiteName;
     }
 
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
+    }
     
 }
