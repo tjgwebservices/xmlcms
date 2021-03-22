@@ -181,7 +181,7 @@
 
 <#macro navigation>
 <h2><img src="/images/iidataschool_banner001.png" alt="II Data School" title="II Data School" /></h2>
-<h2>Humanity and Technology Conference</h2>
+<h2>Investigative Peace Journalism</h2>
    <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -299,6 +299,7 @@
             <li>
             <span class="dropdown1">
                 <a href="/login">Login</a>
+                <a href="/logout">Logout</a>
                 <span class="dropdown1-content">
                 </span>
             </span>
@@ -617,14 +618,18 @@
 <p><#if rssFeed??>${rssFeed.channelLink}</#if></p>
 <p><#if rssFeed??>${rssFeed.channelDescription}</#if></p>
 
-<article>
 <#if rssFeed??>
 <#list rssFeed.items as item>
+  <#if item?is_even_item?c == "true">
+    <article>
+  </#if>
 <section>
-
 <h2><a href="${item[1]}">${item[0]}</a></h2>
 <p>${item[2]}</p>
 </section>
+  <#if item?is_odd_item?c == "true">
+    </article>
+  </#if>
 
 </#list>
 </#if>

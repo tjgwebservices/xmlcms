@@ -1,12 +1,11 @@
-<#macro templatetitle>Big Data Analysis in Financial Markets</#macro>
-<#macro templatedescription>Big Data Analysis in Financial Markets</#macro>
-<#macro templateauthor>Big Data Analysis in Financial Markets</#macro>
-<#macro templatetexttitle>Big Data Analysis in Financial Markets</#macro>
+<#macro templatetitle>Investigative Peace Journalism</#macro>
+<#macro templatedescription>Investigative Peace Journalism</#macro>
+<#macro templateauthor>Investigative Peace Journalism</#macro>
+<#macro templatetexttitle>Investigative Peace Journalism</#macro>
 <#macro templatefootertext>
-<p>Big Data Analysis in Financial Markets is brought to you by TJG Web Services</p>
-<p>TJG Web Services provides software engineering, data analysis, and technology consulting services/</p>
-<p>TJG Web Services is developing the TJGXMLCMS platform to provide technology solutions to traditional problems.</p>
-<p>To learn more about the development of TJGXMLCMS or to provide assistance in the development, visit TJG Web Services.</p>
+<p>TJG News is supporting efforts for Peace and Stability in Ethiopia</p>
+<p>TJG News is offering resources to discuss how to maintain peace in the Horn of Africa</p>
+<p>To learn more about how to participate in the discussion, visit TJG News.</p>
 </#macro>
 
 <#macro templatewebsiteframes>
@@ -203,58 +202,171 @@
 <#macro templateconferencehome>
 
         <h2>TJG News</h2>
-        <h4>Big Data Analysis in Financial Markets</h4>
+        <h4>Investigative Peace Journalism</h4>
         <p id="countdown"></p>
         <article>
-        <h2>Big Data Analysis in Financial Markets</h2>
+        <h2>Investigative Peace Journalism</h2>
         </article>
-<article class="rowpadding breadcrumbs">
-    <section class="third">
-        <p class="secanim"><a href="//blackinai2020.vercel.app/"><img src="https://blackinai2020.vercel.app/static/media/bai-logo.44f8f823.png"></a></p>
-        <p class=""><a href="//blackinai2020.vercel.app/">Black in AI</a></p>
-    </section>
-    <section class="third">
-        <p class=""><a href="//blackinai2020.vercel.app/">Addressing the diversity crisis in AI</a></p>
-    </section>
-    <section class="third">
-        <p class=""><a href="//blackinai2020.vercel.app/"><img src="https://blackinai2020.vercel.app/static/media/bai-logo.44f8f823.png"></a></p>
-        <p class=""><a href="//blackinai2020.vercel.app/">Black in AI</a></p>
-    </section>
-</article>
-
-<article class="rowpadding breadcrumbs">
-    <section class="third">
-    <p><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p>
-    <p><a href="//www.md4sg.com/">Mechanism Design 4 Social Good</a></p>
-    </section>
-    <section class="third">
-    <p><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p>
-    <p><a href="//www.md4sg.com/">Mechanism Design 4 Social Good</a></p>
-    </section>
-    <section class="third">
-    <p><a href="//www.md4sg.com/index.html"><img src="//tjgnews.com/img/md4sg.png" alt="MD4SG" title="MD4SG"></a></p>
-    <p><a href="//www.md4sg.com/">Mechanism Design 4 Social Good</a></p>
-    </section>
-  </article>
 
 <article class="rowpadding">
     <section class="third">
-        <h2><a href="//conference.tjgwebservices.com">Big Data Analysis in Financial Markets</a></h2>
+        <h2><a href="//conference.tjgwebservices.com">Investigative Peace Journalism</a></h2>
         <p class=""><a href="//conference.tjgwebservices.com">TJG News Resources</a></p>
         <a href="//conference.tjgwebservices.com"><img src="//tjgnews.com/img/big_data_analysis_in_financial_markets_01.png"></a>
     </section>
     <section class="third">
-        <h2><a href="//conference.tjgwebservices.com">Big Data Analysis in Financial Markets</a></h2>
+        <h2><a href="//conference.tjgwebservices.com">Investigative Peace Journalism</a></h2>
         <p class=""><a href="//conference.tjgwebservices.com">TJG News Resources</a></p>
         <a href="//conference.tjgwebservices.com"><img src="//tjgnews.com/img/big_data_analysis_in_financial_markets_01.png"></a>
     </section>
     <section class="third">
-        <h2><a href="//conference.tjgwebservices.com">Big Data Analysis in Financial Markets</a></h2>
+        <h2><a href="//conference.tjgwebservices.com">Investigative Peace Journalism</a></h2>
         <p class=""><a href="//conference.tjgwebservices.com">TJG News Resources</a></p>
         <a href="//conference.tjgwebservices.com"><img src="//tjgnews.com/img/big_data_analysis_in_financial_markets_01.png"></a>
     </section>
 </article>
 
+
+        <article>
+            <section>
+                <h4>Web Conference</h4>
+                <p>Jan 11-15 - Humanity and Technology Conference</p>
+            </section>
+            <section>
+                <h4>Web Conference</h4>
+                <p>Jan 11-15 - Humanity and Technology Conference</p>
+            </section>
+            <section>
+                <h4>Web Conference</h4>
+                <p>Jan 11-15 - Humanity and Technology Conference</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Jan 25-29 - Women Owned Resources and Knowledge</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Jan 25-29 - Women Owned Resources and Knowledge</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Jan 25-29 - Women Owned Resources and Knowledge</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 1-5 - African American History Month Resources</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 1-5 - African American History Month Resources</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 1-5 - African American History Month Resources</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 8-12 - Big Data Analysis in Financial Markets</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 8-12 - Big Data Analysis in Financial Markets</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 8-12 - Big Data Analysis in Financial Markets</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 15-19 - Big Data Analysis in Financial Markets</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 15-19 - Big Data Analysis in Financial Markets</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 15-19 - Big Data Analysis in Financial Markets</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 22-26 - Big Data Analysis in Financial Markets</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 22-26 - Big Data Analysis in Financial Markets</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Feb 22-26 - Big Data Analysis in Financial Markets</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 1-5 - Investigative Data Journalism</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 1-5 - Investigative Data Journalism</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 1-5 - Investigative Data Journalism</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 8-12 - Practical Ethical Artificial Intelligence</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 8-12 - Practical Ethical Artificial Intelligence</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 8-12 - Practical Ethical Artificial Intelligence</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 15-19 - Peace and Stability in Ethiopia</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 15-19 - Peace and Stability in Ethiopia</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 15-19 - Peace and Stability in Ethiopia</p>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 22-26 - Investigative Peace Journalism</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 22-26 - Investigative Peace Journalism</p>
+            </section>
+            <section>
+                <h4>TJG News</h4>
+                <p>Mar 22-26 - Investigative Peace Journalism</p>
+            </section>
+        </article>
 
 
         <article>
@@ -283,8 +395,7 @@
                                         <a href="#" class="button-open">Open</a>
                                 </article>
                                 <article>
-                                        <p>Big Data Analysis in Financial Markets</p>
-                                        <p>African American History Month</p>
+                                        <p>Investigative Peace Journalism</p>
                                         <p>Conference Workshops</p>
                                         <p>Discussion Forums</p>
                                         <p>Speakers</p>
@@ -323,90 +434,8 @@
 
         </article>
         </article>
-        <article>
-            <section>
-                <h4>Web Conference</h4>
-                <p>Jan 11-15 - Humanity and Technology Conference</p>
-            </section>
-            <section>
-                <h4>Web Conference</h4>
-                <p>Jan 11-15 - Humanity and Technology Conference</p>
-            </section>
-            <section>
-                <h4>Web Conference</h4>
-                <p>Jan 11-15 - Humanity and Technology Conference</p>
-            </section>
-        </article>
-        <article>
-            <section>
-                <h4>TJG News</h4>
-                <p>Jan 25-29 - Women Owned Resources and Knowledge</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Jan 25-29 - Women Owned Resources and Knowledge</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Jan 25-29 - Women Owned Resources and Knowledge</p>
-            </section>
-        </article>
-        <article>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 1-5 - African American History Month Resources</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 1-5 - African American History Month Resources</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 1-5 - African American History Month Resources</p>
-            </section>
-        </article>
-        <article>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 8-12 - Big Data Analysis in Financial Markets</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 8-12 - Big Data Analysis in Financial Markets</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 8-12 - Big Data Analysis in Financial Markets</p>
-            </section>
-        </article>
-        <article>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 15-19 - Big Data Analysis in Financial Markets</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 15-19 - Big Data Analysis in Financial Markets</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 15-19 - Big Data Analysis in Financial Markets</p>
-            </section>
-        </article>
-        <article>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 22-26 - Big Data Analysis in Financial Markets</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 22-26 - Big Data Analysis in Financial Markets</p>
-            </section>
-            <section>
-                <h4>TJG News</h4>
-                <p>Feb 22-26 - Big Data Analysis in Financial Markets</p>
-            </section>
-        </article>
+
+
 
     <article>
       <section>
@@ -453,28 +482,6 @@
         </article>
         
 
-	<article>
-            <p><strong>TJG Web Services Data Research</strong>
-            </p><p>TJG Web Services is a consulting firm located in San Antonio, TX.  TJG Web Services provides services in software engineering, data analysis, and investigative data journalism.  TJG Web Services provides the Data Research Wiki for resources about big data, data analytics, big data analytics, data science, machine learning, and artificial intelligence.  Consult <a rel="nofollow" class="external text" href="https://tjgwebservices.com">TJG Web Services</a> for information about TJG Web Services Data Research.
-            </p><p>TJG Web Services provides software engineering and data analysis services implementing artificial
-            intelligence, machine learning, and big data.
-            </p>
-            <ul><li>Design, development, and deployment of software engineering and big data platforms</li>
-            <li>Consultation and training on emerging tools and practices in information systems</li>
-            <li>Coordination of large scale information technology programs and projects</li></ul>
-            <p>TJG Web Services was founded as a freelance consulting agency providing programming services to small businesses and non profit organizations.  Over the years, TJG Web Services expanded in other areas to support the mission of providing educational resources for individuals, organizations and businesses.  TJG Web Services provides services worldwide to clients seeking professional consulting with extraordinary customer service.
-            </p>
-            <ul><li>TJG Web Services implements the latest strategies in software engineering to deliver state of the art products and services</li>
-            <li>TJG Web Services consultants have expertise in full software development life cycle operations</li>
-            <li>TJG Web Services offers cost-effective solutions for large scale projects</li></ul>
-            <p>The purpose of TJG Web Services is to organize consulting professionals to serve customers.  TJG Web Services conducts need analysis, gathers requirements, develops software systems, tests applications, publishes documentation, and maintains a network of consulting platforms.  TJG Web Services delivers consulting services in industries such as education, media, health care, transportation, finance, and government.  TJG Web Services plans and forecasts emerging trends and how they transform areas of business.
-            </p><p>TJG Web Services provides software engineering and data analysis services with specialties in artificial intelligence and machine learning. TJG Web Services develops custom software engineering platforms with the methodologies of agile methodology and test, behavior, and feature driven development. TJG Web Services researches emerging tools and strategies in artificial intelligence and machine learning to provide quality, next-generation, automated information technology workflows.
-            </p><p>Technologies that TJG Web Services develops that support artificial intelligence and machine learning include graph databases, container services, and functions, software, infrastructure, and platform as a service solutions. TJG Web Services also develops tools for predictive and prescriptive analytics. One of the platform-as-a-service tools that TJG Web Services has recently developed is the TJGXMLCMS platform.
-            </p><p>TJG Web Services has developed TJGXMLCMS, as a framework for developing resource description and resource query models. TJG Web Services has faced a challenge in developing a structured standard methodology for unstructured data formats. TJGXMLCMS mitigated that challenge with supervised machine learning algorithms of software code. An analysis of software code and implementation of test driven development enhanced the services TJGXMLCMS is able to provide in a number of fields such as healthcare, finance, transportation, and energy. TJG Web Services has developed optimized performance systems for analytical processing of web transactions. TJGXMLCMS addresses scalability by implementing data archiving and data mining. These activities provide TJGXMLCMS the ability to deliver transactional and analytical services on a single platform.
-            </p><p>TJG Web Services initiates an Internet data management platform by separating layers of data management, prescriptively determining scalability requirements, and testing feasibility of new features before their introduction. TJG Web Services tests database requirements to ensure the robustness of the data management systems. TJG Web Services provides business intelligence solutions for data marts with custom user interfaces for real time operational awareness of business domains. TJG Web
-            </p><p>Services also develops advanced statistical processes for data mining by creating an interchange of data between data stores and statistical processing engines. For more information about TJGXMLCMS, please visit <a rel="nofollow" class="external text" href="https://tjgwebservices.com/tjgxmlcms/">TJGXMLCMS</a>. TJG Web Services is willing to serve the federal government with artificial intelligence and machine learning products or services.
-            </p>
-	</article>
 
 
 
